@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>thefourtheye's weblog</title>
+  <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
+
+  
+  <meta name="description" content="Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://thefourtheye.github.io/posts/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="thefourtheye's weblog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="thefourtheye.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/11/17/python-dictionary-comprehension/">Python Dictionary Comprehension</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-11-17T13:35:00+05:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>Dictionary comprehensions were <a href="http://docs.python.org/2.7/whatsnew/2.7.html#other-language-changes" target="_blank">backported from Python 3.x to 2.7</a>. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension</p><pre class="prettyprint">>>> myMatrix = [[1, 100], [2, 200], [3, 300]]<br />>>> {key:value for key, value in myMatrix}<br />{1: 100, 2: 200, 3: 300}<br /></pre><p>Here we use unpacking from <code>myMatrix</code> list and we have used <code>{}</code> with <code>key:value</code> notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example</p><pre class="prettyprint">>>> myMatrix = [[100, 100], [20, 200], [30, 300]]<br />>>> {(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}<br />{120: 20, 130: 30, 100: 20}<br /></pre><p>Here we use <a href="http://docs.python.org/2/reference/expressions.html#conditional-expressions" target="_blank">conditional expressions</a> to dynamically decide what the key and the value are going to be.</p><h2>Performance</h2><pre class="prettyprint">>>> def changeDict():<br />...     newDict = {}<br />...     for key, value in myMatrix:<br />...         newDict[(key + 100 if key < 100 else key)] = value/10 if value >= 200 else value/5<br />...     return newDict<br />...     <br />>>> from timeit import timeit<br />>>> timeit("{(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}", setup="from __main__ import myMatrix")<br />0.7076609134674072<br />>>> timeit("changeDict()", setup="from __main__ import myMatrix, changeDict")<br />0.7484149932861328<br /></pre><p>The use of comprehension is slightly faster than the function which adds keys and values to an existing dictionary. This difference will be significant when the <code>myMatrix</code> has huge amount of data.</p></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/10/27/zen-of-python-by-tim-peters/">Zen of Python by Tim Peters</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-27T17:20:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Python has an Easter Egg :) just try to import <code>this</code> like this<br /><pre class="prettyprint">import this</pre>you ll get this<br /><pre>The Zen of Python, by Tim Peters<br /><br />Beautiful is better than ugly.<br />Explicit is better than implicit.<br />Simple is better than complex.<br />Complex is better than complicated.<br />Flat is better than nested.<br />Sparse is better than dense.<br />Readability counts.<br />Special cases aren't special enough to break the rules.<br />Although practicality beats purity.<br />Errors should never pass silently.<br />Unless explicitly silenced.<br />In the face of ambiguity, refuse the temptation to guess.<br />There should be one-- and preferably only one --obvious way to do it.<br />Although that way may not be obvious at first unless you're Dutch.<br />Now is better than never.<br />Although never is often better than *right* now.<br />If the implementation is hard to explain, it's a bad idea.<br />If the implementation is easy to explain, it may be a good idea.<br />Namespaces are one honking great idea -- let's do more of those!<br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/10/27/file-upload-with-jquery-and-ajax/">File Upload With jQuery and Ajax</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-27T16:30:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:30 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">The requirement is simple. I should be able to upload files to the server with jQuery and ajax. Lets get started.<br /><pre class="prettyprint">&lt;html&gt;<br />   &lt;form&gt;<br />     File Description:&lt;input type="text" id="desc" /&gt;<br />     Choose File:&lt;input type="file" id="chosenFile" /&gt;<br />     &lt;input type="button" id="submitFile" value="submitTheFile" /&gt;<br />   &lt;/form&gt;<br />&lt;/html&gt;<br /></pre>Now, the real jQuery stuff<br /><pre class="prettyprint">&lt;script type="text/javascript"&gt;<br />    jQuery.noConflict();<br />    jQuery(document).ready(function() {<br />        jQuery("#submitFile").click(function() {<br />            jQuery.ajax({<br />                url: "[url to be submitted to]",<br />                type: "POST",<br />                contentType: false,<br />                processData: false,<br />                data: function() {<br />                    var data = new FormData();<br />                    data.append("fileDescription", jQuery("#desc").val());<br />                    data.append("chosenFile", jQuery("#chosenFile").get(0).files[0]);<br />                    return data;<br />                    // Or simply return new FormData(jQuery("form")[0]);<br />                }(),<br />                error: function(_, textStatus, errorThrown) {<br />                    alert("Error");<br />                    console.log(textStatus, errorThrown);<br />                },<br />                success: function(response, textStatus) {<br />                    alert("Success");<br />                    console.log(response, textStatus);<br />                }<br />            });<br />        });<br />    });<br />&lt;script&gt;<br /></pre>Important things to be noted here are<br /><pre class="prettyprint">contentType: false,<br />                processData: false,<br /></pre><p><code>contentType</code> will be determined automatically, so we don't have to set that explicitly and <code>processData</code> has to be false, otherwise the data will be processed and transformed into a query string, fitting to the default content-type "application/x-www-form-urlencoded". Next important thing is<br /><pre class="prettyprint">data: function() {<br />                    var data = new FormData();<br />                    data.append("fileDescription", jQuery("#desc").val());<br />                    data.append("chosenFile", jQuery("#chosenFile").get(0).files[0]);<br />                    return data;<br />                    // Or simply return new FormData(jQuery("form")[0]);<br />                }(),<br /></pre>You can read about FormData <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">here</a>. We basically set the values being submitted. The first parameter is the key and the second parameter is the actual value to be passed. We can get the value of any form field with <pre class="prettyprint">jQuery("#desc").val()</pre>expect the files. If we use the same for files, we ll get just the file name instead of the file contents. So, we have to do something like <pre class="prettyprint">jQuery("#chosenFile").get(0).files[0]</pre>If we dont want to set individual values and want to pass all the fields in the form, we can simply do <pre class="prettyprint">data: new FormData(jQuery("form")[0])</pre>Thats it. Enjoy Ajaxified file upload :)<br /><b>References:</b><br /><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/File">File</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications">Using files from web applications</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Using_FormData_Objects">Using FormData Objects</a></li></ul></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/07/installing-thefourtheyeeditor/">Installing the thefourtheyeEditor - Topcoder Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-07T13:38:00+05:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:38 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>thefourtheyeEditor is a very lightweight plugin for Topcoder Arena to participate in Single Round Matches, which can build testcases and lets the users to store the solutions as local files, so that any editor or IDE can be used to edit them. It also maintains the solutions in the directories named as the SRM's display name.</p><h2>Features</h2><ol><li>Very lightweight - Only one jar file. It doesn't depend on any other external jar files.</li><li>Organized solutions storage - Solutions will be stored as per the SRM names</li><li>File based configuration - Configurations are done in contestapplet.conf file. No need to use UI.</li></ol><h2>Installation</h2><ol><li>Download thefourtheyeEditor plugin (thefourtheyeEditor.jar) from <a href="https://github.com/thefourtheye/thefourtheyeEditor/releases/download/latest/thefourtheyeEditor.jar">https://github.com/thefourtheye/thefourtheyeEditor/releases/download/latest/thefourtheyeEditor.jar</a></li><li>Open topcoder contest applet and login with your username and password<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-pWmhTKJgMuU/UirZL3XombI/AAAAAAAABaQ/ElKofTOUZLo/s1600/topcoder+Login.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-pWmhTKJgMuU/UirZL3XombI/AAAAAAAABaQ/ElKofTOUZLo/s1600/topcoder+Login.png" /></a></div></li><li>Select <code>Editor</code> from the <code>Options</code> menu. You 'll see something like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-i-I4SZM6w0Y/UiraJxyoHjI/AAAAAAAABaY/rsfdcOmIVFc/s1600/topcoder+Editor+Preferences+Empty.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-i-I4SZM6w0Y/UiraJxyoHjI/AAAAAAAABaY/rsfdcOmIVFc/s1600/topcoder+Editor+Preferences+Empty.png" /></a></div></li><li>Click on <code>Add</code> and you 'll get a window like this. Fill in the details as you see in this picture. Actually you can give any name in the <code>Name</code>field and in <code>ClassPath</code> field, you have to locate the <code>thefourtheyeEditor.jar</code> file using Browse button. <code>EntryPoint</code> must be exactly the same as <code>thefourtheyeEditor.Main</code>.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-fYASUa_iIWo/Uiravmk9dJI/AAAAAAAABag/RhTfUoZX-1w/s1600/topcoder+plugin+Information.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-fYASUa_iIWo/Uiravmk9dJI/AAAAAAAABag/RhTfUoZX-1w/s1600/topcoder+plugin+Information.png" /></a></div></li><li>Once these steps are done, the Editor preferences page will look like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-NeWwv8YD2WE/Uird2isJrGI/AAAAAAAABas/tLVrupAZrj8/s1600/topcoder+After+plugin+installation.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-NeWwv8YD2WE/Uird2isJrGI/AAAAAAAABas/tLVrupAZrj8/s1600/topcoder+After+plugin+installation.png" /></a></div></li><li>Click on Save button and close that window. That's it. Installation is complete :)</li></ol></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/">Ubuntu Bug Related to Network and Power</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-04T18:32:00+05:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>Last week, I faced this weird problem. When my laptop is not connected to a power source (not on battery), I could not connect to LAN network with my LAN cable, but Wi-Fi worked fine. I struggled a lot for a week and then I found a solution in the internet.<br /><p>All you have to do is to execute this one liner in your terminal.<br /><pre class="prettyprint">echo on > /sys/class/net/eth1/device/power/control<br /></pre>Here <code>eth1</code> corresponds to my second ethernet interface. It might vary from machine to machine. And if the directories <code>eth</code>, <code>device</code> and <code>power</code> dont exist, you might have to manually create them.<br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3/">Compiling Node.js Scripts in Windows 7 With Sublime Text 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-29T19:56:00+05:30'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:56 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>This is a continuation of <a href="http://www.thefourtheye.in/2013/07/Compiling-Cpp-11-Programs-with-Sublime-Text-3.html">Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu</a> where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C++ 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine's Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. <br /><ol><li>We need to create the following directory structure in the User's home directory <code>AppData\Roaming\Sublime Text 3\Packages\JS\</code>. In my machine, home directory is <code>C:\Users\[username]</code>. To know the current user's home directory, open <code>Cmd.exe</code> and type <code>echo %userprofile%</code>. <br /><li>In that directory, create a file called "JS.sublime-build". So, the location of the file from the home directory is <code>AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build</code> You can name the sublime-build file as anything you want. I have simply named it here as JS.<br /><li>Copy and paste the following text in to it.<br /><pre class="prettyprint">{<br /> "cmd": ["node.exe", "${file}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.js",<br /> "variants":<br /> [<br />  {<br />   "name": "Run",<br />   "cmd":["node.exe", "${file}"]<br />  }<br /> ]<br />}<br /></pre><li>Thats it. Open Sublime Text 3. Click on Tools->Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.<br /></ol></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/07/21/Compiling-Cpp-11-Programs-with-Sublime-Text-3/">Compiling C++11 Programs With Sublime Text 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-21T16:41:00+05:30'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>4:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>For <b>Windows 7</b>, you may want to read this post <a href="http://www.thefourtheye.in/2013/07/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3.html">http://www.thefourtheye.in/2013/07/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3.html</a><br /><p>Today I installed Sublime Text 3's public beta on my Ubuntu 13 and the first thing I noticed is, the inability to compile C++ 11 programs. The obvious problem is, it was missing <code>-std=c++0x</code> parameter to g++. I tried to figure out how to edit the build parameters of Sublime. After an hour's struggle managed to figure out.<br /><ol><li>You need to create the following file <code>~/.config/sublime-text-3/Packages/C++/C++.sublime-build</code>. The <code>~</code> refers to the home directory of the current user.<br /><li>Now insert the below seen text to that file<br /><pre class="prettyprint">{<br /> "cmd": ["g++", "-std=c++0x", "${file}", "-o", "${file_path}/${file_base_name}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.c, source.c++",<br /> "variants":<br /> [<br />   {<br />     "name": "Run",<br />     "cmd":["bash", "-c", "g++ -std=c++0x '${file}' -o '${file_path}/${file_base_name}' && '${file_path}/${file_base_name}'"]<br />   }<br /> ]<br />}<br /></pre><li>Save this file and close it. Sublime will pick up the changes immediately.<br /></ol>This will take care of compiling C++ 11 programs. </div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/30/spoj-best-solutions-for-double-helix/">SPOJ Best Solutions for the Double Helix</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-30T18:08:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Unforgettable day. Got my solution featured, as one of the best Python solutions to "<a href="http://www.spoj.com/problems/ANARC05B/">The Double Helix</a>" problem. <br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-wzk1jclGSXQ/UdAmerJssFI/AAAAAAAABYk/pb3O4uzgCmk/s1280/SPOJ+Top+20.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-wzk1jclGSXQ/UdAmerJssFI/AAAAAAAABYk/pb3O4uzgCmk/s1280/SPOJ+Top+20.png" style="max-width: 100%; max-height: 100%;" /></a></div></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/15/project-euler-15-lattice-paths_15/">Project Euler - 15 - Lattice Paths</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-15T21:22:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">In this post we are dealing with <a href="http://projecteuler.net/problem=15">Project Euler - 15 - Lattice paths</a>. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.<br /><pre class="prettyprint">Total = 21<br /><br />Array = [[0]*Total for i in xrange(Total)]<br />for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1   #Initializing bottom row and right column with 1<br /><br />def Rec(i, j):<br />    global Array<br />    if Array[i][j]: return Array[i][j]<br />    Rec(i+1, j)<br />    Rec(i, j+1)<br />    Array[i][j] = Array[i+1][j] + Array[i][j+1]<br /><br />Rec (0, 0)<br />print Array[0][0]<br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization/">Project Euler - 14 - Longest Collatz Sequence - Memoization</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-15T18:56:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:56 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This post is about the <a href="http://projecteuler.net/problem=14">Project Euler - 14 - Longest Collatz sequence</a> problem. This is one of the perfect examples of memoization technique. This is the actual problem.<br /><br /><pre>The following iterative sequence is defined for the set of positive integers:<br /><br />n → n/2 (n is even)<br />n → 3n + 1 (n is odd)<br /><br />Using the rule above and starting with 13, we generate the following sequence:<br />13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1<br /><br />It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.<br /><br />Which starting number, under one million, produces the longest chain?<br /><br />NOTE: Once the chain starts the terms are allowed to go above one million.<br /></pre><br /><h2>Simple Solution</h2><br />The problem statement looks pretty simple and a brute force will work just fine. This code runs in 20 seconds.<br /><br /><pre class="prettyprint"><br />def Series(N):<br />    Counter = 1<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        Counter += 1<br />    return Counter<br /><br />Max, Element = 0, 0<br />for x in xrange (1, 1000000):<br />    series = Series(x)<br />    if (Max &lt; series):<br />        Max = series<br />        Element = x<br /><br />print Max, Element<br /><br /></pre><br /><br />As I had to wait for 20 seconds to get the solution, I was thinking about improving the performance. Then I found this. From the problem statement, <code>13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>, starting with any number, if it becomes 13 at any point of time, it has to take the same route and if it becomes 13 it will take 10 steps to become 1. So I wanted to store this information first time itself, so that I don't have to recalculate. This is called <code>Memoization</code>. Quoting from wikipedia<br /><br /><blockquote>In computing, memoization is an optimization technique used primarily to speed up computer programs by having function calls avoid repeating the calculation of results for previously processed inputs</blockquote><br /><h2>Optimized (Memoized) Solution</h2><br />To optimize it, I just had to change the Series function alone. I stored the computed values in a dictionary and if the current number in the sequence happens to be in the dictionary, I ll just return the value corresponding to it. This program responded with the result in 2 seconds. That is <b>10 times faster</b> than the first version.<br/><br /><pre class="prettyprint"><br />Dict = {}<br /><br />def Series(N):<br />    Counter = 1   #It is 1, because we are counting the initial N<br />    Original = N<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        if N in Dict:                    # Check if the length has been computed for this number already<br />            Counter += Dict[N]           # Add it to the current length counter<br />            Dict [Original] = Counter    # Store the computed value for future look back<br />            return Counter<br />        Counter += 1<br />    Dict [Original] = Counter            # Store the computed value for future look back<br />    return Counter<br /><br /></pre><br/><br/><br/><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/index.html">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">DSL-2730U Router's Ipv6 Problem in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/03/sane-ecmascript-6-generators/">Sane ECMAScript 6 Generators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/15/python-35-and-django-17s-htmlparseerror/">Python 3.5 and Django 1.7's HTMLParseError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/thefourtheye">@thefourtheye</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'thefourtheye',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Sakthipriyan Vairamani (thefourtheye) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'thefourtheye';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

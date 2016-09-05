@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>thefourtheye's weblog</title>
+  <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
+
+  
+  <meta name="description" content="Today I came across this interesting problem. Project Euler's Problem 5 - Smallest Multiple. 2520 is the smallest number that can be divided by each &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://thefourtheye.github.io/posts/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="thefourtheye's weblog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="thefourtheye.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/15/Project-Euler-Problem-5-Smallest-multiple/">Project Euler - Problem 5 - Smallest Multiple</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-15T13:05:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Today I came across this interesting problem. <a href="http://projecteuler.net/problem=5">Project Euler's Problem 5 - Smallest Multiple</a>. <br /><br /><pre>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.<br /><br />What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?<br /></pre><br />Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the <b>smallest</b> positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated <code>2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690</code>, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.<br /><br /><h2>Brute Force Solution</h2><br /><pre class="prettyprint">i = 21<br />while True:<br />    flag = True<br />    for X in xrange(1, 21):<br />        if (i % X != 0):<br />            flag = False<br />            break<br />    if flag:<br />        print i<br />        break<br />    i += 1<br /></pre><br />But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this <a href="http://stackoverflow.com/a/13765976/1903116">page</a>. Its high school maths. <br /><br /><h2>Optimized Solution</h2><br /><h2>LCM</h2>Least Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A & B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.<br /><br /><h2>Relation between LCM and GCD</h2><code>LCM(A,B) = (A * B)/GCD(A*B)</code><br /><br /><h2>Recursive Euclid's algorithm for GCD</h2><h6>Base Condition</h6><code>GCD(A, 0) = A</code><br /><h6>Recurrence Relation</h6><code>GCD(A, B) = GCD (B, A mod B)</code><br /><br />So I modified my code like this and it produced the solution within 1 second.<br /><br /><pre class="prettyprint">def GCD(M, N):<br />    while (N != 0):<br />        M, N = N, M % N<br />    return M<br /><br />LCM = 1<br />for X in xrange(1, 21):<br />    LCM = (X * LCM)/GCD(X, LCM)<br />print LCM<br /></pre><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/12/project-euler-problem-18-problem-67/">Project Euler - Problem 18, Problem 67 - Maximum Path Sum</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-12T19:32:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me  if I can solve <a href="http://projecteuler.net/problem=18">Project Euler's Problem 18</a>. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,<br /><br /><pre> 8<br />1 2<br /></pre><br />The maximum of 8+1 and 8+2 would be 10 and 10 would take 8's place. So we keep on doing this till we reach the top. For the sample input<br /><br /><pre>3<br />  7 4<br /> 2 4 6<br />8 5 9 3<br /></pre><br />After first Iteration,<br /><br /><pre>3<br />   7  4<br /> 10 13 15<br /></pre><br />After second Iteration,<br /><br /><pre>3<br />  20 19<br /></pre><br />After third  Iteration,<br /><br /><pre>23<br /></pre><br />Here is the solution which I used<br /><br /><pre class="prettyprint">import sys<br />sys.stdin  = open ("Input.txt")<br />sys.stdout = open ("Output.txt", "w")<br />Array = []<br />for line in sys.stdin: Array.append (map (int, line.split()))<br />Array.reverse()<br />temp_array = [0] * (len(Array) + 1)<br />for Row in Array:<br /> for i in xrange (len(Row)):<br />  temp_array[i] = Row[i] + max (temp_array[i], temp_array[i + 1])<br />print max (temp_array)<br /></pre><br />This solution will solve <a href="http://projecteuler.net/problem=67">Project Euler's Problem 67</a> as well.<br /><br /><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/08/Ubuntu-13-04-Execute-scripts-on-double-click/">Ubuntu 13.04 - Execute Scripts on Double Click</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-08T19:57:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:57 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">After upgrading to Ubuntu 13.04, I was facing this problem. I was not able to execute any script file just by double clicking on it, even though it has execute permission. Then I figured out, how to fix this problem.<br /><br />I opened the file explorer <code>Files</code>. Pressed <code>Alt</code>+<code>F10</code> and selected <code>Preferences</code>. It showed something like this.<br /><br /><a href="http://i.stack.imgur.com/I74gD.png" imageanchor="1" ><img border="0" src="http://i.stack.imgur.com/I74gD.png" /></a><br /><br />In the <code>Behavior</code> tab, I selected <code>Ask each time</code> and closed it. By default, it was in <code>View executable text files when they are opened</code>. Now whenever I double click on a shell script, it will ask me what to do. If you want to straight away execute the script, select the first option <code>Run executable text files when they are opened</code>.<br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/08/gitclean-git-clean-wrapper/">Gitclean - a Git Clean Wrapper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-08T18:40:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Last week, I had to make some changes to the code. I was keep on making changes but forgot to add them to git and to take backup. When I am almost done I wanted to commit and before committing I checked the changed files with this.<br /><br /><code>git status</code><br /><br />it listed all the files which have got changed and few other temporary files and compiled binaries, which I don't want to keep in the repository. So I did<br /><br /><code>git clean -qfxd</code><br /><br />That's it. This cleared everything, including my newly added untracked files and all my hardwork went in vain. Then I read about <code>git clean</code> <a href="https://www.kernel.org/pub/software/scm/git/docs/git-clean.html">here</a> and got to know what I could have done to avoid this problem. And then I was thinking, if there is a script which would remind me that, the following files will also be removed and only when I say `yes` it would go ahead and clean the repository. So I made this <a href="https://github.com/thefourtheye/gitclean">gitclean</a> script. This would collect the status of the files with <code>git status --porcelain</code> and then compare it with the list of extensions specified in the config file. If they match, it would report to the user and ask his consent before beginning to clean.<br /><br /><h2>Github</h2><br />Github Repository : <a href="https://github.com/thefourtheye/gitclean">https://github.com/thefourtheye/gitclean</a>.<br /><br /><h2>Installation</h2><br />To install this script, please follow these steps<br /><br /><pre class="prettyprint">wget https://raw.github.com/thefourtheye/gitclean/master/gitclean<br />chmod 544 gitclean<br />./gitclean install<br /></pre><br /><ol><li>The first step will download the script from github</li><li>The second step changes the permissions of the file to 544</li><li>The third step installs the script. Basically, it copies itself to the user's home directory and creates the gitclean alias in the <code>$HOME/.bashrc</code> file<br /></ol><h2>Configuration</h2>Users can specify the extensions, gitclean has to report in the <code>$HOME/.gitclean_extenstions</code> file. By default, gitclean will report the extension-less files and directories as well. But, it does not report the empty directory. My <code>.gitclean_extenstions</code> file has the following items.  <pre class="prettyprint">cpp<br />js<br /></pre><h2>Sample Runs</h2>1. With no files changed  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />0 interesting files found, in total 0 files. Cleaning was not done. Exiting...<br />~/gitclean$ <br /></pre>2. With one interesting file [Test.js]  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />Test.js<br /><br />1 interesting files found, in total 1 files. Are you sure want to clean? [y/Y - Yes, Any other Key - No] : n<br />Cleaning was not done. Exiting...<br />~/gitclean$ <br /></pre>3. With one interesting file [Test.js] and a non-empty directory  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />Test.js<br />Test/<br /><br />2 interesting files found, in total 2 files. Are you sure want to clean? [y/Y - Yes, Any other Key - No] : y<br />Cleaning...<br /><br />~/gitclean$ <br /></pre>4. With one interesting file [Test.js] and a non-empty directory and a non-interesting file [Test.txt]  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />Test.js<br />Test/<br /><br />2 interesting files found, in total 3 files. Are you sure want to clean? [y/Y - Yes, Any other Key - No] : y<br />Cleaning...<br /><br />~/gitclean$ <br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/25/sublime-configuring-codeintel/">Sublime Configuring CodeIntel Auto Completion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-25T12:54:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:54 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Unarguably Sublime is one of the best text editors and with its ability to extend with python scripts, gifts itself a lot of power. Here lets see one of those extensions which allow code completion. Normally, sublime provides code completion for the words in the current file being edited. Codeintel allows the user to get code completion feature of the respective languages.<br /><br /><h2>Installation</h2>Lets install CodeIntel, through Package Control plugin. To install Package Control plugin, do the following steps. Here is the author's <a href="http://wbond.net/sublime_packages/package_control/installation">page</a>. Quoting from the source website<br /><br /><blockquote>Installation is through the Sublime Text 2 console. This is accessed via the ctrl+` shortcut. Once open, paste the following command into the console.<br /><br /><div style="background-color:black; color: white; padding: 25px">import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')</div></blockquote><br />After installing it, Press Shift+Ctrl+P or click on Tools->Command Palette. In the window that opens up, type Install Package. In the text box which you see after that, type SublimeCodeIntel and click on it to install it. You are done with the installation of CodeIntel.<br /><br /><h2>Configuration</h2>The following information is taken from the README.rst file. Open ~/.codeintel/config file in your favourite text editor, most likely Sublime. Pick your language from the list below and copy paste only the blocks for the languages of your choice.<br /><br /><pre class="prettyprint">    {<br />        "PHP": {<br />            "php": '/usr/bin/php',<br />            "phpExtraPaths": [],<br />            "phpConfigFile": 'php.ini'<br />        },<br />        "JavaScript": {<br />            "javascriptExtraPaths": []<br />        },<br />        "Perl": {<br />            "perl": "/usr/bin/perl",<br />            "perlExtraPaths": []<br />        },<br />        "Ruby": {<br />            "ruby": "/usr/bin/ruby",<br />            "rubyExtraPaths": []<br />        },<br />        "Python": {<br />            "python": '/usr/bin/python',<br />            "pythonExtraPaths": []<br />        },<br />        "Python3": {<br />            "python": '/usr/bin/python3',<br />            "pythonExtraPaths": []<br />        }<br />    }<br /></pre><br />For example, I like to use python and my config file looks like this<br /><pre class="prettyprint">{<br /> "Python": {<br />     "python": '/usr/bin/python',<br />     "pythonExtraPaths": []<br /> },<br />}<br /></pre><br />Thats it. Restart your sublime, type code and press Alt + / to see the Auto completion at work.<br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/19/ubuntu-scaling-display-zooming/">Ubuntu Scaling the Display (Zooming)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-19T15:48:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>3:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><br />Today I came across this useful trick, which allows me to have lot of space on my screen, even though my screen supports only very low resolution.<br /><br />First, lets see how to get to know the list of displays attached to Ubuntu<br /><br /><pre class="prettyprint">~$ xrandr<br />Screen 0: minimum 8 x 8, current 2881 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1281+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />   1600x900       60.0 +   40.0  <br />DP-0 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />~$ <br /></pre><br />This is what I got on my machine. And following are the display names as per Ubuntu.<br /><pre class="prettyprint">VGA-0 <br />LVDS-0<br />DP-0 <br /></pre><br />This command has listed out other useful information as well. I could only understand the resolutions supported. Following are the resolutions supported by VGA-0 and DP-0.<br /><pre class="prettyprint">1280x1024<br />1152x864<br />1024x768<br /> 800x600<br /> 640x480<br /></pre>So the maximum resolution allowed is 1280x1024. But that doesnot allow me to have more space on screen. After long searching, I got this.<br /><pre class="prettyprint">xrandr --output VGA-0 --mode 1280x1024 --scale 1.25x1.25<br /></pre>This command sets the resolution of VGA-0, to 1280x1024 but it scales it by the factor of 1.25x1.25. Voila :) Now I have much bigger screen.<br /><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/08/google-code-jam-2013-round-1b-osmos/">Google Code Jam 2013 - Round 1B - Osmos</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-08T08:21:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:21 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Today, I would like to share my solution to the Google Code Jam 2013's Round 1B's Osmos problem. These are the statistics for that problem<br /><pre class="prettyprint">Small Input : 4668/7250 users correct (64%)<br />Large Input : 3537/4578 users correct (77%)<br /></pre>I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn't solve it during the contest).<br /><br /><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br /># include &lt;algorithm&gt;<br /> <br />using namespace std;<br />int Sizes[101];<br />int Total, A, N, Temp, Counter;<br />int getDiff (int A, int B, int & C)<br />{<br />    while (A <= B)<br />    {<br />        C++;<br />        A += (A-1);<br />    }<br />    return A;<br />}<br />int Solve (int idx, int CurrentScore, int Changes)<br />{<br />    if (idx == N) return Changes;<br />    if (CurrentScore == 1)<br />        return Solve (idx + 1, CurrentScore, Changes + 1);<br />    else if (Sizes[idx] < CurrentScore)<br />        return Solve (idx + 1, CurrentScore + Sizes[idx], Changes);<br />    else<br />    {<br />        int tChanges = 0;<br />        int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) + Sizes[idx];<br />        int Min1 = Solve (idx + 1, Diff, Changes + tChanges);<br />        if (Sizes[idx] > CurrentScore)<br />           return min (Solve (idx + 1, CurrentScore, Changes+1), Min1);<br />        else return Min1;<br />    }<br />}<br />int main()<br />{<br />    //freopen ("Input.txt", "r", stdin);<br />    //freopen ("Scratch.txt", "w", stdout);<br />    scanf ("%d", &Total);<br />    for (int i = 1; i <= Total; i++)<br />    {<br />        scanf ("%d%d", &A, &N);<br />        Temp = A;<br />        Counter = 0;<br />        for (int j = 0; j < N; j++) scanf ("%d", &Sizes[j]);<br />        sort (Sizes, Sizes + N);<br />        printf ("Case #%d: %d\n", i, Solve (0, A, 0));<br />    }<br />}<br /></pre>Here is the ideone URL <a href="http://ideone.com/g5qxYd">http://ideone.com/g5qxYd</a> where I tested the program with Google's inputs.   </div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/04/fixing-ubuntu-apt-get-sources/">Fixing Ubuntu Apt-get Sources</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-04T20:41:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This script makes use of the mirror protocol.<br /><pre class="prettyprint">#!/bin/bash<br /><br />UbuntuCodeName=`lsb_release -c | cut -f 2`<br />if [ ! -f /etc/apt/sources.list.Original ];<br />then<br />    mv /etc/apt/sources.list /etc/apt/sources.list.Original<br /> echo "deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br /><br />deb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br />deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br /><br />deb     http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br />deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br /><br />deb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName main<br />deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main" >> /etc/apt/sources.list<br />else<br /> echo "This script has been run already. Exiting"<br />fi<br /></pre><br />Alternatively, you can run the following commands to update the sources automatically<br /><pre class="prettyprint">wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel<br />chmod 555 UpdateAptSources.sh<br />sudo ./UpdateAptSources.sh<br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/04/python-equivalent-of-cs-freopen/">Python Equivalent of C's Freopen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-04T07:40:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:40 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C++ like this<br /><br /><pre class="prettyprint">freopen ("Input.txt", "r", stdin);<br />freopen ("Output.txt","w", stdout);<br /></pre><br />Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don't have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don't like to type the input each and every time. So I store it once in a file and then write the results to another file.<br /><br />Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got <a href="http://stackoverflow.com/questions/1744989/read-from-file-or-stdin/1745035?noredirect=1#comment23449563_1745035">this</a>. I saw Greg Hewgill's answer which is like this<br /><br /><pre class="prettyprint">import sys<br /># parse command line<br />if file_name_given:<br />    inf = open(file_name_given)<br />else:<br />    inf = sys.stdin<br /></pre><br />This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this<br /><br /><pre class="prettyprint">import sys<br /><br />sys.stdin  = open("Input.txt")<br />sys.stdout = open("Output.txt")<br /></pre><br />That's it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)<br /><br /><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/02/ubuntu-nvidia-driver-installation/">Ubuntu Nvidia Driver Installation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-02T20:32:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>8:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Following are the steps to install Ubuntu Nvidia drivers and activating it.<br /><br /><pre class="prettyprint">sudo apt-get install linux-headers-$(uname -r)<br />sudo apt-get install nvidia-310<br />sudo apt-get install nvidia-313-updates<br />sudo apt-get install nvidia-settings<br /></pre>Once the instllation of the above mentioned packages are successful, run<br /><pre class="prettyprint">sudo nvidia-xconfig<br /></pre>This will create the /etc/X11/xorg.conf file<br /><br />Now, do<br /><pre class="prettyprint">sudo software-properties-gtk<br /></pre><br />Which will open up a window like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://i.stack.imgur.com/KvijW.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://i.stack.imgur.com/KvijW.png" /></a></div><br />Select the latest driver name from the list and then do<br /><br /><pre class="prettyprint">sudo reboot<br /></pre><br />That's it :)<br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/4">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/2">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">DSL-2730U Router's Ipv6 Problem in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/03/sane-ecmascript-6-generators/">Sane ECMAScript 6 Generators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/15/python-35-and-django-17s-htmlparseerror/">Python 3.5 and Django 1.7's HTMLParseError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/thefourtheye">@thefourtheye</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'thefourtheye',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Sakthipriyan Vairamani (thefourtheye) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'thefourtheye';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

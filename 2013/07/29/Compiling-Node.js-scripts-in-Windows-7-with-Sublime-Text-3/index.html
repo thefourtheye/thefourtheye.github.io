@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Compiling Node.js Scripts in Windows 7 With Sublime Text 3 - thefourtheye's weblog</title>
+  <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
+
+  
+  <meta name="description" content="This is a continuation of Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://thefourtheye.github.io/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="thefourtheye's weblog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="thefourtheye.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Compiling Node.js Scripts in Windows 7 With Sublime Text 3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-29T19:56:00+05:30'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:56 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>This is a continuation of <a href="http://www.thefourtheye.in/2013/07/Compiling-Cpp-11-Programs-with-Sublime-Text-3.html">Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu</a> where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C++ 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine's Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. <br /><ol><li>We need to create the following directory structure in the User's home directory <code>AppData\Roaming\Sublime Text 3\Packages\JS\</code>. In my machine, home directory is <code>C:\Users\[username]</code>. To know the current user's home directory, open <code>Cmd.exe</code> and type <code>echo %userprofile%</code>. <br /><li>In that directory, create a file called "JS.sublime-build". So, the location of the file from the home directory is <code>AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build</code> You can name the sublime-build file as anything you want. I have simply named it here as JS.<br /><li>Copy and paste the following text in to it.<br /><pre class="prettyprint">{<br /> "cmd": ["node.exe", "${file}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.js",<br /> "variants":<br /> [<br />  {<br />   "name": "Run",<br />   "cmd":["node.exe", "${file}"]<br />  }<br /> ]<br />}<br /></pre><li>Thats it. Open Sublime Text 3. Click on Tools->Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.<br /></ol></div></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sakthipriyan Vairamani (thefourtheye)</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-07-29T19:56:00+05:30'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:56 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://thefourtheye.github.io/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3/" data-via="dfourthi" data-counturl="http://thefourtheye.github.io/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/07/21/Compiling-Cpp-11-Programs-with-Sublime-Text-3/" title="Previous Post: Compiling C++11 Programs with Sublime Text 3">&laquo; Compiling C++11 Programs with Sublime Text 3</a>
+      
+      
+        <a class="basic-alignment right" href="/2013/09/04/ubuntu-bug-related-to-network-and-power/" title="Next Post: Ubuntu bug related to network and power">Ubuntu bug related to network and power &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">DSL-2730U Router's Ipv6 Problem in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/03/sane-ecmascript-6-generators/">Sane ECMAScript 6 Generators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/15/python-35-and-django-17s-htmlparseerror/">Python 3.5 and Django 1.7's HTMLParseError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/thefourtheye">@thefourtheye</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'thefourtheye',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Sakthipriyan Vairamani (thefourtheye) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'thefourtheye';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

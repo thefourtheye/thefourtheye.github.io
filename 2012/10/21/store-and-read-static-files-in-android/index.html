@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Store and Read Static Files in Android - thefourtheye's weblog</title>
+  <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
+
+  
+  <meta name="description" content="Recently I was writing an Android application, in which I had to read data from a static text file. I did not know where to keep the file and how to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://thefourtheye.github.io/2012/10/21/store-and-read-static-files-in-android/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="thefourtheye's weblog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="thefourtheye.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Store and Read Static Files in Android</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-10-21T00:45:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>12:45 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Recently I was writing an Android application, in which I had to read data from a static text file. I did not know where to keep the file and how to refer that file in the program (in windows/*nix OS we used to provide path to the file in&nbsp;file system). After surfing the internet enough, found a solution to this problem.<br /><br />Note: This post helps you to read from a static application specific internal files.<br /><br />1) The IDE which I used to develop Android applications is Eclipse and I assume that you already have an Android project opened and the static file to be read.<br /><br />2) The name of the static file which I am going to use in this example is dictionary.txt<br /><br />3) In the directory structure of an Android project, there will be a directory called "res". Create a directory called "raw" inside the "res" directory and import the file to be read in that directory. All the files added to the raw folder will be read-only. (And I&nbsp;don't&nbsp;think we can refer them as files anymore. So that data can be read as shown in step 6). The directory structure might look like this<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-AY2IMv2dumM/UILv-BzXbtI/AAAAAAAABSc/iubW7BFWrvo/s1600/AndroidProjectStructure.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-AY2IMv2dumM/UILv-BzXbtI/AAAAAAAABSc/iubW7BFWrvo/s1600/AndroidProjectStructure.png" /></a></div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">4) After adding the file, just Build the Project and make sure that build is successful.</div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">5) Now, in the "gen" directory, inside your package, Open the R.java file. You might get to see something similar to this</div><div class="separator" style="clear: both; text-align: left;"></div><div class="separator" style="clear: both;"><br /></div><div class="separator" style="clear: both;"><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; public static final class raw {</span></div><div class="separator" style="clear: both;"><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; public static final int dictionary=0x......;</span></div><div class="separator" style="clear: both;"><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; }</span></div><br /><br />6) Now, this static file will be included in the ".apk" file. As to read from the file, the following piece of code would do that job. You may have to add the appropriate try-catch blocks.<br /><br /><span style="font-family: Courier New, Courier, monospace;">BufferedReader filereader =&nbsp;new BufferedReader(</span><br /><span style="font-family: 'Courier New', Courier, monospace;">&nbsp; &nbsp;</span><span style="font-family: Courier New, Courier, monospace;">new InputStreamReader (ctx.getResources().openRawResource&nbsp;</span><br /><span style="font-family: 'Courier New', Courier, monospace;">&nbsp; &nbsp;</span><span style="font-family: Courier New, Courier, monospace;">(R.raw.dictionary)));</span><br /><span style="font-family: Courier New, Courier, monospace;"></span><br /><span style="font-family: Courier New, Courier, monospace;">String lineread = "";</span><br /><span style="font-family: Courier New, Courier, monospace;">while ((lineread = filereader.readLine()) != null)</span><br /><span style="font-family: Courier New, Courier, monospace;">{</span><br /><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp;System.err.println ("Read " + lineread);</span><br /><span style="font-family: Courier New, Courier, monospace;">}</span><br /><div><span style="font-family: 'Courier New', Courier, monospace;">filereader.close();</span></div><div><span style="font-family: 'Courier New', Courier, monospace;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">7) In order to view the files in development environment or emulator itself, there is a perspective called DDMS in Eclipse, just switch to that and have your Android Virtual Device started.</span></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-G7nW7H78T1U/UIL16OQaSMI/AAAAAAAABSs/9LpSasvcXR4/s1600/DDMS.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="371" src="http://2.bp.blogspot.com/-G7nW7H78T1U/UIL16OQaSMI/AAAAAAAABSs/9LpSasvcXR4/s640/DDMS.png" width="640" /></a></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">8) The application specific files can be found in data/data/&lt;your package name&gt;/files</span></div></div></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sakthipriyan Vairamani (thefourtheye)</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-10-21T00:45:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>12:45 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://thefourtheye.github.io/2012/10/21/store-and-read-static-files-in-android/" data-via="dfourthi" data-counturl="http://thefourtheye.github.io/2012/10/21/store-and-read-static-files-in-android/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/10/20/making-lync-2010-to-work-in-android/" title="Previous Post: Making Lync 2010 to work in Android">&laquo; Making Lync 2010 to work in Android</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/10/21/infix-expression-to-postfix-rpn/" title="Next Post: Infix Expression to Postfix (RPN) Expression Conversion - SPOJ - ONP">Infix Expression to Postfix (RPN) Expression Conversion - SPOJ - ONP &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">DSL-2730U Router's Ipv6 Problem in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/03/sane-ecmascript-6-generators/">Sane ECMAScript 6 Generators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/15/python-35-and-django-17s-htmlparseerror/">Python 3.5 and Django 1.7's HTMLParseError</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/thefourtheye">@thefourtheye</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'thefourtheye',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Sakthipriyan Vairamani (thefourtheye) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'thefourtheye';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
