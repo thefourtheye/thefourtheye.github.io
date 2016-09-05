@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="These are the steps to be followed to install python-ldap in Ubuntu. At first,sudo apt-get install python-ldapwould throw the following errorIn file &hellip;">
+  <meta name="description" content="Today, again I wanted to change my screen's display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +70,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2013/04/20/installing-python-ldap-in-ubuntu/">Installing Python-ldap in Ubuntu</a></h1>
+      <h1 class="entry-title"><a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a></h1>
     
     
       <p class="meta">
@@ -79,43 +79,10 @@
 
 
 
-<time class='entry-date' datetime='2013-04-20T09:36:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:36 am</span></time>
+<time class='entry-date' datetime='2015-02-01T12:58:00+05:30'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>12:58 pm</span></time>
         
-           | <a href="/2013/04/20/installing-python-ldap-in-ubuntu/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/04/20/installing-python-ldap-in-ubuntu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">These are the steps to be followed to install python-ldap in Ubuntu. At first,<pre>sudo apt-get install python-ldap</pre>would throw the following error<br /><pre>In file included from Modules/LDAPObject.c:4:0:<br />Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.<br />error: command 'gcc' failed with exit status 1</pre>To get past this error, we need to install python-dev package  <pre>sudo apt-get install python-dev</pre>After installing that we ll get the following error  <pre>In file included from Modules/LDAPObject.c:9:0:<br />Modules/errors.h:8:18: fatal error: lber.h: No such file or directory<br />compilation terminated.</pre>To get past this error, we need to install ldap2-dev package  <pre>sudo apt-get install libldap2-dev</pre>After installing that we ll get the following error  <pre>Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.<br />error: command 'gcc' failed with exit status 1</pre>To get past this error, we need to install libsasl2-dev package  <pre>sudo apt-get install libsasl2-dev<br /></pre>After that   <pre>sudo apt-get install python-ldap</pre>should install python-ldap without any problems. </div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/04/10/sponsor-uva-online-judge/">Sponsor UVa Online Judge</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-10T11:32:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:32 am</span></time>
-        
-           | <a href="/2013/04/10/sponsor-uva-online-judge/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/04/10/sponsor-uva-online-judge/">Comments</a>
+           | <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.github.io/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Comments</a>
         
       </p>
     
@@ -123,271 +90,7 @@
 
 
   <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: center;"><br /><iframe frameborder="0" height="600px" scrolling="no" src="http://www.indiegogo.com/project/361690/widget"></iframe></div></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/04/04/select2-dynamic-json-data-with-tags/">Select2 JQuery Dynamic JSON Data With Tags</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-04T09:34:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:34 am</span></time>
-        
-           | <a href="/2013/04/04/select2-dynamic-json-data-with-tags/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/04/04/select2-dynamic-json-data-with-tags/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&amp"></script><pre class="prettyprint"><br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery.noConflict();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function formatListOptionSelection (Option, Container)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Option;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function formatListOption (Option, Container, Query)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&lt;div id='" + Option + "'&gt;" + Option + "&lt;/div&gt;";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery(document).ready(function() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery("#Data").select2 ({<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multiple: true,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minimumInputLength: 5,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; maximumSelectionSize: 3,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id: function (e) {return e;},<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ajax: {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; url: 'fetch.json',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // json will be used if there is no Same Origin Policy violation, otherwise JSONP shall be used<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dataType: 'json',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data: function (term, page) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; searchkey: term,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; field: 'Data'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when the data is returned from the server<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; results: function (data, page) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return {results: data.Datas};<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you fetch result from server and add it to the element<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formatResult: formatListOption,<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you select one of the options<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formatSelection: formatListOptionSelection,<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you set the value attribute of the element<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initSelection: function(element, callback) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var Datas = jQuery(element).val();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Data = []<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery(Datas.split(",")).each(function () {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (this != "") Data.push (this);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callback (Data);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input class="span12" id="Data" name="Data" type="hidden" value="&lt;Value from POST back&gt;" /&gt;</span></div><br /></pre></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/03/30/check-python-package-version-in-program/">Check Python Package Version in Program</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-03-30T09:31:00+05:30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:31 am</span></time>
-        
-           | <a href="/2013/03/30/check-python-package-version-in-program/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/03/30/check-python-package-version-in-program/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.<br /><br />As stated here,<br /><br /><a href="http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime">http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime</a><br /><pre class="prettyprint"><br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; pkg_resources.get_distribution('web.py')<br />web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)</span></pre><div><br /></div><div>To get just the version, you can do</div><div><br /></div><div><pre class="prettyprint"><br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; pkg_resources.get_distribution('web.py').version<br />'0.37'</span></pre></div></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/03/28/deploying-webpy-application-in-apache/">Deploying web.py Application in Apache With Mod_wsgi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-03-28T21:48:00+05:30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:48 pm</span></time>
-        
-           | <a href="/2013/03/28/deploying-webpy-application-in-apache/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/03/28/deploying-webpy-application-in-apache/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today, after a lot of struggle, I managed to deploy my web.py application on Apache with mod_wsgi module. There is no step at which I didn't face any problem. It took me about 8 hours to figure things out and get things working. Lets see, one by one. This post assumes that the reader knows the basics of installing a software in linux.<br /><br /><div style="text-align: center;"><b>Try all these at your own risk, if something breaks I am not responsible.</b></div><br /><br /><b>1) Installing Apache</b><br /><br />This was pretty simple, I just had to follow the steps mentioned here <a href="http://httpd.apache.org/docs/current/install.html">http://httpd.apache.org/docs/current/install.html</a>. Including the apache's bin directory in PATH variable would be good.<br /><br /><b>2) Installing Python</b><br /><br />This is also pretty straight-forward. Download <a href="http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tgz">http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tgz</a> and extract it. Just do configure, make and make install. Only thing is, configure with shared libraries enabled, like this<br /><br /><div style="text-align: center;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b>&nbsp;./configure --enable-shared </b></span></div><div style="text-align: center;"><br /></div><div style="text-align: left;">Because the mod_wsgi module which we install later is dependent on the python's shared binary objects. Once the installation is completed, do not forget to include the python's lib directory in the LD_LIBRARY_PATH variable and python's bin directory in PATH variable. I would suggest including them in the login/profile script.</div><div style="text-align: left;"><br /></div><div style="text-align: left;"><b>3) Installing mod_wsgi</b> </div><div style="text-align: left;"><br /></div><div style="text-align: left;">WSGI stands for Web Server Gateway Interface. web.py provides the libraries necessary for this. People say, this makes life easier (atleast not for me :( ). Installation follows the same configure, make and make install drill. Download it from <a href="http://code.google.com/p/modwsgi/">http://code.google.com/p/modwsgi/</a> and extract. (Make sure that LD_LIBRARY_PATH has the python's lib directory as well). </div><div style="text-align: left;"><br /></div><div style="text-align: left;">Once the installation finishes, find the mod_wsgi.so file using "find . -name mod_wsgi.so" (execute this from the directory in which compilation was done) and then copy it to &lt;Apache installation directory&gt;/modules/ directory.</div><div style="text-align: left;"><br /></div><div style="text-align: left;"><b>4) Configuring mod_wsgi</b></div><div style="text-align: left;"><br /></div><div style="text-align: left;">Now that Apache has got wsgi in its body, its still not activated and configured yet. There is a good documentation for integrating mod_wsgi with Apache here <a href="http://code.google.com/p/modwsgi/wiki/IntegrationWithWebPy">http://code.google.com/p/modwsgi/wiki/IntegrationWithWebPy</a> (Though it didn't work for me, I got to know a lot from this)<br />. I am going to share the things which worked for me.</div><div style="text-align: left;"><br /></div><div style="text-align: left;">First, <b>enabling mod_wsgi</b>. Find the list of lines beginning with LoadModule in httpd.conf and insert this line there.</div><div style="text-align: center;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b></b></span></div><div style="text-align: center;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b>LoadModule wsgi_module modules/mod_wsgi.so</b></span></div><div style="text-align: left;"><br /></div><div style="text-align: left;">This is how it looks in my httpd.conf</div><div style="text-align: left;"></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">... </span></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">LoadModule wsgi_module modules/mod_wsgi.so<br />LoadModule authn_file_module modules/mod_authn_file.so<br />#LoadModule authn_dbm_module modules/mod_authn_dbm.so<br />#LoadModule authn_anon_module modules/mod_authn_anon.so</span></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">... </span></div></blockquote><div style="text-align: left;"></div><div style="text-align: left;"></div><div style="text-align: left;">In that file, whatever line begins with a hash symbol (#) is a commented line. This will let Apache know that, its armed with wsgi module now. Whenever I restart my apache, I get this line in the error_log file.&nbsp;</div><div style="text-align: left;"></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">AH00489: Apache/2.4.3 (Unix) mod_wsgi/3.4 Python/2.7.3 configured -- resuming normal operations</span></div></blockquote><div style="text-align: left;"></div><div style="text-align: left;">next, <b>configuring application's URL.</b> Find the tag &lt;IfModule alias_module&gt;...&lt;/IfModule&gt; and insert the following lines in that tag.</div><div style="text-align: left;"></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">WSGIScriptAlias /testapp "/home/myhome/testapp/app.py"<br />Alias /testapp/static "</span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">/home/myhome/testapp/</span>static/"</span></div></blockquote><div style="text-align: left;"></div><div style="text-align: left;">You can read about what WSGIScriptAlias means here <a href="http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIScriptAlias">http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIScriptAlias</a>. Basically we map the user's request to the files which serve them. For example, when a request is made for http://localhost/testapp, <span style="font-family: inherit;">Apache will execute /home/myhome/testapp/app.py and return the result. /home/myhome/testapp/is the directory where the web.py application is kept.</span></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><span style="font-family: inherit;">Now that we have instructed Apache to treat the requests to /testapp with app.py which is a wsgi script, we need to define permissions and options for the physical directory in which it is stored.</span></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"></span></span></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&lt;Directory "</span></span></span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">/home/myhome/testapp/</span>"&gt;<br />&nbsp;&nbsp; Options +ExecCGI +FollowSymLinks +Indexes<br />&nbsp;&nbsp; Order allow,deny<br />&nbsp;&nbsp; Allow from all<br />&nbsp;&nbsp; Require all granted<br />&nbsp;&nbsp; AddHandler wsgi-script .py<br />&lt;/Directory&gt;</span></span></span></div></blockquote><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"></span></span></div><div style="text-align: left;"><span style="font-family: inherit;">You can read about each and every option mentioned, here <a href="http://httpd.apache.org/docs/2.2/mod/core.html#directory">http://httpd.apache.org/docs/2.2/mod/core.html#directory</a>. With the AddHandler wsgi-script .py line, we tell Apache that, treat only the .py files as wsgi scripts. I spent an hour at this point. Instead of AddHandler line, I had "SetHandler wsgi-scirpt". That made Apache to treat even image files, css, java script files as wsgi scripts. So, Apache tried to compile each and every file and throwing internal error.</span></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">That's it. We are pretty much done with the Apache configuration. :) But that's not the end of it.&nbsp;</span></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">The sample code.py file given here <a href="http://webpy.org/cookbook/mod_wsgi-apache">http://webpy.org/cookbook/mod_wsgi-apache</a> would work perfectly. It imports nothing, no templates and so, no confusions. But practical applications might not be like that.</span></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">The code in app.py file, with which I tested my application was like this</span></div><div style="text-align: left;"><span style="font-family: inherit;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span></span></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: inherit;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">import web, urls<br />app = web.application(urls.urls, globals())<br />app.run()</span> </span></div></blockquote><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"></span></span></div><div style="text-align: left;"></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"></span></span></div><div style="text-align: left;"><span style="font-family: inherit;">but when I deployed with wsgi enabled, it became this</span></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="kn"></span></span></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="kn">import</span> <span class="nn">web</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span></span></div><div class="line" id="LC2"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n"></span></span></div><div class="line" id="LC2"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">&nbsp;</span></span></div><div class="line" id="LC2"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">"/"</span><span class="p">)</span></span></div><div class="line" id="LC3"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span></span></div><div class="line" id="LC4"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">templates</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">"/templates/"</span><span class="p">)</span></span></div><div class="line" id="LC5"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">templates</span><span class="p">)</span></span></div><div class="line" id="LC6"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">root</span><span class="p">)</span></span></div><div class="line" id="LC6"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="p"></span></span></div><div class="line" id="LC7"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="kn">&nbsp;</span></span></div><div class="line" id="LC7"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="kn">import</span> <span class="nn">urls</span></span></div><div class="line" id="LC7"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="nn">&nbsp;</span></span></div><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span><div class="line" id="LC12"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">urls</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span></span></div><div class="line" id="LC14"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">application</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">wsgifunc</span><span class="p">()</span></span></div></blockquote><div class="line" id="LC14"><span class="p"> </span></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"></span></span></div><div style="text-align: left;"><span style="font-family: inherit;">Basically the application is unable to understand no directory even the current directory. So everything has to be added to the sys.path manually. Notice that, without these path changes to sys, it was not even able to recognize the urls module which was in the same directory as the app.py. And whenever templates are used, we cannot use relative locations like this</span></div><div style="text-align: left;"><span style="font-family: inherit;"></span></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">render = web.template.render('templates/')</span></div></blockquote><div style="text-align: left;"><code></code></div><div style="text-align: left;"><span style="font-family: inherit;">We need to get the physical location of the templates directory like this</span></div><div style="text-align: left;"><span style="font-family: inherit;"></span></div><blockquote class="tr_bq"><div class="line" id="LC4"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="n">templates</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">"/templates/"</span><span class="p">)</span></span></div></blockquote><div class="line" id="LC4"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="p"></span></span></div><div style="text-align: left;"><span style="font-family: inherit;">and use it in the render like this</span></div><div style="text-align: left;"><span style="font-family: inherit;"><code></code></span></div><div style="text-align: left;"><span style="font-family: inherit;"></span></div><blockquote class="tr_bq"><div style="text-align: left;"><span style="font-family: inherit;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">render = web.template.render(templates)</span> </span></div></blockquote><div style="text-align: left;"><span style="font-family: inherit;"></span></div><div style="text-align: left;"><span style="font-family: inherit;">That's all, I have to say. Good luck :)</span></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"><br /></span></span></div><div style="text-align: left;"></div><div style="text-align: left;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="font-family: Times,&quot;Times New Roman&quot;,serif;"></span></span></div></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/03/25/installing-python-ldap-in-cygwin/">Installing Python-ldap in Cygwin</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-03-25T21:04:00+05:30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:04 pm</span></time>
-        
-           | <a href="/2013/03/25/installing-python-ldap-in-cygwin/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/03/25/installing-python-ldap-in-cygwin/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Installing python-ldap in cygwin took a while for me. When I tried to install with<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">easy_install python-ldap</span><br /><br />I got this error<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">Searching for python-ldap<br />Reading http://pypi.python.org/simple/python-ldap/<br />Reading http://www.python-ldap.org/<br />Best match: python-ldap 2.4.10<br />Downloading http://pypi.python.org/packages/source/p/python-ldap/python-ldap-2.4.10.tar.gz#md5=a15827ca13c90e9101e5e9405c1d83be<br />Processing python-ldap-2.4.10.tar.gz<br />Running python-ldap-2.4.10/setup.py -q bdist_egg --dist-dir /tmp/easy_install-JXhRAd/python-ldap-2.4.10/egg-dist-tmp-1wRZxP<br />defines: HAVE_SASL HAVE_TLS HAVE_LIBLDAP_R<br />extra_compile_args:<br />extra_objects:<br />include_dirs: /opt/openldap-RE24/include /usr/include/sasl /usr/include<br />library_dirs: /opt/openldap-RE24/lib /usr/lib<br />libs: ldap_r<br />file Lib/ldap.py (for module ldap) not found<br />file Lib/ldap/controls.py (for module ldap.controls) not found<br />file Lib/ldap/extop.py (for module ldap.extop) not found<br />file Lib/ldap/schema.py (for module ldap.schema) not found<br />warning: no files found matching 'Makefile'<br />warning: no files found matching 'Modules/LICENSE'<br />file Lib/ldap.py (for module ldap) not found<br />file Lib/ldap/controls.py (for module ldap.controls) not found<br />file Lib/ldap/extop.py (for module ldap.extop) not found<br />file Lib/ldap/schema.py (for module ldap.schema) not found<br />file Lib/ldap.py (for module ldap) not found<br />file Lib/ldap/controls.py (for module ldap.controls) not found<br />file Lib/ldap/extop.py (for module ldap.extop) not found<br />file Lib/ldap/schema.py (for module ldap.schema) not found<br />build/temp.cygwin-1.7.17-i686-2.7/Modules/LDAPObject.o: In function `l_ldap_result4':<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/LDAPObject.c:988: undefined reference to `_ber_bvfree'<br />build/temp.cygwin-1.7.17-i686-2.7/Modules/ldapcontrol.o: In function `encode_rfc3876':<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:216: undefined reference to `_ber_alloc_t'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:227: undefined reference to `_ber_flatten'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:237: undefined reference to `_ber_free'<br />build/temp.cygwin-1.7.17-i686-2.7/Modules/ldapcontrol.o: In function `decode_rfc2696':<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:315: undefined reference to `_ber_init'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:320: undefined reference to `_ber_scanf'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:330: undefined reference to `_ber_free'<br />build/temp.cygwin-1.7.17-i686-2.7/Modules/ldapcontrol.o: In function `encode_rfc2696':<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:258: undefined reference to `_ber_alloc_t'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:263: undefined reference to `_ber_printf'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:272: undefined reference to `_ber_printf'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:278: undefined reference to `_ber_printf'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:284: undefined reference to `_ber_flatten'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:293: undefined reference to `_ber_free'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/ldapcontrol.c:270: undefined reference to `_ber_printf'<br />build/temp.cygwin-1.7.17-i686-2.7/Modules/message.o: In function `LDAPmessage_to_python':<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/message.c:160: undefined reference to `_ber_free'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/message.c:199: undefined reference to `_ber_memvfree'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/message.c:243: undefined reference to `_ber_bvfree'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/message.c:134: undefined reference to `_ber_free'<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/message.c:237: undefined reference to `_ber_bvfree'<br />build/temp.cygwin-1.7.17-i686-2.7/Modules/options.o: In function `LDAP_set_option':<br />/tmp/easy_install-JXhRAd/python-ldap-2.4.10/Modules/options.c:70: undefined reference to `_ber_pvt_opt_on'<br />collect2: ld returned 1 exit status<br />error: Setup script exited with error: command 'gcc' failed with exit status 1</span><br /><br />Then I just tried to install a version of python-ldap prior to 2.4.10, like this<br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">easy_install -N -S /usr/lib/python2.7/site-packages&nbsp; -d /usr/lib/python2.7/site-packages -s /usr/local/bin&nbsp; python-ldap==2.4.3</span> <br /><br />Voila. It worked fine :)</div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/03/25/installing-nodejs-in-linux/">Installing node.js in Linux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-03-25T20:59:00+05:30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:59 pm</span></time>
-        
-           | <a href="/2013/03/25/installing-nodejs-in-linux/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2013/03/25/installing-nodejs-in-linux/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I tested these steps in RHEL 5.4 and Ubuntu 12.10.<br /><br /><ol style="text-align: left;"><li>wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gz</li><li>tar -xvf node-v0.10.1.tar.gz</li><li>cd node-v0.10.1</li><li>./configure --prefix=&lt;a directory to which you have write and execute access&gt;</li><li>make</li><li>make install</li><li>Create a file, say Test.js and add the following lines to it<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">var http = require('http');<br /><br />http.createServer(function (request, response) {<br />&nbsp; response.writeHead(200, {'Content-Type': 'text/plain'});<br />&nbsp; response.end('Hello World\n');<br />}).listen(8124);<br /><br />console.log('Server running at http://127.0.0.1:8124/');</span></li><li>node Test.js</li><li>Open a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.</li></ol><div style="text-align: left;">It is as simple as that. I did not hit any road block at all. They all went fine.</div></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/21/next-palindrome-after-1000000-digit/">Next Palindrome After a 1000000 Digit Number - SPOJ - PALIN</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-10-21T18:38:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>6:38 pm</span></time>
-        
-           | <a href="/2012/10/21/next-palindrome-after-1000000-digit/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2012/10/21/next-palindrome-after-1000000-digit/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I always have afraid of the problems which require string processing, to be solved. This is one such problem. The problem description as stated in SPOJ (<a href="http://www.spoj.pl/problems/PALIN/">http://www.spoj.pl/problems/PALIN/</a>) and my solution to this problem is&nbsp;<a href="http://ideone.com/osqLhp">http://ideone.com/osqLhp</a>&nbsp;(I am sure, I can improve this code)<br /><br /><h1 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: normal; text-align: left;"><span style="font-size: 13px; text-align: justify;">A positive integer is called a</span><span style="font-size: 13px; text-align: justify;">&nbsp;</span><i style="background-color: transparent; font-size: 13px; text-align: justify;">palindrome</i><span style="font-size: 13px; text-align: justify;">&nbsp;</span><span style="font-size: 13px; text-align: justify;">if its representation in the decimal system is the same when read from left to right and from right to left. For a given positive integer K of not more than 1000000 digits, write the value of the smallest palindrome larger than K to output. Numbers are always displayed without leading zeros.</span></h1><br /><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Input</h3><div align="justify" style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;">The first line contains integer t, the number of test cases. Integers K are given in the next t lines.</div><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Output</h3><div align="justify" style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;">For each K, output the smallest palindrome larger than K.</div><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Example</h3><div style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;"><tt><b>Input:</b></tt><br />2<br />808<br />2133</div><div style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;"><br /></div><div style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;"><tt><b>Output:</b></tt><br />818<br />2222</div><br /><br />We know that, there is no integral data type which is as sophisticated as to&nbsp;accommodate a 1000000 digits number (a million digits in a number). So only option is to use string. And we also know what palindrome is. A number or a string of characters, is the same when expressed from left to right and right to left. For example, AMMA, MADAM, MALAYALAM, 11, 505, 797979797, ...<br /><br />Lets assume the input number as N. If we read through the problem, we are asked to find the next (greater than the number provided) palindrome which exists after the number N. As we see in the examples, 818 is the next big palindrome after 808 and 2222 is the next big palindrome after 2133. If the numbers are small, we can try brute-force approach.<br /><br /><h3 style="text-align: left;">Brute force approach:</h3><br /><ol style="text-align: left;"><li>Read the number N</li><li>Increment by 1</li><li>Check whether it is a palindrome or not</li><li>If Yes, Print the number and exit</li><li>If No, goto step 2</li></ol><div><br /></div><div>This approach is quite simple and easy to implement. But, this may not work always when we have time constraints. If the number N becomes as big as a 1000000 digit number, program with this approach would produce output after a very long time. We all want our programs to produce outputs so quickly, don't we?&nbsp;Let us look at the approach which I followed to solve this problem.</div><div><br /></div><h3 style="text-align: left;">My approach:</h3><div><ol style="text-align: left;"><li>Read the number as a string and store it in STR and the number of digits as N</li><li>Split STR into two halves STR1 and STR3, if the number of digits in STR is odd, the middle digit will be in STR2 otherwise it is empty</li><li>If the Reverse of STR1 is greater than STR3, Print STR1 + STR2 + Reverse (STR1) and exit</li><li>make all digits of STR3 as '0'</li><li>If N is even,&nbsp;</li><ol><li>increment STR1</li><li>Goto step 1 with input (Incremented STR1 + STR3)</li></ol><li>If N is odd,&nbsp;</li><ol><li>increment STR2</li><ol><li>If Incremented STR2 is 10,&nbsp;</li><ol><li>set STR2 as "0"</li><li>increment STR1</li><li>Goto step 1 with input (Incremented STR1 + STR2 + STR3)</li></ol><li>If Incremented STR2 is lesser than 10</li><ol><li>Goto step 1 with input (STR1 + STR2 + STR3)</li></ol></ol></ol></ol><div>The observation which I made after analyzing few examples is, if the second half of the number is smaller than the reverse of the first half of the number, just replacing the&nbsp;second half&nbsp;with&nbsp;the reverse of the first half produces the required output. If it is not smaller than the reverse of the first half, increment the first half and then replace the second half with the incremented first half. This is the basic idea but the above algorithm includes all the corner cases.</div></div><br /><b>My solution:</b></div><script type="text/javascript" src="http://ideone.com/api/embed.js/link/osqLhp"></script></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/21/infix-expression-to-postfix-rpn/">Infix Expression to Postfix (RPN) Expression Conversion - SPOJ - ONP</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-10-21T17:46:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>5:46 pm</span></time>
-        
-           | <a href="/2012/10/21/infix-expression-to-postfix-rpn/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2012/10/21/infix-expression-to-postfix-rpn/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">This was one of our lab exercises in my Engineering first year. That was Data Structures lab. Guess what, this program was agreed as the toughest program of all the programs, by the whole class (our class strength was 63), which we were supposed to finish in that semester and the teacher had the whole program written on the blackboard and later we typed, compiled and executed on the computers. I remember the days, in which I used to memorize the program which solved the same problem for the lab exams.&nbsp;Nostalgic!!!&nbsp;Now, this took me lesser than 15 minutes to get "accepted" in SPOJ&nbsp;:)</div><div style="text-align: justify;"><br /></div><div style="text-align: left;">Here is the problem statement, as stated in SPOJ (<a href="http://www.spoj.pl/problems/ONP/" style="text-align: left;">http://www.spoj.pl/problems/ONP/</a>). My solution to the same&nbsp;<a href="http://ideone.com/wCfryC">http://ideone.com/wCfryC</a></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"></div><div align="justify" style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px;">Transform the algebraic expression with brackets into RPN form (Reverse Polish Notation). Two-argument operators: +, -, *, /, ^ (priority from the lowest to the highest), brackets ( ). Operands: only letters: a,b,...,z. Assume that there is only one RPN form (no expressions like a*b*c).</div><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Input</h3><pre style="background-color: #f6f9e0; color: #000020; font-size: 13px; text-align: left;"><i>t</i> [the number of expressions &lt;= <b>100</b>]<br /><i>expression</i> [length &lt;= <b>400</b>]<br />[other expressions]<br /></pre><div align="left" style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px;">Text grouped in [ ] does not appear in the input file.</div><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Output</h3><pre style="background-color: #f6f9e0; color: #000020; font-size: 13px; text-align: left;">The <em>expression</em>s in RPN form, one per line.<br /></pre><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Example</h3><pre style="background-color: #f6f9e0; color: #000020; font-size: 13px; text-align: left;">Input:<br />3<br />(a+(b*c))<br />((a+b)*(z+x))<br />((a+t)*((b+(a+c))^(c+d)))<br /><br />Output:<br />abc*+<br />ab+zx+*<br />at+bac++cd+^*</pre></div><script type="text/javascript" src="http://ideone.com/api/embed.js/link/wCfryC"></script></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/21/store-and-read-static-files-in-android/">Store and Read Static Files in Android</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-10-21T00:45:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>12:45 am</span></time>
-        
-           | <a href="/2012/10/21/store-and-read-static-files-in-android/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2012/10/21/store-and-read-static-files-in-android/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Recently I was writing an Android application, in which I had to read data from a static text file. I did not know where to keep the file and how to refer that file in the program (in windows/*nix OS we used to provide path to the file in&nbsp;file system). After surfing the internet enough, found a solution to this problem.<br /><br />Note: This post helps you to read from a static application specific internal files.<br /><br />1) The IDE which I used to develop Android applications is Eclipse and I assume that you already have an Android project opened and the static file to be read.<br /><br />2) The name of the static file which I am going to use in this example is dictionary.txt<br /><br />3) In the directory structure of an Android project, there will be a directory called "res". Create a directory called "raw" inside the "res" directory and import the file to be read in that directory. All the files added to the raw folder will be read-only. (And I&nbsp;don't&nbsp;think we can refer them as files anymore. So that data can be read as shown in step 6). The directory structure might look like this<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-AY2IMv2dumM/UILv-BzXbtI/AAAAAAAABSc/iubW7BFWrvo/s1600/AndroidProjectStructure.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-AY2IMv2dumM/UILv-BzXbtI/AAAAAAAABSc/iubW7BFWrvo/s1600/AndroidProjectStructure.png" /></a></div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">4) After adding the file, just Build the Project and make sure that build is successful.</div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: left;">5) Now, in the "gen" directory, inside your package, Open the R.java file. You might get to see something similar to this</div><div class="separator" style="clear: both; text-align: left;"></div><div class="separator" style="clear: both;"><br /></div><div class="separator" style="clear: both;"><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; public static final class raw {</span></div><div class="separator" style="clear: both;"><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; public static final int dictionary=0x......;</span></div><div class="separator" style="clear: both;"><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; }</span></div><br /><br />6) Now, this static file will be included in the ".apk" file. As to read from the file, the following piece of code would do that job. You may have to add the appropriate try-catch blocks.<br /><br /><span style="font-family: Courier New, Courier, monospace;">BufferedReader filereader =&nbsp;new BufferedReader(</span><br /><span style="font-family: 'Courier New', Courier, monospace;">&nbsp; &nbsp;</span><span style="font-family: Courier New, Courier, monospace;">new InputStreamReader (ctx.getResources().openRawResource&nbsp;</span><br /><span style="font-family: 'Courier New', Courier, monospace;">&nbsp; &nbsp;</span><span style="font-family: Courier New, Courier, monospace;">(R.raw.dictionary)));</span><br /><span style="font-family: Courier New, Courier, monospace;"></span><br /><span style="font-family: Courier New, Courier, monospace;">String lineread = "";</span><br /><span style="font-family: Courier New, Courier, monospace;">while ((lineread = filereader.readLine()) != null)</span><br /><span style="font-family: Courier New, Courier, monospace;">{</span><br /><span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp;System.err.println ("Read " + lineread);</span><br /><span style="font-family: Courier New, Courier, monospace;">}</span><br /><div><span style="font-family: 'Courier New', Courier, monospace;">filereader.close();</span></div><div><span style="font-family: 'Courier New', Courier, monospace;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">7) In order to view the files in development environment or emulator itself, there is a perspective called DDMS in Eclipse, just switch to that and have your Android Virtual Device started.</span></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-G7nW7H78T1U/UIL16OQaSMI/AAAAAAAABSs/9LpSasvcXR4/s1600/DDMS.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="371" src="http://2.bp.blogspot.com/-G7nW7H78T1U/UIL16OQaSMI/AAAAAAAABSs/9LpSasvcXR4/s640/DDMS.png" width="640" /></a></div><div style="text-align: left;"><span style="font-family: inherit;"><br /></span></div><div style="text-align: left;"><span style="font-family: inherit;">8) The application specific files can be found in data/data/&lt;your package name&gt;/files</span></div></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">Today, again I wanted to change my screen's display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post <a href="http://www.thefourtheye.in/2013/05/ubuntu-scaling-display-zooming.html">Ubuntu scaling the display (Zooming)</a>.<br /><pre class="prettyprint">➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />➜  ~  xrandr --output DP-0 --scale 1.25x1.25<br />➜  ~  xrandr --output VGA-0 --scale 1.25x1.25<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br /></pre>Individual screen's resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen's position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked<br /><pre class="prettyprint">➜  ~  xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br /></pre></div></div>
 </div>
   
   
@@ -431,36 +134,107 @@
         <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
       </li>
     
+      <li class="post">
+        <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/11/17/python-dictionary-comprehension/">Python Dictionary Comprehension</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/27/zen-of-python-by-tim-peters/">Zen of Python by Tim Peters</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/27/file-upload-with-jquery-and-ajax/">File Upload With jQuery and Ajax</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/07/installing-thefourtheyeeditor/">Installing the thefourtheyeEditor - Topcoder Plugin</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/">Ubuntu Bug Related to Network and Power</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3/">Compiling Node.js Scripts in Windows 7 With Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/21/Compiling-Cpp-11-Programs-with-Sublime-Text-3/">Compiling C++11 Programs With Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/30/spoj-best-solutions-for-double-helix/">SPOJ Best Solutions for the Double Helix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/15/project-euler-15-lattice-paths_15/">Project Euler - 15 - Lattice Paths</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization/">Project Euler - 14 - Longest Collatz Sequence - Memoization</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/15/Project-Euler-Problem-5-Smallest-multiple/">Project Euler - Problem 5 - Smallest Multiple</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/12/project-euler-problem-18-problem-67/">Project Euler - Problem 18, Problem 67 - Maximum Path Sum</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/08/Ubuntu-13-04-Execute-scripts-on-double-click/">Ubuntu 13.04 - Execute Scripts on Double Click</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/08/gitclean-git-clean-wrapper/">Gitclean - a Git Clean Wrapper</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/25/sublime-configuring-codeintel/">Sublime Configuring CodeIntel Auto Completion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/19/ubuntu-scaling-display-zooming/">Ubuntu Scaling the Display (Zooming)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/08/google-code-jam-2013-round-1b-osmos/">Google Code Jam 2013 - Round 1B - Osmos</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/04/fixing-ubuntu-apt-get-sources/">Fixing Ubuntu Apt-get Sources</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/04/python-equivalent-of-cs-freopen/">Python Equivalent of C's Freopen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/02/ubuntu-nvidia-driver-installation/">Ubuntu Nvidia Driver Installation</a>
+      </li>
+    
   </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/thefourtheye">@thefourtheye</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'thefourtheye',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 

@@ -98,303 +98,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2016/02/03/sane-ecmascript-6-generators/">Sane ECMAScript 6 Generators</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-02-03T20:47:00+05:30'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:47 pm</span></time>
-        
-           | <a href="/2016/02/03/sane-ecmascript-6-generators/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2016/02/03/sane-ecmascript-6-generators/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">This post is cross posted in Medium, <a href="https://medium.com/@thefourtheye/sane-ecmascript-6-generators-7d1adcd85536#.cpvn9y4n8">here</a>.<br /><br />I recently found one interesting thing about ES6 Generators. I come from Python background and I understood generators as in Python. So, I expected the following Python code's equivalent ECMAScript 6 code also to work as well. <!--?prettify lang=python linenums=true?--><br /><pre class="prettyprint">>>> numbers = (num for num in range(10))<br />>>> for num in numbers:<br />...   if num == 3:<br />...     break<br />... <br />>>> next(numbers)<br />4<br /></pre>You can find the online demo for this Python program, <a href="http://ideone.com/9lYJOz">here</a>.<br /><br />But then, when I used Babel to transpile the following code and executed it<!--?prettify lang=javascript linenums=true?--><br /><pre class="prettyprint">function* NumberGenerator() {<br />  for (var i = 0; i < 10; i += 1) {<br />    yield i;<br />  }<br />}<br /><br />var numbers = NumberGenerator();<br /><br />for (var num of numbers) {<br />  if (num === 3) {<br />    break;<br />  }<br />}<br /><br />console.log(numbers.next());<br />// {"done":true}<br /></pre>You can find the online demo for this JavaScript program, made with Babel's REPL, <a href="https://babeljs.io/repl/#?experimental=true&evaluate=true&loose=false&spec=true&code=function*%20NumberGenerator()%20%7B%0A%20%20for%20(var%20i%20%3D%200%3B%20i%20%3C%2010%3B%20i%20%2B%3D%201)%20%7B%0A%20%20%20%20yield%20i%3B%0A%20%20%7D%0A%7D%0A%0Avar%20numbers%20%3D%20NumberGenerator()%3B%0A%0Afor%20(var%20num%20of%20numbers)%20%7B%0A%20%20if%20(num%20%3D%3D%3D%203)%20%7B%0A%20%20%20%20break%3B%0A%20%20%7D%0A%7D%0A%0Aconsole.log(numbers.next())%3B%0A">here</a>.  As you see here, when I broke out of the loop, the Generator Object got closed. This was pointed out to me by <a href="http://stackoverflow.com/users/785065/loganfsmyth">Logan Smyth</a> in Babel's Slack discussion. I was really surprised by this behavior and found the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-runtime-semantics-forin-div-ofbodyevaluation-lhs-stmt-iterator-lhskind-labelset">13.7.5.13 Runtime Semantics: ForIn/OfBodyEvaluation ( lhs, stmt, iterator, lhsKind, labelSet )</a> section in the ECMAScript 6 Specification, which says  <blockquote>If LoopContinues(result, labelSet) is false, return IteratorClose(iterator, UpdateEmpty(result, V)).</blockquote>I am not sure about the rationale behind that decision, but I am convinced that it would effectively limit the potential of the Generators. So I decided to fix this.  <h2>Sane Generators</h2>To close the iterator, <code>Iterator.prototype.return</code> is called. (At the time of this writing, not many JavaScript Engines support this function. You can find the support for this feature by popular engines, <a href="https://kangax.github.io/compat-table/es6/#test-generators_yield_*,_iterator_closing">here</a>.) So I decided to override that and allow the actual <code>return</code> function to be invoked only when explicitly called with an argument.<!--?prettify lang=javascript?--><pre class="prettyprint">function returnFunction(originalReturn, genObject) {<br />  return function(arg) {<br />    return arguments.length ? originalReturn.call(genObject, arg) : {<br />      done: false<br />    };<br />  };<br />}<br /><br />function SaneGenerator(genObject) {<br />  var originalReturn = genObject['return'];<br /><br />  if (typeof originalReturn === 'function') {<br />    Object.defineProperty(genObject, 'return', {<br />      value: returnFunction(originalReturn, genObject)<br />    });<br />  }<br /><br />  return genObject;<br />}</pre>You can see the actual and complete implementation in my GitHub repository, <a href="https://github.com/thefourtheye/sane-generator/blob/master/index.js">https://github.com/thefourtheye/sane-generator</a>.  Now, you can use the <code>SaneGenerator</code> like this <!--?prettify lang=javascript?--><pre class="prettyprint">function* NumberGenerator() {<br />  for (var i = 0; i < 10; i += 1) {<br />    yield i;<br />  }<br />}<br /><br />var numbers = SaneGenerator(NumberGenerator());<br /><br />for (var num of numbers) {<br />  if (num === 3) {<br />    break;<br />  }<br />}<br /><br />console.log(numbers.next());<br />// {"value":4,"done":false}<br /></pre>You can find the online demo for this JavaScript program, made with Babel's REPL, <a href="https://babeljs.io/repl/#?experimental=true&evaluate=true&loose=false&spec=true&code=function%20returnFunction(originalReturn%2C%20genObject)%20%7B%0A%20%20return%20function(arg)%20%7B%0A%20%20%20%20return%20arguments.length%20%3F%20originalReturn.call(genObject%2C%20arg)%20%3A%20%7B%0A%20%20%20%20%20%20done%3A%20false%0A%20%20%20%20%7D%3B%0A%20%20%7D%3B%0A%7D%0A%0Afunction%20SaneGenerator(genObject)%20%7B%0A%20%20var%20originalReturn%20%3D%20genObject%5B'return'%5D%3B%0A%0A%20%20if%20(typeof%20originalReturn%20%3D%3D%3D%20'function')%20%7B%0A%20%20%20%20Object.defineProperty(genObject%2C%20'return'%2C%20%7B%0A%20%20%20%20%20%20value%3A%20returnFunction(originalReturn%2C%20genObject)%0A%20%20%20%20%7D)%3B%0A%20%20%7D%0A%0A%20%20return%20genObject%3B%0A%7D%0A%0Afunction*%20NumberGenerator()%20%7B%0A%20%20for%20(var%20i%20%3D%200%3B%20i%20%3C%2010%3B%20i%20%2B%3D%201)%20%7B%0A%20%20%20%20yield%20i%3B%0A%20%20%7D%0A%7D%0A%0Avar%20numbers%20%3D%20SaneGenerator(NumberGenerator())%3B%0A%0Afor%20(var%20num%20of%20numbers)%20%7B%0A%20%20if%20(num%20%3D%3D%3D%203)%20%7B%0A%20%20%20%20break%3B%0A%20%20%7D%0A%7D%0A%0Aconsole.log(numbers.next())%3B%0A">here</a>.  <h2>NPM Module</h2>This is available as an NPM module now. <a href="https://www.npmjs.com/package/sane-generator">https://www.npmjs.com/package/sane-generator</a> </div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-01-10T20:44:00+05:30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>8:44 pm</span></time>
-        
-           | <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">The method which I mentioned in this <a href="http://www.thefourtheye.in/2014/01/un-hiding-menu-bar-in-sublime-text-3.html">blog post of mine</a>, solves the problem, but then you have to<br /><ol><li> Close the Sublime Text<br /><li> Fire up a terminal<br /><li> Execute a command or two<br /><li> Open Sublime Text again<br /></ol>Quite a lot of steps to do. But then I found a simpler solution today and it works like a charm for me. The solution is to use "Keyboard Shortcuts" :-) Let me explain in detail.  <ol><li> Click <code>Preferences</code> -> <code>Key Bindings - User</code><br /><li> In the window that opens, you need to add a new keyboard shortcut for the command "toggle_menu". For example, this is how my shortcuts looks like<br /><pre>[{"keys": ["ctrl+\\"], "command": "toggle_side_bar"},<br /> {"keys": ["ctrl+shift+m"], "command": "toggle_menu"}]</pre><li> Save the file and start doing your happy dance.<br /></ol>Now, you can simply press the keyboard shortcut whatever you choose to assign to toggle menu :-)  </div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2015/02/15/python-35-and-django-17s-htmlparseerror/">Python 3.5 and Django 1.7's HTMLParseError</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-02-15T13:20:00+05:30'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:20 pm</span></time>
-        
-           | <a href="/2015/02/15/python-35-and-django-17s-htmlparseerror/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2015/02/15/python-35-and-django-17s-htmlparseerror/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I just updated my Python installation to 3.5 Alpha 1 and started with Django today and I hit a road block already. It all went fine, when I created the virtual environment and installed Django 1.7.4 in it. And then when I did <code>startproject</code>, I got <code>AttributeError: module 'html.parser' has no attribute 'HTMLParseError'</code>.<br /><pre class="prettyprint">(py3.5venv) ➜  myProject git:(master) ✗ django-admin.py startproject myProject<br />Traceback (most recent call last):<br />  File "/py3.5venv/bin/django-admin.py", line 5, in <module><br />    management.execute_from_command_line()<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/management/__init__.py", line 385, in execute_from_command_line<br />    utility.execute()<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/management/__init__.py", line 354, in execute<br />    django.setup()<br />  File "/py3.5venv/lib/python3.5/site-packages/django/__init__.py", line 18, in setup<br />    from django.utils.log import configure_logging<br />  File "/py3.5venv/lib/python3.5/site-packages/django/utils/log.py", line 13, in <module><br />    from django.views.debug import ExceptionReporter, get_exception_reporter_filter<br />  File "/py3.5venv/lib/python3.5/site-packages/django/views/debug.py", line 10, in <module><br />    from django.http import (HttpResponse, HttpResponseServerError,<br />  File "/py3.5venv/lib/python3.5/site-packages/django/http/__init__.py", line 4, in <module><br />    from django.http.response import (<br />  File "/py3.5venv/lib/python3.5/site-packages/django/http/response.py", line 13, in <module><br />    from django.core.serializers.json import DjangoJSONEncoder<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/serializers/__init__.py", line 23, in <module><br />    from django.core.serializers.base import SerializerDoesNotExist<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/serializers/base.py", line 6, in <module><br />    from django.db import models<br />  File "/py3.5venv/lib/python3.5/site-packages/django/db/models/__init__.py", line 6, in <module><br />    from django.db.models.query import Q, QuerySet, Prefetch  # NOQA<br />  File "/py3.5venv/lib/python3.5/site-packages/django/db/models/query.py", line 13, in <module><br />    from django.db.models.fields import AutoField, Empty<br />  File "/py3.5venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 18, in <module><br />    from django import forms<br />  File "/py3.5venv/lib/python3.5/site-packages/django/forms/__init__.py", line 6, in <module><br />    from django.forms.fields import *  # NOQA<br />  File "/py3.5venv/lib/python3.5/site-packages/django/forms/fields.py", line 18, in <module><br />    from django.forms.utils import from_current_timezone, to_current_timezone<br />  File "/py3.5venv/lib/python3.5/site-packages/django/forms/utils.py", line 15, in <module><br />    from django.utils.html import format_html, format_html_join, escape<br />  File "/py3.5venv/lib/python3.5/site-packages/django/utils/html.py", line 16, in <module><br />    from .html_parser import HTMLParser, HTMLParseError<br />  File "/py3.5venv/lib/python3.5/site-packages/django/utils/html_parser.py", line 12, in <module><br />    HTMLParseError = _html_parser.HTMLParseError<br />AttributeError: module 'html.parser' has no attribute 'HTMLParseError'</pre>Then <a href="http://stackoverflow.com/users/918959/antti-haapala">Antti Haapala</a> (a friend from <a href="http://chat.stackoverflow.com/rooms/6/python">Stakoverflow's Python Chat room</a>) found out that it is because <code class="prettyprint">HTMLParseError</code> is deprecated from Python 3.3 onwards and removed in Python 3.5, as per the <a href="https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParseError">official documentation</a>. He continued the investigation and found out that django guys are already aware of this, as they have <a href="https://code.djangoproject.com/ticket/23763">a bug raised</a>, and <a href="https://github.com/django/django/commit/b07aa52e8a8e4c7fdc7265f75ce2e7992e657ae9">the fix has been already delivered</a> to the code repository.<br />Now, all we can do is, wait for the version of django which officially supports Python 3.5 or manually patch html_parser.py file as per the above shown fix. Even if we patch it manually, there is no guarantee that everything else will work fine.<br /></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-02-01T12:58:00+05:30'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>12:58 pm</span></time>
-        
-           | <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today, again I wanted to change my screen's display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post <a href="http://www.thefourtheye.in/2013/05/ubuntu-scaling-display-zooming.html">Ubuntu scaling the display (Zooming)</a>.<br /><pre class="prettyprint">➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />➜  ~  xrandr --output DP-0 --scale 1.25x1.25<br />➜  ~  xrandr --output VGA-0 --scale 1.25x1.25<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br /></pre>Individual screen's resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen's position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked<br /><pre class="prettyprint">➜  ~  xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br /></pre></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-30T14:52:00+05:30'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:52 pm</span></time>
-        
-           | <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Ubuntu 14.04's Python 3.4 installation has a problem with <code>ensurepip</code> module, as described in <a href="https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847">this bug</a>. So if you follow the steps mentioned in the <a href="https://docs.python.org/3/library/venv.html#creating-virtual-environments">official documentation</a>, you would see an error message like this<pre class="prettyprint">➜  Python  python3 -m venv py3.4venv<br />Error: Command '['/home/thefourtheye//py34venv/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1<br /></pre>To resolve this problem, first install the <code>venv</code>, without <code>pip</code>, like this<br /><pre class="prettyprint">python3 -m venv py3.4venv --without-pip</pre>And then if you install <code>pip</code>, like this, it will still fail<pre class="prettyprint">(py3.4venv) ➜  py3.4venv  python -m ensurepip --upgrade<br />/home/thefourtheye/Python/py3.4venv/bin/python: No module named ensurepip<br />(py3.4venv) ➜  py3.4venv  python<br />Python 3.4.0 (default, Apr 11 2014, 13:05:11)<br />[GCC 4.8.2] on linux<br />Type "help", "copyright", "credits" or "license" for more information.<br />...<br /></pre>So, you need to install, <code>pip</code> separately, like mentioned in the <a href="http://pip.readthedocs.org/en/latest/installing.html#install-pip">pip's official documentation</a>. So, the actual list of steps go like this<br /><pre class="prettyprint">➜  Python  python3 -m venv py3.4venv --without-pip <br />➜  Python  cd py3.4venv <br />➜  py3.4venv  source bin/activate<br />(py3.4venv) ➜  py3.4venv  wget https://bootstrap.pypa.io/get-pip.py<br />--2014-12-30 14:35:34--  https://bootstrap.pypa.io/get-pip.py<br />Resolving bootstrap.pypa.io (bootstrap.pypa.io)... 103.245.222.175<br />Connecting to bootstrap.pypa.io (bootstrap.pypa.io)|103.245.222.175|:443... connected.<br />HTTP request sent, awaiting response... 200 OK<br />Length: 1581355 (1.5M) [text/x-python]<br />Saving to: ‘get-pip.py’<br /><br />100%[=====================================================================================================================>] 15,81,355    129KB/s   in 8.9s   <br /><br />2014-12-30 14:35:43 (173 KB/s) - ‘get-pip.py’ saved [1581355/1581355]<br /><br />(py3.4venv) ➜  py3.4venv  python get-pip.py <br />Collecting pip<br />  Downloading pip-6.0.3-py2.py3-none-any.whl (1.3MB)<br />    100% |################################| 1.3MB 139kB/s <br />Collecting setuptools<br />  Downloading setuptools-9.1-py2.py3-none-any.whl (552kB)<br />    100% |################################| 552kB 180kB/s <br />Installing collected packages: setuptools, pip<br /><br /><br />Successfully installed pip-6.0.3 setuptools-9.1<br />(py3.4venv) ➜  py3.4venv  deactivate <br />➜  py3.4venv  source bin/activate                      <br />(py3.4venv) ➜  py3.4venv  pip install django<br />Collecting django<br />  Using cached Django-1.7.1-py2.py3-none-any.whl<br />Installing collected packages: django<br /><br />Successfully installed django-1.7.1<br />(py3.4venv) ➜  py3.4venv  which pip<br />/home/thefourtheye/Python/py3.4venv/bin/pip<br />(py3.4venv) ➜  py3.4venv  <br /></pre></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-15T21:05:00+05:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:05 pm</span></time>
-        
-           | <a href="/2014/09/15/sending-postput-requests-with-json-form/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2014/09/15/sending-postput-requests-with-json-form/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this <a href="http://stackoverflow.com/a/11298667/1903116">excellent Stackoverflow answer</a>.<pre class="prettyprint">var http = require('http');<br /><br />var options = {<br />host: 'localhost',<br />path: '/users/1',<br />port: 3000,<br />method: 'PUT'<br />};<br /><br />var callback = function(response) {<br />var str = '';<br /><br />//another chunk of data has been recieved, so append it to `str`<br />response.on('data', function(chunk) {<br />str += chunk;<br />});<br /><br />//the whole response has been recieved, so we just print it out here<br />response.on('end', function() {<br />console.log(str);<br />});<br />};<br /><br />http.request(options, callback).end();<br /></pre>This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path '/users/1'. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.<pre class="prettyprint">var http = require('http');<br /><br />var bodyString = JSON.stringify({<br />    username: 'thefourtheye',<br />    password: '********'<br />});<br /><br />var headers = {<br />    'Content-Type': 'application/json',<br />    'Content-Length': bodyString.length<br />};<br /><br />var options = {<br />    host: 'localhost',<br />    path: '/users/1',<br />    port: 3000,<br />    method: 'PUT',<br />    headers: headers<br />};<br /><br />// callback is same as in the above seen example.<br />...<br />...<br /><br />http.request(options, callback).write(bodyString);<br /></pre>What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this<pre class="prettyprint">{"username":"thefourtheye","password":"********"}<br /></pre>Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.<br /><br />Source: <a href="http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm">http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm</a><br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://www.tcpipguide.com/free/diagrams/httprequest.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://www.tcpipguide.com/free/diagrams/httprequest.png" /></a></div><br />As we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two 'headers' in the 'options' object. <pre class="prettyprint">var headers = {<br />    'Content-Type': 'application/json',<br />    'Content-Length': bodyString.length<br />};<br /></pre><br />Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the 'ClientRequest' object returned by the 'http.request', like this <pre class="prettyprint">http.request(options, callback).write(bodyString);<br /></pre>That is it :-)<br /></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-03-01T09:26:00+05:30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>9:26 am</span></time>
-        
-           | <a href="/2014/03/01/nodejs-modules-and-exports/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2014/03/01/nodejs-modules-and-exports/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><p>I think most of us haven't understood the concept of modules in Node.js properly. Let us discuss the basics of that in this post.</p><h2>Module System</h2><p>In Node.js, when you create a new JavaScript file, that will be considered as a separate module. Inside that module, you can access the module itself with <code>module</code> object. You can check that, like this</p><pre class="prettyprint">console.log(module);</pre>which produces something like this<br /><pre class="prettyprint">{ id: '.',<br />  exports: {},<br />  parent: null,<br />  filename: '/home/thefourtheye/Desktop/Test.js',<br />  loaded: false,<br />  children: [],<br />  paths:<br />   [ '/home/thefourtheye/Desktop/node_modules',<br />     '/home/thefourtheye/node_modules',<br />     '/home/node_modules',<br />     '/node_modules' ] }<br /></pre><h2>exports and module.exports</h2><p>As you can see, it is just a plain JavaScript object. The important thing to be noted here is, <a href="http://nodejs.org/api/modules.html#modules_module_exports">the exports object in module</a>. In every module, JavaScript, by default, offers another variable called <a href="http://nodejs.org/api/modules.html#modules_exports_alias">exports</a>. That is nothing but the same object in module object of the same name. You can check that like this</p><pre class="prettyprint">exports.jabberwocky = "blah blah blah";<br />console.log(module.exports);            // { jabberwocky: 'blah blah blah' }<br /></pre><p>So, they are one and the same. But, when some other module requires this module, the object returned will be module.exports only. As long as you are augmenting module.exports and exports, there will be no problem. But when you assign something to either exports or module.exports, they no longer refer to the same object.</p><pre class="prettyprint">exports = {"king": "Sourav Ganguly"};<br />console.log(module.exports);           // {}<br />console.log(exports);                  // { king: 'Sourav Ganguly' }<br /></pre><p>You are making both exports and module.exports refer to different objects. So, when this module is exported, an empty object will be exported (remember, <b>only module.exports will be exported when required from other files</b>), even though we assigned a valid object to exports. So, care should be taken when you replace either of those objects. That is the reason why we often see something like this</p><pre class="prettyprint">exports = module.exports = ...<br /></pre><h2>Scope</h2><p>All the variables and functions declared within the module will be accessible only inside the module (as long as they are created with var keyword). Quoting from the <a href="http://nodejs.org/api/modules.html#modules_modules">modules documentation</a></p><blockquote>Variables local to the module will be private, as though the module was wrapped in a function.</blockquote>Happy modularizing the code :)<br /><br /></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-01-28T20:34:00+05:30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:34 pm</span></time>
-        
-           | <a href="/2014/01/28/bad-ui-design-twitter-account-page/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2014/01/28/bad-ui-design-twitter-account-page/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I am going to consider this as a bug in Twitter. When I wanted to change my profile information (in Chrome 32, Ubuntu 13.04), I don't see a save or update button. Highly frustrating. Hope they fix it soon.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-3ZdOmDdBq1w/UufF1ibUsyI/AAAAAAAABck/kDtU8j1hoCk/s1600/Screenshot+from+2014-01-28+20:21:37_new.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-3ZdOmDdBq1w/UufF1ibUsyI/AAAAAAAABck/kDtU8j1hoCk/s640/Screenshot+from+2014-01-28+20:21:37_new.png" /></a></div></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-01-05T12:13:00+05:30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:13 pm</span></time>
-        
-           | <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.github.io/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><p><b>Edit on 13-Jan-2016</b><br />I found another easy way to fix this problem. You can toggle the menu with a keyboard shortcut. You can read more about that in <a href="http://www.thefourtheye.in/2016/01/sublime-text-3-unhiding-menu-in-ubuntu.html">this blog post of mine</a>.<br /></p><hr /><p>It has been a very long wait to get the "Hide Menu" feature in Linux versions of Sublime Text 3. Finally it was released.  But the problem is, if it hidden once, there is no straight forward way to get the Menu back. I tried <kbd>F10</kbd>, <kbd>Alt</kbd> etc etc and nothing worked. So, I am sharing the trick which worked for me in this post.</p><p>It is simple. Close the Sublime Text 3, if it is open. Open<br /><pre class="prettyprint">~/.config/sublime-text-3/Local/Session.sublime_session</pre>in any of your favorite editors and then make sure that, "menu_visible" is "true" in all places in that file.<br /><pre class="prettyprint">"menu_visible": true,</pre>Thats it :) Open Sublime Text 3 now and ta-da... Menu is back :)<br /></p><hr/><p><b>Edit On Jan 10 - 2016</b><br /><br />As I was doing the same task more often, I decided that put that in a script, like this<br /><pre>export FILE=/home/thefourtheye/.config/sublime-text-3/Local/Session.sublime_session<br />export TEMP_FILE=/home/thefourtheye/.config/sublime-text-3/Local/Session.sublime_session.bkp<br />sed -e 's/"menu_visible": false/"menu_visible": true/g' $FILE > $TEMP_FILE<br />mv $TEMP_FILE FILE<br /></pre>and then I added that to my shell script's rc file as an alias like this<br /><pre>alias sublime_fix_menu=~/.sublime_fix_menu.zsh</pre>That's it :-) Now, I just have to close Sublime Text 3, type sublime_fix_menu in the shell, open Sublime again :-)<br /></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -429,36 +132,107 @@
         <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
       </li>
     
+      <li class="post">
+        <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/11/17/python-dictionary-comprehension/">Python Dictionary Comprehension</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/27/zen-of-python-by-tim-peters/">Zen of Python by Tim Peters</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/27/file-upload-with-jquery-and-ajax/">File Upload With jQuery and Ajax</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/07/installing-thefourtheyeeditor/">Installing the thefourtheyeEditor - Topcoder Plugin</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/">Ubuntu Bug Related to Network and Power</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3/">Compiling Node.js Scripts in Windows 7 With Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/07/21/Compiling-Cpp-11-Programs-with-Sublime-Text-3/">Compiling C++11 Programs With Sublime Text 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/30/spoj-best-solutions-for-double-helix/">SPOJ Best Solutions for the Double Helix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/15/project-euler-15-lattice-paths_15/">Project Euler - 15 - Lattice Paths</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization/">Project Euler - 14 - Longest Collatz Sequence - Memoization</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/15/Project-Euler-Problem-5-Smallest-multiple/">Project Euler - Problem 5 - Smallest Multiple</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/12/project-euler-problem-18-problem-67/">Project Euler - Problem 18, Problem 67 - Maximum Path Sum</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/08/Ubuntu-13-04-Execute-scripts-on-double-click/">Ubuntu 13.04 - Execute Scripts on Double Click</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/08/gitclean-git-clean-wrapper/">Gitclean - a Git Clean Wrapper</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/25/sublime-configuring-codeintel/">Sublime Configuring CodeIntel Auto Completion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/19/ubuntu-scaling-display-zooming/">Ubuntu Scaling the Display (Zooming)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/08/google-code-jam-2013-round-1b-osmos/">Google Code Jam 2013 - Round 1B - Osmos</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/04/fixing-ubuntu-apt-get-sources/">Fixing Ubuntu Apt-get Sources</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/04/python-equivalent-of-cs-freopen/">Python Equivalent of C's Freopen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/05/02/ubuntu-nvidia-driver-installation/">Ubuntu Nvidia Driver Installation</a>
+      </li>
+    
   </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/thefourtheye">@thefourtheye</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'thefourtheye',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
