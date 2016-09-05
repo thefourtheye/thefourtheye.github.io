@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[thefourtheye's weblog]]></title>
   <link href="http://thefourtheye.github.io/atom.xml" rel="self"/>
   <link href="http://thefourtheye.github.io/"/>
-  <updated>2016-09-05T16:19:16+05:30</updated>
+  <updated>2016-09-05T16:31:41+05:30</updated>
   <id>http://thefourtheye.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Sakthipriyan Vairamani (thefourtheye)]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
