@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sport Programming | thefourtheye's weblog]]></title>
+  <link href="http://thefourtheye.in/blog/categories/sport-programming/atom.xml" rel="self"/>
+  <link href="http://thefourtheye.in/"/>
+  <updated>2016-11-12T22:27:28+05:30</updated>
+  <id>http://thefourtheye.in/</id>
+  <author>
+    <name><![CDATA[Sakthipriyan Vairamani (thefourtheye)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SPOJ Best Solutions for the Double Helix]]></title>
+    <link href="http://thefourtheye.in/2013/06/30/spoj-best-solutions-for-double-helix/"/>
+    <updated>2013-06-30T18:08:00+05:30</updated>
+    <id>http://thefourtheye.in/2013/06/30/spoj-best-solutions-for-double-helix</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Unforgettable day. Got my solution featured, as one of the best Python solutions to "<a href="http://www.spoj.com/problems/ANARC05B/">The Double Helix</a>" problem. <br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-wzk1jclGSXQ/UdAmerJssFI/AAAAAAAABYk/pb3O4uzgCmk/s1280/SPOJ+Top+20.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-wzk1jclGSXQ/UdAmerJssFI/AAAAAAAABYk/pb3O4uzgCmk/s1280/SPOJ+Top+20.png" style="max-width: 100%; max-height: 100%;" /></a></div></div></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Euler - 15 - Lattice Paths]]></title>
+    <link href="http://thefourtheye.in/2013/06/15/project-euler-15-lattice-paths_15/"/>
+    <updated>2013-06-15T21:22:00+05:30</updated>
+    <id>http://thefourtheye.in/2013/06/15/project-euler-15-lattice-paths_15</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">In this post we are dealing with <a href="http://projecteuler.net/problem=15">Project Euler - 15 - Lattice paths</a>. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.<br /><pre class="prettyprint">Total = 21<br /><br />Array = [[0]*Total for i in xrange(Total)]<br />for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1   #Initializing bottom row and right column with 1<br /><br />def Rec(i, j):<br />    global Array<br />    if Array[i][j]: return Array[i][j]<br />    Rec(i+1, j)<br />    Rec(i, j+1)<br />    Array[i][j] = Array[i+1][j] + Array[i][j+1]<br /><br />Rec (0, 0)<br />print Array[0][0]<br /></pre></div></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Euler - 14 - Longest Collatz Sequence - Memoization]]></title>
+    <link href="http://thefourtheye.in/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization/"/>
+    <updated>2013-06-15T18:56:00+05:30</updated>
+    <id>http://thefourtheye.in/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This post is about the <a href="http://projecteuler.net/problem=14">Project Euler - 14 - Longest Collatz sequence</a> problem. This is one of the perfect examples of memoization technique. This is the actual problem.<br /><br /><pre>The following iterative sequence is defined for the set of positive integers:<br /><br />n → n/2 (n is even)<br />n → 3n + 1 (n is odd)<br /><br />Using the rule above and starting with 13, we generate the following sequence:<br />13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1<br /><br />It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.<br /><br />Which starting number, under one million, produces the longest chain?<br /><br />NOTE: Once the chain starts the terms are allowed to go above one million.<br /></pre><br /><h2>Simple Solution</h2><br />The problem statement looks pretty simple and a brute force will work just fine. This code runs in 20 seconds.<br /><br /><pre class="prettyprint"><br />def Series(N):<br />    Counter = 1<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        Counter += 1<br />    return Counter<br /><br />Max, Element = 0, 0<br />for x in xrange (1, 1000000):<br />    series = Series(x)<br />    if (Max &lt; series):<br />        Max = series<br />        Element = x<br /><br />print Max, Element<br /><br /></pre><br /><br />As I had to wait for 20 seconds to get the solution, I was thinking about improving the performance. Then I found this. From the problem statement, <code>13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>, starting with any number, if it becomes 13 at any point of time, it has to take the same route and if it becomes 13 it will take 10 steps to become 1. So I wanted to store this information first time itself, so that I don't have to recalculate. This is called <code>Memoization</code>. Quoting from wikipedia<br /><br /><blockquote>In computing, memoization is an optimization technique used primarily to speed up computer programs by having function calls avoid repeating the calculation of results for previously processed inputs</blockquote><br /><h2>Optimized (Memoized) Solution</h2><br />To optimize it, I just had to change the Series function alone. I stored the computed values in a dictionary and if the current number in the sequence happens to be in the dictionary, I ll just return the value corresponding to it. This program responded with the result in 2 seconds. That is <b>10 times faster</b> than the first version.<br/><br /><pre class="prettyprint"><br />Dict = {}<br /><br />def Series(N):<br />    Counter = 1   #It is 1, because we are counting the initial N<br />    Original = N<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        if N in Dict:                    # Check if the length has been computed for this number already<br />            Counter += Dict[N]           # Add it to the current length counter<br />            Dict [Original] = Counter    # Store the computed value for future look back<br />            return Counter<br />        Counter += 1<br />    Dict [Original] = Counter            # Store the computed value for future look back<br />    return Counter<br /><br /></pre><br/><br/><br/><br /></div></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Euler - Problem 5 - Smallest Multiple]]></title>
+    <link href="http://thefourtheye.in/2013/06/15/Project-Euler-Problem-5-Smallest-multiple/"/>
+    <updated>2013-06-15T13:05:00+05:30</updated>
+    <id>http://thefourtheye.in/2013/06/15/Project-Euler-Problem-5-Smallest-multiple</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Today I came across this interesting problem. <a href="http://projecteuler.net/problem=5">Project Euler's Problem 5 - Smallest Multiple</a>. <br /><br /><pre>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.<br /><br />What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?<br /></pre><br />Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the <b>smallest</b> positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated <code>2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690</code>, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.<br /><br /><h2>Brute Force Solution</h2><br /><pre class="prettyprint">i = 21<br />while True:<br />    flag = True<br />    for X in xrange(1, 21):<br />        if (i % X != 0):<br />            flag = False<br />            break<br />    if flag:<br />        print i<br />        break<br />    i += 1<br /></pre><br />But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this <a href="http://stackoverflow.com/a/13765976/1903116">page</a>. Its high school maths. <br /><br /><h2>Optimized Solution</h2><br /><h2>LCM</h2>Least Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A & B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.<br /><br /><h2>Relation between LCM and GCD</h2><code>LCM(A,B) = (A * B)/GCD(A*B)</code><br /><br /><h2>Recursive Euclid's algorithm for GCD</h2><h6>Base Condition</h6><code>GCD(A, 0) = A</code><br /><h6>Recurrence Relation</h6><code>GCD(A, B) = GCD (B, A mod B)</code><br /><br />So I modified my code like this and it produced the solution within 1 second.<br /><br /><pre class="prettyprint">def GCD(M, N):<br />    while (N != 0):<br />        M, N = N, M % N<br />    return M<br /><br />LCM = 1<br />for X in xrange(1, 21):<br />    LCM = (X * LCM)/GCD(X, LCM)<br />print LCM<br /></pre><br /><br /></div></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Euler - Problem 18, Problem 67 - Maximum Path Sum]]></title>
+    <link href="http://thefourtheye.in/2013/06/12/project-euler-problem-18-problem-67/"/>
+    <updated>2013-06-12T19:32:00+05:30</updated>
+    <id>http://thefourtheye.in/2013/06/12/project-euler-problem-18-problem-67</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me  if I can solve <a href="http://projecteuler.net/problem=18">Project Euler's Problem 18</a>. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,<br /><br /><pre> 8<br />1 2<br /></pre><br />The maximum of 8+1 and 8+2 would be 10 and 10 would take 8's place. So we keep on doing this till we reach the top. For the sample input<br /><br /><pre>3<br />  7 4<br /> 2 4 6<br />8 5 9 3<br /></pre><br />After first Iteration,<br /><br /><pre>3<br />   7  4<br /> 10 13 15<br /></pre><br />After second Iteration,<br /><br /><pre>3<br />  20 19<br /></pre><br />After third  Iteration,<br /><br /><pre>23<br /></pre><br />Here is the solution which I used<br /><br /><pre class="prettyprint">import sys<br />sys.stdin  = open ("Input.txt")<br />sys.stdout = open ("Output.txt", "w")<br />Array = []<br />for line in sys.stdin: Array.append (map (int, line.split()))<br />Array.reverse()<br />temp_array = [0] * (len(Array) + 1)<br />for Row in Array:<br /> for i in xrange (len(Row)):<br />  temp_array[i] = Row[i] + max (temp_array[i], temp_array[i + 1])<br />print max (temp_array)<br /></pre><br />This solution will solve <a href="http://projecteuler.net/problem=67">Project Euler's Problem 67</a> as well.<br /><br /><br /><br /></div></div>
+
+]]></content>
+  </entry>
+  
+</feed>
