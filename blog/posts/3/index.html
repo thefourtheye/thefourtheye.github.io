@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="The method which I mentioned in this blog post of mine, solves the problem, but then you have to Close the Sublime Text Fire up a terminal Execute a &hellip;">
+  <meta name="description" content="Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -37,6 +37,8 @@
 <body   >
   <header role="banner"><hgroup>
   <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+    <h2>opinions are my own and try code/suggestions at your own risk</h2>
   
 </hgroup>
 
@@ -71,7 +73,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a></h1>
+      <h1 class="entry-title"><a href="/2013/11/17/python-dictionary-comprehension/">Python Dictionary Comprehension</a></h1>
     
     
       <p class="meta">
@@ -80,10 +82,10 @@
 
 
 
-<time class='entry-date' datetime='2016-01-10T20:44:00+05:30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>8:44 pm</span></time>
+<time class='entry-date' datetime='2013-11-17T13:35:00+05:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:35 pm</span></time>
         
-           | <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Comments</a>
+           | <a href="/2013/11/17/python-dictionary-comprehension/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/11/17/python-dictionary-comprehension/">Comments</a>
         
       </p>
     
@@ -91,7 +93,139 @@
 
 
   <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">The method which I mentioned in this <a href="http://www.thefourtheye.in/2014/01/un-hiding-menu-bar-in-sublime-text-3.html">blog post of mine</a>, solves the problem, but then you have to<br /><ol><li> Close the Sublime Text<br /><li> Fire up a terminal<br /><li> Execute a command or two<br /><li> Open Sublime Text again<br /></ol>Quite a lot of steps to do. But then I found a simpler solution today and it works like a charm for me. The solution is to use "Keyboard Shortcuts" :-) Let me explain in detail.  <ol><li> Click <code>Preferences</code> -> <code>Key Bindings - User</code><br /><li> In the window that opens, you need to add a new keyboard shortcut for the command "toggle_menu". For example, this is how my shortcuts looks like<br /><pre>[{"keys": ["ctrl+\\"], "command": "toggle_side_bar"},<br /> {"keys": ["ctrl+shift+m"], "command": "toggle_menu"}]</pre><li> Save the file and start doing your happy dance.<br /></ol>Now, you can simply press the keyboard shortcut whatever you choose to assign to toggle menu :-)  </div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>Dictionary comprehensions were <a href="http://docs.python.org/2.7/whatsnew/2.7.html#other-language-changes" target="_blank">backported from Python 3.x to 2.7</a>. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension</p><pre class="prettyprint">>>> myMatrix = [[1, 100], [2, 200], [3, 300]]<br />>>> {key:value for key, value in myMatrix}<br />{1: 100, 2: 200, 3: 300}<br /></pre><p>Here we use unpacking from <code>myMatrix</code> list and we have used <code>{}</code> with <code>key:value</code> notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example</p><pre class="prettyprint">>>> myMatrix = [[100, 100], [20, 200], [30, 300]]<br />>>> {(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}<br />{120: 20, 130: 30, 100: 20}<br /></pre><p>Here we use <a href="http://docs.python.org/2/reference/expressions.html#conditional-expressions" target="_blank">conditional expressions</a> to dynamically decide what the key and the value are going to be.</p><h2>Performance</h2><pre class="prettyprint">>>> def changeDict():<br />...     newDict = {}<br />...     for key, value in myMatrix:<br />...         newDict[(key + 100 if key < 100 else key)] = value/10 if value >= 200 else value/5<br />...     return newDict<br />...     <br />>>> from timeit import timeit<br />>>> timeit("{(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}", setup="from __main__ import myMatrix")<br />0.7076609134674072<br />>>> timeit("changeDict()", setup="from __main__ import myMatrix, changeDict")<br />0.7484149932861328<br /></pre><p>The use of comprehension is slightly faster than the function which adds keys and values to an existing dictionary. This difference will be significant when the <code>myMatrix</code> has huge amount of data.</p></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/10/27/zen-of-python-by-tim-peters/">Zen of Python by Tim Peters</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-27T17:20:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:20 pm</span></time>
+        
+           | <a href="/2013/10/27/zen-of-python-by-tim-peters/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/10/27/zen-of-python-by-tim-peters/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Python has an Easter Egg :) just try to import <code>this</code> like this<br /><pre class="prettyprint">import this</pre>you ll get this<br /><pre>The Zen of Python, by Tim Peters<br /><br />Beautiful is better than ugly.<br />Explicit is better than implicit.<br />Simple is better than complex.<br />Complex is better than complicated.<br />Flat is better than nested.<br />Sparse is better than dense.<br />Readability counts.<br />Special cases aren't special enough to break the rules.<br />Although practicality beats purity.<br />Errors should never pass silently.<br />Unless explicitly silenced.<br />In the face of ambiguity, refuse the temptation to guess.<br />There should be one-- and preferably only one --obvious way to do it.<br />Although that way may not be obvious at first unless you're Dutch.<br />Now is better than never.<br />Although never is often better than *right* now.<br />If the implementation is hard to explain, it's a bad idea.<br />If the implementation is easy to explain, it may be a good idea.<br />Namespaces are one honking great idea -- let's do more of those!<br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/10/27/file-upload-with-jquery-and-ajax/">File Upload With jQuery and Ajax</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-27T16:30:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:30 pm</span></time>
+        
+           | <a href="/2013/10/27/file-upload-with-jquery-and-ajax/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/10/27/file-upload-with-jquery-and-ajax/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">The requirement is simple. I should be able to upload files to the server with jQuery and ajax. Lets get started.<br /><pre class="prettyprint">&lt;html&gt;<br />   &lt;form&gt;<br />     File Description:&lt;input type="text" id="desc" /&gt;<br />     Choose File:&lt;input type="file" id="chosenFile" /&gt;<br />     &lt;input type="button" id="submitFile" value="submitTheFile" /&gt;<br />   &lt;/form&gt;<br />&lt;/html&gt;<br /></pre>Now, the real jQuery stuff<br /><pre class="prettyprint">&lt;script type="text/javascript"&gt;<br />    jQuery.noConflict();<br />    jQuery(document).ready(function() {<br />        jQuery("#submitFile").click(function() {<br />            jQuery.ajax({<br />                url: "[url to be submitted to]",<br />                type: "POST",<br />                contentType: false,<br />                processData: false,<br />                data: function() {<br />                    var data = new FormData();<br />                    data.append("fileDescription", jQuery("#desc").val());<br />                    data.append("chosenFile", jQuery("#chosenFile").get(0).files[0]);<br />                    return data;<br />                    // Or simply return new FormData(jQuery("form")[0]);<br />                }(),<br />                error: function(_, textStatus, errorThrown) {<br />                    alert("Error");<br />                    console.log(textStatus, errorThrown);<br />                },<br />                success: function(response, textStatus) {<br />                    alert("Success");<br />                    console.log(response, textStatus);<br />                }<br />            });<br />        });<br />    });<br />&lt;script&gt;<br /></pre>Important things to be noted here are<br /><pre class="prettyprint">contentType: false,<br />                processData: false,<br /></pre><p><code>contentType</code> will be determined automatically, so we don't have to set that explicitly and <code>processData</code> has to be false, otherwise the data will be processed and transformed into a query string, fitting to the default content-type "application/x-www-form-urlencoded". Next important thing is<br /><pre class="prettyprint">data: function() {<br />                    var data = new FormData();<br />                    data.append("fileDescription", jQuery("#desc").val());<br />                    data.append("chosenFile", jQuery("#chosenFile").get(0).files[0]);<br />                    return data;<br />                    // Or simply return new FormData(jQuery("form")[0]);<br />                }(),<br /></pre>You can read about FormData <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">here</a>. We basically set the values being submitted. The first parameter is the key and the second parameter is the actual value to be passed. We can get the value of any form field with <pre class="prettyprint">jQuery("#desc").val()</pre>expect the files. If we use the same for files, we ll get just the file name instead of the file contents. So, we have to do something like <pre class="prettyprint">jQuery("#chosenFile").get(0).files[0]</pre>If we dont want to set individual values and want to pass all the fields in the form, we can simply do <pre class="prettyprint">data: new FormData(jQuery("form")[0])</pre>Thats it. Enjoy Ajaxified file upload :)<br /><b>References:</b><br /><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/File">File</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications">Using files from web applications</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Using_FormData_Objects">Using FormData Objects</a></li></ul></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/07/installing-thefourtheyeeditor/">Installing the thefourtheyeEditor - Topcoder Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-07T13:38:00+05:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:38 pm</span></time>
+        
+           | <a href="/2013/09/07/installing-thefourtheyeeditor/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/09/07/installing-thefourtheyeeditor/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>thefourtheyeEditor is a very lightweight plugin for Topcoder Arena to participate in Single Round Matches, which can build testcases and lets the users to store the solutions as local files, so that any editor or IDE can be used to edit them. It also maintains the solutions in the directories named as the SRM's display name.</p><h2>Features</h2><ol><li>Very lightweight - Only one jar file. It doesn't depend on any other external jar files.</li><li>Organized solutions storage - Solutions will be stored as per the SRM names</li><li>File based configuration - Configurations are done in contestapplet.conf file. No need to use UI.</li></ol><h2>Installation</h2><ol><li>Download thefourtheyeEditor plugin (thefourtheyeEditor.jar) from <a href="https://github.com/thefourtheye/thefourtheyeEditor/releases/download/latest/thefourtheyeEditor.jar">https://github.com/thefourtheye/thefourtheyeEditor/releases/download/latest/thefourtheyeEditor.jar</a></li><li>Open topcoder contest applet and login with your username and password<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-pWmhTKJgMuU/UirZL3XombI/AAAAAAAABaQ/ElKofTOUZLo/s1600/topcoder+Login.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-pWmhTKJgMuU/UirZL3XombI/AAAAAAAABaQ/ElKofTOUZLo/s1600/topcoder+Login.png" /></a></div></li><li>Select <code>Editor</code> from the <code>Options</code> menu. You 'll see something like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-i-I4SZM6w0Y/UiraJxyoHjI/AAAAAAAABaY/rsfdcOmIVFc/s1600/topcoder+Editor+Preferences+Empty.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-i-I4SZM6w0Y/UiraJxyoHjI/AAAAAAAABaY/rsfdcOmIVFc/s1600/topcoder+Editor+Preferences+Empty.png" /></a></div></li><li>Click on <code>Add</code> and you 'll get a window like this. Fill in the details as you see in this picture. Actually you can give any name in the <code>Name</code>field and in <code>ClassPath</code> field, you have to locate the <code>thefourtheyeEditor.jar</code> file using Browse button. <code>EntryPoint</code> must be exactly the same as <code>thefourtheyeEditor.Main</code>.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-fYASUa_iIWo/Uiravmk9dJI/AAAAAAAABag/RhTfUoZX-1w/s1600/topcoder+plugin+Information.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-fYASUa_iIWo/Uiravmk9dJI/AAAAAAAABag/RhTfUoZX-1w/s1600/topcoder+plugin+Information.png" /></a></div></li><li>Once these steps are done, the Editor preferences page will look like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-NeWwv8YD2WE/Uird2isJrGI/AAAAAAAABas/tLVrupAZrj8/s1600/topcoder+After+plugin+installation.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-NeWwv8YD2WE/Uird2isJrGI/AAAAAAAABas/tLVrupAZrj8/s1600/topcoder+After+plugin+installation.png" /></a></div></li><li>Click on Save button and close that window. That's it. Installation is complete :)</li></ol></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/">Ubuntu Bug Related to Network and Power</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-04T18:32:00+05:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:32 pm</span></time>
+        
+           | <a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/09/04/ubuntu-bug-related-to-network-and-power/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>Last week, I faced this weird problem. When my laptop is not connected to a power source (not on battery), I could not connect to LAN network with my LAN cable, but Wi-Fi worked fine. I struggled a lot for a week and then I found a solution in the internet.<br /><p>All you have to do is to execute this one liner in your terminal.<br /><pre class="prettyprint">echo on > /sys/class/net/eth1/device/power/control<br /></pre>Here <code>eth1</code> corresponds to my second ethernet interface. It might vary from machine to machine. And if the directories <code>eth</code>, <code>device</code> and <code>power</code> dont exist, you might have to manually create them.<br /><br /></div></div>
 </div>
   
   
@@ -133,6 +267,26 @@
     
       <li class="post">
         <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
       </li>
     
   </ul>

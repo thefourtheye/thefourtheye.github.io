@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="I think most of us haven't understood the concept of modules in Node.js properly. Let us discuss the basics of that in this post.Module SystemIn &hellip;">
+  <meta name="description" content="Problem Description - http://www.spoj.com/problems/ACODE/Approach :1) Initialize an Array of Size N with 0 and element 0 as 12) Loop through all the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -37,6 +37,8 @@
 <body   >
   <header role="banner"><hgroup>
   <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+    <h2>opinions are my own and try code/suggestions at your own risk</h2>
   
 </hgroup>
 
@@ -71,7 +73,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a></h1>
+      <h1 class="entry-title"><a href="/2013/04/23/spoj-acode-alphacode/">SPOJ - ACODE - AlphaCode</a></h1>
     
     
       <p class="meta">
@@ -80,10 +82,10 @@
 
 
 
-<time class='entry-date' datetime='2014-03-01T09:26:00+05:30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>9:26 am</span></time>
+<time class='entry-date' datetime='2013-04-23T21:34:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>9:34 pm</span></time>
         
-           | <a href="/2014/03/01/nodejs-modules-and-exports/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2014/03/01/nodejs-modules-and-exports/">Comments</a>
+           | <a href="/2013/04/23/spoj-acode-alphacode/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/23/spoj-acode-alphacode/">Comments</a>
         
       </p>
     
@@ -91,7 +93,139 @@
 
 
   <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><p>I think most of us haven't understood the concept of modules in Node.js properly. Let us discuss the basics of that in this post.</p><h2>Module System</h2><p>In Node.js, when you create a new JavaScript file, that will be considered as a separate module. Inside that module, you can access the module itself with <code>module</code> object. You can check that, like this</p><pre class="prettyprint">console.log(module);</pre>which produces something like this<br /><pre class="prettyprint">{ id: '.',<br />  exports: {},<br />  parent: null,<br />  filename: '/home/thefourtheye/Desktop/Test.js',<br />  loaded: false,<br />  children: [],<br />  paths:<br />   [ '/home/thefourtheye/Desktop/node_modules',<br />     '/home/thefourtheye/node_modules',<br />     '/home/node_modules',<br />     '/node_modules' ] }<br /></pre><h2>exports and module.exports</h2><p>As you can see, it is just a plain JavaScript object. The important thing to be noted here is, <a href="http://nodejs.org/api/modules.html#modules_module_exports">the exports object in module</a>. In every module, JavaScript, by default, offers another variable called <a href="http://nodejs.org/api/modules.html#modules_exports_alias">exports</a>. That is nothing but the same object in module object of the same name. You can check that like this</p><pre class="prettyprint">exports.jabberwocky = "blah blah blah";<br />console.log(module.exports);            // { jabberwocky: 'blah blah blah' }<br /></pre><p>So, they are one and the same. But, when some other module requires this module, the object returned will be module.exports only. As long as you are augmenting module.exports and exports, there will be no problem. But when you assign something to either exports or module.exports, they no longer refer to the same object.</p><pre class="prettyprint">exports = {"king": "Sourav Ganguly"};<br />console.log(module.exports);           // {}<br />console.log(exports);                  // { king: 'Sourav Ganguly' }<br /></pre><p>You are making both exports and module.exports refer to different objects. So, when this module is exported, an empty object will be exported (remember, <b>only module.exports will be exported when required from other files</b>), even though we assigned a valid object to exports. So, care should be taken when you replace either of those objects. That is the reason why we often see something like this</p><pre class="prettyprint">exports = module.exports = ...<br /></pre><h2>Scope</h2><p>All the variables and functions declared within the module will be accessible only inside the module (as long as they are created with var keyword). Quoting from the <a href="http://nodejs.org/api/modules.html#modules_modules">modules documentation</a></p><blockquote>Variables local to the module will be private, as though the module was wrapped in a function.</blockquote>Happy modularizing the code :)<br /><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><blockquote>Problem Description - <a href="http://www.spoj.com/problems/ACODE/">http://www.spoj.com/problems/ACODE/</a><br /><br />Approach :<br /><br />1) Initialize an Array of Size N with 0 and element 0 as 1<br />2) Loop through all the elements<br />3) If it is a valid single digit number, Copy the previous element's value to the current element (DP[i] = DP[i-1])<br />4) If it is a valid two digit number, Add the previous to previous element's value to the current element (DP[i] += DP[i-2])<br /><br />In one line : DP[i] = DP[i-1] {if valid single digit number} + DP[i-2] {if current and previous elements make a valid two digit number}<br /><br />Solution:<br /></blockquote><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;cstring&gt;<br />char Input[5001] = "";<br />unsigned long long DP[5001];<br />int main()<br />{<br /> freopen ("Input.txt", "r", stdin);<br /> freopen ("Scratch.txt", "w", stdout);<br /> scanf ("%s", Input);<br /> while (strcmp(Input, "0"))<br /> {<br />  int Len = strlen (Input), Index = 1;<br />  memset (DP, 0, sizeof DP);<br />  DP[0] = 1;<br />  while (Index < Len)<br />  {<br />   int temp = 0;<br />   temp = (Input[Index-1]-'0') * 10;<br />   temp += (Input[Index] -'0');<br />   if (Input[Index]-'0') DP[Index] = DP[Index-1];<br />   if (temp <= 26 && temp > 9) DP[Index] += DP[Index-2 < 0?0:Index-2];<br />   //printf ("%d\t%llu\n",Index, DP[Index]);<br />   Index++;<br />  }<br />  //printf ("%llu\t%s\n", DP[Len-1], Input);<br />  printf ("%llu\n", DP[Len-1]);<br />  scanf ("%s", Input);<br /> }<br />}<br /><br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/21/timus-1018-binary-apple-tree-dynamic/">Timus - 1018 - Binary Apple Tree - Dynamic Programming</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-21T23:00:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>11:00 pm</span></time>
+        
+           | <a href="/2013/04/21/timus-1018-binary-apple-tree-dynamic/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/21/timus-1018-binary-apple-tree-dynamic/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Today, I saw this interesting problem. <br /><br /><a href="http://acm.timus.ru/problem.aspx?space=1&num=1018">Timus - 1018 - Binary Apple Tree</a><br /><br />When I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple.  <blockquote>1. While reading Inputs find the total number of apples<br />2. Find all the leaf Branches (I mean branches without any branches on them)<br />3. Get the branch with the least number of apples and remove that<br />4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) </blockquote>It was pretty straight forward to implement.<br /><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;map&gt;<br /># include &lt;set&gt;<br /># include &lt;bitset&gt;<br />using namespace std;<br />int N, Q;<br />unsigned long long Total = 0;<br />struct Branch<br />{<br /> bool operator&lt; (const Branch & branch) const<br /> {<br />  if (this-&gt;Apples == branch.Apples)<br />  {<br />   if (this-&gt;Start == branch.Start)<br />    return this-&gt;End &lt; branch.End;<br />   return this-&gt;Start&lt; branch.Start;<br />  }<br />  return this-&gt;Apples &lt; branch.Apples;<br /> }<br /> Branch (int a, int b, int c){Start = a; End = b; Apples = c;}<br /> int Start, End, Apples;<br />};<br />set &lt;Branch&gt; Edges;<br />bitset &lt;101&gt; Visited;<br />map &lt;int, map &lt;int, int&gt; &gt; Tree;<br />void FindEdges (int current, int parent)<br />{<br /> //printf ("%d\t%d\n", current, parent);<br /> if (Visited[current]) return;<br /> //printf ("%d\t%d Not Visited\n", current, parent);<br /> Visited[current] = true;<br /> map&lt;int, int&gt;::iterator it = Tree[current].begin();<br /> if (Tree[current].size() == 1)<br />  Edges.insert (Branch (parent, current, Tree[parent][current]));<br /> else<br />  for (; it != Tree[current].end(); it++)<br />   if (!Visited[it-&gt;first])<br />    FindEdges (it-&gt;first, current);<br />}<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> scanf ("%d%d", &N, &Q);<br /> Q = N - 1 - Q;<br /> int A, B, C;<br /> for (int i = 0; i &lt; N - 1; i++)<br /> {<br />  scanf ("%d%d%d", &A, &B, &C);<br />  Tree[A][B] = C;<br />  Tree[B][A] = C;<br />  Total += C;<br /> }<br /> for (int i = 0; i &lt; Q; i++)<br /> {<br />  Edges.clear();<br />  Visited.reset();<br />  map&lt;int, int&gt;::iterator it1 = Tree[1].begin();<br />  Visited[1] = true;<br />  for (; it1 != Tree[1].end(); it1++)<br />   FindEdges(it1-&gt;first, 1);<br />  //printf ("Edges Size : %lu\n", Edges.size());<br />  set&lt;Branch&gt;::iterator it = Edges.begin();<br />  //printf ("%d\t%d\t%d\n", it-&gt;Start, it-&gt;End, it-&gt;Apples);<br />  Total -= it-&gt;Apples;<br />  Tree[it-&gt;Start].erase (it-&gt;End);<br />  Tree[it-&gt;End].erase (it-&gt;Start);<br /> }<br /> printf ("%llu\n", Total);<br />}<br /></pre>However, this solution was failing so many times. Then I found the testcase for which this program was failing.  <pre class="prettyprint">4 1<br />1 2 1<br />1 3 2<br />2 4 3<br /><br /></pre>The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. <br />In the first iteration, it detects the branches <pre class="prettyprint">1 3 2<br />2 4 3<br /></pre>and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch <pre class="prettyprint">2 4 3<br /></pre>since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. <br /><br />Here is the DP solution which can really solve this problem and this got accepted by Timus.<br /><br /><pre class="prettyprint">#include &lt;cstdio&gt;<br />#include &lt;cstring&gt;<br />#include &lt;vector&gt;<br />#include &lt;algorithm&gt;<br /><br />using namespace std;<br /><br />int N,Q, Tree[101][101], DP[101][101];<br />int solve (int current, int parent, int q)<br />{<br /> if (q &lt;= 0) return 0;<br /> int lindex = -1, rindex = -1;<br /> int & result = DP[current][q];<br /> if (result != -1) return result;<br /> for (int i = 0; i &lt; 101; i++)<br />  if (Tree[current][i] != -1 && i != parent) {lindex = i; break;}<br /> for (int i = (lindex == -1?0:lindex+1); i &lt; 101; i++)<br />  if (Tree[current][i] != -1 && i != parent) {rindex = i; break;}<br /> //printf ("%d\t%d\t%d\t%d\t%d\n", current, parent, lindex, rindex, q);<br /> if (lindex == -1 || rindex == -1) return 0;<br /> for (int i = 0; i &lt;= q; i++)<br />  result = max (result, (i == q?0:Tree[current][lindex] + solve(lindex, current, q - i - 1))<br />   + (i == 0?0:Tree[current][rindex] + solve(rindex, current, i - 1)));<br /> //printf ("Returning %d\n", result);<br /> return result;<br />}<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> scanf("%d%d",&N,&Q);<br /> memset (Tree, -1, sizeof Tree);<br /> memset (DP, -1, sizeof DP);<br /> for (int i = 0; i &lt; N; i++)<br />  for (int j = 0, x, y, z; j &lt; N; j++)<br />  {<br />   scanf ("%d%d%d", &x, &y, &z);<br />   Tree [x][y] = z;<br />   Tree [y][x] = z;<br />  }<br /> printf ("%d\n", solve (1, 0, Q));<br /> return 0;<br />}<br /></pre>Please write to me if you want me to explain this program. We can do that over chat. </div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/21/uva-11259-coin-changing-again/">UVa 11259 - Coin Changing Again</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-21T10:58:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>10:58 am</span></time>
+        
+           | <a href="/2013/04/21/uva-11259-coin-changing-again/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/21/uva-11259-coin-changing-again/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions?  Problem Statement : <a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226">http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226</a> <br /></div><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;map&gt;<br /># include &lt;set&gt;<br />using namespace std;<br />struct State<br />{<br /> State (int v1, int v2, int v3, int v4)<br /> {<br />  V1 = v1; V2 = v2; V3 = v3; V4 = v4;<br /> }<br /> int getPart2(int Value = 0)<br /> {<br />  int Part2 = 0;<br />  Part2 = (V4 &gt;&gt; 13);<br />  Part2 |= (Value &lt;&lt; 4);<br />  return Part2;<br /> }<br /> unsigned long long getPart1()<br /> {<br />  unsigned long long Part1 = 0;<br />  Part1 = V1;<br />  Part1 |= (V2 &lt;&lt; 17);<br />  Part1 |= ((unsigned long long)V3 &lt;&lt; 34);<br />  Part1 |= ((unsigned long long)V4 &lt;&lt; 51);<br />  return Part1;<br /> }<br /> int V1, V2, V3, V4;<br />};<br />map &lt;int, set&lt;unsigned long long&gt; &gt; States;<br />map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;<br />int c1, c2, c3, c4, q, d1, d2, d3, d4, v;<br />unsigned long long Result ;<br />bool CheckVisited (unsigned long long Part1, int Part2)<br />{<br /> if (States[Part2].count (Part1)) return true;<br /> States[Part2].insert (Part1);<br /> return false;<br />}<br />void Solution (State & s, int Value)<br />{<br /> unsigned long long Part1 = s.getPart1();<br /> int Part2 = s.getPart2(Value);<br /> if (!Value)<br /> {<br />  Solutions[Part2].insert (Part1);<br />  return;<br /> }<br /> if (CheckVisited(Part1, Part2)) return;<br /> if (s.V1 - 1 &gt;= 0 && Value - c1 &gt;= 0)<br /> {<br />  s.V1--;<br />  Solution (s, Value - c1);<br />  s.V1++;<br /> }<br /> if (s.V2 - 1 &gt;= 0 && Value - c2 &gt;= 0)<br /> {<br />  s.V2--;<br />  Solution (s, Value - c2);<br />  s.V2++;<br /> }<br /> if (s.V3 - 1 &gt;= 0 && Value - c3 &gt;= 0)<br /> {<br />  s.V3--;<br />  Solution (s, Value - c3);<br />  s.V3++;<br /> }<br /> if (s.V4 - 1 &gt;= 0 && Value - c4 &gt;= 0)<br /> {<br />  s.V4--;<br />  Solution (s, Value - c4);<br />  s.V4++;<br /> }<br />}<br />int main()<br />{<br /> freopen ("Input.txt", "r", stdin);<br /> freopen ("Scratch.txt", "w", stdout);<br /> int N;<br /> scanf ("%d", &N);<br /> State s (0, 0, 0, 0);<br /> while (N--)<br /> {<br />  scanf ("%d%d%d%d%d", &c1, &c2, &c3, &c4, &q);<br />  while (q--)<br />  {<br />   scanf ("%d%d%d%d%d", &s.V1, &s.V2, &s.V3, &s.V4, &v);<br />   Result = 0;<br />   States.clear();<br />   Solutions.clear();<br />   Solution (s, v);<br />   for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it++)<br />    Result += it-&gt;second.size();<br />   printf ("%lld\n", Result);<br />  }<br /> }<br />}<br /></pre></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/20/number-of-ways-to-change-making-dynamic/">Number of Ways to Change Making (Dynamic Programming)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-20T17:51:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:51 pm</span></time>
+        
+           | <a href="/2013/04/20/number-of-ways-to-change-making-dynamic/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/20/number-of-ways-to-change-making-dynamic/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This is a variant of <a href="http://dfourtheye.blogspot.com/2013/04/change-making-dynamic-programming.html" target="_blank">change making problem</a>. Here, we are just asked to count the number of ways to make the specific change. With a little change to the change making problem's solution, we can solve this one.  The problems which can be solved with the following solution are <pre><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=615">UVa - 657 - Coin Change</a><br /><br /><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=293">UVa - 357 - Let Me Count The Ways</a> (Need to change the way solution is printed as per problem description)<br /><br /></pre></div><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br />using namespace std;<br />unsigned long long NumberOfWays [30001], Coins []= {1, 5, 10, 25, 50}, Num;<br />int main ()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> NumberOfWays[0] = 1;<br /> for (int i = 0; i < 5; i++)<br />  for (int j = Coins[i]; j < 30001; j++)<br />   NumberOfWays [j] += NumberOfWays [j - Coins[i]];<br /> while (scanf ("%lld", &Num) != EOF)<br />  printf ("%lld\n", NumberOfWays[Num]); //Change this for UVa - 357 - Let Me Count The Ways<br />}<br /></pre></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/20/change-making-dynamic-programming/">Change Making (Dynamic Programming) Problem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-20T17:39:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:39 pm</span></time>
+        
+           | <a href="/2013/04/20/change-making-dynamic-programming/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/20/change-making-dynamic-programming/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This is a classic <a href="http://en.wikipedia.org/wiki/Change-making_problem" target="_blank">change making problem</a>.<br />A variant of the same problem, counting the number of ways to make the change is <a href="http://dfourtheye.blogspot.in/2013/04/number-of-ways-to-change-making-dynamic.html">here</a> <pre>Problem Name : Making Change<br />Problem ID&nbsp;&nbsp; : 2768<br />Problem URL&nbsp; : <a href="http://acm.tju.edu.cn/toj/showp2768.html">http://acm.tju.edu.cn/toj/showp2768.html</a><br />Solution&nbsp;&nbsp;&nbsp;&nbsp; :<br /></pre></div><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br /># include &lt;cstring&gt;<br /># include &lt;algorithm&gt;<br />int denoms [10];<br />int change [1001];<br />using namespace std;<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> int C, N;<br /> scanf ("%d%d", &C, &N);<br /> fill (change, change + C + 1, 10000);<br /> for (int i = 0; i < N; i++) scanf ("%d", &denoms[i]);<br /> sort (denoms, denoms + N);<br /> change[0] = 0;<br /> for (int j = 0; j < N; j++)<br />  for (int i = denoms[j]; i <= C; i++)<br />   change[i] = min (change[i], change[i - denoms[j]] + 1);<br /> printf ("%d\n", change[C]);<br />}<br /></pre></div>
 </div>
   
   
@@ -133,6 +267,26 @@
     
       <li class="post">
         <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
       </li>
     
   </ul>

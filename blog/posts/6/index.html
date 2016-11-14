@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Ubuntu 14.04's Python 3.4 installation has a problem with ensurepip module, as described in this bug. So if you follow the steps mentioned in the &hellip;">
+  <meta name="description" content="Today I came across this useful trick, which allows me to have lot of space on my screen, even though my screen supports only very low resolution. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -37,6 +37,8 @@
 <body   >
   <header role="banner"><hgroup>
   <h1><a href="/">thefourtheye's weblog</a></h1>
+  
+    <h2>opinions are my own and try code/suggestions at your own risk</h2>
   
 </hgroup>
 
@@ -71,7 +73,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a></h1>
+      <h1 class="entry-title"><a href="/2013/05/19/ubuntu-scaling-display-zooming/">Ubuntu Scaling the Display (Zooming)</a></h1>
     
     
       <p class="meta">
@@ -80,10 +82,10 @@
 
 
 
-<time class='entry-date' datetime='2014-12-30T14:52:00+05:30'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:52 pm</span></time>
+<time class='entry-date' datetime='2013-05-19T15:48:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>3:48 pm</span></time>
         
-           | <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Comments</a>
+           | <a href="/2013/05/19/ubuntu-scaling-display-zooming/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/05/19/ubuntu-scaling-display-zooming/">Comments</a>
         
       </p>
     
@@ -91,7 +93,139 @@
 
 
   <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Ubuntu 14.04's Python 3.4 installation has a problem with <code>ensurepip</code> module, as described in <a href="https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847">this bug</a>. So if you follow the steps mentioned in the <a href="https://docs.python.org/3/library/venv.html#creating-virtual-environments">official documentation</a>, you would see an error message like this<pre class="prettyprint">➜  Python  python3 -m venv py3.4venv<br />Error: Command '['/home/thefourtheye//py34venv/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1<br /></pre>To resolve this problem, first install the <code>venv</code>, without <code>pip</code>, like this<br /><pre class="prettyprint">python3 -m venv py3.4venv --without-pip</pre>And then if you install <code>pip</code>, like this, it will still fail<pre class="prettyprint">(py3.4venv) ➜  py3.4venv  python -m ensurepip --upgrade<br />/home/thefourtheye/Python/py3.4venv/bin/python: No module named ensurepip<br />(py3.4venv) ➜  py3.4venv  python<br />Python 3.4.0 (default, Apr 11 2014, 13:05:11)<br />[GCC 4.8.2] on linux<br />Type "help", "copyright", "credits" or "license" for more information.<br />...<br /></pre>So, you need to install, <code>pip</code> separately, like mentioned in the <a href="http://pip.readthedocs.org/en/latest/installing.html#install-pip">pip's official documentation</a>. So, the actual list of steps go like this<br /><pre class="prettyprint">➜  Python  python3 -m venv py3.4venv --without-pip <br />➜  Python  cd py3.4venv <br />➜  py3.4venv  source bin/activate<br />(py3.4venv) ➜  py3.4venv  wget https://bootstrap.pypa.io/get-pip.py<br />--2014-12-30 14:35:34--  https://bootstrap.pypa.io/get-pip.py<br />Resolving bootstrap.pypa.io (bootstrap.pypa.io)... 103.245.222.175<br />Connecting to bootstrap.pypa.io (bootstrap.pypa.io)|103.245.222.175|:443... connected.<br />HTTP request sent, awaiting response... 200 OK<br />Length: 1581355 (1.5M) [text/x-python]<br />Saving to: ‘get-pip.py’<br /><br />100%[=====================================================================================================================>] 15,81,355    129KB/s   in 8.9s   <br /><br />2014-12-30 14:35:43 (173 KB/s) - ‘get-pip.py’ saved [1581355/1581355]<br /><br />(py3.4venv) ➜  py3.4venv  python get-pip.py <br />Collecting pip<br />  Downloading pip-6.0.3-py2.py3-none-any.whl (1.3MB)<br />    100% |################################| 1.3MB 139kB/s <br />Collecting setuptools<br />  Downloading setuptools-9.1-py2.py3-none-any.whl (552kB)<br />    100% |################################| 552kB 180kB/s <br />Installing collected packages: setuptools, pip<br /><br /><br />Successfully installed pip-6.0.3 setuptools-9.1<br />(py3.4venv) ➜  py3.4venv  deactivate <br />➜  py3.4venv  source bin/activate                      <br />(py3.4venv) ➜  py3.4venv  pip install django<br />Collecting django<br />  Using cached Django-1.7.1-py2.py3-none-any.whl<br />Installing collected packages: django<br /><br />Successfully installed django-1.7.1<br />(py3.4venv) ➜  py3.4venv  which pip<br />/home/thefourtheye/Python/py3.4venv/bin/pip<br />(py3.4venv) ➜  py3.4venv  <br /></pre></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><br />Today I came across this useful trick, which allows me to have lot of space on my screen, even though my screen supports only very low resolution.<br /><br />First, lets see how to get to know the list of displays attached to Ubuntu<br /><br /><pre class="prettyprint">~$ xrandr<br />Screen 0: minimum 8 x 8, current 2881 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1281+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />   1600x900       60.0 +   40.0  <br />DP-0 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />~$ <br /></pre><br />This is what I got on my machine. And following are the display names as per Ubuntu.<br /><pre class="prettyprint">VGA-0 <br />LVDS-0<br />DP-0 <br /></pre><br />This command has listed out other useful information as well. I could only understand the resolutions supported. Following are the resolutions supported by VGA-0 and DP-0.<br /><pre class="prettyprint">1280x1024<br />1152x864<br />1024x768<br /> 800x600<br /> 640x480<br /></pre>So the maximum resolution allowed is 1280x1024. But that doesnot allow me to have more space on screen. After long searching, I got this.<br /><pre class="prettyprint">xrandr --output VGA-0 --mode 1280x1024 --scale 1.25x1.25<br /></pre>This command sets the resolution of VGA-0, to 1280x1024 but it scales it by the factor of 1.25x1.25. Voila :) Now I have much bigger screen.<br /><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/08/google-code-jam-2013-round-1b-osmos/">Google Code Jam 2013 - Round 1B - Osmos</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-08T08:21:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:21 am</span></time>
+        
+           | <a href="/2013/05/08/google-code-jam-2013-round-1b-osmos/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/05/08/google-code-jam-2013-round-1b-osmos/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Today, I would like to share my solution to the Google Code Jam 2013's Round 1B's Osmos problem. These are the statistics for that problem<br /><pre class="prettyprint">Small Input : 4668/7250 users correct (64%)<br />Large Input : 3537/4578 users correct (77%)<br /></pre>I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn't solve it during the contest).<br /><br /><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br /># include &lt;algorithm&gt;<br /> <br />using namespace std;<br />int Sizes[101];<br />int Total, A, N, Temp, Counter;<br />int getDiff (int A, int B, int & C)<br />{<br />    while (A <= B)<br />    {<br />        C++;<br />        A += (A-1);<br />    }<br />    return A;<br />}<br />int Solve (int idx, int CurrentScore, int Changes)<br />{<br />    if (idx == N) return Changes;<br />    if (CurrentScore == 1)<br />        return Solve (idx + 1, CurrentScore, Changes + 1);<br />    else if (Sizes[idx] < CurrentScore)<br />        return Solve (idx + 1, CurrentScore + Sizes[idx], Changes);<br />    else<br />    {<br />        int tChanges = 0;<br />        int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) + Sizes[idx];<br />        int Min1 = Solve (idx + 1, Diff, Changes + tChanges);<br />        if (Sizes[idx] > CurrentScore)<br />           return min (Solve (idx + 1, CurrentScore, Changes+1), Min1);<br />        else return Min1;<br />    }<br />}<br />int main()<br />{<br />    //freopen ("Input.txt", "r", stdin);<br />    //freopen ("Scratch.txt", "w", stdout);<br />    scanf ("%d", &Total);<br />    for (int i = 1; i <= Total; i++)<br />    {<br />        scanf ("%d%d", &A, &N);<br />        Temp = A;<br />        Counter = 0;<br />        for (int j = 0; j < N; j++) scanf ("%d", &Sizes[j]);<br />        sort (Sizes, Sizes + N);<br />        printf ("Case #%d: %d\n", i, Solve (0, A, 0));<br />    }<br />}<br /></pre>Here is the ideone URL <a href="http://ideone.com/g5qxYd">http://ideone.com/g5qxYd</a> where I tested the program with Google's inputs.   </div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/04/fixing-ubuntu-apt-get-sources/">Fixing Ubuntu Apt-get Sources</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-04T20:41:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:41 pm</span></time>
+        
+           | <a href="/2013/05/04/fixing-ubuntu-apt-get-sources/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/05/04/fixing-ubuntu-apt-get-sources/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">This script makes use of the mirror protocol.<br /><pre class="prettyprint">#!/bin/bash<br /><br />UbuntuCodeName=`lsb_release -c | cut -f 2`<br />if [ ! -f /etc/apt/sources.list.Original ];<br />then<br />    mv /etc/apt/sources.list /etc/apt/sources.list.Original<br /> echo "deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br /><br />deb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br />deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br /><br />deb     http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br />deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br /><br />deb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName main<br />deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main" >> /etc/apt/sources.list<br />else<br /> echo "This script has been run already. Exiting"<br />fi<br /></pre><br />Alternatively, you can run the following commands to update the sources automatically<br /><pre class="prettyprint">wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel<br />chmod 555 UpdateAptSources.sh<br />sudo ./UpdateAptSources.sh<br /></pre></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/04/python-equivalent-of-cs-freopen/">Python Equivalent of C's Freopen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-04T07:40:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:40 am</span></time>
+        
+           | <a href="/2013/05/04/python-equivalent-of-cs-freopen/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/05/04/python-equivalent-of-cs-freopen/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C++ like this<br /><br /><pre class="prettyprint">freopen ("Input.txt", "r", stdin);<br />freopen ("Output.txt","w", stdout);<br /></pre><br />Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don't have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don't like to type the input each and every time. So I store it once in a file and then write the results to another file.<br /><br />Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got <a href="http://stackoverflow.com/questions/1744989/read-from-file-or-stdin/1745035?noredirect=1#comment23449563_1745035">this</a>. I saw Greg Hewgill's answer which is like this<br /><br /><pre class="prettyprint">import sys<br /># parse command line<br />if file_name_given:<br />    inf = open(file_name_given)<br />else:<br />    inf = sys.stdin<br /></pre><br />This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this<br /><br /><pre class="prettyprint">import sys<br /><br />sys.stdin  = open("Input.txt")<br />sys.stdout = open("Output.txt")<br /></pre><br />That's it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)<br /><br /><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/02/ubuntu-nvidia-driver-installation/">Ubuntu Nvidia Driver Installation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-02T20:32:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>8:32 pm</span></time>
+        
+           | <a href="/2013/05/02/ubuntu-nvidia-driver-installation/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/05/02/ubuntu-nvidia-driver-installation/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Following are the steps to install Ubuntu Nvidia drivers and activating it.<br /><br /><pre class="prettyprint">sudo apt-get install linux-headers-$(uname -r)<br />sudo apt-get install nvidia-310<br />sudo apt-get install nvidia-313-updates<br />sudo apt-get install nvidia-settings<br /></pre>Once the instllation of the above mentioned packages are successful, run<br /><pre class="prettyprint">sudo nvidia-xconfig<br /></pre>This will create the /etc/X11/xorg.conf file<br /><br />Now, do<br /><pre class="prettyprint">sudo software-properties-gtk<br /></pre><br />Which will open up a window like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://i.stack.imgur.com/KvijW.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://i.stack.imgur.com/KvijW.png" /></a></div><br />Select the latest driver name from the list and then do<br /><br /><pre class="prettyprint">sudo reboot<br /></pre><br />That's it :)<br /><br /></div></div>
 </div>
   
   
@@ -133,6 +267,26 @@
     
       <li class="post">
         <a href="/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">Ubuntu Overlapping Displays While Scaling Dual Monitor Setup</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/12/30/Python-venv-problem-with-ensurepip-in-Ubuntu/">Python's Venv Problem With Ensurepip in Ubuntu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
       </li>
     
   </ul>
