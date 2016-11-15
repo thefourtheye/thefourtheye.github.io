@@ -4,7 +4,7 @@
   <title><![CDATA[thefourtheye's weblog]]></title>
   <link href="http://thefourtheye.in/atom.xml" rel="self"/>
   <link href="http://thefourtheye.in/"/>
-  <updated>2016-11-15T00:36:27+05:30</updated>
+  <updated>2016-11-15T07:44:30+05:30</updated>
   <id>http://thefourtheye.in/</id>
   <author>
     <name><![CDATA[Sakthipriyan Vairamani (thefourtheye)]]></name>
@@ -12,6 +12,163 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JS Quirks: Stringified Numbers]]></title>
+    <link href="http://thefourtheye.in/2016/11/15/js-quirks-stringified-numbers/"/>
+    <updated>2016-11-15T00:38:30+05:30</updated>
+    <id>http://thefourtheye.in/2016/11/15/js-quirks-stringified-numbers</id>
+    <content type="html"><![CDATA[<p>When I was working on <a href="https://github.com/nodejs/node/pull/9492">Node.js PR 9492</a>, <a href="https://github.com/nodejs/node/pull/9492#discussion_r86987446">this comment</a></p>
+
+<blockquote>
+  <p>This should probably test for a wider range of values. <code>test/parallel/test-net-internal.js</code> has some good examples.</p>
+</blockquote>
+
+<p>made me look at <a href="https://github.com/nodejs/node/blob/fc44bd4d0b984f7b926b8c92b8e9a88da1c08921/test/parallel/test-net-internal.js">that file</a>. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.</p>
+
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="kr">const</span> <span class="nx">bad</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">[],</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mh">0xFFFF</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">Infinity</span><span class="p">,</span>
+</span><span class="line">             <span class="o">-</span><span class="kc">Infinity</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;0x&#39;</span><span class="p">,</span>
+</span><span class="line">             <span class="s1">&#39;-0x1&#39;</span><span class="p">,</span> <span class="s1">&#39;-0o1&#39;</span><span class="p">,</span> <span class="s1">&#39;-0b1&#39;</span><span class="p">,</span> <span class="s1">&#39;0o&#39;</span><span class="p">,</span> <span class="s1">&#39;0b&#39;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this</p>
+
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span><span class="o">-</span><span class="mh">0x1</span><span class="p">,</span> <span class="s1">&#39;-0x1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="nx">o1</span><span class="p">,</span> <span class="s1">&#39;-0o1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="nx">b1</span><span class="p">,</span> <span class="s1">&#39;-0b1&#39;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="o">+</span><span class="nx">item</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>and I was expecting to see the result</p>
+
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">-1 -1
+</span><span class="line">-0x1 -1
+</span><span class="line">-1 -1
+</span><span class="line">-0o1 -1
+</span><span class="line">-1 -1
+</span><span class="line">-0b1 -1
+</span></code></pre></td></tr></table></div></figure>
+
+<p>but all I got was</p>
+
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">-1 -1
+</span><span class="line">-0x1 NaN
+</span><span class="line">-1 -1
+</span><span class="line">-0o1 NaN
+</span><span class="line">-1 -1
+</span><span class="line">-0b1 NaN
+</span></code></pre></td></tr></table></div></figure>
+
+<p>The unary - operator simply negates the magnitude of the numbers. The stringified numbers were not processed in the same way as their number counterparts. So I looked at the ECMAScript specification’s <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-tonumber-applied-to-the-string-type">ToNumber Applied to the String Type</a> section (which is actually responsible for converting strings to numbers).</p>
+
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">StrNumericLiteral :::
+</span><span class="line">    StrDecimalLiteral
+</span><span class="line">    BinaryIntegerLiteral
+</span><span class="line">    OctalIntegerLiteral
+</span><span class="line">    HexIntegerLiteral
+</span><span class="line">...
+</span><span class="line">...
+</span><span class="line">StrDecimalLiteral :::
+</span><span class="line">    StrUnsignedDecimalLiteral
+</span><span class="line">    + StrUnsignedDecimalLiteral
+</span><span class="line">    - StrUnsignedDecimalLiteral
+</span></code></pre></td></tr></table></div></figure>
+
+<p>Only the <code>StrDecimalLiteral</code> production allows signed numbers. If we look at the definition of others in the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals">Numeric Literals</a> section,</p>
+
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">BinaryIntegerLiteral ::
+</span><span class="line">    0b BinaryDigits
+</span><span class="line">    0B BinaryDigits
+</span><span class="line">
+</span><span class="line">BinaryDigits ::
+</span><span class="line">    BinaryDigit
+</span><span class="line">    BinaryDigits BinaryDigit
+</span><span class="line">
+</span><span class="line">BinaryDigit :: one of
+</span><span class="line">    0 1
+</span><span class="line">
+</span><span class="line">OctalIntegerLiteral ::
+</span><span class="line">    0o OctalDigits
+</span><span class="line">    0O OctalDigits
+</span><span class="line">
+</span><span class="line">OctalDigits ::
+</span><span class="line">    OctalDigit
+</span><span class="line">    OctalDigits OctalDigit
+</span><span class="line">
+</span><span class="line">OctalDigit :: one of
+</span><span class="line">    0 1 2 3 4 5 6 7
+</span><span class="line">
+</span><span class="line">HexIntegerLiteral ::
+</span><span class="line">    0x HexDigits
+</span><span class="line">    0X HexDigits
+</span><span class="line">
+</span><span class="line">HexDigits ::
+</span><span class="line">    HexDigit
+</span><span class="line">    HexDigits HexDigit
+</span><span class="line">
+</span><span class="line">HexDigit :: one of
+</span><span class="line">    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F
+</span></code></pre></td></tr></table></div></figure>
+
+<p>So, as per the specification, only the decimal numbers can have signs in the stringified number form. That is why the others are not considered as numbers.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[DSL-2730U Router's Ipv6 Problem in Ubuntu]]></title>
@@ -200,16 +357,6 @@
     <id>http://thefourtheye.in/2013/06/15/project-euler-15-lattice-paths_15</id>
     <content type="html"><![CDATA[<div class='post'>
 <div dir="ltr" style="text-align: left;" trbidi="on">In this post we are dealing with <a href="http://projecteuler.net/problem=15">Project Euler - 15 - Lattice paths</a>. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.<br /><pre class="prettyprint">Total = 21<br /><br />Array = [[0]*Total for i in xrange(Total)]<br />for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1   #Initializing bottom row and right column with 1<br /><br />def Rec(i, j):<br />    global Array<br />    if Array[i][j]: return Array[i][j]<br />    Rec(i+1, j)<br />    Rec(i, j+1)<br />    Array[i][j] = Array[i+1][j] + Array[i][j+1]<br /><br />Rec (0, 0)<br />print Array[0][0]<br /></pre></div></div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Project Euler - 14 - Longest Collatz Sequence - Memoization]]></title>
-    <link href="http://thefourtheye.in/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization/"/>
-    <updated>2013-06-15T18:56:00+05:30</updated>
-    <id>http://thefourtheye.in/2013/06/15/Project-Euler-14-Longest-Collatz-sequence-memoization</id>
-    <content type="html"><![CDATA[<div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">This post is about the <a href="http://projecteuler.net/problem=14">Project Euler - 14 - Longest Collatz sequence</a> problem. This is one of the perfect examples of memoization technique. This is the actual problem.<br /><br /><pre>The following iterative sequence is defined for the set of positive integers:<br /><br />n → n/2 (n is even)<br />n → 3n + 1 (n is odd)<br /><br />Using the rule above and starting with 13, we generate the following sequence:<br />13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1<br /><br />It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.<br /><br />Which starting number, under one million, produces the longest chain?<br /><br />NOTE: Once the chain starts the terms are allowed to go above one million.<br /></pre><br /><h2>Simple Solution</h2><br />The problem statement looks pretty simple and a brute force will work just fine. This code runs in 20 seconds.<br /><br /><pre class="prettyprint"><br />def Series(N):<br />    Counter = 1<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        Counter += 1<br />    return Counter<br /><br />Max, Element = 0, 0<br />for x in xrange (1, 1000000):<br />    series = Series(x)<br />    if (Max &lt; series):<br />        Max = series<br />        Element = x<br /><br />print Max, Element<br /><br /></pre><br /><br />As I had to wait for 20 seconds to get the solution, I was thinking about improving the performance. Then I found this. From the problem statement, <code>13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>, starting with any number, if it becomes 13 at any point of time, it has to take the same route and if it becomes 13 it will take 10 steps to become 1. So I wanted to store this information first time itself, so that I don't have to recalculate. This is called <code>Memoization</code>. Quoting from wikipedia<br /><br /><blockquote>In computing, memoization is an optimization technique used primarily to speed up computer programs by having function calls avoid repeating the calculation of results for previously processed inputs</blockquote><br /><h2>Optimized (Memoized) Solution</h2><br />To optimize it, I just had to change the Series function alone. I stored the computed values in a dictionary and if the current number in the sequence happens to be in the dictionary, I ll just return the value corresponding to it. This program responded with the result in 2 seconds. That is <b>10 times faster</b> than the first version.<br/><br /><pre class="prettyprint"><br />Dict = {}<br /><br />def Series(N):<br />    Counter = 1   #It is 1, because we are counting the initial N<br />    Original = N<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        if N in Dict:                    # Check if the length has been computed for this number already<br />            Counter += Dict[N]           # Add it to the current length counter<br />            Dict [Original] = Counter    # Store the computed value for future look back<br />            return Counter<br />        Counter += 1<br />    Dict [Original] = Counter            # Store the computed value for future look back<br />    return Counter<br /><br /></pre><br/><br/><br/><br /></div></div>
 ]]></content>
   </entry>
   

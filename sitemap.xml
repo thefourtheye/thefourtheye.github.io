@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://thefourtheye.in/2016/11/15/js-quirks-stringified-numbers/</loc>
+<lastmod>2016-11-15T00:38:30+05:30</lastmod>
+</url>
+<url>
 <loc>http://thefourtheye.in/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/</loc>
 <lastmod>2016-03-06T20:32:00+05:30</lastmod>
 </url>
@@ -318,5 +322,8 @@
 </url>
 <url>
 <loc>http://thefourtheye.in/blog/categories/ecmascript-6/</loc>
+</url>
+<url>
+<loc>http://thefourtheye.in/blog/categories/quirks/</loc>
 </url>
 </urlset>

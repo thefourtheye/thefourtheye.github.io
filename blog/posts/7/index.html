@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="This post assumes that, the reader has a very good understanding of SQL.To understand the MongoDB's aggregation framework, lets start with inserting &hellip;">
+  <meta name="description" content="Following are the steps to install Ubuntu Nvidia drivers and activating it.sudo apt-get install linux-headers-$(uname -r)sudo apt-get install nvidia &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -29,6 +29,7 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700" rel="stylesheet">
 
   
 
@@ -67,6 +68,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/02/ubuntu-nvidia-driver-installation/">Ubuntu Nvidia Driver Installation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-02T20:32:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>8:32 pm</span></time>
+        
+           | <a href="/2013/05/02/ubuntu-nvidia-driver-installation/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/05/02/ubuntu-nvidia-driver-installation/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Following are the steps to install Ubuntu Nvidia drivers and activating it.<br /><br /><pre class="prettyprint">sudo apt-get install linux-headers-$(uname -r)<br />sudo apt-get install nvidia-310<br />sudo apt-get install nvidia-313-updates<br />sudo apt-get install nvidia-settings<br /></pre>Once the instllation of the above mentioned packages are successful, run<br /><pre class="prettyprint">sudo nvidia-xconfig<br /></pre>This will create the /etc/X11/xorg.conf file<br /><br />Now, do<br /><pre class="prettyprint">sudo software-properties-gtk<br /></pre><br />Which will open up a window like this<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://i.stack.imgur.com/KvijW.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://i.stack.imgur.com/KvijW.png" /></a></div><br />Select the latest driver name from the list and then do<br /><br /><pre class="prettyprint">sudo reboot<br /></pre><br />That's it :)<br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -200,39 +234,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/04/25/ubuntu-screen-custom-resolution/">Ubuntu Screen Custom Resolution</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-25T09:12:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:12 am</span></time>
-        
-           | <a href="/2013/04/25/ubuntu-screen-custom-resolution/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2013/04/25/ubuntu-screen-custom-resolution/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Configuring the screen resolution to custom value in Ubuntu was a big headache to me. With most of the monitors I was not able to change the resolution to something of my choice, apart from what is listed in the Display settings. Then I found the following way.<br /><br />First, lets see how to get to know the list of displays attached to Ubuntu<br /><br /><pre class="prettyprint">~$ xrandr<br />Screen 0: minimum 8 x 8, current 2881 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1281+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />   1600x900       60.0 +   40.0  <br />DP-0 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />~$ <br /></pre>This is what I got on my machine. And following are the display names as per Ubuntu.<br /><pre class="prettyprint">VGA-0<br />LVDS-0<br />DP-0<br /></pre>Now to set the resolution 1600x900 on VGA-0, I would execute the following<br /><br /><pre class="prettyprint">xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync<br />xrandr --addmode VGA-0 "1600x900_60.00"<br />xrandr --output VGA-0 --mode "1600x900_60.00"<br /></pre><br /><blockquote>First command creates a new mode with resolution 1600x900</blockquote><blockquote>Second command makes it available for use, with display (in this case VGA-0)</blockquote><blockquote>Third command selects the newly added mode as the display resolution for the specified display</blockquote><br />We see that, the first line has lot of numbers. To come up with those numbers, there is a helper tool called <b>cvt</b>. It takes width and height as inputs.<br /><br /><pre class="prettyprint">~$ cvt 1600 1280<br /># 1600x1280 59.92 Hz (CVT 2.05M4) hsync: 79.51 kHz; pclk: 171.75 MHz<br />Modeline "1600x1280_60.00"  171.75  1600 1712 1880 2160  1280 1283 1290 1327 -hsync +vsync<br />~$ <br /></pre><br /><b>To change this to any custom resolution</b>, just replace <b>Modeline</b> in the output of cvt with <b>xrandr --newmode</b>. Thats it. Enjoy :)<br /><br /><br /></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/posts/8">&larr; Older</a>
@@ -248,6 +249,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/11/15/js-quirks-stringified-numbers/">JS Quirks: Stringified Numbers</a>
+      </li>
     
       <li class="post">
         <a href="/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">DSL-2730U Router's Ipv6 Problem in Ubuntu</a>
@@ -285,10 +290,6 @@
         <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -297,7 +298,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/javascript'>javascript (2)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li></ul>
 </section>
 
   

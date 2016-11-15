@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of &hellip;">
+  <meta name="description" content="Edit on 13-Jan-2016I found another easy way to fix this problem. You can toggle the menu with a keyboard shortcut. You can read more about that in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -29,6 +29,7 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700" rel="stylesheet">
 
   
 
@@ -67,6 +68,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-05T12:13:00+05:30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:13 pm</span></time>
+        
+           | <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p><b>Edit on 13-Jan-2016</b><br />I found another easy way to fix this problem. You can toggle the menu with a keyboard shortcut. You can read more about that in <a href="http://www.thefourtheye.in/2016/01/sublime-text-3-unhiding-menu-in-ubuntu.html">this blog post of mine</a>.<br /></p><hr /><p>It has been a very long wait to get the "Hide Menu" feature in Linux versions of Sublime Text 3. Finally it was released.  But the problem is, if it hidden once, there is no straight forward way to get the Menu back. I tried <kbd>F10</kbd>, <kbd>Alt</kbd> etc etc and nothing worked. So, I am sharing the trick which worked for me in this post.</p><p>It is simple. Close the Sublime Text 3, if it is open. Open<br /><pre class="prettyprint">~/.config/sublime-text-3/Local/Session.sublime_session</pre>in any of your favorite editors and then make sure that, "menu_visible" is "true" in all places in that file.<br /><pre class="prettyprint">"menu_visible": true,</pre>Thats it :) Open Sublime Text 3 now and ta-da... Menu is back :)<br /></p><hr/><p><b>Edit On Jan 10 - 2016</b><br /><br />As I was doing the same task more often, I decided that put that in a script, like this<br /><pre>export FILE=/home/thefourtheye/.config/sublime-text-3/Local/Session.sublime_session<br />export TEMP_FILE=/home/thefourtheye/.config/sublime-text-3/Local/Session.sublime_session.bkp<br />sed -e 's/"menu_visible": false/"menu_visible": true/g' $FILE > $TEMP_FILE<br />mv $TEMP_FILE FILE<br /></pre>and then I added that to my shell script's rc file as an alias like this<br /><pre>alias sublime_fix_menu=~/.sublime_fix_menu.zsh</pre>That's it :-) Now, I just have to close Sublime Text 3, type sublime_fix_menu in the shell, open Sublime again :-)<br /></div></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -200,39 +234,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/">Ubuntu Bug Related to Network and Power</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-09-04T18:32:00+05:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:32 pm</span></time>
-        
-           | <a href="/2013/09/04/ubuntu-bug-related-to-network-and-power/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2013/09/04/ubuntu-bug-related-to-network-and-power/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><p>Last week, I faced this weird problem. When my laptop is not connected to a power source (not on battery), I could not connect to LAN network with my LAN cable, but Wi-Fi worked fine. I struggled a lot for a week and then I found a solution in the internet.<br /><p>All you have to do is to execute this one liner in your terminal.<br /><pre class="prettyprint">echo on > /sys/class/net/eth1/device/power/control<br /></pre>Here <code>eth1</code> corresponds to my second ethernet interface. It might vary from machine to machine. And if the directories <code>eth</code>, <code>device</code> and <code>power</code> dont exist, you might have to manually create them.<br /><br /></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/posts/4">&larr; Older</a>
@@ -248,6 +249,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/11/15/js-quirks-stringified-numbers/">JS Quirks: Stringified Numbers</a>
+      </li>
     
       <li class="post">
         <a href="/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">DSL-2730U Router's Ipv6 Problem in Ubuntu</a>
@@ -285,10 +290,6 @@
         <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/">Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -297,7 +298,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/javascript'>javascript (2)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li></ul>
 </section>
 
   
