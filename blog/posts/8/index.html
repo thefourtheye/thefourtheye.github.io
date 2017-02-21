@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Configuring the screen resolution to custom value in Ubuntu was a big headache to me. With most of the monitors I was not able to change the &hellip;">
+  <meta name="description" content="Querying based on Date &amp; Time&nbsp;&nbsp; db.[Colletion].find ({Date:ISODate('2013-04-22T00:00:00Z')})Equivalent of Oracle's Count function&nbsp &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +68,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/25/mongodb-miscellaneous/">MongoDB Miscellaneous</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-25T16:16:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:16 pm</span></time>
+        
+           | <a href="/2013/04/25/mongodb-miscellaneous/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/25/mongodb-miscellaneous/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Querying based on Date &amp; Time<br /><pre class="prettyprint">&nbsp;&nbsp; db.[Colletion].find ({Date:ISODate('2013-04-22T00:00:00Z')})</pre><br />Equivalent of Oracle's Count function<br /><pre class="prettyprint">&nbsp;&nbsp; db.[Collection].find ({'FieldName':'value').length<br /></pre><br />Find distinct values of a column, after Querying<br /><pre class="prettyprint">&nbsp;&nbsp; db.[Collection].distinct ('ColumnName', {'SearchColumnName' : 'SearchValue'})<br /></pre><br />Number of distinct values<br /><pre class="prettyprint">&nbsp;&nbsp; db.[Collection].distinct ('ColumnName').length<br /></pre><br />Sorting the returned result with pymongo <br /><pre class="prettyprint"><br />  db.[Collection].find().sort (<br />  [<br />   ("FieldName1", pymongo.DESCENDING),<br />   ("FieldName2", pymongo.DESCENDING),<br />   ("FieldName3", pymongo.ASCENDING),<br />  ])<br /></pre><br /><br /></div></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -201,39 +234,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/04/20/number-of-ways-to-change-making-dynamic/">Number of Ways to Change Making (Dynamic Programming)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-20T17:51:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:51 pm</span></time>
-        
-           | <a href="/2013/04/20/number-of-ways-to-change-making-dynamic/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2013/04/20/number-of-ways-to-change-making-dynamic/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">This is a variant of <a href="http://dfourtheye.blogspot.com/2013/04/change-making-dynamic-programming.html" target="_blank">change making problem</a>. Here, we are just asked to count the number of ways to make the specific change. With a little change to the change making problem's solution, we can solve this one.  The problems which can be solved with the following solution are <pre><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=615">UVa - 657 - Coin Change</a><br /><br /><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=293">UVa - 357 - Let Me Count The Ways</a> (Need to change the way solution is printed as per problem description)<br /><br /></pre></div><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br />using namespace std;<br />unsigned long long NumberOfWays [30001], Coins []= {1, 5, 10, 25, 50}, Num;<br />int main ()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> NumberOfWays[0] = 1;<br /> for (int i = 0; i < 5; i++)<br />  for (int j = Coins[i]; j < 30001; j++)<br />   NumberOfWays [j] += NumberOfWays [j - Coins[i]];<br /> while (scanf ("%lld", &Num) != EOF)<br />  printf ("%lld\n", NumberOfWays[Num]); //Change this for UVa - 357 - Let Me Count The Ways<br />}<br /></pre></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/posts/9">&larr; Older</a>
@@ -249,6 +249,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2017/02/21/javascript-lookbehind-regex-alternative/">JavaScript Lookbehind RegEx Alternative</a>
+      </li>
     
       <li class="post">
         <a href="/2016/11/15/js-quirks-stringified-numbers/">JS Quirks: Stringified Numbers</a>
@@ -286,10 +290,6 @@
         <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/01/28/bad-ui-design-twitter-account-page/">Bad UI Design - Twitter Account Page</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -298,7 +298,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/javascript'>javascript (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li></ul>
 </section>
 
   
@@ -307,7 +307,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - Sakthipriyan Vairamani (thefourtheye) -
+  Copyright &copy; 2017 - Sakthipriyan Vairamani (thefourtheye) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
