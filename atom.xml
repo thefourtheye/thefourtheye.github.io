@@ -4,7 +4,7 @@
   <title><![CDATA[thefourtheye's weblog]]></title>
   <link href="http://thefourtheye.in/atom.xml" rel="self"/>
   <link href="http://thefourtheye.in/"/>
-  <updated>2017-02-21T23:28:27+05:30</updated>
+  <updated>2017-02-22T00:50:42+05:30</updated>
   <id>http://thefourtheye.in/</id>
   <author>
     <name><![CDATA[Sakthipriyan Vairamani (thefourtheye)]]></name>
@@ -20,28 +20,23 @@
     <id>http://thefourtheye.in/2017/02/21/javascript-lookbehind-regex-alternative</id>
     <content type="html"><![CDATA[<p>Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="p">[{</span><span class="err">\</span><span class="s2">&quot;name\&quot;:\&quot;Kilua\&quot;\\,\&quot;age\&quot;:35}],{\&quot;city\&quot;:\&quot;SJC\&quot;},\&quot;US\&quot;</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[{</span><span class="err">\</span><span class="s2">&quot;name\&quot;:\&quot;Kilua\&quot;\\,\&quot;age\&quot;:35}],{\&quot;city\&quot;:\&quot;SJC\&quot;},\&quot;US\&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span> <span class="s1">&#39;[{&quot;name&quot;:&quot;Kilua&quot;\\,&quot;age&quot;:35}]&#39;</span><span class="p">,</span> <span class="s1">&#39;{&quot;city&quot;:&quot;SJC&quot;},&quot;US&quot;&#39;</span> <span class="p">]</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span> <span class="s1">&#39;[{&quot;name&quot;:&quot;Kilua&quot;\\,&quot;age&quot;:35}]&#39;</span><span class="p">,</span> <span class="s1">&#39;{&quot;city&quot;:&quot;SJC&quot;},&quot;US&quot;&#39;</span> <span class="p">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is <code>a,1,b,2,c,3</code> and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;a,1,b,2,c,3&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/,(?!\d)/</span><span class="p">));</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;a,1,b,2,c,3&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/,(?!\d)/</span><span class="p">));</span>
 </span><span class="line"><span class="c1">// [ &#39;a,1&#39;, &#39;b,2&#39;, &#39;c,3&#39; ]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>Since JavaScript doesn’t have lookbehinds, we don’t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution</p>
 
-<figure class="code"><figcaption><span>WTK's answer in Stackoverflow</span><a href="http://stackoverflow.com/a/7330150/1903116">link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="s1">&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\\]),/g</span><span class="p">,</span> <span class="s1">&#39;$1\u000B&#39;</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;\u000B&#39;</span><span class="p">)</span>
+<figure class="code"><figcaption><span>WTK's answer in Stackoverflow</span><a href="">link</a></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="s1">&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\\]),/g</span><span class="p">,</span> <span class="s1">&#39;$1\u000B&#39;</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;\u000B&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.</p>
@@ -66,29 +61,19 @@
 
 <p>made me look at <a href="https://github.com/nodejs/node/blob/fc44bd4d0b984f7b926b8c92b8e9a88da1c08921/test/parallel/test-net-internal.js">that file</a>. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="kr">const</span> <span class="nx">bad</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">[],</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mh">0xFFFF</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">Infinity</span><span class="p">,</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="kr">const</span> <span class="nx">bad</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="p">[],</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mh">0xFFFF</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">Infinity</span><span class="p">,</span>
 </span><span class="line">             <span class="o">-</span><span class="kc">Infinity</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;0x&#39;</span><span class="p">,</span>
 </span><span class="line">             <span class="s1">&#39;-0x1&#39;</span><span class="p">,</span> <span class="s1">&#39;-0o1&#39;</span><span class="p">,</span> <span class="s1">&#39;-0b1&#39;</span><span class="p">,</span> <span class="s1">&#39;0o&#39;</span><span class="p">,</span> <span class="s1">&#39;0b&#39;</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span><span class="o">-</span><span class="mh">0x1</span><span class="p">,</span> <span class="s1">&#39;-0x1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="nx">o1</span><span class="p">,</span> <span class="s1">&#39;-0o1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="nx">b1</span><span class="p">,</span> <span class="s1">&#39;-0b1&#39;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="o">+</span><span class="nx">item</span><span class="p">));</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span><span class="o">-</span><span class="mh">0x1</span><span class="p">,</span> <span class="s1">&#39;-0x1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="nx">o1</span><span class="p">,</span> <span class="s1">&#39;-0o1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="nx">b1</span><span class="p">,</span> <span class="s1">&#39;-0b1&#39;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="o">+</span><span class="nx">item</span><span class="p">));</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>and I was expecting to see the result</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="text"><span class="line">-1 -1
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="text"><span class="line">-1 -1
 </span><span class="line">-0x1 -1
 </span><span class="line">-1 -1
 </span><span class="line">-0o1 -1
@@ -98,13 +83,7 @@
 
 <p>but all I got was</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="text"><span class="line">-1 -1
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="text"><span class="line">-1 -1
 </span><span class="line">-0x1 NaN
 </span><span class="line">-1 -1
 </span><span class="line">-0o1 NaN
@@ -114,18 +93,7 @@
 
 <p>The unary - operator simply negates the magnitude of the numbers. The stringified numbers were not processed in the same way as their number counterparts. So I looked at the ECMAScript specification’s <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-tonumber-applied-to-the-string-type">ToNumber Applied to the String Type</a> section (which is actually responsible for converting strings to numbers).</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class="text"><span class="line">StrNumericLiteral :::
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="text"><span class="line">StrNumericLiteral :::
 </span><span class="line">    StrDecimalLiteral
 </span><span class="line">    BinaryIntegerLiteral
 </span><span class="line">    OctalIntegerLiteral
@@ -140,39 +108,7 @@
 
 <p>Only the <code>StrDecimalLiteral</code> production allows signed numbers. If we look at the definition of others in the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals">Numeric Literals</a> section,</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-</pre></td><td class="code"><pre><code class="text"><span class="line">BinaryIntegerLiteral ::
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="text"><span class="line">BinaryIntegerLiteral ::
 </span><span class="line">    0b BinaryDigits
 </span><span class="line">    0B BinaryDigits
 </span><span class="line">

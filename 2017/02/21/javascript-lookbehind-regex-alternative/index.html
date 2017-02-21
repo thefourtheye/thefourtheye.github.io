@@ -9,8 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example, 1
-[{\&quot; &hellip;">
+  <meta name="description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example, [{\&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,28 +92,23 @@
 
 <div class="entry-content"><p>Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="p">[{</span><span class="err">\</span><span class="s2">&quot;name\&quot;:\&quot;Kilua\&quot;\\,\&quot;age\&quot;:35}],{\&quot;city\&quot;:\&quot;SJC\&quot;},\&quot;US\&quot;</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[{</span><span class="err">\</span><span class="s2">&quot;name\&quot;:\&quot;Kilua\&quot;\\,\&quot;age\&quot;:35}],{\&quot;city\&quot;:\&quot;SJC\&quot;},\&quot;US\&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span> <span class="s1">&#39;[{&quot;name&quot;:&quot;Kilua&quot;\\,&quot;age&quot;:35}]&#39;</span><span class="p">,</span> <span class="s1">&#39;{&quot;city&quot;:&quot;SJC&quot;},&quot;US&quot;&#39;</span> <span class="p">]</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span> <span class="s1">&#39;[{&quot;name&quot;:&quot;Kilua&quot;\\,&quot;age&quot;:35}]&#39;</span><span class="p">,</span> <span class="s1">&#39;{&quot;city&quot;:&quot;SJC&quot;},&quot;US&quot;&#39;</span> <span class="p">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is <code>a,1,b,2,c,3</code> and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this</p>
 
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;a,1,b,2,c,3&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/,(?!\d)/</span><span class="p">));</span>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;a,1,b,2,c,3&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/,(?!\d)/</span><span class="p">));</span>
 </span><span class="line"><span class="c1">// [ &#39;a,1&#39;, &#39;b,2&#39;, &#39;c,3&#39; ]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>Since JavaScript doesn’t have lookbehinds, we don’t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution</p>
 
-<figure class="code"><figcaption><span>WTK's answer in Stackoverflow</span><a href="http://stackoverflow.com/a/7330150/1903116">link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="s1">&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\\]),/g</span><span class="p">,</span> <span class="s1">&#39;$1\u000B&#39;</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;\u000B&#39;</span><span class="p">)</span>
+<figure class="code"><figcaption><span>WTK's answer in Stackoverflow</span><a href="">link</a></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="s1">&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\\]),/g</span><span class="p">,</span> <span class="s1">&#39;$1\u000B&#39;</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;\u000B&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 <p>This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.</p>
