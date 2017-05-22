@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Last week, I had to make some changes to the code. I was keep on making changes but forgot to add them to git and to take backup. When I am almost &hellip;">
+  <meta name="description" content="After upgrading to Ubuntu 13.04, I was facing this problem. I was not able to execute any script file just by double clicking on it, even though it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/06/08/Ubuntu-13-04-Execute-scripts-on-double-click/">Ubuntu 13.04 - Execute Scripts on Double Click</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-08T19:57:00+05:30'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:57 pm</span></time>
+        
+           | <a href="/2013/06/08/Ubuntu-13-04-Execute-scripts-on-double-click/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/06/08/Ubuntu-13-04-Execute-scripts-on-double-click/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">After upgrading to Ubuntu 13.04, I was facing this problem. I was not able to execute any script file just by double clicking on it, even though it has execute permission. Then I figured out, how to fix this problem.<br /><br />I opened the file explorer <code>Files</code>. Pressed <code>Alt</code>+<code>F10</code> and selected <code>Preferences</code>. It showed something like this.<br /><br /><a href="http://i.stack.imgur.com/I74gD.png" imageanchor="1" ><img border="0" src="http://i.stack.imgur.com/I74gD.png" /></a><br /><br />In the <code>Behavior</code> tab, I selected <code>Ask each time</code> and closed it. By default, it was in <code>View executable text files when they are opened</code>. Now whenever I double click on a shell script, it will ask me what to do. If you want to straight away execute the script, select the first option <code>Run executable text files when they are opened</code>.<br /></div></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -211,39 +244,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/05/04/fixing-ubuntu-apt-get-sources/">Fixing Ubuntu Apt-get Sources</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-05-04T20:41:00+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:41 pm</span></time>
-        
-           | <a href="/2013/05/04/fixing-ubuntu-apt-get-sources/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2013/05/04/fixing-ubuntu-apt-get-sources/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">This script makes use of the mirror protocol.<br /><pre class="prettyprint">#!/bin/bash<br /><br />UbuntuCodeName=`lsb_release -c | cut -f 2`<br />if [ ! -f /etc/apt/sources.list.Original ];<br />then<br />    mv /etc/apt/sources.list /etc/apt/sources.list.Original<br /> echo "deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br /><br />deb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br />deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br /><br />deb     http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br />deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br /><br />deb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName main<br />deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main" >> /etc/apt/sources.list<br />else<br /> echo "This script has been run already. Exiting"<br />fi<br /></pre><br />Alternatively, you can run the following commands to update the sources automatically<br /><pre class="prettyprint">wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel<br />chmod 555 UpdateAptSources.sh<br />sudo ./UpdateAptSources.sh<br /></pre></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/posts/7">&larr; Older</a>
@@ -259,6 +259,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2017/05/21/emacs-cheat-sheet/">Emacs - Cheat Sheet</a>
+      </li>
     
       <li class="post">
         <a href="/2017/02/21/javascript-lookbehind-regex-alternative/">JavaScript Lookbehind RegEx Alternative</a>
@@ -296,10 +300,6 @@
         <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -308,7 +308,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li><li><a href='/blog/categories/emacs'>emacs (1)</a></li></ul>
 </section>
 
   

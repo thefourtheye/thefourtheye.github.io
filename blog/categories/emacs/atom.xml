@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Emacs | thefourtheye's weblog]]></title>
+  <link href="http://thefourtheye.in/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://thefourtheye.in/"/>
+  <updated>2017-05-22T21:14:09+05:30</updated>
+  <id>http://thefourtheye.in/</id>
+  <author>
+    <name><![CDATA[Sakthipriyan Vairamani (thefourtheye)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs - Cheat Sheet]]></title>
+    <link href="http://thefourtheye.in/2017/05/21/emacs-cheat-sheet/"/>
+    <updated>2017-05-21T21:37:45+05:30</updated>
+    <id>http://thefourtheye.in/2017/05/21/emacs-cheat-sheet</id>
+    <content type="html"><![CDATA[<p>After having been in the vim camp in the <a href="https://en.wikipedia.org/wiki/Editor_war">vim vs Emacs editor war</a> for eight years, I decided to peek into the enemy’s camp. The IDE users might look down upon the editor users, but I still enjoy using my keyboard to do all the coding work. That is the reason why I chose to learn Emacs over an IDE.</p>
+
+<p>When I started with Emacs, it was kind of scary. Editing text is straight forward, as in, it didn’t require me to change the mode like in Vim. But the control key sequences are way too much to remember compared to Vim. So I decided to understand the keys which are commonly used to move around the text in the screen, with the help of Emacs Tutorial (<code>Ctrl+h t</code>).</p>
+
+<p>This cheat sheet has a few more key combinations which are used to do common operations on Emacs.</p>
+
+<p><strong>Note:</strong> From now on, the <code>Ctrl</code> key will be represented as <code>C</code> and the <code>Alt</code> key (also called as <code>Meta</code> key) will be represented as <code>M</code>. For example, if the actual command is to press both <code>Ctrl</code> and <code>h</code> keys to invoke the help, then it would be written as <code>C-h</code>.</p>
+
+<h2 id="common-operations">Common Operations</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-x C-c</code></td>
+      <td>Quit Emacs</td>
+    </tr>
+    <tr>
+      <td><code>C-h t</code></td>
+      <td>Open built-in Emacs Tutorial file</td>
+    </tr>
+    <tr>
+      <td><code>C-x C-f</code></td>
+      <td>Open a File</td>
+    </tr>
+    <tr>
+      <td><code>C-x k</code></td>
+      <td>Close the currently opened file on screen</td>
+    </tr>
+    <tr>
+      <td><code>C-x C-s</code></td>
+      <td>Save the currently opened file</td>
+    </tr>
+    <tr>
+      <td><code>C-x s</code></td>
+      <td>Save all the open files</td>
+    </tr>
+    <tr>
+      <td><code>C-g</code></td>
+      <td>Discard the current command</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="split-window-operations">Split Window Operations</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-x 2</code></td>
+      <td>Split the view horizontally</td>
+    </tr>
+    <tr>
+      <td><code>C-x 3</code></td>
+      <td>Split the view vertically</td>
+    </tr>
+    <tr>
+      <td><code>C-x o</code> (English letter “o”)</td>
+      <td>Switch to next split window</td>
+    </tr>
+    <tr>
+      <td><code>C-x 0</code> (Number Zero)</td>
+      <td>Kill the current window</td>
+    </tr>
+    <tr>
+      <td><code>C-x 1</code></td>
+      <td>Kill all other split windows except current window</td>
+    </tr>
+    <tr>
+      <td><code>C-x C-b</code></td>
+      <td>List all open files in a new split window</td>
+    </tr>
+    <tr>
+      <td><code>C-x b</code></td>
+      <td>Bring any of the open files to the front, by name</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="cursor-movement">Cursor Movement</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-b</code></td>
+      <td>Move one character backward</td>
+    </tr>
+    <tr>
+      <td><code>M-b</code></td>
+      <td>Move one word backward</td>
+    </tr>
+    <tr>
+      <td><code>C-f</code></td>
+      <td>Move one character forward</td>
+    </tr>
+    <tr>
+      <td><code>M-f</code></td>
+      <td>Move one word forward</td>
+    </tr>
+    <tr>
+      <td><code>C-v</code></td>
+      <td>Scroll one page full of information forward</td>
+    </tr>
+    <tr>
+      <td><code>M-v</code></td>
+      <td>Scroll one page full of information backward</td>
+    </tr>
+    <tr>
+      <td><code>C-a</code></td>
+      <td>Beginning of current line</td>
+    </tr>
+    <tr>
+      <td><code>M-a</code></td>
+      <td>Beginning of current sentence</td>
+    </tr>
+    <tr>
+      <td><code>C-e</code></td>
+      <td>Ending of current line</td>
+    </tr>
+    <tr>
+      <td><code>M-e</code></td>
+      <td>Ending of current sentence</td>
+    </tr>
+    <tr>
+      <td><code>M-&gt;</code></td>
+      <td>End of file</td>
+    </tr>
+    <tr>
+      <td><code>M-&lt;</code></td>
+      <td>Beginning of file</td>
+    </tr>
+    <tr>
+      <td><code>C-n</code></td>
+      <td>Next line</td>
+    </tr>
+    <tr>
+      <td><code>C-p</code></td>
+      <td>Previous line</td>
+    </tr>
+    <tr>
+      <td><code>C-l</code></td>
+      <td>Move the current line to bottom, middle, and start of screen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="edit-operations">Edit Operations</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-x u</code> <code>C-/</code></td>
+      <td>Undo last operation</td>
+    </tr>
+    <tr>
+      <td><code>C-k</code></td>
+      <td>Delete till the end of the current line from current position</td>
+    </tr>
+    <tr>
+      <td><code>M-k</code></td>
+      <td>Delete till the end of the current sentence from current position</td>
+    </tr>
+    <tr>
+      <td><code>C-d</code></td>
+      <td>Delete the next character</td>
+    </tr>
+    <tr>
+      <td><code>M-d</code></td>
+      <td>Delete the next word</td>
+    </tr>
+    <tr>
+      <td><code>C-&lt;Del&gt;</code></td>
+      <td>Delete the previous character</td>
+    </tr>
+    <tr>
+      <td><code>M-&lt;Del&gt;</code></td>
+      <td>Delete the previous word</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="copy-and-paste">Copy and Paste</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-&lt;Space&gt;</code></td>
+      <td>Set mark to select text. Now with movement keys select the text</td>
+    </tr>
+    <tr>
+      <td><code>C-x h</code></td>
+      <td>Select the whole buffer</td>
+    </tr>
+    <tr>
+      <td><code>C-w</code></td>
+      <td>Cut the selected text</td>
+    </tr>
+    <tr>
+      <td><code>M-w</code></td>
+      <td>Copy the selected text</td>
+    </tr>
+    <tr>
+      <td><code>C-y</code></td>
+      <td>Yank (paste) the selected text</td>
+    </tr>
+  </tbody>
+</table>
+]]></content>
+  </entry>
+  
+</feed>

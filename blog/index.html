@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example, [{\&quot; &hellip;">
+  <meta name="description" content="After having been in the vim camp in the vim vs Emacs editor war for eight years, I decided to peek into the enemy’s camp. The IDE users might look &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,273 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2017/05/21/emacs-cheat-sheet/">Emacs - Cheat Sheet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-05-21T21:37:45+05:30'><span class='date'><span class='date-month'>May</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2017</span></span> <span class='time'>9:37 pm</span></time>
+        
+           | <a href="/2017/05/21/emacs-cheat-sheet/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2017/05/21/emacs-cheat-sheet/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After having been in the vim camp in the <a href="https://en.wikipedia.org/wiki/Editor_war">vim vs Emacs editor war</a> for eight years, I decided to peek into the enemy’s camp. The IDE users might look down upon the editor users, but I still enjoy using my keyboard to do all the coding work. That is the reason why I chose to learn Emacs over an IDE.</p>
+
+<p>When I started with Emacs, it was kind of scary. Editing text is straight forward, as in, it didn’t require me to change the mode like in Vim. But the control key sequences are way too much to remember compared to Vim. So I decided to understand the keys which are commonly used to move around the text in the screen, with the help of Emacs Tutorial (<code>Ctrl+h t</code>).</p>
+
+<p>This cheat sheet has a few more key combinations which are used to do common operations on Emacs.</p>
+
+<p><strong>Note:</strong> From now on, the <code>Ctrl</code> key will be represented as <code>C</code> and the <code>Alt</code> key (also called as <code>Meta</code> key) will be represented as <code>M</code>. For example, if the actual command is to press both <code>Ctrl</code> and <code>h</code> keys to invoke the help, then it would be written as <code>C-h</code>.</p>
+
+<h2 id="common-operations">Common Operations</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-x C-c</code></td>
+      <td>Quit Emacs</td>
+    </tr>
+    <tr>
+      <td><code>C-h t</code></td>
+      <td>Open built-in Emacs Tutorial file</td>
+    </tr>
+    <tr>
+      <td><code>C-x C-f</code></td>
+      <td>Open a File</td>
+    </tr>
+    <tr>
+      <td><code>C-x k</code></td>
+      <td>Close the currently opened file on screen</td>
+    </tr>
+    <tr>
+      <td><code>C-x C-s</code></td>
+      <td>Save the currently opened file</td>
+    </tr>
+    <tr>
+      <td><code>C-x s</code></td>
+      <td>Save all the open files</td>
+    </tr>
+    <tr>
+      <td><code>C-g</code></td>
+      <td>Discard the current command</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="split-window-operations">Split Window Operations</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-x 2</code></td>
+      <td>Split the view horizontally</td>
+    </tr>
+    <tr>
+      <td><code>C-x 3</code></td>
+      <td>Split the view vertically</td>
+    </tr>
+    <tr>
+      <td><code>C-x o</code> (English letter “o”)</td>
+      <td>Switch to next split window</td>
+    </tr>
+    <tr>
+      <td><code>C-x 0</code> (Number Zero)</td>
+      <td>Kill the current window</td>
+    </tr>
+    <tr>
+      <td><code>C-x 1</code></td>
+      <td>Kill all other split windows except current window</td>
+    </tr>
+    <tr>
+      <td><code>C-x C-b</code></td>
+      <td>List all open files in a new split window</td>
+    </tr>
+    <tr>
+      <td><code>C-x b</code></td>
+      <td>Bring any of the open files to the front, by name</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="cursor-movement">Cursor Movement</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-b</code></td>
+      <td>Move one character backward</td>
+    </tr>
+    <tr>
+      <td><code>M-b</code></td>
+      <td>Move one word backward</td>
+    </tr>
+    <tr>
+      <td><code>C-f</code></td>
+      <td>Move one character forward</td>
+    </tr>
+    <tr>
+      <td><code>M-f</code></td>
+      <td>Move one word forward</td>
+    </tr>
+    <tr>
+      <td><code>C-v</code></td>
+      <td>Scroll one page full of information forward</td>
+    </tr>
+    <tr>
+      <td><code>M-v</code></td>
+      <td>Scroll one page full of information backward</td>
+    </tr>
+    <tr>
+      <td><code>C-a</code></td>
+      <td>Beginning of current line</td>
+    </tr>
+    <tr>
+      <td><code>M-a</code></td>
+      <td>Beginning of current sentence</td>
+    </tr>
+    <tr>
+      <td><code>C-e</code></td>
+      <td>Ending of current line</td>
+    </tr>
+    <tr>
+      <td><code>M-e</code></td>
+      <td>Ending of current sentence</td>
+    </tr>
+    <tr>
+      <td><code>M-&gt;</code></td>
+      <td>End of file</td>
+    </tr>
+    <tr>
+      <td><code>M-&lt;</code></td>
+      <td>Beginning of file</td>
+    </tr>
+    <tr>
+      <td><code>C-n</code></td>
+      <td>Next line</td>
+    </tr>
+    <tr>
+      <td><code>C-p</code></td>
+      <td>Previous line</td>
+    </tr>
+    <tr>
+      <td><code>C-l</code></td>
+      <td>Move the current line to bottom, middle, and start of screen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="edit-operations">Edit Operations</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-x u</code> <code>C-/</code></td>
+      <td>Undo last operation</td>
+    </tr>
+    <tr>
+      <td><code>C-k</code></td>
+      <td>Delete till the end of the current line from current position</td>
+    </tr>
+    <tr>
+      <td><code>M-k</code></td>
+      <td>Delete till the end of the current sentence from current position</td>
+    </tr>
+    <tr>
+      <td><code>C-d</code></td>
+      <td>Delete the next character</td>
+    </tr>
+    <tr>
+      <td><code>M-d</code></td>
+      <td>Delete the next word</td>
+    </tr>
+    <tr>
+      <td><code>C-&lt;Del&gt;</code></td>
+      <td>Delete the previous character</td>
+    </tr>
+    <tr>
+      <td><code>M-&lt;Del&gt;</code></td>
+      <td>Delete the previous word</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="copy-and-paste">Copy and Paste</h2>
+
+<table class="gridtable">
+  <thead>
+    <tr>
+      <th>Key Combinations</th>
+      <th>Functionality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C-&lt;Space&gt;</code></td>
+      <td>Set mark to select text. Now with movement keys select the text</td>
+    </tr>
+    <tr>
+      <td><code>C-x h</code></td>
+      <td>Select the whole buffer</td>
+    </tr>
+    <tr>
+      <td><code>C-w</code></td>
+      <td>Cut the selected text</td>
+    </tr>
+    <tr>
+      <td><code>M-w</code></td>
+      <td>Copy the selected text</td>
+    </tr>
+    <tr>
+      <td><code>C-y</code></td>
+      <td>Yank (paste) the selected text</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -324,39 +591,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Sublime Text 3 Unhiding Menu in Ubuntu - Simpler Solution</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-01-10T20:44:00+05:30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>8:44 pm</span></time>
-        
-           | <a href="/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">The method which I mentioned in this <a href="http://www.thefourtheye.in/2014/01/un-hiding-menu-bar-in-sublime-text-3.html">blog post of mine</a>, solves the problem, but then you have to<br /><ol><li> Close the Sublime Text<br /><li> Fire up a terminal<br /><li> Execute a command or two<br /><li> Open Sublime Text again<br /></ol>Quite a lot of steps to do. But then I found a simpler solution today and it works like a charm for me. The solution is to use "Keyboard Shortcuts" :-) Let me explain in detail.  <ol><li> Click <code>Preferences</code> -> <code>Key Bindings - User</code><br /><li> In the window that opens, you need to add a new keyboard shortcut for the command "toggle_menu". For example, this is how my shortcuts looks like<br /><pre>[{"keys": ["ctrl+\\"], "command": "toggle_side_bar"},<br /> {"keys": ["ctrl+shift+m"], "command": "toggle_menu"}]</pre><li> Save the file and start doing your happy dance.<br /></ol>Now, you can simply press the keyboard shortcut whatever you choose to assign to toggle menu :-)  </div></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/posts/2">&larr; Older</a>
@@ -370,6 +604,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2017/05/21/emacs-cheat-sheet/">Emacs - Cheat Sheet</a>
+      </li>
     
       <li class="post">
         <a href="/2017/02/21/javascript-lookbehind-regex-alternative/">JavaScript Lookbehind RegEx Alternative</a>
@@ -407,10 +645,6 @@
         <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -419,7 +653,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li><li><a href='/blog/categories/emacs'>emacs (1)</a></li></ul>
 </section>
 
   

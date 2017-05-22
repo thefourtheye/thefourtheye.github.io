@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="Lately I have been working with Google Chrome, browsing random stuff. All of a sudden found something weird in the browser. I was searching for a &hellip;">
+  <meta name="description" content="Compiling .NET code with Mono&nbsp;compiler is almost&nbsp;similar&nbsp;to compile with g++/gcc. The basic steps are as follows.1) Download and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/10/07/compiling-net-code-in-console-mode-and/">Compiling .NET Code in Console Mode and Form Mode With Mono C# Compiler</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-10-07T07:49:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>7:49 am</span></time>
+        
+           | <a href="/2012/10/07/compiling-net-code-in-console-mode-and/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2012/10/07/compiling-net-code-in-console-mode-and/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on">Compiling .NET code with <a href="http://en.wikipedia.org/wiki/Mono_(software)" target="_blank">Mono</a>&nbsp;compiler is almost&nbsp;similar&nbsp;to compile with g++/gcc. The basic steps are as follows.<br /><br />1) Download and install the Mono for your platform from <a href="http://www.go-mono.com/mono-downloads/download.html">http://www.go-mono.com/mono-downloads/download.html</a><br />2) Then write the code (we are going to see how to use c# compiler) with your favorite editor or IDE.<br />3) Now to compile the code, we simply need to execute a file called mcs under the &lt;installed location of mono&gt;/bin, like this<br /><br /><div style="text-align: center;"><span style="font-family: Courier New, Courier, monospace;">mcs &lt;filename&gt;.cs -out:&lt;filename&gt;.exe</span></div><br />4) This will compile .cs file specified and produces the executable &lt;filename&gt;.exe<br /><br />But this compilation would produce only console application. That is whenever you execute the application, a terminal or a command window will be opened automatically. We may need to specify one or two options to ask the compiler to compile in forms mode.<br /><br /><div style="text-align: center;"><span style="font-family: Courier New, Courier, monospace;">mcs &lt;filename&gt;.cs -out:&lt;filename&gt;.exe -target:winexe -r:System.Windows.Forms.dll -r:System.Drawing.dll</span></div><div style="text-align: center;"><br /></div>The additional options used in this case are, -target and -r. -target specifies compiler that it has to generate a winexe type of application rather than console. -r option refers to the references.&nbsp;<span style="font-family: 'Courier New', Courier, monospace;">System.Windows.Forms.dll </span><span style="font-family: inherit;">and&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">System.Drawing.dll </span><span style="font-family: inherit;">are the most common references needed when we start building applications with GUI support.</span><br /><span style="font-family: inherit;"><br /></span><span style="font-family: inherit;"><b>NOTE</b>: We can even build GUI applications in console mode, but the console/terminal window will show up and will not be closed until the application is running.</span></div></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -160,6 +193,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/05/21/emacs-cheat-sheet/">Emacs - Cheat Sheet</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/02/21/javascript-lookbehind-regex-alternative/">JavaScript Lookbehind RegEx Alternative</a>
       </li>
     
@@ -195,10 +232,6 @@
         <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -207,7 +240,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li><li><a href='/blog/categories/emacs'>emacs (1)</a></li></ul>
 </section>
 
   

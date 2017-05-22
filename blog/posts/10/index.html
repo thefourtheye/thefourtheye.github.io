@@ -9,7 +9,7 @@
   <meta name="author" content="Sakthipriyan Vairamani (thefourtheye)">
 
   
-  <meta name="description" content="I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.As stated here,http:// &hellip;">
+  <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery.noConflict();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/04/select2-dynamic-json-data-with-tags/">Select2 JQuery Dynamic JSON Data With Tags</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-04T09:34:00+05:30'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:34 am</span></time>
+        
+           | <a href="/2013/04/04/select2-dynamic-json-data-with-tags/#disqus_thread"
+             data-disqus-identifier="http://thefourtheye.in/2013/04/04/select2-dynamic-json-data-with-tags/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&amp"></script><pre class="prettyprint"><br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery.noConflict();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function formatListOptionSelection (Option, Container)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Option;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function formatListOption (Option, Container, Query)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&lt;div id='" + Option + "'&gt;" + Option + "&lt;/div&gt;";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery(document).ready(function() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery("#Data").select2 ({<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multiple: true,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minimumInputLength: 5,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; maximumSelectionSize: 3,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id: function (e) {return e;},<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ajax: {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; url: 'fetch.json',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // json will be used if there is no Same Origin Policy violation, otherwise JSONP shall be used<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dataType: 'json',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data: function (term, page) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; searchkey: term,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; field: 'Data'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when the data is returned from the server<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; results: function (data, page) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return {results: data.Datas};<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you fetch result from server and add it to the element<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formatResult: formatListOption,<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you select one of the options<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formatSelection: formatListOptionSelection,<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you set the value attribute of the element<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initSelection: function(element, callback) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var Datas = jQuery(element).val();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Data = []<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery(Datas.split(",")).each(function () {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (this != "") Data.push (this);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callback (Data);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input class="span12" id="Data" name="Data" type="hidden" value="&lt;Value from POST back&gt;" /&gt;</span></div><br /></pre></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -211,39 +244,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/21/next-palindrome-after-1000000-digit/">Next Palindrome After a 1000000 Digit Number - SPOJ - PALIN</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-10-21T18:38:00+05:30'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>6:38 pm</span></time>
-        
-           | <a href="/2012/10/21/next-palindrome-after-1000000-digit/#disqus_thread"
-             data-disqus-identifier="http://thefourtheye.in/2012/10/21/next-palindrome-after-1000000-digit/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I always have afraid of the problems which require string processing, to be solved. This is one such problem. The problem description as stated in SPOJ (<a href="http://www.spoj.pl/problems/PALIN/">http://www.spoj.pl/problems/PALIN/</a>) and my solution to this problem is&nbsp;<a href="http://ideone.com/osqLhp">http://ideone.com/osqLhp</a>&nbsp;(I am sure, I can improve this code)<br /><br /><h1 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: normal; text-align: left;"><span style="font-size: 13px; text-align: justify;">A positive integer is called a</span><span style="font-size: 13px; text-align: justify;">&nbsp;</span><i style="background-color: transparent; font-size: 13px; text-align: justify;">palindrome</i><span style="font-size: 13px; text-align: justify;">&nbsp;</span><span style="font-size: 13px; text-align: justify;">if its representation in the decimal system is the same when read from left to right and from right to left. For a given positive integer K of not more than 1000000 digits, write the value of the smallest palindrome larger than K to output. Numbers are always displayed without leading zeros.</span></h1><br /><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Input</h3><div align="justify" style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;">The first line contains integer t, the number of test cases. Integers K are given in the next t lines.</div><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Output</h3><div align="justify" style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;">For each K, output the smallest palindrome larger than K.</div><h3 style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15px; text-align: center;">Example</h3><div style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;"><tt><b>Input:</b></tt><br />2<br />808<br />2133</div><div style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;"><br /></div><div style="background-color: #f6f9e0; color: #000020; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; text-align: justify;"><tt><b>Output:</b></tt><br />818<br />2222</div><br /><br />We know that, there is no integral data type which is as sophisticated as to&nbsp;accommodate a 1000000 digits number (a million digits in a number). So only option is to use string. And we also know what palindrome is. A number or a string of characters, is the same when expressed from left to right and right to left. For example, AMMA, MADAM, MALAYALAM, 11, 505, 797979797, ...<br /><br />Lets assume the input number as N. If we read through the problem, we are asked to find the next (greater than the number provided) palindrome which exists after the number N. As we see in the examples, 818 is the next big palindrome after 808 and 2222 is the next big palindrome after 2133. If the numbers are small, we can try brute-force approach.<br /><br /><h3 style="text-align: left;">Brute force approach:</h3><br /><ol style="text-align: left;"><li>Read the number N</li><li>Increment by 1</li><li>Check whether it is a palindrome or not</li><li>If Yes, Print the number and exit</li><li>If No, goto step 2</li></ol><div><br /></div><div>This approach is quite simple and easy to implement. But, this may not work always when we have time constraints. If the number N becomes as big as a 1000000 digit number, program with this approach would produce output after a very long time. We all want our programs to produce outputs so quickly, don't we?&nbsp;Let us look at the approach which I followed to solve this problem.</div><div><br /></div><h3 style="text-align: left;">My approach:</h3><div><ol style="text-align: left;"><li>Read the number as a string and store it in STR and the number of digits as N</li><li>Split STR into two halves STR1 and STR3, if the number of digits in STR is odd, the middle digit will be in STR2 otherwise it is empty</li><li>If the Reverse of STR1 is greater than STR3, Print STR1 + STR2 + Reverse (STR1) and exit</li><li>make all digits of STR3 as '0'</li><li>If N is even,&nbsp;</li><ol><li>increment STR1</li><li>Goto step 1 with input (Incremented STR1 + STR3)</li></ol><li>If N is odd,&nbsp;</li><ol><li>increment STR2</li><ol><li>If Incremented STR2 is 10,&nbsp;</li><ol><li>set STR2 as "0"</li><li>increment STR1</li><li>Goto step 1 with input (Incremented STR1 + STR2 + STR3)</li></ol><li>If Incremented STR2 is lesser than 10</li><ol><li>Goto step 1 with input (STR1 + STR2 + STR3)</li></ol></ol></ol></ol><div>The observation which I made after analyzing few examples is, if the second half of the number is smaller than the reverse of the first half of the number, just replacing the&nbsp;second half&nbsp;with&nbsp;the reverse of the first half produces the required output. If it is not smaller than the reverse of the first half, increment the first half and then replace the second half with the incremented first half. This is the basic idea but the above algorithm includes all the corner cases.</div></div><br /><b>My solution:</b></div><script type="text/javascript" src="http://ideone.com/api/embed.js/link/osqLhp"></script></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/posts/11">&larr; Older</a>
@@ -259,6 +259,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2017/05/21/emacs-cheat-sheet/">Emacs - Cheat Sheet</a>
+      </li>
     
       <li class="post">
         <a href="/2017/02/21/javascript-lookbehind-regex-alternative/">JavaScript Lookbehind RegEx Alternative</a>
@@ -296,10 +300,6 @@
         <a href="/2014/09/15/sending-postput-requests-with-json-form/">Sending POST/PUT Requests, With JSON Form Body, in Node.js</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/03/01/nodejs-modules-and-exports/">Node.js - Modules and Exports</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -308,7 +308,7 @@
 
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/ubuntu'>ubuntu (15)</a></li><li><a href='/blog/categories/sport-programming'>sport programming (15)</a></li><li><a href='/blog/categories/python'>python (11)</a></li><li><a href='/blog/categories/dynamic-programming'>dynamic programming (8)</a></li><li><a href='/blog/categories/sublime'>sublime (5)</a></li><li><a href='/blog/categories/spoj'>spoj (5)</a></li><li><a href='/blog/categories/node-dot-js'>node.js (5)</a></li><li><a href='/blog/categories/javascript'>javascript (4)</a></li><li><a href='/blog/categories/project-euler'>project euler (4)</a></li><li><a href='/blog/categories/mathematics'>mathematics (3)</a></li><li><a href='/blog/categories/bug'>bug (3)</a></li><li><a href='/blog/categories/uva'>uva (3)</a></li><li><a href='/blog/categories/chrome'>chrome (2)</a></li><li><a href='/blog/categories/jquery'>jquery (2)</a></li><li><a href='/blog/categories/android'>android (2)</a></li><li><a href='/blog/categories/mongodb'>mongodb (2)</a></li><li><a href='/blog/categories/git'>git (1)</a></li><li><a href='/blog/categories/tju'>tju (1)</a></li><li><a href='/blog/categories/timus'>timus (1)</a></li><li><a href='/blog/categories/json'>json (1)</a></li><li><a href='/blog/categories/google-code-jam'>google code jam (1)</a></li><li><a href='/blog/categories/apache'>apache (1)</a></li><li><a href='/blog/categories/web-dot-py'>web.py (1)</a></li><li><a href='/blog/categories/select2'>select2 (1)</a></li><li><a href='/blog/categories/topcoder'>topcoder (1)</a></li><li><a href='/blog/categories/mono'>mono (1)</a></li><li><a href='/blog/categories/django'>django (1)</a></li><li><a href='/blog/categories/ecmascript-6'>ecmascript 6 (1)</a></li><li><a href='/blog/categories/quirks'>quirks (1)</a></li><li><a href='/blog/categories/regex'>regex (1)</a></li><li><a href='/blog/categories/emacs'>emacs (1)</a></li></ul>
 </section>
 
   
