@@ -4,7 +4,7 @@
   <title><![CDATA[thefourtheye's weblog]]></title>
   <link href="http://thefourtheye.in/atom.xml" rel="self"/>
   <link href="http://thefourtheye.in/"/>
-  <updated>2017-05-26T22:31:50+05:30</updated>
+  <updated>2018-01-27T13:34:01+05:30</updated>
   <id>http://thefourtheye.in/</id>
   <author>
     <name><![CDATA[Sakthipriyan Vairamani (thefourtheye)]]></name>
@@ -12,123 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[TypedArrays and Canonical Numeric Index Strings]]></title>
-    <link href="http://thefourtheye.in/2017/05/25/typedarrays-and-canonical-numeric-index-strings/"/>
-    <updated>2017-05-25T07:44:01+05:30</updated>
-    <id>http://thefourtheye.in/2017/05/25/typedarrays-and-canonical-numeric-index-strings</id>
-    <content type="html"><![CDATA[<p>This week, I saw a Tweet by Benedikt Meurer which was kind of a quiz.</p>
-
-<center>
-  <blockquote class="twitter-tweet" data-lang="en">
-    <p lang="en" dir="ltr">Fun to see <a href="https://twitter.com/jaffathecake">@jaffathecake</a> and <a href="https://twitter.com/aerotwist">@aerotwist</a> presenting our weird JavaScript question. 🙃 Did you know the answer? 😎 <a href="https://t.co/nOqtExHsvS">https://t.co/nOqtExHsvS</a> <a href="https://t.co/KVFmyAg3q5">pic.twitter.com/KVFmyAg3q5</a>
-    </p>&mdash; Benedikt Meurer (@bmeurer) <a href="https://twitter.com/bmeurer/status/866339039200325632">May 21, 2017</a>
-  </blockquote>
-  <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-</center>
-
-<p>At the first look, I thought all of them would be the properties of the object and so all are correct answers. This comes from my understanding of the <code>Array</code> objects. As per the specification’s <a href="http://www.ecma-international.org/ecma-262/7.0/#sec-array-exotic-objects">9.4.2 Array Exotic Objects</a> section,</p>
-
-<blockquote>
-  <p>A String property name P is an array index if and only if ToString(ToUint32(P)) is equal to P and ToUint32(P) is not equal to 2<sup>32</sup>-1.</p>
-</blockquote>
-
-<p>Any String property name which when converted to an unsigned 32 bit integer and stringified again should be equal to the original String property name, to be qualified as a valid array index. Otherwise it will be treated as a normal property of the array object.</p>
-
-<p>But this is not applicable to <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>. To TypedArrays the array indices in string format, should be <i>canonical string numeric indices</i>. In ECMAScript 6 specification, value of a property retrieval from a typed array is defined like this</p>
-
-<blockquote>
-  <p>When the [[Get]] internal method of an Integer Indexed exotic object (Typed Arrays) <i>O</i> is called with property key <i>P</i>, as per the section <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-integer-indexed-exotic-objects-get-p-receiver">9.4.5.4 [[Get]] (P, Receiver)</a>  the following steps are taken:</p>
-
-  <ol>
-    <li>Assert: IsPropertyKey(<i>P</i>) is <b>true</b>.</li>
-    <li>If Type(<i>P</i>) is String and if SameValue(<i>O</i>, <i>Receiver</i>) is <b>true</b>, then<br />
-a. Let <i>numericIndex</i> be CanonicalNumericIndexString (<i>P</i>).<br />
-b. Assert: <i>numericIndex</i> is not an abrupt completion.<br />
- c. If <i>numericIndex</i> is not <b>undefined</b>, then<br />
-    i. Return IntegerIndexedElementGet (<i>O</i>, <i>numericIndex</i>).</li>
-    <li>Return the result of calling the default ordinary object [[Get]] internal method (9.1.8) on <i>O</i> passing <i>P</i> and <i>Receiver</i> as arguments.</li>
-  </ol>
-</blockquote>
-
-<p>As we see here, if the property being retrieved is a String, it is first converted to its canonical numeric index string format. It is done as per the section <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-canonicalnumericindexstring">7.1.16 CanonicalNumericIndexString(argument)</a></p>
-
-<blockquote>
-  <ol>
-    <li>Assert: Type(<i>argument</i>) is String.</li>
-    <li>If <i>argument</i> is <b>“-0”</b>, return −0.</li>
-    <li>Let <i>n</i> be ToNumber(<i>argument</i>).</li>
-    <li>If SameValue(ToString(<i>n</i>), <i>argument</i>) is <b>false</b>, return <b>undefined</b>.</li>
-    <li>Return <i>n</i>.</li>
-  </ol>
-</blockquote>
-
-<p>This basically converts the string to a number object and then compares the stringified version of that number with the original string. If they are equal, then it is a canonical numeric index and the number is returned, otherwise <code>undefined</code> will be returned. For example, <code>'3.14'</code> will be converted to numeric <code>3.14</code> and then converted to string again, which will be <code>'3.14'</code> which is the same as the original string. So the number <code>3.14</code> it will be considered as an index of the typed array.</p>
-
-<p>In the question we see above, the strings <code>'.9'</code> and <code>'1.0'</code> become <code>'0.9'</code> and <code>1</code> respectively and <code>'1.1'</code> and <code>'1.2'</code> will become the same. We can confirm that like this</p>
-
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span><span class="s1">&#39;.9&#39;</span><span class="p">,</span> <span class="s1">&#39;0.9&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;1.&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2&#39;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">i</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">toString</span><span class="p">()));</span>
-</span><span class="line"><span class="c1">// will print the following</span>
-</span><span class="line"><span class="mf">0.9</span>
-</span><span class="line"><span class="mf">0.9</span>
-</span><span class="line"><span class="mi">1</span>
-</span><span class="line"><span class="mi">1</span>
-</span><span class="line"><span class="mf">1.1</span>
-</span><span class="line"><span class="mf">1.2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<p>As the strings <code>'1.1'</code> and <code>'1.2'</code> are already in the canonical numeric index string format, they are considered as the array indices and the <code>'0.9'</code> and <code>'1.0'</code> become property names. As per the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-integerindexedelementget">9.4.5.8 IntegerIndexedElementGet</a> section, the passed number should be an integer. So, <code>1.1</code> and <code>1.2</code> are also not valid array indices and they are ignored. That is why the answer to the question is, both <code>array['.9']</code> and <code>array['1.0']</code>, as only <code>'.9'</code> and <code>'1.0'</code> are treated as property names during retrieval.</p>
-
-<p>To confirm this behaviour I wrote the following programs.</p>
-
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="kd">function</span> <span class="nx">TestIntegerIndexedObjects</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">));</span>
-</span><span class="line">    <span class="kr">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.9&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2&#39;</span><span class="p">];</span>
-</span><span class="line">    <span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">i</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">idx</span><span class="p">);</span>
-</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
-</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">obj</span><span class="p">));</span>
-</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;\n&#39;</span><span class="p">);</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="nx">TestIntegerIndexedObjects</span><span class="p">(</span><span class="k">new</span> <span class="nx">Int8Array</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-</span><span class="line"><span class="nx">TestIntegerIndexedObjects</span><span class="p">(</span><span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s2">&quot;abcd&quot;</span><span class="p">));</span>
-</span><span class="line"><span class="nx">TestIntegerIndexedObjects</span><span class="p">([]);</span>
-</span></code></pre></td></tr></table></div></figure>
-<p>will print the following</p>
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="p">[</span><span class="nx">object</span> <span class="nx">Int8Array</span><span class="p">]</span>
-</span><span class="line"><span class="nx">Int8Array</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;.9&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="o">:</span> <span class="mi">1</span> <span class="p">]</span>
-</span><span class="line"><span class="p">[</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;.9&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span> <span class="p">]</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="p">[</span><span class="nx">object</span> <span class="nb">String</span><span class="p">]</span>
-</span><span class="line"><span class="p">[</span><span class="nb">String</span><span class="o">:</span> <span class="s1">&#39;abcd&#39;</span><span class="p">]</span>
-</span><span class="line"><span class="p">[</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;.9&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2&#39;</span> <span class="p">]</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="p">[</span><span class="nx">object</span> <span class="nb">Array</span><span class="p">]</span>
-</span><span class="line"><span class="p">[</span> <span class="s1">&#39;.9&#39;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;1.1&#39;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;1.2&#39;</span><span class="o">:</span> <span class="mi">3</span> <span class="p">]</span>
-</span><span class="line"><span class="p">[</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;.9&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2&#39;</span> <span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<h3 id="canonicalnumericindexstring">CanonicalNumericIndexString</h3>
-
-<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="code"><pre><code class="js"><span class="line"><span class="kr">const</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;assert&#39;</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">function</span> <span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="nx">argument</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">const</span> <span class="nx">NumericValue</span> <span class="o">=</span> <span class="o">+</span><span class="nx">argument</span><span class="p">;</span>                                          <span class="c1">// The unary + operator converts to a number</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">NumericValue</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">===</span> <span class="nx">argument</span> <span class="o">?</span> <span class="nx">NumericValue</span> <span class="o">:</span> <span class="kc">undefined</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="nx">assert</span><span class="p">(</span><span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="s1">&#39;.9&#39;</span><span class="p">)</span>  <span class="o">===</span> <span class="kc">undefined</span><span class="p">);</span>
-</span><span class="line"><span class="nx">assert</span><span class="p">(</span><span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="s1">&#39;0.9&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mf">0.9</span><span class="p">);</span>
-</span><span class="line"><span class="nx">assert</span><span class="p">(</span><span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">);</span>
-</span><span class="line"><span class="nx">assert</span><span class="p">(</span><span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="s1">&#39;1.&#39;</span><span class="p">)</span>  <span class="o">===</span> <span class="kc">undefined</span><span class="p">);</span>
-</span><span class="line"><span class="nx">assert</span><span class="p">(</span><span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="s1">&#39;1.1&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mf">1.1</span><span class="p">);</span>
-</span><span class="line"><span class="nx">assert</span><span class="p">(</span><span class="nx">CanonicalNumericIndexString</span><span class="p">(</span><span class="s1">&#39;1.2&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mf">1.2</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Emacs - Cheat Sheet]]></title>
@@ -664,6 +547,16 @@ b. Assert: <i>numericIndex</i> is not an abrupt completion.<br />
     <id>http://thefourtheye.in/2013/07/29/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3</id>
     <content type="html"><![CDATA[<div class='post'>
 <div dir="ltr" style="text-align: left;" trbidi="on"><p>This is a continuation of <a href="http://www.thefourtheye.in/2013/07/Compiling-Cpp-11-Programs-with-Sublime-Text-3.html">Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu</a> where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C++ 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine's Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. <br /><ol><li>We need to create the following directory structure in the User's home directory <code>AppData\Roaming\Sublime Text 3\Packages\JS\</code>. In my machine, home directory is <code>C:\Users\[username]</code>. To know the current user's home directory, open <code>Cmd.exe</code> and type <code>echo %userprofile%</code>. <br /><li>In that directory, create a file called "JS.sublime-build". So, the location of the file from the home directory is <code>AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build</code> You can name the sublime-build file as anything you want. I have simply named it here as JS.<br /><li>Copy and paste the following text in to it.<br /><pre class="prettyprint">{<br /> "cmd": ["node.exe", "${file}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.js",<br /> "variants":<br /> [<br />  {<br />   "name": "Run",<br />   "cmd":["node.exe", "${file}"]<br />  }<br /> ]<br />}<br /></pre><li>Thats it. Open Sublime Text 3. Click on Tools->Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.<br /></ol></div></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Compiling C++11 Programs With Sublime Text 3]]></title>
+    <link href="http://thefourtheye.in/2013/07/21/Compiling-Cpp-11-Programs-with-Sublime-Text-3/"/>
+    <updated>2013-07-21T16:41:00+05:30</updated>
+    <id>http://thefourtheye.in/2013/07/21/Compiling-Cpp-11-Programs-with-Sublime-Text-3</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><p>For <b>Windows 7</b>, you may want to read this post <a href="http://www.thefourtheye.in/2013/07/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3.html">http://www.thefourtheye.in/2013/07/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3.html</a><br /><p>Today I installed Sublime Text 3's public beta on my Ubuntu 13 and the first thing I noticed is, the inability to compile C++ 11 programs. The obvious problem is, it was missing <code>-std=c++0x</code> parameter to g++. I tried to figure out how to edit the build parameters of Sublime. After an hour's struggle managed to figure out.<br /><ol><li>You need to create the following file <code>~/.config/sublime-text-3/Packages/C++/C++.sublime-build</code>. The <code>~</code> refers to the home directory of the current user.<br /><li>Now insert the below seen text to that file<br /><pre class="prettyprint">{<br /> "cmd": ["g++", "-std=c++0x", "${file}", "-o", "${file_path}/${file_base_name}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.c, source.c++",<br /> "variants":<br /> [<br />   {<br />     "name": "Run",<br />     "cmd":["bash", "-c", "g++ -std=c++0x '${file}' -o '${file_path}/${file_base_name}' && '${file_path}/${file_base_name}'"]<br />   }<br /> ]<br />}<br /></pre><li>Save this file and close it. Sublime will pick up the changes immediately.<br /></ol>This will take care of compiling C++ 11 programs. </div></div>
 ]]></content>
   </entry>
   

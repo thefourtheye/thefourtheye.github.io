@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://thefourtheye.in/2017/05/25/typedarrays-and-canonical-numeric-index-strings/</loc>
-<lastmod>2017-05-25T07:44:01+05:30</lastmod>
-</url>
-<url>
 <loc>http://thefourtheye.in/2017/05/21/emacs-cheat-sheet/</loc>
 <lastmod>2017-05-21T21:37:45+05:30</lastmod>
 </url>
@@ -237,13 +233,13 @@
 <lastmod>2012-09-30T12:10:00+05:30</lastmod>
 </url>
 <url>
+<loc>http://thefourtheye.in/blog/archives/</loc>
+</url>
+<url>
 <loc>http://thefourtheye.in/blog/categories/</loc>
 </url>
 <url>
 <loc>http://thefourtheye.in/blog/</loc>
-</url>
-<url>
-<loc>http://thefourtheye.in/blog/archives/</loc>
 </url>
 <url>
 <loc>http://thefourtheye.in/404.html</loc>
@@ -343,8 +339,5 @@
 </url>
 <url>
 <loc>http://thefourtheye.in/blog/categories/emacs/</loc>
-</url>
-<url>
-<loc>http://thefourtheye.in/blog/categories/typed-arrays/</loc>
 </url>
 </urlset>
