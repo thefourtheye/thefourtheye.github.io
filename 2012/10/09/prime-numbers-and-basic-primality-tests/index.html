@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 125%">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="">
+
+  
+  
+  <meta name="description" content="Hello">
+  
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="http://thefourtheye.in//images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://thefourtheye.in//images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://thefourtheye.in//images/favicon-16x16.png">
+
+  
+  
+  <meta name="keywords" content='sakthipriyan sakthi sakthipriyan vairamani thefourtheye'>
+  
+
+  
+  
+  <link rel="stylesheet" href='/katex/katex.min.css'>
+<script defer defer src='/katex/katex.min.js'></script>
+<script defer src='/katex/contrib/auto-render.min.js'></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+  
+
+  
+    <script async data-name="BMC-Widget" 
+        data-cfasync="true" 
+        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" 
+        data-id="thefourtheye" 
+        data-description="Like what I do? Buy me a coffee!" 
+        data-message="" 
+        data-color="#d79921" 
+        data-position="Right" 
+        data-x_margin="18" 
+        data-y_margin="18"
+        crossorigin="anonymous">
+  </script>
+  
+
+  
+  <meta property="og:url" content="http://thefourtheye.in/2012/10/09/prime-numbers-and-basic-primality-tests/">
+  <meta property="og:site_name" content="thefourtheye.in">
+  <meta property="og:title" content="Prime Numbers and Basic Primality Tests - SPOJ - Prime1">
+  <meta property="og:description" content="Hello">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="2012">
+    <meta property="article:published_time" content="2012-10-09T16:40:00+05:30">
+    <meta property="article:modified_time" content="2025-03-15T20:20:33+05:30">
+    <meta property="article:tag" content="SPOJ">
+    <meta property="article:tag" content="Mathematics">
+    <meta property="article:tag" content="Sport Programming">
+
+
+  
+  <link rel="canonical" href="http://thefourtheye.in/2012/10/09/prime-numbers-and-basic-primality-tests/">
+
+  
+  
+  
+  <meta itemprop="name" content="Prime Numbers and Basic Primality Tests - SPOJ - Prime1">
+  <meta itemprop="description" content="Hello">
+  <meta itemprop="datePublished" content="2012-10-09T16:40:00+05:30">
+  <meta itemprop="dateModified" content="2025-03-15T20:20:33+05:30">
+  <meta itemprop="wordCount" content="963">
+  <meta itemprop="keywords" content="SPOJ,Mathematics,Sport Programming">
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/common.min.e562d763c6d0825495eb17de8b2c1d9800cf7c08db1c36accedf77a5fccfc4b9.css" integrity="sha256-5WLXY8bQglSV6xfeiywdmADPfAjbHDaszt93pfzPxLk=" crossorigin="anonymous">
+  
+
+  
+  
+    <link rel="stylesheet" href="/css/content.min.ba38eba94cb47fef9936258c42d11ff19fa9686a30b38e783773fe3f15eb44dc.css" integrity="sha256-ujjrqUy0f&#43;&#43;ZNiWMQtEf8Z&#43;paGows454N3P&#43;PxXrRNw=" crossorigin="anonymous">
+  
+
+  
+  
+  <title>Prime Numbers and Basic Primality Tests - SPOJ - Prime1 - </title>
+  
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Prime Numbers and Basic Primality Tests - SPOJ - Prime1">
+  <meta name="twitter:description" content="Hello">
+
+
+  
+
+
+  <link rel="stylesheet" href="/css/single.min.6bebcc6a38eca12d546c5f3c93e53436d4bc29b64d23a864c59565999404e564.css" integrity="sha256-a&#43;vMajjsoS1UbF88k&#43;U0NtS8KbZNI6hkxZVlmZQE5WQ="
+							       crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="/css/single.min.78a121b7d7a160420f9daab0ea13add66c37b9c44f27bba07b27207e2b0975d2.css" integrity="sha256-eKEht9ehYEIPnaqw6hOt1mw3ucRPJ7ugeycgfisJddI="
+							       crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div id="wrapper">
+    
+
+
+<header id="header">
+  <h1>
+    <a href="http://thefourtheye.in/">thefourtheye.in</a>
+    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle theme">
+        <svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496">
+        <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/>
+        </svg>
+    </button>
+  </h1>
+
+  <nav>
+    
+    <span class="nav-bar-item">
+      
+      <a class="link" href="/">Home</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      
+        <span class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg">
+	<path d="M7.5,6A1.5,1.5,0,1,0,9,7.5,1.5,1.5,0,0,0,7.5,6Zm13.62,4.71L12.71,2.29A1,1,0,0,0,12,2H3A1,1,0,0,0,2,3v9a1,1,0,0,0,.29.71l8.42,8.41a3,3,0,0,0,4.24,0L21.12,15a3,3,0,0,0,0-4.24Zm-1.41,2.82h0l-6.18,6.17a1,1,0,0,1-1.41,0L4,11.59V4h7.59l8.12,8.12a1,1,0,0,1,.29.71A1,1,0,0,1,19.71,13.53Z"/></svg>
+</span>
+      
+      <a class="link" href="/tags">Tags</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      
+        <span class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg">
+<path
+d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a1,1,0,0,1-1.42-1.42,1,1,0,0,1,1.42,0A1,1,0,0,1,5.71,19.71ZM5,12a1,1,0,0,0,0,2,5,5,0,0,1,5,5,1,1,0,0,0,2,0,7,7,0,0,0-7-7ZM5,8a1,1,0,0,0,0,2,9,9,0,0,1,9,9,1,1,0,0,0,2,0,11.08,11.08,0,0,0-3.22-7.78A11.08,11.08,0,0,0,5,8Zm10.61.39A15.11,15.11,0,0,0,5,4,1,1,0,0,0,5,6,13,13,0,0,1,18,19a1,1,0,0,0,2,0A15.11,15.11,0,0,0,15.61,8.39Z"/></svg>
+</span>
+      
+      <a class="link" href="/index.xml">RSS</a>
+    </span>
+    
+  </nav>
+</header>
+<hr />
+
+    
+<main id="main" class="post">
+  
+  <div class="post-heading">
+    <h1 class="post-title">Prime Numbers and Basic Primality Tests - SPOJ - Prime1</h1>
+    <div class="publish-metadata">
+      
+      <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none"
+	   xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16
+        13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843
+        20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21
+        17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843
+        5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5
+        4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3
+        6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973
+        20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round"/>
+      </svg>
+      9 October 2012
+      
+      
+        &nbsp;
+        <span>
+          <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745
+            20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975
+            17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319
+            16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581
+            2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392
+            6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012
+            19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171
+            20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"/>
+          </svg>
+          963 words
+        </span>
+      
+      
+      
+        
+      
+      
+        &nbsp;
+        <span>
+          <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12
+            21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21
+            7.02944 21 12Z" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ~5 mins
+        </span>
+      
+    </div>
+  </div>
+
+  
+  <div>
+    
+    <a class="link tag" href='http://thefourtheye.in/tags/spoj'>#SPOJ</a>
+    
+    <a class="link tag" href='http://thefourtheye.in/tags/mathematics'>#Mathematics</a>
+    
+    <a class="link tag" href='http://thefourtheye.in/tags/sport-programming'>#Sport Programming</a>
+    
+    <br></br>
+  </div>
+  
+  
+  
+  <details>
+    <summary>
+      <b>Table of Contents</b>
+    </summary>
+    <div class="toc numbered-subtitles"></div>
+  </details>
+  
+  
+  <article class="content numbered-subtitles">
+    
+    
+<div class='post'>
+<div dir="ltr" style="text-align: left;" trbidi="on"><b>Prime numbers</b> are the numbers which get divided properly (leaving remainder as 0) only by 1 and the same number.<br /><br />The same way, numbers which get divided by 1, the same number and other numbers are called <b>composite numbers</b>.<br /><br />Current state of the art security infrastructures rely on security schemes such as RSA and DSA. They both, in turn, rely heavily on Prime numbers. So prime numbers are so important in the digital world's security. Lets see few of the algorithms to determine whether the given number is a Prime number or not.<br /><br /><h3 style="text-align: left;">Basic Tests for Primality</h3><div>Lets say, we want to find whether the numbers 101 and 100 are prime numbers are not.</div><h4 style="text-align: left;">Approach 1</h4><div><br /></div><div>This is the very basic approach and very easy to implement.</div><div><br /></div><div style="text-align: left;"><ul style="text-align: left;"><li>Read the number n</li><li>Loop with i from 2 till n/2 (if it doesn't divide properly, round off is needed)</li><li>if i divides n with out leaving any remainder (remainder is 0)&nbsp;then return false</li><li>End Loop</li><li>return true</li></ul><div><br /></div><div>The idea here is to check whether each and every number from 2 till half of that number [2, n/2] divides the number or not. If any of them divides the number without leaving any remainder, we can declare that the number is NOT a prime number. If no number in that range divides properly, the number is called a Prime number. We check only till n/2, because 2 * n/2 would be n, there would be no number greater than n/2 would divide n properly. In the worst case, It needs n/2 iterations to confirm whether the number is prime or not. In our case, for 101,&nbsp;it is 50.</div><div><br /></div><div><h4>Approach 2</h4></div><div><br /></div><div>The simplicity of this algorithm would tempt us to use this always. Lets see, if we can improve this. If we observe closely, if the number n is odd, we don't even have to try any of the even numbers. This would reduce the number of iterations needed by half.</div><div><br /></div><div><ul><li>Read the number n</li><li>if n is even return false</li><li>Loop with i from 3 till n/2, increment i by 2</li><li>if i divides n with out leaving any remainder (remainder is 0)&nbsp;then return false</li><li>End Loop</li><li>return true</li></ul><div><br /></div></div><div>As we can clearly see, if n is even it can not be a prime number, since if a number is even it is divisible by 2. So we check only the odd numbers starting from 3 till n/2 and we are skipping all the even number &nbsp;by incrementing the loop's index variable by 2 every time. So the loop would be run for the values 3,5,7,9, 11... Now if we look at the performance of this approach, we just need n/4 iterations to find whether the number is a prime number or not. In our case, for 101, it is 25.</div><div><br /></div><h4 style="text-align: left;">Approach 3</h4><div><br /></div><div>Lets see, if we can reduce it further from n/4. Lets write down the combinations which would yield 100. {2, 50}, {4, 25}, {5, 20} and {10, 10}. Lets try 256. {2, 128}, {4, 64}, {8, 32}, {16, 16}. In both the cases, atleast one of the numbers is always lesser than equal to the square root of the actual number. (I, honestly, don't know how to prove this, but this observation works always). So, instead of looping till n/2 we are going to limit the loop at square root of the number. Combining the observation we made in approach 2, presenting approach 3.</div><div><br /></div><div><ul><li>Read the number n</li><li>if n is even return false</li><li>Loop with i from 3 till sqrt (n), increment i by 2</li><li>if i divides n with out leaving any remainder (remainder is 0)&nbsp;then return false</li><li>End Loop</li><li>return true</li></ul><div><br /></div><div>In our case, we see a tremendous hike in performance,&nbsp;for the value 101,&nbsp;in the worst case we might have to do only 4 checks.</div></div><div><br /></div><div><h4>Approach 4</h4></div><div><br /></div><div>We have already had good performance with approach 3. Lets see if we still can improve it. Lets list the four values with which we may need to divide 101 to determine whether it is prime or not. The values are {2, 3, 5, 7, 9}. We have 2 as well here, since we check whether the input is even or not and 11 is not included because sqrt (101) would be rounded off to 10. The odd item in the list is 9, since we are checking against all the odd number between 2 and sqrt(n). We all know that, any given composite (non-prime) number can be expressed in terms of its prime factors. So we can try and divide the number only with the prime numbers within the range [2, sqrt(n)]. <b>Note:</b> This approach works only when we have a predetermined list of prime numbers. If we don't have that its better to stick to approach 3 or have a look at approach 5 below.</div><div><br /></div><div><h4>Approach 5</h4></div><div><br /></div><div>Lets observe the list the prime numbers a bit.</div><div><span style="font-family: inherit;"><br /></span></div><div><span style="font-family: inherit;">{<span style="background-color: white; line-height: 19.200000762939453px;">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101...}</span></span></div><div><span style="font-family: inherit;"><span style="background-color: white; line-height: 19.200000762939453px;"><br /></span></span></div><div><span style="font-family: inherit;"><span style="background-color: white; line-height: 19.200000762939453px;">Lets rewrite them like this</span></span></div><div><span style="font-family: inherit;"><span style="background-color: white; line-height: 19.200000762939453px;"><br /></span></span></div><div>{<span style="background-color: white; line-height: 19.200000762939453px;">2, 3, 6*1-1,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*1+1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*2-1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*2+1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*3-1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*3+1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*4-1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*5-1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*5+1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*6+1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*7-1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*7+1,</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*8-1</span><span style="background-color: white; line-height: 19.200000762939453px;">&nbsp;&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*9-1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*10-1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*10+1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*11+1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*12-1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*12+1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*13-1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*14-1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*15-1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*16+1</span><span style="background-color: white; line-height: 19.200000762939453px;">,&nbsp;</span><span style="background-color: white; line-height: 19.200000762939453px;">6*17-1</span><span style="background-color: white; line-height: 19.200000762939453px;">...}</span></div><div><span style="background-color: white; line-height: 19.200000762939453px;"><br /></span></div><div><span style="background-color: white; line-height: 19.200000762939453px;">Basically, the prime numbers are of the form <span style="font-family: inherit;">(6*x)</span></span><span style="background-color: white; color: #222222; line-height: 16px;"><span style="font-family: inherit;">±1 (though few of them may not be prime numbers). This reduces the possible values to be looked at, to a greater extent.&nbsp;</span></span></div><div><span style="background-color: white; color: #222222; line-height: 16px;"><span style="font-family: inherit;"><br /></span></span></div><div><ul><li>Read the number n</li><li>if n is even return false</li><li>if 3 divides n properly return false</li><li>Loop with i from 1 till&nbsp;(6 * i) -1 &gt;&nbsp;sqrt&nbsp;(n), increment i by 1 every time</li><li>if&nbsp;(6 * i) -1 or&nbsp;(6 * i) + 1&nbsp;divides n with out leaving any remainder (remainder is 0)&nbsp;then return false</li><li>End Loop</li><li>return true</li></ul><div><br /></div><div>This method would be the fastest of all the methods discussed, I believe.</div></div><div><br /></div><div>Based on the ideas discussed above, I managed to solved the SPOJ's PRIME1 problem. The problem description can be found here&nbsp;<a href="http://www.spoj.pl/problems/PRIME1/" target="_blank">http://www.spoj.pl/problems/PRIME1/</a></div><div><br /></div><div><b>Spoiler alert:</b> This&nbsp;<a href="http://ideone.com/4n9kB">http://ideone.com/4n9kB</a>&nbsp;has my solution to the above mentioned PRIME1 problem.</div></div></div><script type="text/javascript" src="http://ideone.com/api/embed.js/link/4n9kB"></script></div>
+
+
+
+    
+  </article>
+
+  <button onclick="topFunction()" id="back-to-top" title="Go to top">Back to
+  Top</button>
+
+  
+
+<div id="sharingbuttons">
+    
+    
+    <a class="resp-sharing-button__link"
+    href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f" target="_blank"
+    rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--facebook
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
+        24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5
+        9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link"
+    href="https://twitter.com/intent/tweet/?text=Prime%20Numbers%20and%20Basic%20Primality%20Tests%20-%20SPOJ%20-%20Prime1&amp;url=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f" target="_blank" rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--twitter
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
+        24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96
+        1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55
+        2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6
+        1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2
+        1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78
+        18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92
+        12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link" href="mailto:?subject=Prime%20Numbers%20and%20Basic%20Primality%20Tests%20-%20SPOJ%20-%20Prime1&amp;body=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f" target="_self" rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--email
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22
+        4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9
+        2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17
+        0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1
+        0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12
+        13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5
+        5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08
+        0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5
+        2c.24.13.32.44.18.68z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link"
+    href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f"
+    target="_blank" rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--linkedin
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
+        24"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.4
+        2.5-2.4c1.6 0 2.5 1 2.6 2.5 0 1.4-1 2.5-2.6 2.5zm11.5 6c-1 0-2 1-2
+        2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5
+        6.3v6.7h-5v-7c0-1-1-2-2-2z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f&amp;resubmit=true&amp;title=Prime%20Numbers%20and%20Basic%20Primality%20Tests%20-%20SPOJ%20-%20Prime1" target="_blank"
+    rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--reddit
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24
+        11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42
+        1.24-1.64-1-3.75-1.64-6.07-1.72.08-1.1.4-3.05 1.52-3.7.72-.4 1.73-.24 3
+        .5C17.2 6.3 18.46 7.5 20 7.5c1.65 0 3-1.35 3-3s-1.35-3-3-3c-1.38
+        0-2.54.94-2.88 2.22-1.43-.72-2.64-.8-3.6-.25-1.64.94-1.95 3.47-2
+        4.55-2.33.08-4.45.7-6.1 1.72C4.86 8.98 3.96 8.5 3 8.5c-1.65 0-3 1.35-3 3
+        0 1.32.84 2.44 2.05 2.84-.03.22-.05.44-.05.66 0 3.86 4.5 7 10 7s10-3.14
+        10-7c0-.22-.02-.44-.05-.66 1.2-.4 2.05-1.54 2.05-2.84zM2.3 13.37C1.5
+        13.07 1 12.35 1 11.5c0-1.1.9-2 2-2 .64 0 1.22.32 1.6.82-1.1.85-1.92
+        1.9-2.3 3.05zm3.7.13c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9.8
+        4.8c-1.08.63-2.42.96-3.8.96-1.4
+        0-2.74-.34-3.8-.95-.24-.13-.32-.44-.2-.68.15-.24.46-.32.7-.18 1.83 1.06
+        4.76 1.06 6.6 0 .23-.13.53-.05.67.2.14.23.06.54-.18.67zm.2-2.8c-1.1
+        0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2
+        2zm5.7-2.13c-.38-1.16-1.2-2.2-2.3-3.05.38-.5.97-.82 1.6-.82 1.1 0 2 .9 2
+        2 0 .84-.53 1.57-1.3 1.87z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link" href="whatsapp://send?text=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f"
+    target="_blank" rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--whatsapp
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
+        24"><path d="M20.1 3.9C17.9 1.7 15 .5 12 .5 5.8.5.7 5.6.7 11.9c0 2 .5
+        3.9 1.5 5.6L.6 23.4l6-1.6c1.6.9 3.5 1.3 5.4 1.3 6.3 0 11.4-5.1
+        11.4-11.4-.1-2.8-1.2-5.7-3.3-7.8zM12 21.4c-1.7
+        0-3.3-.5-4.8-1.3l-.4-.2-3.5 1 1-3.4L4 17c-1-1.5-1.4-3.2-1.4-5.1 0-5.2
+        4.2-9.4 9.4-9.4 2.5 0 4.9 1 6.7 2.8 1.8 1.8 2.8 4.2 2.8 6.7-.1 5.2-4.3
+        9.4-9.5 9.4zm5.1-7.1c-.3-.1-1.7-.9-1.9-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9
+        1.1-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3
+        0-.5.1-.6s.3-.3.4-.5c.2-.1.3-.3.4-.5.1-.2 0-.4 0-.5C10 9 9.3 7.6 9
+        7c-.1-.4-.4-.3-.5-.3h-.6s-.4.1-.7.3c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2
+        3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7
+        1.9-1.3.2-.7.2-1.2.2-1.3-.1-.3-.3-.4-.6-.5z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link"
+    href="https://news.ycombinator.com/submitlink?u=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f&amp;t=Prime%20Numbers%20and%20Basic%20Primality%20Tests%20-%20SPOJ%20-%20Prime1" target="_blank" rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--hackernews
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140
+        140"><path fill-rule="evenodd" d="M60.94 82.314L17 0h20.08l25.85
+        52.093c.397.927.86 1.888 1.39 2.883.53.994.995 2.02 1.393
+        3.08.265.4.463.764.596 1.095.13.334.262.63.395.898.662 1.325 1.26 2.618
+        1.79 3.877.53 1.26.993 2.42 1.39 3.48 1.06-2.254 2.22-4.673 3.48-7.258
+        1.26-2.585 2.552-5.27 3.877-8.052L103.49 0h18.69L77.84
+        83.308v53.087h-16.9v-54.08z"></path></svg>
+        </div>
+      </div>
+    </a>
+    
+
+    
+    
+    <a class="resp-sharing-button__link"
+    href="https://telegram.me/share/url?text=Prime%20Numbers%20and%20Basic%20Primality%20Tests%20-%20SPOJ%20-%20Prime1&amp;url=http%3a%2f%2fthefourtheye.in%2f2012%2f10%2f09%2fprime-numbers-and-basic-primality-tests%2f"
+    target="_blank" rel="noopener" aria-label="">
+      <div class="resp-sharing-button resp-sharing-button--telegram
+      resp-sharing-button--small"><div aria-hidden="true"
+      class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24
+        24"><path d="M.707 8.475C.275 8.64 0 9.508 0 9.508s.284.867.718
+        1.03l5.09 1.897 1.986 6.38a1.102 1.102 0 0 0 1.75.527l2.96-2.41a.405.405
+        0 0 1 .494-.013l5.34 3.87a1.1 1.1 0 0 0 1.046.135 1.1 1.1 0 0 0
+        .682-.803l3.91-18.795A1.102 1.102 0 0 0 22.5.075L.706 8.475z"/></svg>
+        </div>
+      </div>
+    </a>
+    
+</div>
+
+  <div class="paginator">
+    
+    <a class="link" href="http://thefourtheye.in/2012/10/07/compiling-net-code-in-console-mode-and/" title="Compiling .NET code in Console mode and Form mode with Mono C# Compiler">← prev</a>
+    
+    
+    <a class="link" href="http://thefourtheye.in/2012/10/20/making-lync-2010-to-work-in-android/" title="Making Lync 2010 to work in Android">next →</a>
+    
+  </div>
+  <div class="comment">
+    
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      <script src="https://giscus.app/client.js"
+        data-repo="thefourtheye/thefourtheye.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxOTA3MDA0Mg=="
+        data-category="General"
+        data-category-id="DIC_kwDOASL8Ws4CoERq"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+  </div>
+  
+  
+</main>
+
+    <br />
+<hr />
+<footer id="footer">
+  <div>
+    <span>Powered by  <a class=link href=https://gohugo.io target=_blank rel=noopener>Hugo</a> | 
+Theme Inspired By <a class=link href=https://github.com/michaelneuper/hugo-texify3
+target=_blank rel=noopener>TeXify3</a>
+</span>
+  </div>
+  <div>
+    <span>Copyright © 2025 Sakthipriyan Vairamani (thefourtheye)</span>
+  </div>
+  <div>
+    <span>
+      <a href="mailto:sakthi@thefourtheye.in">
+	sakthi at thefourtheye dot in
+      </a> |
+      <a href="/Resume.pdf">
+	Resume
+      </a>
+    </span>
+  </div>
+</footer>
+
+  </div>
+
+  
+  <script src='http://thefourtheye.in/js/script.js' defer></script>
+
+  
+  
+
+  
+  
+
+  
+  
+
+</body>
+
+</html>

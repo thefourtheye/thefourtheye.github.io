@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ECMAScript 6 on </title>
+    <link>http://thefourtheye.in/tags/ecmascript-6/</link>
+    <description>Recent content in ECMAScript 6 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Feb 2016 20:47:00 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/ecmascript-6/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
