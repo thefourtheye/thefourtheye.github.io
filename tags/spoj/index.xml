@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>SPOJ on </title>
+    <title>SPOJ on thefourtheye.in</title>
     <link>http://thefourtheye.in/tags/spoj/</link>
-    <description>Recent content in SPOJ on </description>
+    <description>Recent content in SPOJ on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 30 Jun 2013 18:08:00 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/spoj/index.xml" rel="self" type="application/rss+xml" />

@@ -61,6 +61,7 @@ In this post we are dealing with Project Euler - 15 - Lattice paths. This is one
 
   
   <meta property="og:url" content="http://thefourtheye.in/2013/06/15/project-euler-15-lattice-paths_15/">
+  <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Project Euler - 15 - Lattice paths">
   <meta property="og:description" content="In this post we are dealing with Project Euler - 15 - Lattice paths. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.
 Total = 21
@@ -121,7 +122,7 @@ print Array[0][0]">
 
   
   
-  <title>Project Euler - 15 - Lattice paths - </title>
+  <title>Project Euler - 15 - Lattice paths - thefourtheye.in</title>
   
 
   
@@ -162,7 +163,7 @@ print Array[0][0]">
 
 <header id="header">
   <h1>
-    <a href="http://thefourtheye.in/"></a>
+    <a href="http://thefourtheye.in/">thefourtheye.in</a>
     <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle theme">
         <svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496">
         <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/>
