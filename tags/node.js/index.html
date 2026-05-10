@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,24 +193,23 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2016</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2016/02/03/sane-ecmascript-6-generators/">
-        <span>Sane ECMAScript 6 Generators</span>
-      </a>
-      <time>3 February 2016</time>
-    </li>
-    <p style="text-align: left">Comparing ES6 Generators to Python generators - shows key difference where breaking out of a for-of loop closes the generator in JavaScript but not in Python.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/javascript'>#JavaScript</a>
-      
-      <a class="link" href='/tags/ecmascript-6'>#ECMAScript 6</a>
-      
-      <a class="link" href='/tags/node.js'>#Node.js</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2016/02/03/sane-ecmascript-6-generators/" style="font-size: 1.1em;">Sane ECMAScript 6 Generators</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>3 February 2016</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/javascript'>#JavaScript</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/ecmascript-6'>#ECMAScript 6</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/node.js'>#Node.js</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Comparing ES6 Generators to Python generators - shows key difference where breaking out of a for-of loop closes the generator in JavaScript but not in Python.</p>
+        </div>
+      </li>
   
   </ul>
 </div>
@@ -208,37 +218,35 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2014</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2014/09/15/sending-postput-requests-with-json-form/">
-        <span>Sending POST/PUT requests, with JSON form body, in Node.js</span>
-      </a>
-      <time>15 September 2014</time>
-    </li>
-    <p style="text-align: left">Shows how to send POST/PUT requests with JSON body in Node.js using the http module. Covers setting Content-Type header and proper Content-Length for JSON.stringify payloads.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/node.js'>#Node.js</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2014/09/15/sending-postput-requests-with-json-form/" style="font-size: 1.1em;">Sending POST/PUT requests, with JSON form body, in Node.js</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>15 September 2014</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/node.js'>#Node.js</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Shows how to send POST/PUT requests with JSON body in Node.js using the http module. Covers setting Content-Type header and proper Content-Length for JSON.stringify payloads.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2014/03/01/nodejs-modules-and-exports/">
-        <span>Node.js - modules and exports</span>
-      </a>
-      <time>1 March 2014</time>
-    </li>
-    <p style="text-align: left">Understanding Node.js module system - explains the difference between module.exports and exports, and why reassigning exports breaks the reference to module.exports.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/javascript'>#JavaScript</a>
-      
-      <a class="link" href='/tags/node.js'>#Node.js</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2014/03/01/nodejs-modules-and-exports/" style="font-size: 1.1em;">Node.js - modules and exports</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>1 March 2014</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/javascript'>#JavaScript</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/node.js'>#Node.js</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Understanding Node.js module system - explains the difference between module.exports and exports, and why reassigning exports breaks the reference to module.exports.</p>
+        </div>
+      </li>
   
   </ul>
 </div>
@@ -247,37 +255,35 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2013</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/07/29/compiling-node.js-scripts-in-windows-7-with-sublime-text-3/">
-        <span>Compiling Node.js scripts in Windows 7 with Sublime Text 3</span>
-      </a>
-      <time>29 July 2013</time>
-    </li>
-    <p style="text-align: left">Configure Sublime Text 3 on Windows 7 to run Node.js scripts. Creates a custom JS.sublime-build file in the Application Data packages directory.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/node.js'>#Node.js</a>
-      
-      <a class="link" href='/tags/sublime'>#Sublime</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/07/29/compiling-node.js-scripts-in-windows-7-with-sublime-text-3/" style="font-size: 1.1em;">Compiling Node.js scripts in Windows 7 with Sublime Text 3</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>29 July 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/node.js'>#Node.js</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/sublime'>#Sublime</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Configure Sublime Text 3 on Windows 7 to run Node.js scripts. Creates a custom JS.sublime-build file in the Application Data packages directory.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/03/25/installing-nodejs-in-linux/">
-        <span>Installing node.js in Linux</span>
-      </a>
-      <time>25 March 2013</time>
-    </li>
-    <p style="text-align: left">Step-by-step guide to install Node.js from source on Linux (tested on RHEL 5.4 and Ubuntu 12.10). Covers wget, configure, make, and verifying installation with a simple HTTP server example.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/node.js'>#Node.js</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/03/25/installing-nodejs-in-linux/" style="font-size: 1.1em;">Installing node.js in Linux</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>25 March 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/node.js'>#Node.js</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Step-by-step guide to install Node.js from source on Linux (tested on RHEL 5.4 and Ubuntu 12.10). Covers wget, configure, make, and verifying installation with a simple HTTP server example.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

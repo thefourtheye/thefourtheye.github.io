@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,22 +193,21 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2015</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/">
-        <span>Python 3.5 and Django 1.7&#39;s HTMLParseError</span>
-      </a>
-      <time>15 February 2015</time>
-    </li>
-    <p style="text-align: left">Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-      <a class="link" href='/tags/django'>#Django</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/" style="font-size: 1.1em;">Python 3.5 and Django 1.7&#39;s HTMLParseError</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>15 February 2015</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/django'>#Django</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.</p>
+        </div>
+      </li>
   
   </ul>
 </div>
@@ -206,22 +216,21 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2014</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/">
-        <span>Python&#39;s venv problem with ensurepip in Ubuntu</span>
-      </a>
-      <time>30 December 2014</time>
-    </li>
-    <p style="text-align: left">Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/ubuntu'>#Ubuntu</a>
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/" style="font-size: 1.1em;">Python&#39;s venv problem with ensurepip in Ubuntu</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>30 December 2014</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/ubuntu'>#Ubuntu</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.</p>
+        </div>
+      </li>
   
   </ul>
 </div>
@@ -230,154 +239,145 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2013</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/11/17/python-dictionary-comprehension/">
-        <span>Python Dictionary Comprehension</span>
-      </a>
-      <time>17 November 2013</time>
-    </li>
-    <p style="text-align: left">Python dictionary comprehensions from Python 3 backported to 2.7. Shows conversion from list of lists, conditional key/value expressions, and performance comparison to loops.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/11/17/python-dictionary-comprehension/" style="font-size: 1.1em;">Python Dictionary Comprehension</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>17 November 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Python dictionary comprehensions from Python 3 backported to 2.7. Shows conversion from list of lists, conditional key/value expressions, and performance comparison to loops.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/10/27/zen-of-python-by-tim-peters/">
-        <span>Zen of Python by Tim Peters</span>
-      </a>
-      <time>27 October 2013</time>
-    </li>
-    <p style="text-align: left">The Zen of Python - Tim Peters&#39; famous guiding principles for Python design. Displays all 19 aphorisms including &#39;Beautiful is better than ugly&#39; and &#39;There should be one obvious way to do it&#39;.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/10/27/zen-of-python-by-tim-peters/" style="font-size: 1.1em;">Zen of Python by Tim Peters</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>27 October 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">The Zen of Python - Tim Peters&#39; famous guiding principles for Python design. Displays all 19 aphorisms including &#39;Beautiful is better than ugly&#39; and &#39;There should be one obvious way to do it&#39;.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/06/30/spoj-best-solutions-for-double-helix/">
-        <span>SPOJ Best Solutions for The Double Helix</span>
-      </a>
-      <time>30 June 2013</time>
-    </li>
-    <p style="text-align: left">Celebrates the author&#39;s Python solution being featured in SPOJ&#39;s Top 20 for The Double Helix problem. A competitive programming milestone.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/spoj'>#SPOJ</a>
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-      <a class="link" href='/tags/sport-programming'>#Sport Programming</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/06/30/spoj-best-solutions-for-double-helix/" style="font-size: 1.1em;">SPOJ Best Solutions for The Double Helix</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>30 June 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/spoj'>#SPOJ</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/sport-programming'>#Sport Programming</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Celebrates the author&#39;s Python solution being featured in SPOJ&#39;s Top 20 for The Double Helix problem. A competitive programming milestone.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/05/04/python-equivalent-of-cs-freopen/">
-        <span>Python equivalent of C&#39;s freopen</span>
-      </a>
-      <time>4 May 2013</time>
-    </li>
-    <p style="text-align: left">Shows how to redirect stdin and stdout in Python to work with files, similar to C&#39;s freopen(). Enables automating interactive programs in competitive programming.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-      <a class="link" href='/tags/sport-programming'>#Sport Programming</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/05/04/python-equivalent-of-cs-freopen/" style="font-size: 1.1em;">Python equivalent of C&#39;s freopen</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>4 May 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/sport-programming'>#Sport Programming</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Shows how to redirect stdin and stdout in Python to work with files, similar to C&#39;s freopen(). Enables automating interactive programs in competitive programming.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/04/28/mongodb-aggregation-framework-basics/">
-        <span>MongoDB Aggregation Framework Basics Explained</span>
-      </a>
-      <time>28 April 2013</time>
-    </li>
-    <p style="text-align: left">Introduction to MongoDB aggregation framework with SQL equivalents. Covers $match, $project, $group, $sort pipeline operators with examples comparing to SQL queries.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/mongodb'>#MongoDB</a>
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/04/28/mongodb-aggregation-framework-basics/" style="font-size: 1.1em;">MongoDB Aggregation Framework Basics Explained</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>28 April 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/mongodb'>#MongoDB</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Introduction to MongoDB aggregation framework with SQL equivalents. Covers $match, $project, $group, $sort pipeline operators with examples comparing to SQL queries.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/04/20/installing-python-ldap-in-ubuntu/">
-        <span>Installing python-ldap in Ubuntu</span>
-      </a>
-      <time>20 April 2013</time>
-    </li>
-    <p style="text-align: left">Step-by-step guide to install python-ldap in Ubuntu. Details required packages: python-dev, libldap2-dev, and libsasl2-dev to resolve missing header file errors.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/ubuntu'>#Ubuntu</a>
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/04/20/installing-python-ldap-in-ubuntu/" style="font-size: 1.1em;">Installing python-ldap in Ubuntu</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>20 April 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/ubuntu'>#Ubuntu</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Step-by-step guide to install python-ldap in Ubuntu. Details required packages: python-dev, libldap2-dev, and libsasl2-dev to resolve missing header file errors.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/03/30/check-python-package-version-in-program/">
-        <span>Check python package version in program</span>
-      </a>
-      <time>30 March 2013</time>
-    </li>
-    <p style="text-align: left">Shows how to check Python package versions at runtime using pkg_resources. Demonstrates getting both the full distribution object and just the version string.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/03/30/check-python-package-version-in-program/" style="font-size: 1.1em;">Check python package version in program</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>30 March 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Shows how to check Python package versions at runtime using pkg_resources. Demonstrates getting both the full distribution object and just the version string.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/03/28/deploying-webpy-application-in-apache/">
-        <span>Deploying web.py application in Apache with mod_wsgi</span>
-      </a>
-      <time>28 March 2013</time>
-    </li>
-    <p style="text-align: left">Comprehensive guide to deploy web.py applications on Apache using mod_wsgi. Covers installing Apache, Python with shared libraries, mod_wsgi configuration, and common pitfalls.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/apache'>#Apache</a>
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-      <a class="link" href='/tags/web.py'>#web.py</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/03/28/deploying-webpy-application-in-apache/" style="font-size: 1.1em;">Deploying web.py application in Apache with mod_wsgi</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>28 March 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/apache'>#Apache</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/web.py'>#web.py</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Comprehensive guide to deploy web.py applications on Apache using mod_wsgi. Covers installing Apache, Python with shared libraries, mod_wsgi configuration, and common pitfalls.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/03/25/installing-python-ldap-in-cygwin/">
-        <span>Installing python-ldap in cygwin</span>
-      </a>
-      <time>25 March 2013</time>
-    </li>
-    <p style="text-align: left">Installing python-ldap in Cygwin requires multiple dependencies. Details the installation process including the required libraries and common errors encountered during the build process.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/03/25/installing-python-ldap-in-cygwin/" style="font-size: 1.1em;">Installing python-ldap in cygwin</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>25 March 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Installing python-ldap in Cygwin requires multiple dependencies. Details the installation process including the required libraries and common errors encountered during the build process.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,20 +193,19 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2017</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2017/05/21/emacs-cheat-sheet/">
-        <span>emacs - Cheat Sheet</span>
-      </a>
-      <time>21 May 2017</time>
-    </li>
-    <p style="text-align: left">A practical Emacs cheat sheet for vim users transitioning to Emacs. Covers essential key combinations for file operations, window splitting, cursor movement, editing, and copy-paste.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/emacs'>#emacs</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2017/05/21/emacs-cheat-sheet/" style="font-size: 1.1em;">emacs - Cheat Sheet</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>21 May 2017</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/emacs'>#emacs</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">A practical Emacs cheat sheet for vim users transitioning to Emacs. Covers essential key combinations for file operations, window splitting, cursor movement, editing, and copy-paste.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

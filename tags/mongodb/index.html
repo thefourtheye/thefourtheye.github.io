@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,37 +193,35 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2013</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/04/28/mongodb-aggregation-framework-basics/">
-        <span>MongoDB Aggregation Framework Basics Explained</span>
-      </a>
-      <time>28 April 2013</time>
-    </li>
-    <p style="text-align: left">Introduction to MongoDB aggregation framework with SQL equivalents. Covers $match, $project, $group, $sort pipeline operators with examples comparing to SQL queries.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/mongodb'>#MongoDB</a>
-      
-      <a class="link" href='/tags/python'>#Python</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/04/28/mongodb-aggregation-framework-basics/" style="font-size: 1.1em;">MongoDB Aggregation Framework Basics Explained</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>28 April 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/mongodb'>#MongoDB</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Introduction to MongoDB aggregation framework with SQL equivalents. Covers $match, $project, $group, $sort pipeline operators with examples comparing to SQL queries.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/04/25/mongodb-miscellaneous/">
-        <span>MongoDB Miscellaneous</span>
-      </a>
-      <time>25 April 2013</time>
-    </li>
-    <p style="text-align: left">Quick reference for MongoDB queries: date-based queries using ISODate, counting with length, finding distinct values, and sorting results with pymongo.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/mongodb'>#MongoDB</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/04/25/mongodb-miscellaneous/" style="font-size: 1.1em;">MongoDB Miscellaneous</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>25 April 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/mongodb'>#MongoDB</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Quick reference for MongoDB queries: date-based queries using ISODate, counting with length, finding distinct values, and sorting results with pymongo.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

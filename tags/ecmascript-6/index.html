@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,24 +193,23 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2016</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2016/02/03/sane-ecmascript-6-generators/">
-        <span>Sane ECMAScript 6 Generators</span>
-      </a>
-      <time>3 February 2016</time>
-    </li>
-    <p style="text-align: left">Comparing ES6 Generators to Python generators - shows key difference where breaking out of a for-of loop closes the generator in JavaScript but not in Python.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/javascript'>#JavaScript</a>
-      
-      <a class="link" href='/tags/ecmascript-6'>#ECMAScript 6</a>
-      
-      <a class="link" href='/tags/node.js'>#Node.js</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2016/02/03/sane-ecmascript-6-generators/" style="font-size: 1.1em;">Sane ECMAScript 6 Generators</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>3 February 2016</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/javascript'>#JavaScript</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/ecmascript-6'>#ECMAScript 6</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/node.js'>#Node.js</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Comparing ES6 Generators to Python generators - shows key difference where breaking out of a for-of loop closes the generator in JavaScript but not in Python.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

@@ -102,7 +102,7 @@
   
 
 
-  <link rel="stylesheet" href="/css/list.min.d7547b90987c734838d67d7fef76efaf6d51d8fa487538d4860aa5a0e5f3dbc3.css" integrity="sha256-11R7kJh8c0g41n1/73bvr21R2PpIdTjUhgqloOXz28M=" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/list.min.1826f0222b8387b3e71da4455b8aa8557e6b55d41df10f6d7090de0663c367cc.css" integrity="sha256-GCbwIiuDh7PnHaRFW4qoVX5rVdQd8Q9tcJDeBmPDZ8w=" crossorigin="anonymous">
 
 <style>
 .post-item {
@@ -121,6 +121,17 @@ h2 {
 }
 </style>
 
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -217,37 +228,35 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     <h3>February 2015</h3>
     <ul>
       
-      <div class="post-item">
-      <li style="display: flex; justify-content: space-between; width: 100%;">
-        <a class="post-link" href="/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/">
-          <span>Python 3.5 and Django 1.7&#39;s HTMLParseError</span>
-        </a>
-        <time>15 February 2015</time>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/" style="font-size: 1.1em;">Python 3.5 and Django 1.7&#39;s HTMLParseError</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>15 February 2015</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/python'>#Python</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/django'>#Django</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.</p>
+        </div>
       </li>
-      <p style="text-align: left">Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.</p>
-      <p style="text-align: left">
-        
-        <a class="link" href='/tags/python'>#Python</a>
-        
-        <a class="link" href='/tags/django'>#Django</a>
-        
-      </p>
-      </div>
       
-      <div class="post-item">
-      <li style="display: flex; justify-content: space-between; width: 100%;">
-        <a class="post-link" href="/posts/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">
-          <span>Ubuntu overlapping displays while scaling dual monitor setup</span>
-        </a>
-        <time>1 February 2015</time>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/" style="font-size: 1.1em;">Ubuntu overlapping displays while scaling dual monitor setup</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>1 February 2015</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/ubuntu'>#Ubuntu</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.</p>
+        </div>
       </li>
-      <p style="text-align: left">Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.</p>
-      <p style="text-align: left">
-        
-        <a class="link" href='/tags/ubuntu'>#Ubuntu</a>
-        
-      </p>
-      </div>
       
     </ul>
   </div>

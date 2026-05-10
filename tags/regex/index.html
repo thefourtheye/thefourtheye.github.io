@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,22 +193,21 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2017</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2017/02/21/javascript-lookbehind-regex-alternative/">
-        <span>JavaScript lookbehind RegEx alternative</span>
-      </a>
-      <time>21 February 2017</time>
-    </li>
-    <p style="text-align: left">Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/javascript'>#javascript</a>
-      
-      <a class="link" href='/tags/regex'>#regex</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2017/02/21/javascript-lookbehind-regex-alternative/" style="font-size: 1.1em;">JavaScript lookbehind RegEx alternative</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>21 February 2017</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/javascript'>#javascript</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/regex'>#regex</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

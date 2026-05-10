@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,24 +193,23 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2013</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/04/20/change-making-dynamic-programming/">
-        <span>Change Making (Dynamic Programming) Problem</span>
-      </a>
-      <time>20 April 2013</time>
-    </li>
-    <p style="text-align: left">Classic dynamic programming problem to find the minimum number of coins needed to make a given change. Uses a bottom-up approach with sorted denominations to compute optimal solution.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/dynamic-programming'>#Dynamic Programming</a>
-      
-      <a class="link" href='/tags/sport-programming'>#Sport Programming</a>
-      
-      <a class="link" href='/tags/tju'>#TJU</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/04/20/change-making-dynamic-programming/" style="font-size: 1.1em;">Change Making (Dynamic Programming) Problem</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>20 April 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/dynamic-programming'>#Dynamic Programming</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/sport-programming'>#Sport Programming</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/tju'>#TJU</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Classic dynamic programming problem to find the minimum number of coins needed to make a given change. Uses a bottom-up approach with sorted denominations to compute optimal solution.</p>
+        </div>
+      </li>
   
   </ul>
 </div>

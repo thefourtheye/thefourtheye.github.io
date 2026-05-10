@@ -101,6 +101,17 @@
 
 
   
+
+  <style>
+    :root {
+      --content-max-width: 90vw;
+      --content-padding: 5vw;
+    }
+    #wrapper {
+      padding-left: var(--content-padding);
+      padding-right: var(--content-padding);
+    }
+  </style>
 </head>
 
 <body>
@@ -182,39 +193,37 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   <h3>2013</h3>
   <ul style="border-left: 1px solid var(--fg4); list-style-type: none; margin-left: 0.5rem; padding-left: 1.1rem;">
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/10/27/file-upload-with-jquery-and-ajax/">
-        <span>File Upload with jQuery and Ajax</span>
-      </a>
-      <time>27 October 2013</time>
-    </li>
-    <p style="text-align: left">Upload files via jQuery AJAX using FormData object. Shows proper configuration with contentType and processData set to false for multipart form handling.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/jquery'>#jQuery</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/10/27/file-upload-with-jquery-and-ajax/" style="font-size: 1.1em;">File Upload with jQuery and Ajax</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>27 October 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/jquery'>#jQuery</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Upload files via jQuery AJAX using FormData object. Shows proper configuration with contentType and processData set to false for multipart form handling.</p>
+        </div>
+      </li>
   
-    <div class="post-item">
-    <li style="display: flex; justify-content: space-between; width: 100%;">
-      <a class="post-link" href="/posts/2013/04/04/select2-dynamic-json-data-with-tags/">
-        <span>select2 JQuery dynamic JSON data with tags</span>
-      </a>
-      <time>4 April 2013</time>
-    </li>
-    <p style="text-align: left">Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.</p>
-    <p style="text-align: left">
-      
-      <a class="link" href='/tags/select2'>#Select2</a>
-      
-      <a class="link" href='/tags/json'>#JSON</a>
-      
-      <a class="link" href='/tags/jquery'>#jQuery</a>
-      
-    </p>
-    </div>
+<li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+        <span style="color: var(--blue); margin-right: 0.5em; margin-top: 0.1em;">▸</span>
+        <div style="flex: 1;">
+          <a class="post-link" href="/posts/2013/04/04/select2-dynamic-json-data-with-tags/" style="font-size: 1.1em;">select2 JQuery dynamic JSON data with tags</a>
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.25rem;">
+            <time>4 April 2013</time>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/select2'>#Select2</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/json'>#JSON</a>
+            
+            <a class="link" style="color: var(--orange);" href='/tags/jquery'>#jQuery</a>
+            
+          </div>
+          <p style="font-size: 0.85em; font-style: italic; margin-top: 0.25rem;">Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.</p>
+        </div>
+      </li>
   
   </ul>
 </div>
