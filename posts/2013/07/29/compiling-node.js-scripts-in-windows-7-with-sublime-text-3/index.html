@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-This is a continuation of Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C&#43;&#43; 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine&#39;s Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. We need to create the following directory structure in the User&#39;s home directory AppData\Roaming\Sublime Text 3\Packages\JS\. In my machine, home directory is C:\Users\[username]. To know the current user&#39;s home directory, open Cmd.exe and type echo %userprofile%. In that directory, create a file called &#34;JS.sublime-build&#34;. So, the location of the file from the home directory is AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build You can name the sublime-build file as anything you want. I have simply named it here as JS.Copy and paste the following text in to it.{ &#34;cmd&#34;: [&#34;node.exe&#34;, &#34;${file}&#34;], &#34;file_regex&#34;: &#34;^(..[^:]*):([0-9]&#43;):?([0-9]&#43;)?:? (.*)$&#34;, &#34;working_dir&#34;: &#34;${file_path}&#34;, &#34;selector&#34;: &#34;source.js&#34;, &#34;variants&#34;: [  {   &#34;name&#34;: &#34;Run&#34;,   &#34;cmd&#34;:[&#34;node.exe&#34;, &#34;${file}&#34;]  } ]}Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.">
+  <meta name="description" content="Configure Sublime Text 3 on Windows 7 to run Node.js scripts. Creates a custom JS.sublime-build file in the Application Data packages directory.">
   
 
   
@@ -60,27 +59,12 @@ This is a continuation of Compiling CPP 11 Programs with Sublime Text 3 in Ubunt
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/07/29/compiling-node.js-scripts-in-windows-7-with-sublime-text-3/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Compiling Node.js scripts in Windows 7 with Sublime Text 3">
-  <meta property="og:description" content="This is a continuation of Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C&#43;&#43; 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine&#39;s Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. We need to create the following directory structure in the User&#39;s home directory AppData\Roaming\Sublime Text 3\Packages\JS\. In my machine, home directory is C:\Users\[username]. To know the current user&#39;s home directory, open Cmd.exe and type echo %userprofile%. In that directory, create a file called &#34;JS.sublime-build&#34;. So, the location of the file from the home directory is AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build You can name the sublime-build file as anything you want. I have simply named it here as JS.
-Copy and paste the following text in to it.
-{
-&#34;cmd&#34;: [&#34;node.exe&#34;, &#34;${file}&#34;],
-&#34;file_regex&#34;: &#34;^(..[^:]*):([0-9]&#43;):?([0-9]&#43;)?:? (.*)$&#34;,
-&#34;working_dir&#34;: &#34;${file_path}&#34;,
-&#34;selector&#34;: &#34;source.js&#34;,
-&#34;variants&#34;:
-[
-{
-&#34;name&#34;: &#34;Run&#34;,
-&#34;cmd&#34;:[&#34;node.exe&#34;, &#34;${file}&#34;]
-}
-]
-}
-Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.">
+  <meta property="og:description" content="Configure Sublime Text 3 on Windows 7 to run Node.js scripts. Creates a custom JS.sublime-build file in the Application Data packages directory.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-07-29T19:56:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Node.js">
     <meta property="article:tag" content="Sublime">
 
@@ -92,24 +76,9 @@ Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see J
   
   
   <meta itemprop="name" content="Compiling Node.js scripts in Windows 7 with Sublime Text 3">
-  <meta itemprop="description" content="This is a continuation of Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C&#43;&#43; 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine&#39;s Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. We need to create the following directory structure in the User&#39;s home directory AppData\Roaming\Sublime Text 3\Packages\JS\. In my machine, home directory is C:\Users\[username]. To know the current user&#39;s home directory, open Cmd.exe and type echo %userprofile%. In that directory, create a file called &#34;JS.sublime-build&#34;. So, the location of the file from the home directory is AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build You can name the sublime-build file as anything you want. I have simply named it here as JS.
-Copy and paste the following text in to it.
-{
-&#34;cmd&#34;: [&#34;node.exe&#34;, &#34;${file}&#34;],
-&#34;file_regex&#34;: &#34;^(..[^:]*):([0-9]&#43;):?([0-9]&#43;)?:? (.*)$&#34;,
-&#34;working_dir&#34;: &#34;${file_path}&#34;,
-&#34;selector&#34;: &#34;source.js&#34;,
-&#34;variants&#34;:
-[
-{
-&#34;name&#34;: &#34;Run&#34;,
-&#34;cmd&#34;:[&#34;node.exe&#34;, &#34;${file}&#34;]
-}
-]
-}
-Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.">
+  <meta itemprop="description" content="Configure Sublime Text 3 on Windows 7 to run Node.js scripts. Creates a custom JS.sublime-build file in the Application Data packages directory.">
   <meta itemprop="datePublished" content="2013-07-29T19:56:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="217">
   <meta itemprop="keywords" content="Node.js,Sublime">
 
@@ -133,22 +102,7 @@ Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see J
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Compiling Node.js scripts in Windows 7 with Sublime Text 3">
-  <meta name="twitter:description" content="This is a continuation of Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C&#43;&#43; 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine&#39;s Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. We need to create the following directory structure in the User&#39;s home directory AppData\Roaming\Sublime Text 3\Packages\JS\. In my machine, home directory is C:\Users\[username]. To know the current user&#39;s home directory, open Cmd.exe and type echo %userprofile%. In that directory, create a file called &#34;JS.sublime-build&#34;. So, the location of the file from the home directory is AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build You can name the sublime-build file as anything you want. I have simply named it here as JS.
-Copy and paste the following text in to it.
-{
-&#34;cmd&#34;: [&#34;node.exe&#34;, &#34;${file}&#34;],
-&#34;file_regex&#34;: &#34;^(..[^:]*):([0-9]&#43;):?([0-9]&#43;)?:? (.*)$&#34;,
-&#34;working_dir&#34;: &#34;${file_path}&#34;,
-&#34;selector&#34;: &#34;source.js&#34;,
-&#34;variants&#34;:
-[
-{
-&#34;name&#34;: &#34;Run&#34;,
-&#34;cmd&#34;:[&#34;node.exe&#34;, &#34;${file}&#34;]
-}
-]
-}
-Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.">
+  <meta name="twitter:description" content="Configure Sublime Text 3 on Windows 7 to run Node.js scripts. Creates a custom JS.sublime-build file in the Application Data packages directory.">
 
 
   
@@ -279,7 +233,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><p>This is a continuation of <a href="http://www.thefourtheye.in/2013/07/Compiling-Cpp-11-Programs-with-Sublime-Text-3.html">Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu</a> where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C++ 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine's Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. <br /><ol><li>We need to create the following directory structure in the User's home directory <code>AppData\Roaming\Sublime Text 3\Packages\JS\</code>. In my machine, home directory is <code>C:\Users\[username]</code>. To know the current user's home directory, open <code>Cmd.exe</code> and type <code>echo %userprofile%</code>. <br /><li>In that directory, create a file called "JS.sublime-build". So, the location of the file from the home directory is <code>AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build</code> You can name the sublime-build file as anything you want. I have simply named it here as JS.<br /><li>Copy and paste the following text in to it.<br /><pre class="prettyprint">{<br /> "cmd": ["node.exe", "${file}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.js",<br /> "variants":<br /> [<br />  {<br />   "name": "Run",<br />   "cmd":["node.exe", "${file}"]<br />  }<br /> ]<br />}<br /></pre><li>Thats it. Open Sublime Text 3. Click on Tools->Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.<br /></ol></div></div>
+<div><p>This is a continuation of <a href="http://www.thefourtheye.in/2013/07/Compiling-Cpp-11-Programs-with-Sublime-Text-3.html">Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu</a> where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C++ 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine's Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. <br /><ol><li>We need to create the following directory structure in the User's home directory <code>AppData\Roaming\Sublime Text 3\Packages\JS\</code>. In my machine, home directory is <code>C:\Users\[username]</code>. To know the current user's home directory, open <code>Cmd.exe</code> and type <code>echo %userprofile%</code>. <br /><li>In that directory, create a file called "JS.sublime-build". So, the location of the file from the home directory is <code>AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build</code> You can name the sublime-build file as anything you want. I have simply named it here as JS.<br /><li>Copy and paste the following text in to it.<br /><pre class="prettyprint">{<br /> "cmd": ["node.exe", "${file}"],<br /> "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",<br /> "working_dir": "${file_path}",<br /> "selector": "source.js",<br /> "variants":<br /> [<br />  {<br />   "name": "Run",<br />   "cmd":["node.exe", "${file}"]<br />  }<br /> ]<br />}<br /></pre><li>Thats it. Open Sublime Text 3. Click on Tools->Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.<br /></ol></div></div>
 
     
   </article>

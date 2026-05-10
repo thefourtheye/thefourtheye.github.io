@@ -17,7 +17,7 @@
       <pubDate>Mon, 31 Mar 2025 09:16:15 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2025/03/31/deadlock-with-java-executor/</guid>
-      <description>In this post I share how I ended up with a Deadlock in a Java ThreadPoolExecutor program.</description>
+      <description>Demonstrates how ThreadPoolExecutor can cause deadlocks when parent tasks wait for child tasks that require the same executor. Shows deadlock scenario and potential workarounds.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 21 May 2017 21:37:45 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2017/05/21/emacs-cheat-sheet/</guid>
-      <description></description>
+      <description>A practical Emacs cheat sheet for vim users transitioning to Emacs. Covers essential key combinations for file operations, window splitting, cursor movement, editing, and copy-paste.</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Tue, 21 Feb 2017 21:33:13 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
-      <description></description>
+      <description>Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Tue, 15 Nov 2016 00:38:30 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</guid>
-      <description></description>
+      <description>JavaScript quirk: stringified negative binary, octal, and hex numbers like &#39;-0x1&#39; return NaN when converted to numbers because only decimal literals can have signs per ECMAScript spec.</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 06 Mar 2016 20:32:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/</guid>
-      <description></description>
+      <description>Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Wed, 03 Feb 2016 20:47:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2016/02/03/sane-ecmascript-6-generators/</guid>
-      <description></description>
+      <description>Comparing ES6 Generators to Python generators - shows key difference where breaking out of a for-of loop closes the generator in JavaScript but not in Python.</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Sun, 10 Jan 2016 20:44:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</guid>
-      <description></description>
+      <description>Simpler method to toggle Sublime Text 3 menu visibility using keyboard shortcut (Ctrl+Shift+M) instead of editing config files.</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Sun, 15 Feb 2015 13:20:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/</guid>
-      <description></description>
+      <description>Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Sun, 01 Feb 2015 12:58:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/</guid>
-      <description></description>
+      <description>Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Tue, 30 Dec 2014 14:52:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
       <guid>https://thefourtheye.in/posts/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/</guid>
-      <description></description>
+      <description>Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.</description>
     </item>
     
   </channel>

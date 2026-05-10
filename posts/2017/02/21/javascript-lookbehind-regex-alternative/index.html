@@ -7,13 +7,7 @@
 
   
   
-  <meta name="description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,
-[{\&quot;name\&quot;:\&quot;Kilua\&quot;\\,\&quot;age\&quot;:35}],{\&quot;city\&quot;:\&quot;SJC\&quot;},\&quot;US\&quot;
-
-and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted
-[ &#39;[{&quot;name&quot;:&quot;Kilua&quot;\\,&quot;age&quot;:35}]&#39;, &#39;{&quot;city&quot;:&quot;SJC&quot;},&quot;US&quot;&#39; ]
-
-as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is a,1,b,2,c,3 and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this">
+  <meta name="description" content="Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.">
   
 
   
@@ -65,15 +59,13 @@ as output. If the requirement was to split the string at commas followed by a ce
   <meta property="og:url" content="https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="JavaScript lookbehind RegEx alternative">
-  <meta property="og:description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,
-[{\&#34;name\&#34;:\&#34;Kilua\&#34;\\,\&#34;age\&#34;:35}],{\&#34;city\&#34;:\&#34;SJC\&#34;},\&#34;US\&#34; and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted
-[ &#39;[{&#34;name&#34;:&#34;Kilua&#34;\\,&#34;age&#34;:35}]&#39;, &#39;{&#34;city&#34;:&#34;SJC&#34;},&#34;US&#34;&#39; ] as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is a,1,b,2,c,3 and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this">
+  <meta property="og:description" content="Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2017-02-21T21:33:13+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
-    <meta property="article:tag" content="Javascript">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
+    <meta property="article:tag" content="JavaScript">
     <meta property="article:tag" content="Regex">
 
 
@@ -84,13 +76,11 @@ as output. If the requirement was to split the string at commas followed by a ce
   
   
   <meta itemprop="name" content="JavaScript lookbehind RegEx alternative">
-  <meta itemprop="description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,
-[{\&#34;name\&#34;:\&#34;Kilua\&#34;\\,\&#34;age\&#34;:35}],{\&#34;city\&#34;:\&#34;SJC\&#34;},\&#34;US\&#34; and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted
-[ &#39;[{&#34;name&#34;:&#34;Kilua&#34;\\,&#34;age&#34;:35}]&#39;, &#39;{&#34;city&#34;:&#34;SJC&#34;},&#34;US&#34;&#39; ] as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is a,1,b,2,c,3 and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this">
+  <meta itemprop="description" content="Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.">
   <meta itemprop="datePublished" content="2017-02-21T21:33:13+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="208">
-  <meta itemprop="keywords" content="Javascript,Regex">
+  <meta itemprop="keywords" content="JavaScript,Regex">
 
   
   
@@ -112,9 +102,7 @@ as output. If the requirement was to split the string at commas followed by a ce
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JavaScript lookbehind RegEx alternative">
-  <meta name="twitter:description" content="Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,
-[{\&#34;name\&#34;:\&#34;Kilua\&#34;\\,\&#34;age\&#34;:35}],{\&#34;city\&#34;:\&#34;SJC\&#34;},\&#34;US\&#34; and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted
-[ &#39;[{&#34;name&#34;:&#34;Kilua&#34;\\,&#34;age&#34;:35}]&#39;, &#39;{&#34;city&#34;:&#34;SJC&#34;},&#34;US&#34;&#39; ] as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is a,1,b,2,c,3 and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this">
+  <meta name="twitter:description" content="Workaround for JavaScript&#39;s lack of regex lookbehind using a two-step replace-and-split approach with a marker character to match conditional commas.">
 
 
   

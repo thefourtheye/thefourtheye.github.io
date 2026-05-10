@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions?  Problem Statement : http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226 # include &lt;cstdio&gt;# include &lt;map&gt;# include &lt;set&gt;using namespace std;struct State{ State (int v1, int v2, int v3, int v4) {  V1 = v1; V2 = v2; V3 = v3; V4 = v4; } int getPart2(int Value = 0) {  int Part2 = 0;  Part2 = (V4 &gt;&gt; 13);  Part2 |= (Value &lt;&lt; 4);  return Part2; } unsigned long long getPart1() {  unsigned long long Part1 = 0;  Part1 = V1;  Part1 |= (V2 &lt;&lt; 17);  Part1 |= ((unsigned long long)V3 &lt;&lt; 34);  Part1 |= ((unsigned long long)V4 &lt;&lt; 51);  return Part1; } int V1, V2, V3, V4;};map &lt;int, set&lt;unsigned long long&gt; &gt; States;map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;int c1, c2, c3, c4, q, d1, d2, d3, d4, v;unsigned long long Result ;bool CheckVisited (unsigned long long Part1, int Part2){ if (States[Part2].count (Part1)) return true; States[Part2].insert (Part1); return false;}void Solution (State & s, int Value){ unsigned long long Part1 = s.getPart1(); int Part2 = s.getPart2(Value); if (!Value) {  Solutions[Part2].insert (Part1);  return; } if (CheckVisited(Part1, Part2)) return; if (s.V1 - 1 &gt;= 0 && Value - c1 &gt;= 0) {  s.V1--;  Solution (s, Value - c1);  s.V1&#43;&#43;; } if (s.V2 - 1 &gt;= 0 && Value - c2 &gt;= 0) {  s.V2--;  Solution (s, Value - c2);  s.V2&#43;&#43;; } if (s.V3 - 1 &gt;= 0 && Value - c3 &gt;= 0) {  s.V3--;  Solution (s, Value - c3);  s.V3&#43;&#43;; } if (s.V4 - 1 &gt;= 0 && Value - c4 &gt;= 0) {  s.V4--;  Solution (s, Value - c4);  s.V4&#43;&#43;; }}int main(){ freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin); freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout); int N; scanf (&#34;%d&#34;, &N); State s (0, 0, 0, 0); while (N--) {  scanf (&#34;%d%d%d%d%d&#34;, &c1, &c2, &c3, &c4, &q);  while (q--)  {   scanf (&#34;%d%d%d%d%d&#34;, &s.V1, &s.V2, &s.V3, &s.V4, &v);   Result = 0;   States.clear();   Solutions.clear();   Solution (s, v);   for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it&#43;&#43;)    Result &#43;= it-&gt;second.size();   printf (&#34;%lld\n&#34;, Result);  } }}">
+  <meta name="description" content="UVa 11259 - Coin Changing Again. Uses top-down dynamic programming with state encoding to find all possible ways to make change with limited coin counts. Includes solution with memoization.">
   
 
   
@@ -60,107 +59,12 @@ This took lot of my time and I managed to come up with this Top-down Dynamic Pro
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/04/21/uva-11259-coin-changing-again/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="UVa 11259 - Coin Changing Again">
-  <meta property="og:description" content="This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions? Problem Statement : http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2226 # include &lt;cstdio&gt;
-# include &lt;map&gt;
-# include &lt;set&gt;
-using namespace std;
-struct State
-{
-State (int v1, int v2, int v3, int v4)
-{
-V1 = v1; V2 = v2; V3 = v3; V4 = v4;
-}
-int getPart2(int Value = 0)
-{
-int Part2 = 0;
-Part2 = (V4 &gt;&gt; 13);
-Part2 |= (Value &lt;&lt; 4);
-return Part2;
-}
-unsigned long long getPart1()
-{
-unsigned long long Part1 = 0;
-Part1 = V1;
-Part1 |= (V2 &lt;&lt; 17);
-Part1 |= ((unsigned long long)V3 &lt;&lt; 34);
-Part1 |= ((unsigned long long)V4 &lt;&lt; 51);
-return Part1;
-}
-int V1, V2, V3, V4;
-};
-map &lt;int, set&lt;unsigned long long&gt; &gt; States;
-map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;
-int c1, c2, c3, c4, q, d1, d2, d3, d4, v;
-unsigned long long Result ;
-bool CheckVisited (unsigned long long Part1, int Part2)
-{
-if (States[Part2].count (Part1)) return true;
-States[Part2].insert (Part1);
-return false;
-}
-void Solution (State &amp; s, int Value)
-{
-unsigned long long Part1 = s.getPart1();
-int Part2 = s.getPart2(Value);
-if (!Value)
-{
-Solutions[Part2].insert (Part1);
-return;
-}
-if (CheckVisited(Part1, Part2)) return;
-if (s.V1 - 1 &gt;= 0 &amp;&amp; Value - c1 &gt;= 0)
-{
-s.V1--;
-Solution (s, Value - c1);
-s.V1&#43;&#43;;
-}
-if (s.V2 - 1 &gt;= 0 &amp;&amp; Value - c2 &gt;= 0)
-{
-s.V2--;
-Solution (s, Value - c2);
-s.V2&#43;&#43;;
-}
-if (s.V3 - 1 &gt;= 0 &amp;&amp; Value - c3 &gt;= 0)
-{
-s.V3--;
-Solution (s, Value - c3);
-s.V3&#43;&#43;;
-}
-if (s.V4 - 1 &gt;= 0 &amp;&amp; Value - c4 &gt;= 0)
-{
-s.V4--;
-Solution (s, Value - c4);
-s.V4&#43;&#43;;
-}
-}
-int main()
-{
-freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-int N;
-scanf (&#34;%d&#34;, &amp;N);
-State s (0, 0, 0, 0);
-while (N--)
-{
-scanf (&#34;%d%d%d%d%d&#34;, &amp;c1, &amp;c2, &amp;c3, &amp;c4, &amp;q);
-while (q--)
-{
-scanf (&#34;%d%d%d%d%d&#34;, &amp;s.V1, &amp;s.V2, &amp;s.V3, &amp;s.V4, &amp;v);
-Result = 0;
-States.clear();
-Solutions.clear();
-Solution (s, v);
-for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it&#43;&#43;)
-Result &#43;= it-&gt;second.size();
-printf (&#34;%lld\n&#34;, Result);
-}
-}
-}">
+  <meta property="og:description" content="UVa 11259 - Coin Changing Again. Uses top-down dynamic programming with state encoding to find all possible ways to make change with limited coin counts. Includes solution with memoization.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-04-21T10:58:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Dynamic Programming">
     <meta property="article:tag" content="Sport Programming">
     <meta property="article:tag" content="UVa">
@@ -173,104 +77,9 @@ printf (&#34;%lld\n&#34;, Result);
   
   
   <meta itemprop="name" content="UVa 11259 - Coin Changing Again">
-  <meta itemprop="description" content="This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions? Problem Statement : http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2226 # include &lt;cstdio&gt;
-# include &lt;map&gt;
-# include &lt;set&gt;
-using namespace std;
-struct State
-{
-State (int v1, int v2, int v3, int v4)
-{
-V1 = v1; V2 = v2; V3 = v3; V4 = v4;
-}
-int getPart2(int Value = 0)
-{
-int Part2 = 0;
-Part2 = (V4 &gt;&gt; 13);
-Part2 |= (Value &lt;&lt; 4);
-return Part2;
-}
-unsigned long long getPart1()
-{
-unsigned long long Part1 = 0;
-Part1 = V1;
-Part1 |= (V2 &lt;&lt; 17);
-Part1 |= ((unsigned long long)V3 &lt;&lt; 34);
-Part1 |= ((unsigned long long)V4 &lt;&lt; 51);
-return Part1;
-}
-int V1, V2, V3, V4;
-};
-map &lt;int, set&lt;unsigned long long&gt; &gt; States;
-map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;
-int c1, c2, c3, c4, q, d1, d2, d3, d4, v;
-unsigned long long Result ;
-bool CheckVisited (unsigned long long Part1, int Part2)
-{
-if (States[Part2].count (Part1)) return true;
-States[Part2].insert (Part1);
-return false;
-}
-void Solution (State &amp; s, int Value)
-{
-unsigned long long Part1 = s.getPart1();
-int Part2 = s.getPart2(Value);
-if (!Value)
-{
-Solutions[Part2].insert (Part1);
-return;
-}
-if (CheckVisited(Part1, Part2)) return;
-if (s.V1 - 1 &gt;= 0 &amp;&amp; Value - c1 &gt;= 0)
-{
-s.V1--;
-Solution (s, Value - c1);
-s.V1&#43;&#43;;
-}
-if (s.V2 - 1 &gt;= 0 &amp;&amp; Value - c2 &gt;= 0)
-{
-s.V2--;
-Solution (s, Value - c2);
-s.V2&#43;&#43;;
-}
-if (s.V3 - 1 &gt;= 0 &amp;&amp; Value - c3 &gt;= 0)
-{
-s.V3--;
-Solution (s, Value - c3);
-s.V3&#43;&#43;;
-}
-if (s.V4 - 1 &gt;= 0 &amp;&amp; Value - c4 &gt;= 0)
-{
-s.V4--;
-Solution (s, Value - c4);
-s.V4&#43;&#43;;
-}
-}
-int main()
-{
-freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-int N;
-scanf (&#34;%d&#34;, &amp;N);
-State s (0, 0, 0, 0);
-while (N--)
-{
-scanf (&#34;%d%d%d%d%d&#34;, &amp;c1, &amp;c2, &amp;c3, &amp;c4, &amp;q);
-while (q--)
-{
-scanf (&#34;%d%d%d%d%d&#34;, &amp;s.V1, &amp;s.V2, &amp;s.V3, &amp;s.V4, &amp;v);
-Result = 0;
-States.clear();
-Solutions.clear();
-Solution (s, v);
-for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it&#43;&#43;)
-Result &#43;= it-&gt;second.size();
-printf (&#34;%lld\n&#34;, Result);
-}
-}
-}">
+  <meta itemprop="description" content="UVa 11259 - Coin Changing Again. Uses top-down dynamic programming with state encoding to find all possible ways to make change with limited coin counts. Includes solution with memoization.">
   <meta itemprop="datePublished" content="2013-04-21T10:58:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="366">
   <meta itemprop="keywords" content="Dynamic Programming,Sport Programming,UVa">
 
@@ -294,102 +103,7 @@ printf (&#34;%lld\n&#34;, Result);
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="UVa 11259 - Coin Changing Again">
-  <meta name="twitter:description" content="This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions? Problem Statement : http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2226 # include &lt;cstdio&gt;
-# include &lt;map&gt;
-# include &lt;set&gt;
-using namespace std;
-struct State
-{
-State (int v1, int v2, int v3, int v4)
-{
-V1 = v1; V2 = v2; V3 = v3; V4 = v4;
-}
-int getPart2(int Value = 0)
-{
-int Part2 = 0;
-Part2 = (V4 &gt;&gt; 13);
-Part2 |= (Value &lt;&lt; 4);
-return Part2;
-}
-unsigned long long getPart1()
-{
-unsigned long long Part1 = 0;
-Part1 = V1;
-Part1 |= (V2 &lt;&lt; 17);
-Part1 |= ((unsigned long long)V3 &lt;&lt; 34);
-Part1 |= ((unsigned long long)V4 &lt;&lt; 51);
-return Part1;
-}
-int V1, V2, V3, V4;
-};
-map &lt;int, set&lt;unsigned long long&gt; &gt; States;
-map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;
-int c1, c2, c3, c4, q, d1, d2, d3, d4, v;
-unsigned long long Result ;
-bool CheckVisited (unsigned long long Part1, int Part2)
-{
-if (States[Part2].count (Part1)) return true;
-States[Part2].insert (Part1);
-return false;
-}
-void Solution (State &amp; s, int Value)
-{
-unsigned long long Part1 = s.getPart1();
-int Part2 = s.getPart2(Value);
-if (!Value)
-{
-Solutions[Part2].insert (Part1);
-return;
-}
-if (CheckVisited(Part1, Part2)) return;
-if (s.V1 - 1 &gt;= 0 &amp;&amp; Value - c1 &gt;= 0)
-{
-s.V1--;
-Solution (s, Value - c1);
-s.V1&#43;&#43;;
-}
-if (s.V2 - 1 &gt;= 0 &amp;&amp; Value - c2 &gt;= 0)
-{
-s.V2--;
-Solution (s, Value - c2);
-s.V2&#43;&#43;;
-}
-if (s.V3 - 1 &gt;= 0 &amp;&amp; Value - c3 &gt;= 0)
-{
-s.V3--;
-Solution (s, Value - c3);
-s.V3&#43;&#43;;
-}
-if (s.V4 - 1 &gt;= 0 &amp;&amp; Value - c4 &gt;= 0)
-{
-s.V4--;
-Solution (s, Value - c4);
-s.V4&#43;&#43;;
-}
-}
-int main()
-{
-freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-int N;
-scanf (&#34;%d&#34;, &amp;N);
-State s (0, 0, 0, 0);
-while (N--)
-{
-scanf (&#34;%d%d%d%d%d&#34;, &amp;c1, &amp;c2, &amp;c3, &amp;c4, &amp;q);
-while (q--)
-{
-scanf (&#34;%d%d%d%d%d&#34;, &amp;s.V1, &amp;s.V2, &amp;s.V3, &amp;s.V4, &amp;v);
-Result = 0;
-States.clear();
-Solutions.clear();
-Solution (s, v);
-for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it&#43;&#43;)
-Result &#43;= it-&gt;second.size();
-printf (&#34;%lld\n&#34;, Result);
-}
-}
-}">
+  <meta name="twitter:description" content="UVa 11259 - Coin Changing Again. Uses top-down dynamic programming with state encoding to find all possible ways to make change with limited coin counts. Includes solution with memoization.">
 
 
   
@@ -522,7 +236,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions?  Problem Statement : <a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226">http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226</a> <br /></div><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;map&gt;<br /># include &lt;set&gt;<br />using namespace std;<br />struct State<br />{<br /> State (int v1, int v2, int v3, int v4)<br /> {<br />  V1 = v1; V2 = v2; V3 = v3; V4 = v4;<br /> }<br /> int getPart2(int Value = 0)<br /> {<br />  int Part2 = 0;<br />  Part2 = (V4 &gt;&gt; 13);<br />  Part2 |= (Value &lt;&lt; 4);<br />  return Part2;<br /> }<br /> unsigned long long getPart1()<br /> {<br />  unsigned long long Part1 = 0;<br />  Part1 = V1;<br />  Part1 |= (V2 &lt;&lt; 17);<br />  Part1 |= ((unsigned long long)V3 &lt;&lt; 34);<br />  Part1 |= ((unsigned long long)V4 &lt;&lt; 51);<br />  return Part1;<br /> }<br /> int V1, V2, V3, V4;<br />};<br />map &lt;int, set&lt;unsigned long long&gt; &gt; States;<br />map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;<br />int c1, c2, c3, c4, q, d1, d2, d3, d4, v;<br />unsigned long long Result ;<br />bool CheckVisited (unsigned long long Part1, int Part2)<br />{<br /> if (States[Part2].count (Part1)) return true;<br /> States[Part2].insert (Part1);<br /> return false;<br />}<br />void Solution (State & s, int Value)<br />{<br /> unsigned long long Part1 = s.getPart1();<br /> int Part2 = s.getPart2(Value);<br /> if (!Value)<br /> {<br />  Solutions[Part2].insert (Part1);<br />  return;<br /> }<br /> if (CheckVisited(Part1, Part2)) return;<br /> if (s.V1 - 1 &gt;= 0 && Value - c1 &gt;= 0)<br /> {<br />  s.V1--;<br />  Solution (s, Value - c1);<br />  s.V1++;<br /> }<br /> if (s.V2 - 1 &gt;= 0 && Value - c2 &gt;= 0)<br /> {<br />  s.V2--;<br />  Solution (s, Value - c2);<br />  s.V2++;<br /> }<br /> if (s.V3 - 1 &gt;= 0 && Value - c3 &gt;= 0)<br /> {<br />  s.V3--;<br />  Solution (s, Value - c3);<br />  s.V3++;<br /> }<br /> if (s.V4 - 1 &gt;= 0 && Value - c4 &gt;= 0)<br /> {<br />  s.V4--;<br />  Solution (s, Value - c4);<br />  s.V4++;<br /> }<br />}<br />int main()<br />{<br /> freopen ("Input.txt", "r", stdin);<br /> freopen ("Scratch.txt", "w", stdout);<br /> int N;<br /> scanf ("%d", &N);<br /> State s (0, 0, 0, 0);<br /> while (N--)<br /> {<br />  scanf ("%d%d%d%d%d", &c1, &c2, &c3, &c4, &q);<br />  while (q--)<br />  {<br />   scanf ("%d%d%d%d%d", &s.V1, &s.V2, &s.V3, &s.V4, &v);<br />   Result = 0;<br />   States.clear();<br />   Solutions.clear();<br />   Solution (s, v);<br />   for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it++)<br />    Result += it-&gt;second.size();<br />   printf ("%lld\n", Result);<br />  }<br /> }<br />}<br /></pre></div>
+<div>This took lot of my time and I managed to come up with this Top-down Dynamic Programming solution. This approach times out. Any suggestions?  Problem Statement : <a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226">http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2226</a> <br /></div><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;map&gt;<br /># include &lt;set&gt;<br />using namespace std;<br />struct State<br />{<br /> State (int v1, int v2, int v3, int v4)<br /> {<br />  V1 = v1; V2 = v2; V3 = v3; V4 = v4;<br /> }<br /> int getPart2(int Value = 0)<br /> {<br />  int Part2 = 0;<br />  Part2 = (V4 &gt;&gt; 13);<br />  Part2 |= (Value &lt;&lt; 4);<br />  return Part2;<br /> }<br /> unsigned long long getPart1()<br /> {<br />  unsigned long long Part1 = 0;<br />  Part1 = V1;<br />  Part1 |= (V2 &lt;&lt; 17);<br />  Part1 |= ((unsigned long long)V3 &lt;&lt; 34);<br />  Part1 |= ((unsigned long long)V4 &lt;&lt; 51);<br />  return Part1;<br /> }<br /> int V1, V2, V3, V4;<br />};<br />map &lt;int, set&lt;unsigned long long&gt; &gt; States;<br />map &lt;int, set&lt;unsigned long long&gt; &gt; Solutions;<br />int c1, c2, c3, c4, q, d1, d2, d3, d4, v;<br />unsigned long long Result ;<br />bool CheckVisited (unsigned long long Part1, int Part2)<br />{<br /> if (States[Part2].count (Part1)) return true;<br /> States[Part2].insert (Part1);<br /> return false;<br />}<br />void Solution (State & s, int Value)<br />{<br /> unsigned long long Part1 = s.getPart1();<br /> int Part2 = s.getPart2(Value);<br /> if (!Value)<br /> {<br />  Solutions[Part2].insert (Part1);<br />  return;<br /> }<br /> if (CheckVisited(Part1, Part2)) return;<br /> if (s.V1 - 1 &gt;= 0 && Value - c1 &gt;= 0)<br /> {<br />  s.V1--;<br />  Solution (s, Value - c1);<br />  s.V1++;<br /> }<br /> if (s.V2 - 1 &gt;= 0 && Value - c2 &gt;= 0)<br /> {<br />  s.V2--;<br />  Solution (s, Value - c2);<br />  s.V2++;<br /> }<br /> if (s.V3 - 1 &gt;= 0 && Value - c3 &gt;= 0)<br /> {<br />  s.V3--;<br />  Solution (s, Value - c3);<br />  s.V3++;<br /> }<br /> if (s.V4 - 1 &gt;= 0 && Value - c4 &gt;= 0)<br /> {<br />  s.V4--;<br />  Solution (s, Value - c4);<br />  s.V4++;<br /> }<br />}<br />int main()<br />{<br /> freopen ("Input.txt", "r", stdin);<br /> freopen ("Scratch.txt", "w", stdout);<br /> int N;<br /> scanf ("%d", &N);<br /> State s (0, 0, 0, 0);<br /> while (N--)<br /> {<br />  scanf ("%d%d%d%d%d", &c1, &c2, &c3, &c4, &q);<br />  while (q--)<br />  {<br />   scanf ("%d%d%d%d%d", &s.V1, &s.V2, &s.V3, &s.V4, &v);<br />   Result = 0;<br />   States.clear();<br />   Solutions.clear();<br />   Solution (s, v);<br />   for (map&lt;int, set&lt;unsigned long long&gt; &gt;::iterator it = Solutions.begin(); it != Solutions.end(); it++)<br />    Result += it-&gt;second.size();<br />   printf ("%lld\n", Result);<br />  }<br /> }<br />}<br /></pre></div>
 
     
   </article>

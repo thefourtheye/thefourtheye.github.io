@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-I tested these steps in RHEL 5.4 and Ubuntu 12.10.wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gztar -xvf node-v0.10.1.tar.gzcd node-v0.10.1./configure --prefix=&lt;a directory to which you have write and execute access&gt;makemake installCreate a file, say Test.js and add the following lines to itvar http = require(&#39;http&#39;);http.createServer(function (request, response) {&nbsp; response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;});&nbsp; response.end(&#39;Hello World\n&#39;);}).listen(8124);console.log(&#39;Server running at http://127.0.0.1:8124/&#39;);node Test.jsOpen a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.It is as simple as that. I did not hit any road block at all. They all went fine.">
+  <meta name="description" content="Step-by-step guide to install Node.js from source on Linux (tested on RHEL 5.4 and Ubuntu 12.10). Covers wget, configure, make, and verifying installation with a simple HTTP server example.">
   
 
   
@@ -60,19 +59,12 @@ I tested these steps in RHEL 5.4 and Ubuntu 12.10.wget http://nodejs.org/dist/v0
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/03/25/installing-nodejs-in-linux/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Installing node.js in Linux">
-  <meta property="og:description" content="I tested these steps in RHEL 5.4 and Ubuntu 12.10.
-wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gztar -xvf node-v0.10.1.tar.gzcd node-v0.10.1./configure --prefix=&lt;a directory to which you have write and execute access&gt;makemake installCreate a file, say Test.js and add the following lines to it
-var http = require(&#39;http&#39;);
-http.createServer(function (request, response) {
-  response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;});
-  response.end(&#39;Hello World\n&#39;);
-}).listen(8124);
-console.log(&#39;Server running at http://127.0.0.1:8124/&#39;);node Test.jsOpen a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.It is as simple as that. I did not hit any road block at all. They all went fine.">
+  <meta property="og:description" content="Step-by-step guide to install Node.js from source on Linux (tested on RHEL 5.4 and Ubuntu 12.10). Covers wget, configure, make, and verifying installation with a simple HTTP server example.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-03-25T20:59:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Node.js">
 
 
@@ -83,16 +75,9 @@ console.log(&#39;Server running at http://127.0.0.1:8124/&#39;);node Test.jsOpen
   
   
   <meta itemprop="name" content="Installing node.js in Linux">
-  <meta itemprop="description" content="I tested these steps in RHEL 5.4 and Ubuntu 12.10.
-wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gztar -xvf node-v0.10.1.tar.gzcd node-v0.10.1./configure --prefix=&lt;a directory to which you have write and execute access&gt;makemake installCreate a file, say Test.js and add the following lines to it
-var http = require(&#39;http&#39;);
-http.createServer(function (request, response) {
-  response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;});
-  response.end(&#39;Hello World\n&#39;);
-}).listen(8124);
-console.log(&#39;Server running at http://127.0.0.1:8124/&#39;);node Test.jsOpen a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.It is as simple as that. I did not hit any road block at all. They all went fine.">
+  <meta itemprop="description" content="Step-by-step guide to install Node.js from source on Linux (tested on RHEL 5.4 and Ubuntu 12.10). Covers wget, configure, make, and verifying installation with a simple HTTP server example.">
   <meta itemprop="datePublished" content="2013-03-25T20:59:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="93">
   <meta itemprop="keywords" content="Node.js">
 
@@ -116,14 +101,7 @@ console.log(&#39;Server running at http://127.0.0.1:8124/&#39;);node Test.jsOpen
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Installing node.js in Linux">
-  <meta name="twitter:description" content="I tested these steps in RHEL 5.4 and Ubuntu 12.10.
-wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gztar -xvf node-v0.10.1.tar.gzcd node-v0.10.1./configure --prefix=&lt;a directory to which you have write and execute access&gt;makemake installCreate a file, say Test.js and add the following lines to it
-var http = require(&#39;http&#39;);
-http.createServer(function (request, response) {
-  response.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;});
-  response.end(&#39;Hello World\n&#39;);
-}).listen(8124);
-console.log(&#39;Server running at http://127.0.0.1:8124/&#39;);node Test.jsOpen a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.It is as simple as that. I did not hit any road block at all. They all went fine.">
+  <meta name="twitter:description" content="Step-by-step guide to install Node.js from source on Linux (tested on RHEL 5.4 and Ubuntu 12.10). Covers wget, configure, make, and verifying installation with a simple HTTP server example.">
 
 
   
@@ -252,7 +230,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I tested these steps in RHEL 5.4 and Ubuntu 12.10.<br /><br /><ol style="text-align: left;"><li>wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gz</li><li>tar -xvf node-v0.10.1.tar.gz</li><li>cd node-v0.10.1</li><li>./configure --prefix=&lt;a directory to which you have write and execute access&gt;</li><li>make</li><li>make install</li><li>Create a file, say Test.js and add the following lines to it<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">var http = require('http');<br /><br />http.createServer(function (request, response) {<br />&nbsp; response.writeHead(200, {'Content-Type': 'text/plain'});<br />&nbsp; response.end('Hello World\n');<br />}).listen(8124);<br /><br />console.log('Server running at http://127.0.0.1:8124/');</span></li><li>node Test.js</li><li>Open a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.</li></ol><div style="text-align: left;">It is as simple as that. I did not hit any road block at all. They all went fine.</div></div></div>
+<div>I tested these steps in RHEL 5.4 and Ubuntu 12.10.<br /><br /><ol><li>wget http://nodejs.org/dist/v0.10.1/node-v0.10.1.tar.gz</li><li>tar -xvf node-v0.10.1.tar.gz</li><li>cd node-v0.10.1</li><li>./configure --prefix=&lt;a directory to which you have write and execute access&gt;</li><li>make</li><li>make install</li><li>Create a file, say Test.js and add the following lines to it<br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">var http = require('http');<br /><br />http.createServer(function (request, response) {<br />&nbsp; response.writeHead(200, {'Content-Type': 'text/plain'});<br />&nbsp; response.end('Hello World\n');<br />}).listen(8124);<br /><br />console.log('Server running at http://127.0.0.1:8124/');</span></li><li>node Test.js</li><li>Open a browser and visit http://127.0.0.1:8124/. If all went fine, you should see Hello World in the browser.</li></ol><div>It is as simple as that. I did not hit any road block at all. They all went fine.</div></div></div>
 
 
 

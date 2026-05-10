@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me  if I can solve Project Euler&#39;s Problem 18. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example, 81 2The maximum of 8&#43;1 and 8&#43;2 would be 10 and 10 would take 8&#39;s place. So we keep on doing this till we reach the top. For the sample input3  7 4 2 4 68 5 9 3After first Iteration,3   7  4 10 13 15After second Iteration,3  20 19After third  Iteration,23Here is the solution which I usedimport syssys.stdin  = open (&#34;Input.txt&#34;)sys.stdout = open (&#34;Output.txt&#34;, &#34;w&#34;)Array = []for line in sys.stdin: Array.append (map (int, line.split()))Array.reverse()temp_array = [0] * (len(Array) &#43; 1)for Row in Array: for i in xrange (len(Row)):  temp_array[i] = Row[i] &#43; max (temp_array[i], temp_array[i &#43; 1])print max (temp_array)This solution will solve Project Euler&#39;s Problem 67 as well.">
+  <meta name="description" content="Project Euler problems 18 and 67 - Maximum path sum. Classic DP problem: find the maximum sum from top to bottom of a triangular number pyramid by propagating maximums upward.">
   
 
   
@@ -60,41 +59,12 @@ Its been quite sometime since I did some coding. Last Sunday, one of the best fr
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/06/12/project-euler-problem-18-problem-67/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Project Euler - Problem 18, Problem 67 - Maximum path sum">
-  <meta property="og:description" content="Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me if I can solve Project Euler&#39;s Problem 18. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,
-8
-1 2
-The maximum of 8&#43;1 and 8&#43;2 would be 10 and 10 would take 8&#39;s place. So we keep on doing this till we reach the top. For the sample input
-3
-7 4
-2 4 6
-8 5 9 3
-After first Iteration,
-3
-7 4
-10 13 15
-After second Iteration,
-3
-20 19
-After third Iteration,
-23
-Here is the solution which I used
-import sys
-sys.stdin = open (&#34;Input.txt&#34;)
-sys.stdout = open (&#34;Output.txt&#34;, &#34;w&#34;)
-Array = []
-for line in sys.stdin: Array.append (map (int, line.split()))
-Array.reverse()
-temp_array = [0] * (len(Array) &#43; 1)
-for Row in Array:
-for i in xrange (len(Row)):
-temp_array[i] = Row[i] &#43; max (temp_array[i], temp_array[i &#43; 1])
-print max (temp_array)
-This solution will solve Project Euler&#39;s Problem 67 as well.">
+  <meta property="og:description" content="Project Euler problems 18 and 67 - Maximum path sum. Classic DP problem: find the maximum sum from top to bottom of a triangular number pyramid by propagating maximums upward.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-06-12T19:32:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Dynamic Programming">
     <meta property="article:tag" content="Project Euler">
     <meta property="article:tag" content="Sport Programming">
@@ -107,38 +77,9 @@ This solution will solve Project Euler&#39;s Problem 67 as well.">
   
   
   <meta itemprop="name" content="Project Euler - Problem 18, Problem 67 - Maximum path sum">
-  <meta itemprop="description" content="Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me if I can solve Project Euler&#39;s Problem 18. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,
-8
-1 2
-The maximum of 8&#43;1 and 8&#43;2 would be 10 and 10 would take 8&#39;s place. So we keep on doing this till we reach the top. For the sample input
-3
-7 4
-2 4 6
-8 5 9 3
-After first Iteration,
-3
-7 4
-10 13 15
-After second Iteration,
-3
-20 19
-After third Iteration,
-23
-Here is the solution which I used
-import sys
-sys.stdin = open (&#34;Input.txt&#34;)
-sys.stdout = open (&#34;Output.txt&#34;, &#34;w&#34;)
-Array = []
-for line in sys.stdin: Array.append (map (int, line.split()))
-Array.reverse()
-temp_array = [0] * (len(Array) &#43; 1)
-for Row in Array:
-for i in xrange (len(Row)):
-temp_array[i] = Row[i] &#43; max (temp_array[i], temp_array[i &#43; 1])
-print max (temp_array)
-This solution will solve Project Euler&#39;s Problem 67 as well.">
+  <meta itemprop="description" content="Project Euler problems 18 and 67 - Maximum path sum. Classic DP problem: find the maximum sum from top to bottom of a triangular number pyramid by propagating maximums upward.">
   <meta itemprop="datePublished" content="2013-06-12T19:32:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="211">
   <meta itemprop="keywords" content="Dynamic Programming,Project Euler,Sport Programming">
 
@@ -162,36 +103,7 @@ This solution will solve Project Euler&#39;s Problem 67 as well.">
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Project Euler - Problem 18, Problem 67 - Maximum path sum">
-  <meta name="twitter:description" content="Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me if I can solve Project Euler&#39;s Problem 18. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,
-8
-1 2
-The maximum of 8&#43;1 and 8&#43;2 would be 10 and 10 would take 8&#39;s place. So we keep on doing this till we reach the top. For the sample input
-3
-7 4
-2 4 6
-8 5 9 3
-After first Iteration,
-3
-7 4
-10 13 15
-After second Iteration,
-3
-20 19
-After third Iteration,
-23
-Here is the solution which I used
-import sys
-sys.stdin = open (&#34;Input.txt&#34;)
-sys.stdout = open (&#34;Output.txt&#34;, &#34;w&#34;)
-Array = []
-for line in sys.stdin: Array.append (map (int, line.split()))
-Array.reverse()
-temp_array = [0] * (len(Array) &#43; 1)
-for Row in Array:
-for i in xrange (len(Row)):
-temp_array[i] = Row[i] &#43; max (temp_array[i], temp_array[i &#43; 1])
-print max (temp_array)
-This solution will solve Project Euler&#39;s Problem 67 as well.">
+  <meta name="twitter:description" content="Project Euler problems 18 and 67 - Maximum path sum. Classic DP problem: find the maximum sum from top to bottom of a triangular number pyramid by propagating maximums upward.">
 
 
   
@@ -324,7 +236,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me  if I can solve <a href="http://projecteuler.net/problem=18">Project Euler's Problem 18</a>. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,<br /><br /><pre> 8<br />1 2<br /></pre><br />The maximum of 8+1 and 8+2 would be 10 and 10 would take 8's place. So we keep on doing this till we reach the top. For the sample input<br /><br /><pre>3<br />  7 4<br /> 2 4 6<br />8 5 9 3<br /></pre><br />After first Iteration,<br /><br /><pre>3<br />   7  4<br /> 10 13 15<br /></pre><br />After second Iteration,<br /><br /><pre>3<br />  20 19<br /></pre><br />After third  Iteration,<br /><br /><pre>23<br /></pre><br />Here is the solution which I used<br /><br /><pre class="prettyprint">import sys<br />sys.stdin  = open ("Input.txt")<br />sys.stdout = open ("Output.txt", "w")<br />Array = []<br />for line in sys.stdin: Array.append (map (int, line.split()))<br />Array.reverse()<br />temp_array = [0] * (len(Array) + 1)<br />for Row in Array:<br /> for i in xrange (len(Row)):<br />  temp_array[i] = Row[i] + max (temp_array[i], temp_array[i + 1])<br />print max (temp_array)<br /></pre><br />This solution will solve <a href="http://projecteuler.net/problem=67">Project Euler's Problem 67</a> as well.<br /><br /><br /><br /></div></div>
+<div>Its been quite sometime since I did some coding. Last Sunday, one of the best friends of mine (Clement Lloyd) asked me  if I can solve <a href="http://projecteuler.net/problem=18">Project Euler's Problem 18</a>. The problem name is Maximum path sum. Finally I got some time today and it is a simple Dynamic Programming Problem. The basic idea is to, keep on adding two adjacent elements of each row with the corresponding element in the previous row and keep the maximum of them. For example,<br /><br /><pre> 8<br />1 2<br /></pre><br />The maximum of 8+1 and 8+2 would be 10 and 10 would take 8's place. So we keep on doing this till we reach the top. For the sample input<br /><br /><pre>3<br />  7 4<br /> 2 4 6<br />8 5 9 3<br /></pre><br />After first Iteration,<br /><br /><pre>3<br />   7  4<br /> 10 13 15<br /></pre><br />After second Iteration,<br /><br /><pre>3<br />  20 19<br /></pre><br />After third  Iteration,<br /><br /><pre>23<br /></pre><br />Here is the solution which I used<br /><br /><pre class="prettyprint">import sys<br />sys.stdin  = open ("Input.txt")<br />sys.stdout = open ("Output.txt", "w")<br />Array = []<br />for line in sys.stdin: Array.append (map (int, line.split()))<br />Array.reverse()<br />temp_array = [0] * (len(Array) + 1)<br />for Row in Array:<br /> for i in xrange (len(Row)):<br />  temp_array[i] = Row[i] + max (temp_array[i], temp_array[i + 1])<br />print max (temp_array)<br /></pre><br />This solution will solve <a href="http://projecteuler.net/problem=67">Project Euler's Problem 67</a> as well.<br /><br /><br /><br /></div></div>
 
     
   </article>

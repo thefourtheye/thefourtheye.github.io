@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-These are the steps to be followed to install python-ldap in Ubuntu. At first,sudo apt-get install python-ldapwould throw the following errorIn file included from Modules/LDAPObject.c:4:0:Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install python-dev package  sudo apt-get install python-devAfter installing that we ll get the following error  In file included from Modules/LDAPObject.c:9:0:Modules/errors.h:8:18: fatal error: lber.h: No such file or directorycompilation terminated.To get past this error, we need to install ldap2-dev package  sudo apt-get install libldap2-devAfter installing that we ll get the following error  Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install libsasl2-dev package  sudo apt-get install libsasl2-devAfter that   sudo apt-get install python-ldapshould install python-ldap without any problems. ">
+  <meta name="description" content="Step-by-step guide to install python-ldap in Ubuntu. Details required packages: python-dev, libldap2-dev, and libsasl2-dev to resolve missing header file errors.">
   
 
   
@@ -60,19 +59,12 @@ These are the steps to be followed to install python-ldap in Ubuntu. At first,su
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/04/20/installing-python-ldap-in-ubuntu/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Installing python-ldap in Ubuntu">
-  <meta property="og:description" content="These are the steps to be followed to install python-ldap in Ubuntu. At first,sudo apt-get install python-ldapwould throw the following error
-In file included from Modules/LDAPObject.c:4:0:
-Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.
-error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install python-dev package sudo apt-get install python-devAfter installing that we ll get the following error In file included from Modules/LDAPObject.c:9:0:
-Modules/errors.h:8:18: fatal error: lber.h: No such file or directory
-compilation terminated.To get past this error, we need to install ldap2-dev package sudo apt-get install libldap2-devAfter installing that we ll get the following error Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.
-error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install libsasl2-dev package sudo apt-get install libsasl2-dev
-After that sudo apt-get install python-ldapshould install python-ldap without any problems.">
+  <meta property="og:description" content="Step-by-step guide to install python-ldap in Ubuntu. Details required packages: python-dev, libldap2-dev, and libsasl2-dev to resolve missing header file errors.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-04-20T09:36:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Ubuntu">
     <meta property="article:tag" content="Python">
 
@@ -84,16 +76,9 @@ After that sudo apt-get install python-ldapshould install python-ldap without an
   
   
   <meta itemprop="name" content="Installing python-ldap in Ubuntu">
-  <meta itemprop="description" content="These are the steps to be followed to install python-ldap in Ubuntu. At first,sudo apt-get install python-ldapwould throw the following error
-In file included from Modules/LDAPObject.c:4:0:
-Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.
-error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install python-dev package sudo apt-get install python-devAfter installing that we ll get the following error In file included from Modules/LDAPObject.c:9:0:
-Modules/errors.h:8:18: fatal error: lber.h: No such file or directory
-compilation terminated.To get past this error, we need to install ldap2-dev package sudo apt-get install libldap2-devAfter installing that we ll get the following error Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.
-error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install libsasl2-dev package sudo apt-get install libsasl2-dev
-After that sudo apt-get install python-ldapshould install python-ldap without any problems.">
+  <meta itemprop="description" content="Step-by-step guide to install python-ldap in Ubuntu. Details required packages: python-dev, libldap2-dev, and libsasl2-dev to resolve missing header file errors.">
   <meta itemprop="datePublished" content="2013-04-20T09:36:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="149">
   <meta itemprop="keywords" content="Ubuntu,Python">
 
@@ -117,14 +102,7 @@ After that sudo apt-get install python-ldapshould install python-ldap without an
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Installing python-ldap in Ubuntu">
-  <meta name="twitter:description" content="These are the steps to be followed to install python-ldap in Ubuntu. At first,sudo apt-get install python-ldapwould throw the following error
-In file included from Modules/LDAPObject.c:4:0:
-Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.
-error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install python-dev package sudo apt-get install python-devAfter installing that we ll get the following error In file included from Modules/LDAPObject.c:9:0:
-Modules/errors.h:8:18: fatal error: lber.h: No such file or directory
-compilation terminated.To get past this error, we need to install ldap2-dev package sudo apt-get install libldap2-devAfter installing that we ll get the following error Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.
-error: command &#39;gcc&#39; failed with exit status 1To get past this error, we need to install libsasl2-dev package sudo apt-get install libsasl2-dev
-After that sudo apt-get install python-ldapshould install python-ldap without any problems.">
+  <meta name="twitter:description" content="Step-by-step guide to install python-ldap in Ubuntu. Details required packages: python-dev, libldap2-dev, and libsasl2-dev to resolve missing header file errors.">
 
 
   
@@ -255,7 +233,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">These are the steps to be followed to install python-ldap in Ubuntu. At first,<pre>sudo apt-get install python-ldap</pre>would throw the following error<br /><pre>In file included from Modules/LDAPObject.c:4:0:<br />Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.<br />error: command 'gcc' failed with exit status 1</pre>To get past this error, we need to install python-dev package  <pre>sudo apt-get install python-dev</pre>After installing that we ll get the following error  <pre>In file included from Modules/LDAPObject.c:9:0:<br />Modules/errors.h:8:18: fatal error: lber.h: No such file or directory<br />compilation terminated.</pre>To get past this error, we need to install ldap2-dev package  <pre>sudo apt-get install libldap2-dev</pre>After installing that we ll get the following error  <pre>Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.<br />error: command 'gcc' failed with exit status 1</pre>To get past this error, we need to install libsasl2-dev package  <pre>sudo apt-get install libsasl2-dev<br /></pre>After that   <pre>sudo apt-get install python-ldap</pre>should install python-ldap without any problems. </div></div>
+<div>These are the steps to be followed to install python-ldap in Ubuntu. At first,<pre>sudo apt-get install python-ldap</pre>would throw the following error<br /><pre>In file included from Modules/LDAPObject.c:4:0:<br />Modules/common.h:10:20: fatal error: Python.h: No such file or directory compilation terminated.<br />error: command 'gcc' failed with exit status 1</pre>To get past this error, we need to install python-dev package  <pre>sudo apt-get install python-dev</pre>After installing that we ll get the following error  <pre>In file included from Modules/LDAPObject.c:9:0:<br />Modules/errors.h:8:18: fatal error: lber.h: No such file or directory<br />compilation terminated.</pre>To get past this error, we need to install ldap2-dev package  <pre>sudo apt-get install libldap2-dev</pre>After installing that we ll get the following error  <pre>Modules/LDAPObject.c:18:18: fatal error: sasl.h: No such file or directory compilation terminated.<br />error: command 'gcc' failed with exit status 1</pre>To get past this error, we need to install libsasl2-dev package  <pre>sudo apt-get install libsasl2-dev<br /></pre>After that   <pre>sudo apt-get install python-ldap</pre>should install python-ldap without any problems. </div></div>
 
     
   </article>

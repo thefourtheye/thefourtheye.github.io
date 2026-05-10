@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Today, I would like to share my solution to the Google Code Jam 2013&#39;s Round 1B&#39;s Osmos problem. These are the statistics for that problemSmall Input : 4668/7250 users correct (64%)Large Input : 3537/4578 users correct (77%)I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn&#39;t solve it during the contest).# include &lt;iostream&gt;# include &lt;cstdio&gt;# include &lt;algorithm&gt; using namespace std;int Sizes[101];int Total, A, N, Temp, Counter;int getDiff (int A, int B, int & C){    while (A &lt;= B)    {        C&#43;&#43;;        A &#43;= (A-1);    }    return A;}int Solve (int idx, int CurrentScore, int Changes){    if (idx == N) return Changes;    if (CurrentScore == 1)        return Solve (idx &#43; 1, CurrentScore, Changes &#43; 1);    else if (Sizes[idx] &lt; CurrentScore)        return Solve (idx &#43; 1, CurrentScore &#43; Sizes[idx], Changes);    else    {        int tChanges = 0;        int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) &#43; Sizes[idx];        int Min1 = Solve (idx &#43; 1, Diff, Changes &#43; tChanges);        if (Sizes[idx] &gt; CurrentScore)           return min (Solve (idx &#43; 1, CurrentScore, Changes&#43;1), Min1);        else return Min1;    }}int main(){    //freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);    //freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);    scanf (&#34;%d&#34;, &Total);    for (int i = 1; i &lt;= Total; i&#43;&#43;)    {        scanf (&#34;%d%d&#34;, &A, &N);        Temp = A;        Counter = 0;        for (int j = 0; j &lt; N; j&#43;&#43;) scanf (&#34;%d&#34;, &Sizes[j]);        sort (Sizes, Sizes &#43; N);        printf (&#34;Case #%d: %d\n&#34;, i, Solve (0, A, 0));    }}Here is the ideone URL http://ideone.com/g5qxYd where I tested the program with Google&#39;s inputs.   ">
+  <meta name="description" content="Google Code Jam 2013 Round 1B Osmos problem solution. Uses greedy algorithm with the ability to grow (add to your size) or remove enemies to find minimum changes needed.">
   
 
   
@@ -60,63 +59,12 @@ Today, I would like to share my solution to the Google Code Jam 2013&#39;s Round
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/05/08/google-code-jam-2013-round-1b-osmos/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Google Code Jam 2013 - Round 1B - Osmos">
-  <meta property="og:description" content="Today, I would like to share my solution to the Google Code Jam 2013&#39;s Round 1B&#39;s Osmos problem. These are the statistics for that problem
-Small Input : 4668/7250 users correct (64%)
-Large Input : 3537/4578 users correct (77%)
-I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn&#39;t solve it during the contest).
-# include &lt;iostream&gt;
-# include &lt;cstdio&gt;
-# include &lt;algorithm&gt;
-using namespace std;
-int Sizes[101];
-int Total, A, N, Temp, Counter;
-int getDiff (int A, int B, int &amp; C)
-{
-while (A &lt;= B)
-{
-C&#43;&#43;;
-A &#43;= (A-1);
-}
-return A;
-}
-int Solve (int idx, int CurrentScore, int Changes)
-{
-if (idx == N) return Changes;
-if (CurrentScore == 1)
-return Solve (idx &#43; 1, CurrentScore, Changes &#43; 1);
-else if (Sizes[idx] &lt; CurrentScore)
-return Solve (idx &#43; 1, CurrentScore &#43; Sizes[idx], Changes);
-else
-{
-int tChanges = 0;
-int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) &#43; Sizes[idx];
-int Min1 = Solve (idx &#43; 1, Diff, Changes &#43; tChanges);
-if (Sizes[idx] &gt; CurrentScore)
-return min (Solve (idx &#43; 1, CurrentScore, Changes&#43;1), Min1);
-else return Min1;
-}
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf (&#34;%d&#34;, &amp;Total);
-for (int i = 1; i &lt;= Total; i&#43;&#43;)
-{
-scanf (&#34;%d%d&#34;, &amp;A, &amp;N);
-Temp = A;
-Counter = 0;
-for (int j = 0; j &lt; N; j&#43;&#43;) scanf (&#34;%d&#34;, &amp;Sizes[j]);
-sort (Sizes, Sizes &#43; N);
-printf (&#34;Case #%d: %d\n&#34;, i, Solve (0, A, 0));
-}
-}
-Here is the ideone URL http://ideone.com/g5qxYd where I tested the program with Google&#39;s inputs.">
+  <meta property="og:description" content="Google Code Jam 2013 Round 1B Osmos problem solution. Uses greedy algorithm with the ability to grow (add to your size) or remove enemies to find minimum changes needed.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-05-08T08:21:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Google Code Jam">
     <meta property="article:tag" content="Sport Programming">
 
@@ -128,60 +76,9 @@ Here is the ideone URL http://ideone.com/g5qxYd where I tested the program with 
   
   
   <meta itemprop="name" content="Google Code Jam 2013 - Round 1B - Osmos">
-  <meta itemprop="description" content="Today, I would like to share my solution to the Google Code Jam 2013&#39;s Round 1B&#39;s Osmos problem. These are the statistics for that problem
-Small Input : 4668/7250 users correct (64%)
-Large Input : 3537/4578 users correct (77%)
-I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn&#39;t solve it during the contest).
-# include &lt;iostream&gt;
-# include &lt;cstdio&gt;
-# include &lt;algorithm&gt;
-using namespace std;
-int Sizes[101];
-int Total, A, N, Temp, Counter;
-int getDiff (int A, int B, int &amp; C)
-{
-while (A &lt;= B)
-{
-C&#43;&#43;;
-A &#43;= (A-1);
-}
-return A;
-}
-int Solve (int idx, int CurrentScore, int Changes)
-{
-if (idx == N) return Changes;
-if (CurrentScore == 1)
-return Solve (idx &#43; 1, CurrentScore, Changes &#43; 1);
-else if (Sizes[idx] &lt; CurrentScore)
-return Solve (idx &#43; 1, CurrentScore &#43; Sizes[idx], Changes);
-else
-{
-int tChanges = 0;
-int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) &#43; Sizes[idx];
-int Min1 = Solve (idx &#43; 1, Diff, Changes &#43; tChanges);
-if (Sizes[idx] &gt; CurrentScore)
-return min (Solve (idx &#43; 1, CurrentScore, Changes&#43;1), Min1);
-else return Min1;
-}
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf (&#34;%d&#34;, &amp;Total);
-for (int i = 1; i &lt;= Total; i&#43;&#43;)
-{
-scanf (&#34;%d%d&#34;, &amp;A, &amp;N);
-Temp = A;
-Counter = 0;
-for (int j = 0; j &lt; N; j&#43;&#43;) scanf (&#34;%d&#34;, &amp;Sizes[j]);
-sort (Sizes, Sizes &#43; N);
-printf (&#34;Case #%d: %d\n&#34;, i, Solve (0, A, 0));
-}
-}
-Here is the ideone URL http://ideone.com/g5qxYd where I tested the program with Google&#39;s inputs.">
+  <meta itemprop="description" content="Google Code Jam 2013 Round 1B Osmos problem solution. Uses greedy algorithm with the ability to grow (add to your size) or remove enemies to find minimum changes needed.">
   <meta itemprop="datePublished" content="2013-05-08T08:21:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="275">
   <meta itemprop="keywords" content="Google Code Jam,Sport Programming">
 
@@ -205,58 +102,7 @@ Here is the ideone URL http://ideone.com/g5qxYd where I tested the program with 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Google Code Jam 2013 - Round 1B - Osmos">
-  <meta name="twitter:description" content="Today, I would like to share my solution to the Google Code Jam 2013&#39;s Round 1B&#39;s Osmos problem. These are the statistics for that problem
-Small Input : 4668/7250 users correct (64%)
-Large Input : 3537/4578 users correct (77%)
-I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn&#39;t solve it during the contest).
-# include &lt;iostream&gt;
-# include &lt;cstdio&gt;
-# include &lt;algorithm&gt;
-using namespace std;
-int Sizes[101];
-int Total, A, N, Temp, Counter;
-int getDiff (int A, int B, int &amp; C)
-{
-while (A &lt;= B)
-{
-C&#43;&#43;;
-A &#43;= (A-1);
-}
-return A;
-}
-int Solve (int idx, int CurrentScore, int Changes)
-{
-if (idx == N) return Changes;
-if (CurrentScore == 1)
-return Solve (idx &#43; 1, CurrentScore, Changes &#43; 1);
-else if (Sizes[idx] &lt; CurrentScore)
-return Solve (idx &#43; 1, CurrentScore &#43; Sizes[idx], Changes);
-else
-{
-int tChanges = 0;
-int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) &#43; Sizes[idx];
-int Min1 = Solve (idx &#43; 1, Diff, Changes &#43; tChanges);
-if (Sizes[idx] &gt; CurrentScore)
-return min (Solve (idx &#43; 1, CurrentScore, Changes&#43;1), Min1);
-else return Min1;
-}
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf (&#34;%d&#34;, &amp;Total);
-for (int i = 1; i &lt;= Total; i&#43;&#43;)
-{
-scanf (&#34;%d%d&#34;, &amp;A, &amp;N);
-Temp = A;
-Counter = 0;
-for (int j = 0; j &lt; N; j&#43;&#43;) scanf (&#34;%d&#34;, &amp;Sizes[j]);
-sort (Sizes, Sizes &#43; N);
-printf (&#34;Case #%d: %d\n&#34;, i, Solve (0, A, 0));
-}
-}
-Here is the ideone URL http://ideone.com/g5qxYd where I tested the program with Google&#39;s inputs.">
+  <meta name="twitter:description" content="Google Code Jam 2013 Round 1B Osmos problem solution. Uses greedy algorithm with the ability to grow (add to your size) or remove enemies to find minimum changes needed.">
 
 
   
@@ -387,7 +233,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today, I would like to share my solution to the Google Code Jam 2013's Round 1B's Osmos problem. These are the statistics for that problem<br /><pre class="prettyprint">Small Input : 4668/7250 users correct (64%)<br />Large Input : 3537/4578 users correct (77%)<br /></pre>I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn't solve it during the contest).<br /><br /><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br /># include &lt;algorithm&gt;<br /> <br />using namespace std;<br />int Sizes[101];<br />int Total, A, N, Temp, Counter;<br />int getDiff (int A, int B, int & C)<br />{<br />    while (A <= B)<br />    {<br />        C++;<br />        A += (A-1);<br />    }<br />    return A;<br />}<br />int Solve (int idx, int CurrentScore, int Changes)<br />{<br />    if (idx == N) return Changes;<br />    if (CurrentScore == 1)<br />        return Solve (idx + 1, CurrentScore, Changes + 1);<br />    else if (Sizes[idx] < CurrentScore)<br />        return Solve (idx + 1, CurrentScore + Sizes[idx], Changes);<br />    else<br />    {<br />        int tChanges = 0;<br />        int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) + Sizes[idx];<br />        int Min1 = Solve (idx + 1, Diff, Changes + tChanges);<br />        if (Sizes[idx] > CurrentScore)<br />           return min (Solve (idx + 1, CurrentScore, Changes+1), Min1);<br />        else return Min1;<br />    }<br />}<br />int main()<br />{<br />    //freopen ("Input.txt", "r", stdin);<br />    //freopen ("Scratch.txt", "w", stdout);<br />    scanf ("%d", &Total);<br />    for (int i = 1; i <= Total; i++)<br />    {<br />        scanf ("%d%d", &A, &N);<br />        Temp = A;<br />        Counter = 0;<br />        for (int j = 0; j < N; j++) scanf ("%d", &Sizes[j]);<br />        sort (Sizes, Sizes + N);<br />        printf ("Case #%d: %d\n", i, Solve (0, A, 0));<br />    }<br />}<br /></pre>Here is the ideone URL <a href="http://ideone.com/g5qxYd">http://ideone.com/g5qxYd</a> where I tested the program with Google's inputs.   </div></div>
+<div>Today, I would like to share my solution to the Google Code Jam 2013's Round 1B's Osmos problem. These are the statistics for that problem<br /><pre class="prettyprint">Small Input : 4668/7250 users correct (64%)<br />Large Input : 3537/4578 users correct (77%)<br /></pre>I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn't solve it during the contest).<br /><br /><pre class="prettyprint"># include &lt;iostream&gt;<br /># include &lt;cstdio&gt;<br /># include &lt;algorithm&gt;<br /> <br />using namespace std;<br />int Sizes[101];<br />int Total, A, N, Temp, Counter;<br />int getDiff (int A, int B, int & C)<br />{<br />    while (A <= B)<br />    {<br />        C++;<br />        A += (A-1);<br />    }<br />    return A;<br />}<br />int Solve (int idx, int CurrentScore, int Changes)<br />{<br />    if (idx == N) return Changes;<br />    if (CurrentScore == 1)<br />        return Solve (idx + 1, CurrentScore, Changes + 1);<br />    else if (Sizes[idx] < CurrentScore)<br />        return Solve (idx + 1, CurrentScore + Sizes[idx], Changes);<br />    else<br />    {<br />        int tChanges = 0;<br />        int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) + Sizes[idx];<br />        int Min1 = Solve (idx + 1, Diff, Changes + tChanges);<br />        if (Sizes[idx] > CurrentScore)<br />           return min (Solve (idx + 1, CurrentScore, Changes+1), Min1);<br />        else return Min1;<br />    }<br />}<br />int main()<br />{<br />    //freopen ("Input.txt", "r", stdin);<br />    //freopen ("Scratch.txt", "w", stdout);<br />    scanf ("%d", &Total);<br />    for (int i = 1; i <= Total; i++)<br />    {<br />        scanf ("%d%d", &A, &N);<br />        Temp = A;<br />        Counter = 0;<br />        for (int j = 0; j < N; j++) scanf ("%d", &Sizes[j]);<br />        sort (Sizes, Sizes + N);<br />        printf ("Case #%d: %d\n", i, Solve (0, A, 0));<br />    }<br />}<br /></pre>Here is the ideone URL <a href="http://ideone.com/g5qxYd">http://ideone.com/g5qxYd</a> where I tested the program with Google's inputs.   </div></div>
 
     
   </article>

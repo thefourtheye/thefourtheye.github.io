@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Today I came across this interesting problem. Project Euler&#39;s Problem 5 - Smallest Multiple. 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the smallest positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.Brute Force Solutioni = 21while True:    flag = True    for X in xrange(1, 21):        if (i % X != 0):            flag = False            break    if flag:        print i        break    i &#43;= 1But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this page. Its high school maths. Optimized SolutionLCMLeast Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A & B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.Relation between LCM and GCDLCM(A,B) = (A * B)/GCD(A*B)Recursive Euclid&#39;s algorithm for GCDBase ConditionGCD(A, 0) = ARecurrence RelationGCD(A, B) = GCD (B, A mod B)So I modified my code like this and it produced the solution within 1 second.def GCD(M, N):    while (N != 0):        M, N = N, M % N    return MLCM = 1for X in xrange(1, 21):    LCM = (X * LCM)/GCD(X, LCM)print LCM">
+  <meta name="description" content="Project Euler Problem 5 - Smallest Multiple. Finds the smallest number divisible by all numbers 1-20. Compares brute force approach to optimized LCM-based solution using GCD.">
   
 
   
@@ -60,40 +59,12 @@ Today I came across this interesting problem. Project Euler&#39;s Problem 5 - Sm
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/06/15/project-euler-problem-5-smallest-multiple/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Project Euler - Problem 5 - Smallest multiple">
-  <meta property="og:description" content="Today I came across this interesting problem. Project Euler&#39;s Problem 5 - Smallest Multiple. 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the smallest positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.
-Brute Force Solution
-i = 21
-while True:
-flag = True
-for X in xrange(1, 21):
-if (i % X != 0):
-flag = False
-break
-if flag:
-print i
-break
-i &#43;= 1
-But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this page. Its high school maths. Optimized Solution
-LCMLeast Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A &amp; B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.
-Relation between LCM and GCDLCM(A,B) = (A * B)/GCD(A*B)
-Recursive Euclid&#39;s algorithm for GCDBase ConditionGCD(A, 0) = A
-Recurrence RelationGCD(A, B) = GCD (B, A mod B)
-So I modified my code like this and it produced the solution within 1 second.
-def GCD(M, N):
-while (N != 0):
-M, N = N, M % N
-return M
-LCM = 1
-for X in xrange(1, 21):
-LCM = (X * LCM)/GCD(X, LCM)
-print LCM">
+  <meta property="og:description" content="Project Euler Problem 5 - Smallest Multiple. Finds the smallest number divisible by all numbers 1-20. Compares brute force approach to optimized LCM-based solution using GCD.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-06-15T13:05:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Project Euler">
     <meta property="article:tag" content="Mathematics">
     <meta property="article:tag" content="Sport Programming">
@@ -106,37 +77,9 @@ print LCM">
   
   
   <meta itemprop="name" content="Project Euler - Problem 5 - Smallest multiple">
-  <meta itemprop="description" content="Today I came across this interesting problem. Project Euler&#39;s Problem 5 - Smallest Multiple. 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the smallest positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.
-Brute Force Solution
-i = 21
-while True:
-flag = True
-for X in xrange(1, 21):
-if (i % X != 0):
-flag = False
-break
-if flag:
-print i
-break
-i &#43;= 1
-But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this page. Its high school maths. Optimized Solution
-LCMLeast Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A &amp; B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.
-Relation between LCM and GCDLCM(A,B) = (A * B)/GCD(A*B)
-Recursive Euclid&#39;s algorithm for GCDBase ConditionGCD(A, 0) = A
-Recurrence RelationGCD(A, B) = GCD (B, A mod B)
-So I modified my code like this and it produced the solution within 1 second.
-def GCD(M, N):
-while (N != 0):
-M, N = N, M % N
-return M
-LCM = 1
-for X in xrange(1, 21):
-LCM = (X * LCM)/GCD(X, LCM)
-print LCM">
+  <meta itemprop="description" content="Project Euler Problem 5 - Smallest Multiple. Finds the smallest number divisible by all numbers 1-20. Compares brute force approach to optimized LCM-based solution using GCD.">
   <meta itemprop="datePublished" content="2013-06-15T13:05:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="372">
   <meta itemprop="keywords" content="Project Euler,Mathematics,Sport Programming">
 
@@ -160,35 +103,7 @@ print LCM">
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Project Euler - Problem 5 - Smallest multiple">
-  <meta name="twitter:description" content="Today I came across this interesting problem. Project Euler&#39;s Problem 5 - Smallest Multiple. 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the smallest positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.
-Brute Force Solution
-i = 21
-while True:
-flag = True
-for X in xrange(1, 21):
-if (i % X != 0):
-flag = False
-break
-if flag:
-print i
-break
-i &#43;= 1
-But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this page. Its high school maths. Optimized Solution
-LCMLeast Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A &amp; B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.
-Relation between LCM and GCDLCM(A,B) = (A * B)/GCD(A*B)
-Recursive Euclid&#39;s algorithm for GCDBase ConditionGCD(A, 0) = A
-Recurrence RelationGCD(A, B) = GCD (B, A mod B)
-So I modified my code like this and it produced the solution within 1 second.
-def GCD(M, N):
-while (N != 0):
-M, N = N, M % N
-return M
-LCM = 1
-for X in xrange(1, 21):
-LCM = (X * LCM)/GCD(X, LCM)
-print LCM">
+  <meta name="twitter:description" content="Project Euler Problem 5 - Smallest Multiple. Finds the smallest number divisible by all numbers 1-20. Compares brute force approach to optimized LCM-based solution using GCD.">
 
 
   
@@ -321,7 +236,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today I came across this interesting problem. <a href="http://projecteuler.net/problem=5">Project Euler's Problem 5 - Smallest Multiple</a>. <br /><br /><pre>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.<br /><br />What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?<br /></pre><br />Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the <b>smallest</b> positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated <code>2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690</code>, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.<br /><br /><h2>Brute Force Solution</h2><br /><pre class="prettyprint">i = 21<br />while True:<br />    flag = True<br />    for X in xrange(1, 21):<br />        if (i % X != 0):<br />            flag = False<br />            break<br />    if flag:<br />        print i<br />        break<br />    i += 1<br /></pre><br />But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this <a href="http://stackoverflow.com/a/13765976/1903116">page</a>. Its high school maths. <br /><br /><h2>Optimized Solution</h2><br /><h2>LCM</h2>Least Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A & B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.<br /><br /><h2>Relation between LCM and GCD</h2><code>LCM(A,B) = (A * B)/GCD(A*B)</code><br /><br /><h2>Recursive Euclid's algorithm for GCD</h2><h6>Base Condition</h6><code>GCD(A, 0) = A</code><br /><h6>Recurrence Relation</h6><code>GCD(A, B) = GCD (B, A mod B)</code><br /><br />So I modified my code like this and it produced the solution within 1 second.<br /><br /><pre class="prettyprint">def GCD(M, N):<br />    while (N != 0):<br />        M, N = N, M % N<br />    return M<br /><br />LCM = 1<br />for X in xrange(1, 21):<br />    LCM = (X * LCM)/GCD(X, LCM)<br />print LCM<br /></pre><br /><br /></div></div>
+<div>Today I came across this interesting problem. <a href="http://projecteuler.net/problem=5">Project Euler's Problem 5 - Smallest Multiple</a>. <br /><br /><pre>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.<br /><br />What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?<br /></pre><br />Definitely 20! (factorial of 20) is one, which will be evenly divisible by all of the numbers from 1 to 20. But the problem is to find the <b>smallest</b> positive number. So, I thought, it would be the number which is the product of all the prime numbers within 20. I calculated <code>2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 = 9699690</code>, which is wrong, since a number divisible by 2 might not be divisible by 4 and the same applies for other prime numbers and their multiples. After little thinking, I couldn’t get a way to find the solution. So I applied brute force and my solution got accepted.<br /><br /><h2>Brute Force Solution</h2><br /><pre class="prettyprint">i = 21<br />while True:<br />    flag = True<br />    for X in xrange(1, 21):<br />        if (i % X != 0):<br />            flag = False<br />            break<br />    if flag:<br />        print i<br />        break<br />    i += 1<br /></pre><br />But the problem with this solution is, the time taken to produce the result. It took 162 seconds or 2 minutes and 32 seconds. I wondered if I can improve my solution to produce solution in a reasonable amount of time. I couldn’t, so I googled and got this <a href="http://stackoverflow.com/a/13765976/1903116">page</a>. Its high school maths. <br /><br /><h2>Optimized Solution</h2><br /><h2>LCM</h2>Least Common Divisor (LCM) of numbers A and B, is a number which is the least number divisible by both A & B. Moreover LCM (A, B, C) = LCM (LCM (A, B), C) and so on.<br /><br /><h2>Relation between LCM and GCD</h2><code>LCM(A,B) = (A * B)/GCD(A*B)</code><br /><br /><h2>Recursive Euclid's algorithm for GCD</h2><h6>Base Condition</h6><code>GCD(A, 0) = A</code><br /><h6>Recurrence Relation</h6><code>GCD(A, B) = GCD (B, A mod B)</code><br /><br />So I modified my code like this and it produced the solution within 1 second.<br /><br /><pre class="prettyprint">def GCD(M, N):<br />    while (N != 0):<br />        M, N = N, M % N<br />    return M<br /><br />LCM = 1<br />for X in xrange(1, 21):<br />    LCM = (X * LCM)/GCD(X, LCM)<br />print LCM<br /></pre><br /><br /></div></div>
 
     
   </article>

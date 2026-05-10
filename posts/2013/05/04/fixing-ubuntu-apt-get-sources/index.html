@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-This script makes use of the mirror protocol.#!/bin/bashUbuntuCodeName=`lsb_release -c | cut -f 2`if [ ! -f /etc/apt/sources.list.Original ];then    mv /etc/apt/sources.list /etc/apt/sources.list.Original echo &#34;deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiversedeb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiversedeb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiversedeb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiversedeb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiversedeb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiversedeb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiversedeb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiversedeb     http://archive.canonical.com/ubuntu $UbuntuCodeName partnerdeb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partnerdeb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName maindeb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main&#34; &gt;&gt; /etc/apt/sources.listelse echo &#34;This script has been run already. Exiting&#34;fiAlternatively, you can run the following commands to update the sources automaticallywget -O UpdateAptSources.sh http://ideone.com/plain/UgsBelchmod 555 UpdateAptSources.shsudo ./UpdateAptSources.sh">
+  <meta name="description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
   
 
   
@@ -60,36 +59,12 @@ This script makes use of the mirror protocol.#!/bin/bashUbuntuCodeName=`lsb_rele
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/05/04/fixing-ubuntu-apt-get-sources/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Fixing Ubuntu apt-get sources">
-  <meta property="og:description" content="This script makes use of the mirror protocol.
-#!/bin/bash
-UbuntuCodeName=`lsb_release -c | cut -f 2`
-if [ ! -f /etc/apt/sources.list.Original ];
-then
-mv /etc/apt/sources.list /etc/apt/sources.list.Original
-echo &#34;deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse
-deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu $UbuntuCodeName partner
-deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner
-deb http://extras.ubuntu.com/ubuntu $UbuntuCodeName main
-deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main&#34; &gt;&gt; /etc/apt/sources.list
-else
-echo &#34;This script has been run already. Exiting&#34;
-fi
-Alternatively, you can run the following commands to update the sources automatically
-wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel
-chmod 555 UpdateAptSources.sh
-sudo ./UpdateAptSources.sh">
+  <meta property="og:description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-05-04T20:41:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Ubuntu">
 
 
@@ -100,33 +75,9 @@ sudo ./UpdateAptSources.sh">
   
   
   <meta itemprop="name" content="Fixing Ubuntu apt-get sources">
-  <meta itemprop="description" content="This script makes use of the mirror protocol.
-#!/bin/bash
-UbuntuCodeName=`lsb_release -c | cut -f 2`
-if [ ! -f /etc/apt/sources.list.Original ];
-then
-mv /etc/apt/sources.list /etc/apt/sources.list.Original
-echo &#34;deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse
-deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu $UbuntuCodeName partner
-deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner
-deb http://extras.ubuntu.com/ubuntu $UbuntuCodeName main
-deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main&#34; &gt;&gt; /etc/apt/sources.list
-else
-echo &#34;This script has been run already. Exiting&#34;
-fi
-Alternatively, you can run the following commands to update the sources automatically
-wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel
-chmod 555 UpdateAptSources.sh
-sudo ./UpdateAptSources.sh">
+  <meta itemprop="description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
   <meta itemprop="datePublished" content="2013-05-04T20:41:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="131">
   <meta itemprop="keywords" content="Ubuntu">
 
@@ -150,31 +101,7 @@ sudo ./UpdateAptSources.sh">
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Fixing Ubuntu apt-get sources">
-  <meta name="twitter:description" content="This script makes use of the mirror protocol.
-#!/bin/bash
-UbuntuCodeName=`lsb_release -c | cut -f 2`
-if [ ! -f /etc/apt/sources.list.Original ];
-then
-mv /etc/apt/sources.list /etc/apt/sources.list.Original
-echo &#34;deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse
-deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu $UbuntuCodeName partner
-deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner
-deb http://extras.ubuntu.com/ubuntu $UbuntuCodeName main
-deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main&#34; &gt;&gt; /etc/apt/sources.list
-else
-echo &#34;This script has been run already. Exiting&#34;
-fi
-Alternatively, you can run the following commands to update the sources automatically
-wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel
-chmod 555 UpdateAptSources.sh
-sudo ./UpdateAptSources.sh">
+  <meta name="twitter:description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
 
 
   
@@ -303,7 +230,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">This script makes use of the mirror protocol.<br /><pre class="prettyprint">#!/bin/bash<br /><br />UbuntuCodeName=`lsb_release -c | cut -f 2`<br />if [ ! -f /etc/apt/sources.list.Original ];<br />then<br />    mv /etc/apt/sources.list /etc/apt/sources.list.Original<br /> echo "deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br /><br />deb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br />deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br /><br />deb     http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br />deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br /><br />deb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName main<br />deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main" >> /etc/apt/sources.list<br />else<br /> echo "This script has been run already. Exiting"<br />fi<br /></pre><br />Alternatively, you can run the following commands to update the sources automatically<br /><pre class="prettyprint">wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel<br />chmod 555 UpdateAptSources.sh<br />sudo ./UpdateAptSources.sh<br /></pre></div></div>
+<div>This script makes use of the mirror protocol.<br /><pre class="prettyprint">#!/bin/bash<br /><br />UbuntuCodeName=`lsb_release -c | cut -f 2`<br />if [ ! -f /etc/apt/sources.list.Original ];<br />then<br />    mv /etc/apt/sources.list /etc/apt/sources.list.Original<br /> echo "deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br /><br />deb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br />deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br /><br />deb     http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br />deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br /><br />deb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName main<br />deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main" >> /etc/apt/sources.list<br />else<br /> echo "This script has been run already. Exiting"<br />fi<br /></pre><br />Alternatively, you can run the following commands to update the sources automatically<br /><pre class="prettyprint">wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel<br />chmod 555 UpdateAptSources.sh<br />sudo ./UpdateAptSources.sh<br /></pre></div></div>
 
     
   </article>

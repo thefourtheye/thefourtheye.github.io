@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Today, I saw this interesting problem. Timus - 1018 - Binary Apple TreeWhen I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple.  1. While reading Inputs find the total number of apples2. Find all the leaf Branches (I mean branches without any branches on them)3. Get the branch with the least number of apples and remove that4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) It was pretty straight forward to implement.# include &lt;cstdio&gt;# include &lt;map&gt;# include &lt;set&gt;# include &lt;bitset&gt;using namespace std;int N, Q;unsigned long long Total = 0;struct Branch{ bool operator&lt; (const Branch & branch) const {  if (this-&gt;Apples == branch.Apples)  {   if (this-&gt;Start == branch.Start)    return this-&gt;End &lt; branch.End;   return this-&gt;Start&lt; branch.Start;  }  return this-&gt;Apples &lt; branch.Apples; } Branch (int a, int b, int c){Start = a; End = b; Apples = c;} int Start, End, Apples;};set &lt;Branch&gt; Edges;bitset &lt;101&gt; Visited;map &lt;int, map &lt;int, int&gt; &gt; Tree;void FindEdges (int current, int parent){ //printf (&#34;%d\t%d\n&#34;, current, parent); if (Visited[current]) return; //printf (&#34;%d\t%d Not Visited\n&#34;, current, parent); Visited[current] = true; map&lt;int, int&gt;::iterator it = Tree[current].begin(); if (Tree[current].size() == 1)  Edges.insert (Branch (parent, current, Tree[parent][current])); else  for (; it != Tree[current].end(); it&#43;&#43;)   if (!Visited[it-&gt;first])    FindEdges (it-&gt;first, current);}int main(){ //freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin); //freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout); scanf (&#34;%d%d&#34;, &N, &Q); Q = N - 1 - Q; int A, B, C; for (int i = 0; i &lt; N - 1; i&#43;&#43;) {  scanf (&#34;%d%d%d&#34;, &A, &B, &C);  Tree[A][B] = C;  Tree[B][A] = C;  Total &#43;= C; } for (int i = 0; i &lt; Q; i&#43;&#43;) {  Edges.clear();  Visited.reset();  map&lt;int, int&gt;::iterator it1 = Tree[1].begin();  Visited[1] = true;  for (; it1 != Tree[1].end(); it1&#43;&#43;)   FindEdges(it1-&gt;first, 1);  //printf (&#34;Edges Size : %lu\n&#34;, Edges.size());  set&lt;Branch&gt;::iterator it = Edges.begin();  //printf (&#34;%d\t%d\t%d\n&#34;, it-&gt;Start, it-&gt;End, it-&gt;Apples);  Total -= it-&gt;Apples;  Tree[it-&gt;Start].erase (it-&gt;End);  Tree[it-&gt;End].erase (it-&gt;Start); } printf (&#34;%llu\n&#34;, Total);}However, this solution was failing so many times. Then I found the testcase for which this program was failing.  4 11 2 11 3 22 4 3The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. In the first iteration, it detects the branches 1 3 22 4 3and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch 2 4 3since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. Here is the DP solution which can really solve this problem and this got accepted by Timus.#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int N,Q, Tree[101][101], DP[101][101];int solve (int current, int parent, int q){ if (q &lt;= 0) return 0; int lindex = -1, rindex = -1; int & result = DP[current][q]; if (result != -1) return result; for (int i = 0; i &lt; 101; i&#43;&#43;)  if (Tree[current][i] != -1 && i != parent) {lindex = i; break;} for (int i = (lindex == -1?0:lindex&#43;1); i &lt; 101; i&#43;&#43;)  if (Tree[current][i] != -1 && i != parent) {rindex = i; break;} //printf (&#34;%d\t%d\t%d\t%d\t%d\n&#34;, current, parent, lindex, rindex, q); if (lindex == -1 || rindex == -1) return 0; for (int i = 0; i &lt;= q; i&#43;&#43;)  result = max (result, (i == q?0:Tree[current][lindex] &#43; solve(lindex, current, q - i - 1))   &#43; (i == 0?0:Tree[current][rindex] &#43; solve(rindex, current, i - 1))); //printf (&#34;Returning %d\n&#34;, result); return result;}int main(){ //freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin); //freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout); scanf(&#34;%d%d&#34;,&N,&Q); memset (Tree, -1, sizeof Tree); memset (DP, -1, sizeof DP); for (int i = 0; i &lt; N; i&#43;&#43;)  for (int j = 0, x, y, z; j &lt; N; j&#43;&#43;)  {   scanf (&#34;%d%d%d&#34;, &x, &y, &z);   Tree [x][y] = z;   Tree [y][x] = z;  } printf (&#34;%d\n&#34;, solve (1, 0, Q)); return 0;}Please write to me if you want me to explain this program. We can do that over chat. ">
+  <meta name="description" content="Timus problem 1018 - Binary Apple Tree. Uses dynamic programming to determine which branches to keep to maximize apples collected when only Q branches can be retained.">
   
 
   
@@ -60,136 +59,12 @@ Today, I saw this interesting problem. Timus - 1018 - Binary Apple TreeWhen I st
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/04/21/timus-1018-binary-apple-tree-dynamic/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Timus - 1018 - Binary Apple Tree - Dynamic Programming">
-  <meta property="og:description" content="Today, I saw this interesting problem. Timus - 1018 - Binary Apple Tree
-When I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple. 1. While reading Inputs find the total number of apples
-2. Find all the leaf Branches (I mean branches without any branches on them)
-3. Get the branch with the least number of apples and remove that
-4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) It was pretty straight forward to implement.
-# include &lt;cstdio&gt;
-# include &lt;map&gt;
-# include &lt;set&gt;
-# include &lt;bitset&gt;
-using namespace std;
-int N, Q;
-unsigned long long Total = 0;
-struct Branch
-{
-bool operator&lt; (const Branch &amp; branch) const
-{
-if (this-&gt;Apples == branch.Apples)
-{
-if (this-&gt;Start == branch.Start)
-return this-&gt;End &lt; branch.End;
-return this-&gt;Start&lt; branch.Start;
-}
-return this-&gt;Apples &lt; branch.Apples;
-}
-Branch (int a, int b, int c){Start = a; End = b; Apples = c;}
-int Start, End, Apples;
-};
-set &lt;Branch&gt; Edges;
-bitset &lt;101&gt; Visited;
-map &lt;int, map &lt;int, int&gt; &gt; Tree;
-void FindEdges (int current, int parent)
-{
-//printf (&#34;%d\t%d\n&#34;, current, parent);
-if (Visited[current]) return;
-//printf (&#34;%d\t%d Not Visited\n&#34;, current, parent);
-Visited[current] = true;
-map&lt;int, int&gt;::iterator it = Tree[current].begin();
-if (Tree[current].size() == 1)
-Edges.insert (Branch (parent, current, Tree[parent][current]));
-else
-for (; it != Tree[current].end(); it&#43;&#43;)
-if (!Visited[it-&gt;first])
-FindEdges (it-&gt;first, current);
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf (&#34;%d%d&#34;, &amp;N, &amp;Q);
-Q = N - 1 - Q;
-int A, B, C;
-for (int i = 0; i &lt; N - 1; i&#43;&#43;)
-{
-scanf (&#34;%d%d%d&#34;, &amp;A, &amp;B, &amp;C);
-Tree[A][B] = C;
-Tree[B][A] = C;
-Total &#43;= C;
-}
-for (int i = 0; i &lt; Q; i&#43;&#43;)
-{
-Edges.clear();
-Visited.reset();
-map&lt;int, int&gt;::iterator it1 = Tree[1].begin();
-Visited[1] = true;
-for (; it1 != Tree[1].end(); it1&#43;&#43;)
-FindEdges(it1-&gt;first, 1);
-//printf (&#34;Edges Size : %lu\n&#34;, Edges.size());
-set&lt;Branch&gt;::iterator it = Edges.begin();
-//printf (&#34;%d\t%d\t%d\n&#34;, it-&gt;Start, it-&gt;End, it-&gt;Apples);
-Total -= it-&gt;Apples;
-Tree[it-&gt;Start].erase (it-&gt;End);
-Tree[it-&gt;End].erase (it-&gt;Start);
-}
-printf (&#34;%llu\n&#34;, Total);
-}
-However, this solution was failing so many times. Then I found the testcase for which this program was failing. 4 1
-1 2 1
-1 3 2
-2 4 3
-The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. In the first iteration, it detects the branches 1 3 2
-2 4 3
-and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch 2 4 3
-since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. Here is the DP solution which can really solve this problem and this got accepted by Timus.
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int N,Q, Tree[101][101], DP[101][101];
-int solve (int current, int parent, int q)
-{
-if (q &lt;= 0) return 0;
-int lindex = -1, rindex = -1;
-int &amp; result = DP[current][q];
-if (result != -1) return result;
-for (int i = 0; i &lt; 101; i&#43;&#43;)
-if (Tree[current][i] != -1 &amp;&amp; i != parent) {lindex = i; break;}
-for (int i = (lindex == -1?0:lindex&#43;1); i &lt; 101; i&#43;&#43;)
-if (Tree[current][i] != -1 &amp;&amp; i != parent) {rindex = i; break;}
-//printf (&#34;%d\t%d\t%d\t%d\t%d\n&#34;, current, parent, lindex, rindex, q);
-if (lindex == -1 || rindex == -1) return 0;
-for (int i = 0; i &lt;= q; i&#43;&#43;)
-result = max (result, (i == q?0:Tree[current][lindex] &#43; solve(lindex, current, q - i - 1))
-&#43; (i == 0?0:Tree[current][rindex] &#43; solve(rindex, current, i - 1)));
-//printf (&#34;Returning %d\n&#34;, result);
-return result;
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf(&#34;%d%d&#34;,&amp;N,&amp;Q);
-memset (Tree, -1, sizeof Tree);
-memset (DP, -1, sizeof DP);
-for (int i = 0; i &lt; N; i&#43;&#43;)
-for (int j = 0, x, y, z; j &lt; N; j&#43;&#43;)
-{
-scanf (&#34;%d%d%d&#34;, &amp;x, &amp;y, &amp;z);
-Tree [x][y] = z;
-Tree [y][x] = z;
-}
-printf (&#34;%d\n&#34;, solve (1, 0, Q));
-return 0;
-}
-Please write to me if you want me to explain this program. We can do that over chat.">
+  <meta property="og:description" content="Timus problem 1018 - Binary Apple Tree. Uses dynamic programming to determine which branches to keep to maximize apples collected when only Q branches can be retained.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-04-21T23:00:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Dynamic Programming">
     <meta property="article:tag" content="Sport Programming">
     <meta property="article:tag" content="Timus">
@@ -202,133 +77,9 @@ Please write to me if you want me to explain this program. We can do that over c
   
   
   <meta itemprop="name" content="Timus - 1018 - Binary Apple Tree - Dynamic Programming">
-  <meta itemprop="description" content="Today, I saw this interesting problem. Timus - 1018 - Binary Apple Tree
-When I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple. 1. While reading Inputs find the total number of apples
-2. Find all the leaf Branches (I mean branches without any branches on them)
-3. Get the branch with the least number of apples and remove that
-4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) It was pretty straight forward to implement.
-# include &lt;cstdio&gt;
-# include &lt;map&gt;
-# include &lt;set&gt;
-# include &lt;bitset&gt;
-using namespace std;
-int N, Q;
-unsigned long long Total = 0;
-struct Branch
-{
-bool operator&lt; (const Branch &amp; branch) const
-{
-if (this-&gt;Apples == branch.Apples)
-{
-if (this-&gt;Start == branch.Start)
-return this-&gt;End &lt; branch.End;
-return this-&gt;Start&lt; branch.Start;
-}
-return this-&gt;Apples &lt; branch.Apples;
-}
-Branch (int a, int b, int c){Start = a; End = b; Apples = c;}
-int Start, End, Apples;
-};
-set &lt;Branch&gt; Edges;
-bitset &lt;101&gt; Visited;
-map &lt;int, map &lt;int, int&gt; &gt; Tree;
-void FindEdges (int current, int parent)
-{
-//printf (&#34;%d\t%d\n&#34;, current, parent);
-if (Visited[current]) return;
-//printf (&#34;%d\t%d Not Visited\n&#34;, current, parent);
-Visited[current] = true;
-map&lt;int, int&gt;::iterator it = Tree[current].begin();
-if (Tree[current].size() == 1)
-Edges.insert (Branch (parent, current, Tree[parent][current]));
-else
-for (; it != Tree[current].end(); it&#43;&#43;)
-if (!Visited[it-&gt;first])
-FindEdges (it-&gt;first, current);
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf (&#34;%d%d&#34;, &amp;N, &amp;Q);
-Q = N - 1 - Q;
-int A, B, C;
-for (int i = 0; i &lt; N - 1; i&#43;&#43;)
-{
-scanf (&#34;%d%d%d&#34;, &amp;A, &amp;B, &amp;C);
-Tree[A][B] = C;
-Tree[B][A] = C;
-Total &#43;= C;
-}
-for (int i = 0; i &lt; Q; i&#43;&#43;)
-{
-Edges.clear();
-Visited.reset();
-map&lt;int, int&gt;::iterator it1 = Tree[1].begin();
-Visited[1] = true;
-for (; it1 != Tree[1].end(); it1&#43;&#43;)
-FindEdges(it1-&gt;first, 1);
-//printf (&#34;Edges Size : %lu\n&#34;, Edges.size());
-set&lt;Branch&gt;::iterator it = Edges.begin();
-//printf (&#34;%d\t%d\t%d\n&#34;, it-&gt;Start, it-&gt;End, it-&gt;Apples);
-Total -= it-&gt;Apples;
-Tree[it-&gt;Start].erase (it-&gt;End);
-Tree[it-&gt;End].erase (it-&gt;Start);
-}
-printf (&#34;%llu\n&#34;, Total);
-}
-However, this solution was failing so many times. Then I found the testcase for which this program was failing. 4 1
-1 2 1
-1 3 2
-2 4 3
-The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. In the first iteration, it detects the branches 1 3 2
-2 4 3
-and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch 2 4 3
-since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. Here is the DP solution which can really solve this problem and this got accepted by Timus.
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int N,Q, Tree[101][101], DP[101][101];
-int solve (int current, int parent, int q)
-{
-if (q &lt;= 0) return 0;
-int lindex = -1, rindex = -1;
-int &amp; result = DP[current][q];
-if (result != -1) return result;
-for (int i = 0; i &lt; 101; i&#43;&#43;)
-if (Tree[current][i] != -1 &amp;&amp; i != parent) {lindex = i; break;}
-for (int i = (lindex == -1?0:lindex&#43;1); i &lt; 101; i&#43;&#43;)
-if (Tree[current][i] != -1 &amp;&amp; i != parent) {rindex = i; break;}
-//printf (&#34;%d\t%d\t%d\t%d\t%d\n&#34;, current, parent, lindex, rindex, q);
-if (lindex == -1 || rindex == -1) return 0;
-for (int i = 0; i &lt;= q; i&#43;&#43;)
-result = max (result, (i == q?0:Tree[current][lindex] &#43; solve(lindex, current, q - i - 1))
-&#43; (i == 0?0:Tree[current][rindex] &#43; solve(rindex, current, i - 1)));
-//printf (&#34;Returning %d\n&#34;, result);
-return result;
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf(&#34;%d%d&#34;,&amp;N,&amp;Q);
-memset (Tree, -1, sizeof Tree);
-memset (DP, -1, sizeof DP);
-for (int i = 0; i &lt; N; i&#43;&#43;)
-for (int j = 0, x, y, z; j &lt; N; j&#43;&#43;)
-{
-scanf (&#34;%d%d%d&#34;, &amp;x, &amp;y, &amp;z);
-Tree [x][y] = z;
-Tree [y][x] = z;
-}
-printf (&#34;%d\n&#34;, solve (1, 0, Q));
-return 0;
-}
-Please write to me if you want me to explain this program. We can do that over chat.">
+  <meta itemprop="description" content="Timus problem 1018 - Binary Apple Tree. Uses dynamic programming to determine which branches to keep to maximize apples collected when only Q branches can be retained.">
   <meta itemprop="datePublished" content="2013-04-21T23:00:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="750">
   <meta itemprop="keywords" content="Dynamic Programming,Sport Programming,Timus">
 
@@ -352,131 +103,7 @@ Please write to me if you want me to explain this program. We can do that over c
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Timus - 1018 - Binary Apple Tree - Dynamic Programming">
-  <meta name="twitter:description" content="Today, I saw this interesting problem. Timus - 1018 - Binary Apple Tree
-When I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple. 1. While reading Inputs find the total number of apples
-2. Find all the leaf Branches (I mean branches without any branches on them)
-3. Get the branch with the least number of apples and remove that
-4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) It was pretty straight forward to implement.
-# include &lt;cstdio&gt;
-# include &lt;map&gt;
-# include &lt;set&gt;
-# include &lt;bitset&gt;
-using namespace std;
-int N, Q;
-unsigned long long Total = 0;
-struct Branch
-{
-bool operator&lt; (const Branch &amp; branch) const
-{
-if (this-&gt;Apples == branch.Apples)
-{
-if (this-&gt;Start == branch.Start)
-return this-&gt;End &lt; branch.End;
-return this-&gt;Start&lt; branch.Start;
-}
-return this-&gt;Apples &lt; branch.Apples;
-}
-Branch (int a, int b, int c){Start = a; End = b; Apples = c;}
-int Start, End, Apples;
-};
-set &lt;Branch&gt; Edges;
-bitset &lt;101&gt; Visited;
-map &lt;int, map &lt;int, int&gt; &gt; Tree;
-void FindEdges (int current, int parent)
-{
-//printf (&#34;%d\t%d\n&#34;, current, parent);
-if (Visited[current]) return;
-//printf (&#34;%d\t%d Not Visited\n&#34;, current, parent);
-Visited[current] = true;
-map&lt;int, int&gt;::iterator it = Tree[current].begin();
-if (Tree[current].size() == 1)
-Edges.insert (Branch (parent, current, Tree[parent][current]));
-else
-for (; it != Tree[current].end(); it&#43;&#43;)
-if (!Visited[it-&gt;first])
-FindEdges (it-&gt;first, current);
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf (&#34;%d%d&#34;, &amp;N, &amp;Q);
-Q = N - 1 - Q;
-int A, B, C;
-for (int i = 0; i &lt; N - 1; i&#43;&#43;)
-{
-scanf (&#34;%d%d%d&#34;, &amp;A, &amp;B, &amp;C);
-Tree[A][B] = C;
-Tree[B][A] = C;
-Total &#43;= C;
-}
-for (int i = 0; i &lt; Q; i&#43;&#43;)
-{
-Edges.clear();
-Visited.reset();
-map&lt;int, int&gt;::iterator it1 = Tree[1].begin();
-Visited[1] = true;
-for (; it1 != Tree[1].end(); it1&#43;&#43;)
-FindEdges(it1-&gt;first, 1);
-//printf (&#34;Edges Size : %lu\n&#34;, Edges.size());
-set&lt;Branch&gt;::iterator it = Edges.begin();
-//printf (&#34;%d\t%d\t%d\n&#34;, it-&gt;Start, it-&gt;End, it-&gt;Apples);
-Total -= it-&gt;Apples;
-Tree[it-&gt;Start].erase (it-&gt;End);
-Tree[it-&gt;End].erase (it-&gt;Start);
-}
-printf (&#34;%llu\n&#34;, Total);
-}
-However, this solution was failing so many times. Then I found the testcase for which this program was failing. 4 1
-1 2 1
-1 3 2
-2 4 3
-The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. In the first iteration, it detects the branches 1 3 2
-2 4 3
-and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch 2 4 3
-since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. Here is the DP solution which can really solve this problem and this got accepted by Timus.
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int N,Q, Tree[101][101], DP[101][101];
-int solve (int current, int parent, int q)
-{
-if (q &lt;= 0) return 0;
-int lindex = -1, rindex = -1;
-int &amp; result = DP[current][q];
-if (result != -1) return result;
-for (int i = 0; i &lt; 101; i&#43;&#43;)
-if (Tree[current][i] != -1 &amp;&amp; i != parent) {lindex = i; break;}
-for (int i = (lindex == -1?0:lindex&#43;1); i &lt; 101; i&#43;&#43;)
-if (Tree[current][i] != -1 &amp;&amp; i != parent) {rindex = i; break;}
-//printf (&#34;%d\t%d\t%d\t%d\t%d\n&#34;, current, parent, lindex, rindex, q);
-if (lindex == -1 || rindex == -1) return 0;
-for (int i = 0; i &lt;= q; i&#43;&#43;)
-result = max (result, (i == q?0:Tree[current][lindex] &#43; solve(lindex, current, q - i - 1))
-&#43; (i == 0?0:Tree[current][rindex] &#43; solve(rindex, current, i - 1)));
-//printf (&#34;Returning %d\n&#34;, result);
-return result;
-}
-int main()
-{
-//freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-//freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);
-scanf(&#34;%d%d&#34;,&amp;N,&amp;Q);
-memset (Tree, -1, sizeof Tree);
-memset (DP, -1, sizeof DP);
-for (int i = 0; i &lt; N; i&#43;&#43;)
-for (int j = 0, x, y, z; j &lt; N; j&#43;&#43;)
-{
-scanf (&#34;%d%d%d&#34;, &amp;x, &amp;y, &amp;z);
-Tree [x][y] = z;
-Tree [y][x] = z;
-}
-printf (&#34;%d\n&#34;, solve (1, 0, Q));
-return 0;
-}
-Please write to me if you want me to explain this program. We can do that over chat.">
+  <meta name="twitter:description" content="Timus problem 1018 - Binary Apple Tree. Uses dynamic programming to determine which branches to keep to maximize apples collected when only Q branches can be retained.">
 
 
   
@@ -609,7 +236,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today, I saw this interesting problem. <br /><br /><a href="http://acm.timus.ru/problem.aspx?space=1&num=1018">Timus - 1018 - Binary Apple Tree</a><br /><br />When I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple.  <blockquote>1. While reading Inputs find the total number of apples<br />2. Find all the leaf Branches (I mean branches without any branches on them)<br />3. Get the branch with the least number of apples and remove that<br />4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) </blockquote>It was pretty straight forward to implement.<br /><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;map&gt;<br /># include &lt;set&gt;<br /># include &lt;bitset&gt;<br />using namespace std;<br />int N, Q;<br />unsigned long long Total = 0;<br />struct Branch<br />{<br /> bool operator&lt; (const Branch & branch) const<br /> {<br />  if (this-&gt;Apples == branch.Apples)<br />  {<br />   if (this-&gt;Start == branch.Start)<br />    return this-&gt;End &lt; branch.End;<br />   return this-&gt;Start&lt; branch.Start;<br />  }<br />  return this-&gt;Apples &lt; branch.Apples;<br /> }<br /> Branch (int a, int b, int c){Start = a; End = b; Apples = c;}<br /> int Start, End, Apples;<br />};<br />set &lt;Branch&gt; Edges;<br />bitset &lt;101&gt; Visited;<br />map &lt;int, map &lt;int, int&gt; &gt; Tree;<br />void FindEdges (int current, int parent)<br />{<br /> //printf ("%d\t%d\n", current, parent);<br /> if (Visited[current]) return;<br /> //printf ("%d\t%d Not Visited\n", current, parent);<br /> Visited[current] = true;<br /> map&lt;int, int&gt;::iterator it = Tree[current].begin();<br /> if (Tree[current].size() == 1)<br />  Edges.insert (Branch (parent, current, Tree[parent][current]));<br /> else<br />  for (; it != Tree[current].end(); it++)<br />   if (!Visited[it-&gt;first])<br />    FindEdges (it-&gt;first, current);<br />}<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> scanf ("%d%d", &N, &Q);<br /> Q = N - 1 - Q;<br /> int A, B, C;<br /> for (int i = 0; i &lt; N - 1; i++)<br /> {<br />  scanf ("%d%d%d", &A, &B, &C);<br />  Tree[A][B] = C;<br />  Tree[B][A] = C;<br />  Total += C;<br /> }<br /> for (int i = 0; i &lt; Q; i++)<br /> {<br />  Edges.clear();<br />  Visited.reset();<br />  map&lt;int, int&gt;::iterator it1 = Tree[1].begin();<br />  Visited[1] = true;<br />  for (; it1 != Tree[1].end(); it1++)<br />   FindEdges(it1-&gt;first, 1);<br />  //printf ("Edges Size : %lu\n", Edges.size());<br />  set&lt;Branch&gt;::iterator it = Edges.begin();<br />  //printf ("%d\t%d\t%d\n", it-&gt;Start, it-&gt;End, it-&gt;Apples);<br />  Total -= it-&gt;Apples;<br />  Tree[it-&gt;Start].erase (it-&gt;End);<br />  Tree[it-&gt;End].erase (it-&gt;Start);<br /> }<br /> printf ("%llu\n", Total);<br />}<br /></pre>However, this solution was failing so many times. Then I found the testcase for which this program was failing.  <pre class="prettyprint">4 1<br />1 2 1<br />1 3 2<br />2 4 3<br /><br /></pre>The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. <br />In the first iteration, it detects the branches <pre class="prettyprint">1 3 2<br />2 4 3<br /></pre>and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch <pre class="prettyprint">2 4 3<br /></pre>since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. <br /><br />Here is the DP solution which can really solve this problem and this got accepted by Timus.<br /><br /><pre class="prettyprint">#include &lt;cstdio&gt;<br />#include &lt;cstring&gt;<br />#include &lt;vector&gt;<br />#include &lt;algorithm&gt;<br /><br />using namespace std;<br /><br />int N,Q, Tree[101][101], DP[101][101];<br />int solve (int current, int parent, int q)<br />{<br /> if (q &lt;= 0) return 0;<br /> int lindex = -1, rindex = -1;<br /> int & result = DP[current][q];<br /> if (result != -1) return result;<br /> for (int i = 0; i &lt; 101; i++)<br />  if (Tree[current][i] != -1 && i != parent) {lindex = i; break;}<br /> for (int i = (lindex == -1?0:lindex+1); i &lt; 101; i++)<br />  if (Tree[current][i] != -1 && i != parent) {rindex = i; break;}<br /> //printf ("%d\t%d\t%d\t%d\t%d\n", current, parent, lindex, rindex, q);<br /> if (lindex == -1 || rindex == -1) return 0;<br /> for (int i = 0; i &lt;= q; i++)<br />  result = max (result, (i == q?0:Tree[current][lindex] + solve(lindex, current, q - i - 1))<br />   + (i == 0?0:Tree[current][rindex] + solve(rindex, current, i - 1)));<br /> //printf ("Returning %d\n", result);<br /> return result;<br />}<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> scanf("%d%d",&N,&Q);<br /> memset (Tree, -1, sizeof Tree);<br /> memset (DP, -1, sizeof DP);<br /> for (int i = 0; i &lt; N; i++)<br />  for (int j = 0, x, y, z; j &lt; N; j++)<br />  {<br />   scanf ("%d%d%d", &x, &y, &z);<br />   Tree [x][y] = z;<br />   Tree [y][x] = z;<br />  }<br /> printf ("%d\n", solve (1, 0, Q));<br /> return 0;<br />}<br /></pre>Please write to me if you want me to explain this program. We can do that over chat. </div></div>
+<div>Today, I saw this interesting problem. <br /><br /><a href="http://acm.timus.ru/problem.aspx?space=1&num=1018">Timus - 1018 - Binary Apple Tree</a><br /><br />When I started working on this, I didnt know why do we need Dynamic Programming to solve this. My idea was pretty simple.  <blockquote>1. While reading Inputs find the total number of apples<br />2. Find all the leaf Branches (I mean branches without any branches on them)<br />3. Get the branch with the least number of apples and remove that<br />4. Goto Step 2 until N - Q - 1 times. (N is the total number of enumerated points on the tree, Q is the number of branches to keep, Always there will be N - 1 branches on the binary tree. So N - Q - 1 will give the number of branches to be removed) </blockquote>It was pretty straight forward to implement.<br /><pre class="prettyprint"># include &lt;cstdio&gt;<br /># include &lt;map&gt;<br /># include &lt;set&gt;<br /># include &lt;bitset&gt;<br />using namespace std;<br />int N, Q;<br />unsigned long long Total = 0;<br />struct Branch<br />{<br /> bool operator&lt; (const Branch & branch) const<br /> {<br />  if (this-&gt;Apples == branch.Apples)<br />  {<br />   if (this-&gt;Start == branch.Start)<br />    return this-&gt;End &lt; branch.End;<br />   return this-&gt;Start&lt; branch.Start;<br />  }<br />  return this-&gt;Apples &lt; branch.Apples;<br /> }<br /> Branch (int a, int b, int c){Start = a; End = b; Apples = c;}<br /> int Start, End, Apples;<br />};<br />set &lt;Branch&gt; Edges;<br />bitset &lt;101&gt; Visited;<br />map &lt;int, map &lt;int, int&gt; &gt; Tree;<br />void FindEdges (int current, int parent)<br />{<br /> //printf ("%d\t%d\n", current, parent);<br /> if (Visited[current]) return;<br /> //printf ("%d\t%d Not Visited\n", current, parent);<br /> Visited[current] = true;<br /> map&lt;int, int&gt;::iterator it = Tree[current].begin();<br /> if (Tree[current].size() == 1)<br />  Edges.insert (Branch (parent, current, Tree[parent][current]));<br /> else<br />  for (; it != Tree[current].end(); it++)<br />   if (!Visited[it-&gt;first])<br />    FindEdges (it-&gt;first, current);<br />}<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> scanf ("%d%d", &N, &Q);<br /> Q = N - 1 - Q;<br /> int A, B, C;<br /> for (int i = 0; i &lt; N - 1; i++)<br /> {<br />  scanf ("%d%d%d", &A, &B, &C);<br />  Tree[A][B] = C;<br />  Tree[B][A] = C;<br />  Total += C;<br /> }<br /> for (int i = 0; i &lt; Q; i++)<br /> {<br />  Edges.clear();<br />  Visited.reset();<br />  map&lt;int, int&gt;::iterator it1 = Tree[1].begin();<br />  Visited[1] = true;<br />  for (; it1 != Tree[1].end(); it1++)<br />   FindEdges(it1-&gt;first, 1);<br />  //printf ("Edges Size : %lu\n", Edges.size());<br />  set&lt;Branch&gt;::iterator it = Edges.begin();<br />  //printf ("%d\t%d\t%d\n", it-&gt;Start, it-&gt;End, it-&gt;Apples);<br />  Total -= it-&gt;Apples;<br />  Tree[it-&gt;Start].erase (it-&gt;End);<br />  Tree[it-&gt;End].erase (it-&gt;Start);<br /> }<br /> printf ("%llu\n", Total);<br />}<br /></pre>However, this solution was failing so many times. Then I found the testcase for which this program was failing.  <pre class="prettyprint">4 1<br />1 2 1<br />1 3 2<br />2 4 3<br /><br /></pre>The above shown solution returns 1 as the result whereas the optimal result is 2. This approach is greedy approach I believe. <br />In the first iteration, it detects the branches <pre class="prettyprint">1 3 2<br />2 4 3<br /></pre>and removes the branch 1 3 2, since it has the least number of apples and in the next iteration it detects the following branch <pre class="prettyprint">2 4 3<br /></pre>since that is the only leaf branch available and it removes that, leaving us with the suboptimal solution 1. <br /><br />Here is the DP solution which can really solve this problem and this got accepted by Timus.<br /><br /><pre class="prettyprint">#include &lt;cstdio&gt;<br />#include &lt;cstring&gt;<br />#include &lt;vector&gt;<br />#include &lt;algorithm&gt;<br /><br />using namespace std;<br /><br />int N,Q, Tree[101][101], DP[101][101];<br />int solve (int current, int parent, int q)<br />{<br /> if (q &lt;= 0) return 0;<br /> int lindex = -1, rindex = -1;<br /> int & result = DP[current][q];<br /> if (result != -1) return result;<br /> for (int i = 0; i &lt; 101; i++)<br />  if (Tree[current][i] != -1 && i != parent) {lindex = i; break;}<br /> for (int i = (lindex == -1?0:lindex+1); i &lt; 101; i++)<br />  if (Tree[current][i] != -1 && i != parent) {rindex = i; break;}<br /> //printf ("%d\t%d\t%d\t%d\t%d\n", current, parent, lindex, rindex, q);<br /> if (lindex == -1 || rindex == -1) return 0;<br /> for (int i = 0; i &lt;= q; i++)<br />  result = max (result, (i == q?0:Tree[current][lindex] + solve(lindex, current, q - i - 1))<br />   + (i == 0?0:Tree[current][rindex] + solve(rindex, current, i - 1)));<br /> //printf ("Returning %d\n", result);<br /> return result;<br />}<br />int main()<br />{<br /> //freopen ("Input.txt", "r", stdin);<br /> //freopen ("Scratch.txt", "w", stdout);<br /> scanf("%d%d",&N,&Q);<br /> memset (Tree, -1, sizeof Tree);<br /> memset (DP, -1, sizeof DP);<br /> for (int i = 0; i &lt; N; i++)<br />  for (int j = 0, x, y, z; j &lt; N; j++)<br />  {<br />   scanf ("%d%d%d", &x, &y, &z);<br />   Tree [x][y] = z;<br />   Tree [y][x] = z;<br />  }<br /> printf ("%d\n", solve (1, 0, Q));<br /> return 0;<br />}<br /></pre>Please write to me if you want me to explain this program. We can do that over chat. </div></div>
 
     
   </article>

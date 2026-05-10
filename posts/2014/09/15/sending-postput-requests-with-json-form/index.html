@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this excellent Stackoverflow answer.var http = require(&#39;http&#39;);var options = {host: &#39;localhost&#39;,path: &#39;/users/1&#39;,port: 3000,method: &#39;PUT&#39;};var callback = function(response) {var str = &#39;&#39;;//another chunk of data has been recieved, so append it to `str`response.on(&#39;data&#39;, function(chunk) {str &#43;= chunk;});//the whole response has been recieved, so we just print it out hereresponse.on(&#39;end&#39;, function() {console.log(str);});};http.request(options, callback).end();This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path &#39;/users/1&#39;. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.var http = require(&#39;http&#39;);var bodyString = JSON.stringify({    username: &#39;thefourtheye&#39;,    password: &#39;********&#39;});var headers = {    &#39;Content-Type&#39;: &#39;application/json&#39;,    &#39;Content-Length&#39;: bodyString.length};var options = {    host: &#39;localhost&#39;,    path: &#39;/users/1&#39;,    port: 3000,    method: &#39;PUT&#39;,    headers: headers};// callback is same as in the above seen example.......http.request(options, callback).write(bodyString);What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this{&#34;username&#34;:&#34;thefourtheye&#34;,&#34;password&#34;:&#34;********&#34;}Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.Source: http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htmAs we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two &#39;headers&#39; in the &#39;options&#39; object. var headers = {    &#39;Content-Type&#39;: &#39;application/json&#39;,    &#39;Content-Length&#39;: bodyString.length};Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the &#39;ClientRequest&#39; object returned by the &#39;http.request&#39;, like this http.request(options, callback).write(bodyString);That is it :-)">
+  <meta name="description" content="Shows how to send POST/PUT requests with JSON body in Node.js using the http module. Covers setting Content-Type header and proper Content-Length for JSON.stringify payloads.">
   
 
   
@@ -60,59 +59,12 @@ Today one of my friends asked me to help him with sending a PUT request to a rem
   <meta property="og:url" content="https://thefourtheye.in/posts/2014/09/15/sending-postput-requests-with-json-form/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Sending POST/PUT requests, with JSON form body, in Node.js">
-  <meta property="og:description" content="Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this excellent Stackoverflow answer.var http = require(&#39;http&#39;);
-var options = {
-host: &#39;localhost&#39;,
-path: &#39;/users/1&#39;,
-port: 3000,
-method: &#39;PUT&#39;
-};
-var callback = function(response) {
-var str = &#39;&#39;;
-//another chunk of data has been recieved, so append it to `str`
-response.on(&#39;data&#39;, function(chunk) {
-str &#43;= chunk;
-});
-//the whole response has been recieved, so we just print it out here
-response.on(&#39;end&#39;, function() {
-console.log(str);
-});
-};
-http.request(options, callback).end();
-This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path &#39;/users/1&#39;. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.var http = require(&#39;http&#39;);
-var bodyString = JSON.stringify({
-username: &#39;thefourtheye&#39;,
-password: &#39;********&#39;
-});
-var headers = {
-&#39;Content-Type&#39;: &#39;application/json&#39;,
-&#39;Content-Length&#39;: bodyString.length
-};
-var options = {
-host: &#39;localhost&#39;,
-path: &#39;/users/1&#39;,
-port: 3000,
-method: &#39;PUT&#39;,
-headers: headers
-};
-// callback is same as in the above seen example.
-...
-...
-http.request(options, callback).write(bodyString);
-What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this{&#34;username&#34;:&#34;thefourtheye&#34;,&#34;password&#34;:&#34;********&#34;}
-Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.
-Source: http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm
-As we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two &#39;headers&#39; in the &#39;options&#39; object. var headers = {
-&#39;Content-Type&#39;: &#39;application/json&#39;,
-&#39;Content-Length&#39;: bodyString.length
-};
-Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the &#39;ClientRequest&#39; object returned by the &#39;http.request&#39;, like this http.request(options, callback).write(bodyString);
-That is it :-)">
+  <meta property="og:description" content="Shows how to send POST/PUT requests with JSON body in Node.js using the http module. Covers setting Content-Type header and proper Content-Length for JSON.stringify payloads.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2014-09-15T21:05:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Node.js">
 
 
@@ -123,56 +75,9 @@ That is it :-)">
   
   
   <meta itemprop="name" content="Sending POST/PUT requests, with JSON form body, in Node.js">
-  <meta itemprop="description" content="Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this excellent Stackoverflow answer.var http = require(&#39;http&#39;);
-var options = {
-host: &#39;localhost&#39;,
-path: &#39;/users/1&#39;,
-port: 3000,
-method: &#39;PUT&#39;
-};
-var callback = function(response) {
-var str = &#39;&#39;;
-//another chunk of data has been recieved, so append it to `str`
-response.on(&#39;data&#39;, function(chunk) {
-str &#43;= chunk;
-});
-//the whole response has been recieved, so we just print it out here
-response.on(&#39;end&#39;, function() {
-console.log(str);
-});
-};
-http.request(options, callback).end();
-This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path &#39;/users/1&#39;. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.var http = require(&#39;http&#39;);
-var bodyString = JSON.stringify({
-username: &#39;thefourtheye&#39;,
-password: &#39;********&#39;
-});
-var headers = {
-&#39;Content-Type&#39;: &#39;application/json&#39;,
-&#39;Content-Length&#39;: bodyString.length
-};
-var options = {
-host: &#39;localhost&#39;,
-path: &#39;/users/1&#39;,
-port: 3000,
-method: &#39;PUT&#39;,
-headers: headers
-};
-// callback is same as in the above seen example.
-...
-...
-http.request(options, callback).write(bodyString);
-What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this{&#34;username&#34;:&#34;thefourtheye&#34;,&#34;password&#34;:&#34;********&#34;}
-Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.
-Source: http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm
-As we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two &#39;headers&#39; in the &#39;options&#39; object. var headers = {
-&#39;Content-Type&#39;: &#39;application/json&#39;,
-&#39;Content-Length&#39;: bodyString.length
-};
-Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the &#39;ClientRequest&#39; object returned by the &#39;http.request&#39;, like this http.request(options, callback).write(bodyString);
-That is it :-)">
+  <meta itemprop="description" content="Shows how to send POST/PUT requests with JSON body in Node.js using the http module. Covers setting Content-Type header and proper Content-Length for JSON.stringify payloads.">
   <meta itemprop="datePublished" content="2014-09-15T21:05:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="433">
   <meta itemprop="keywords" content="Node.js">
 
@@ -196,54 +101,7 @@ That is it :-)">
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Sending POST/PUT requests, with JSON form body, in Node.js">
-  <meta name="twitter:description" content="Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this excellent Stackoverflow answer.var http = require(&#39;http&#39;);
-var options = {
-host: &#39;localhost&#39;,
-path: &#39;/users/1&#39;,
-port: 3000,
-method: &#39;PUT&#39;
-};
-var callback = function(response) {
-var str = &#39;&#39;;
-//another chunk of data has been recieved, so append it to `str`
-response.on(&#39;data&#39;, function(chunk) {
-str &#43;= chunk;
-});
-//the whole response has been recieved, so we just print it out here
-response.on(&#39;end&#39;, function() {
-console.log(str);
-});
-};
-http.request(options, callback).end();
-This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path &#39;/users/1&#39;. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.var http = require(&#39;http&#39;);
-var bodyString = JSON.stringify({
-username: &#39;thefourtheye&#39;,
-password: &#39;********&#39;
-});
-var headers = {
-&#39;Content-Type&#39;: &#39;application/json&#39;,
-&#39;Content-Length&#39;: bodyString.length
-};
-var options = {
-host: &#39;localhost&#39;,
-path: &#39;/users/1&#39;,
-port: 3000,
-method: &#39;PUT&#39;,
-headers: headers
-};
-// callback is same as in the above seen example.
-...
-...
-http.request(options, callback).write(bodyString);
-What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this{&#34;username&#34;:&#34;thefourtheye&#34;,&#34;password&#34;:&#34;********&#34;}
-Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.
-Source: http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm
-As we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two &#39;headers&#39; in the &#39;options&#39; object. var headers = {
-&#39;Content-Type&#39;: &#39;application/json&#39;,
-&#39;Content-Length&#39;: bodyString.length
-};
-Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the &#39;ClientRequest&#39; object returned by the &#39;http.request&#39;, like this http.request(options, callback).write(bodyString);
-That is it :-)">
+  <meta name="twitter:description" content="Shows how to send POST/PUT requests with JSON body in Node.js using the http module. Covers setting Content-Type header and proper Content-Length for JSON.stringify payloads.">
 
 
   
@@ -372,7 +230,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this <a href="http://stackoverflow.com/a/11298667/1903116">excellent Stackoverflow answer</a>.<pre class="prettyprint">var http = require('http');<br /><br />var options = {<br />host: 'localhost',<br />path: '/users/1',<br />port: 3000,<br />method: 'PUT'<br />};<br /><br />var callback = function(response) {<br />var str = '';<br /><br />//another chunk of data has been recieved, so append it to `str`<br />response.on('data', function(chunk) {<br />str += chunk;<br />});<br /><br />//the whole response has been recieved, so we just print it out here<br />response.on('end', function() {<br />console.log(str);<br />});<br />};<br /><br />http.request(options, callback).end();<br /></pre>This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path '/users/1'. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.<pre class="prettyprint">var http = require('http');<br /><br />var bodyString = JSON.stringify({<br />    username: 'thefourtheye',<br />    password: '********'<br />});<br /><br />var headers = {<br />    'Content-Type': 'application/json',<br />    'Content-Length': bodyString.length<br />};<br /><br />var options = {<br />    host: 'localhost',<br />    path: '/users/1',<br />    port: 3000,<br />    method: 'PUT',<br />    headers: headers<br />};<br /><br />// callback is same as in the above seen example.<br />...<br />...<br /><br />http.request(options, callback).write(bodyString);<br /></pre>What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this<pre class="prettyprint">{"username":"thefourtheye","password":"********"}<br /></pre>Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.<br /><br />Source: <a href="http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm">http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm</a><br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://www.tcpipguide.com/free/diagrams/httprequest.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://www.tcpipguide.com/free/diagrams/httprequest.png" /></a></div><br />As we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two 'headers' in the 'options' object. <pre class="prettyprint">var headers = {<br />    'Content-Type': 'application/json',<br />    'Content-Length': bodyString.length<br />};<br /></pre><br />Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the 'ClientRequest' object returned by the 'http.request', like this <pre class="prettyprint">http.request(options, callback).write(bodyString);<br /></pre>That is it :-)<br /></div></div>
+<div>Today one of my friends asked me to help him with sending a PUT request to a remote server, in Node.js. I started Googling and as usual I found this <a href="http://stackoverflow.com/a/11298667/1903116">excellent Stackoverflow answer</a>.<pre class="prettyprint">var http = require('http');<br /><br />var options = {<br />host: 'localhost',<br />path: '/users/1',<br />port: 3000,<br />method: 'PUT'<br />};<br /><br />var callback = function(response) {<br />var str = '';<br /><br />//another chunk of data has been recieved, so append it to `str`<br />response.on('data', function(chunk) {<br />str += chunk;<br />});<br /><br />//the whole response has been recieved, so we just print it out here<br />response.on('end', function() {<br />console.log(str);<br />});<br />};<br /><br />http.request(options, callback).end();<br /></pre>This works well. It creates a HTTP PUT request, to the server hosted at localhost on port 3000 and in the path '/users/1'. Now the interesting part is, normally, when we send PUT/POST requests, we used to send parameters. These parameters will be represented normally as key-value pairs. It will be easy to represent them in JSON format. So, the above code just needs few more changes to send the request with a JSON body.<pre class="prettyprint">var http = require('http');<br /><br />var bodyString = JSON.stringify({<br />    username: 'thefourtheye',<br />    password: '********'<br />});<br /><br />var headers = {<br />    'Content-Type': 'application/json',<br />    'Content-Length': bodyString.length<br />};<br /><br />var options = {<br />    host: 'localhost',<br />    path: '/users/1',<br />    port: 3000,<br />    method: 'PUT',<br />    headers: headers<br />};<br /><br />// callback is same as in the above seen example.<br />...<br />...<br /><br />http.request(options, callback).write(bodyString);<br /></pre>What we are actually doing here is, creating a JSON structure for the form body and then we are converting that to a valid JSON string. This is important, since we are sending the body as a JSON structure, it should conform to the JSON semantics. So, if you printed the bodyString, you would get something like this<pre class="prettyprint">{"username":"thefourtheye","password":"********"}<br /></pre>Now, we constructed the body string. But, how will we let the server know that the request is not over immediately after the HTTP Request line and the headers in the HTTP Request.<br /><br />Source: <a href="http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm">http://www.tcpipguide.com/free/t_HTTPRequestMessageFormat.htm</a><br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://www.tcpipguide.com/free/diagrams/httprequest.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://www.tcpipguide.com/free/diagrams/httprequest.png" /></a></div><br />As we see in the picture, after the headers section, there is the body section, which is where the body string we generated will be put in. But how will the web-server know the format of the body section and where it actually ends? That is why we put in two 'headers' in the 'options' object. <pre class="prettyprint">var headers = {<br />    'Content-Type': 'application/json',<br />    'Content-Length': bodyString.length<br />};<br /></pre><br />Here we specify the type of the body and the actual length of it. Okay, now that we specified the type and the length, how are we going to send the string? We simply write it to the 'ClientRequest' object returned by the 'http.request', like this <pre class="prettyprint">http.request(options, callback).write(bodyString);<br /></pre>That is it :-)<br /></div></div>
 
     
   </article>

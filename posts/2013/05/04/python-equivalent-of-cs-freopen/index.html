@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C&#43;&#43; like thisfreopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);freopen (&#34;Output.txt&#34;,&#34;w&#34;, stdout);Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don&#39;t have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don&#39;t like to type the input each and every time. So I store it once in a file and then write the results to another file.Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got this. I saw Greg Hewgill&#39;s answer which is like thisimport sys# parse command lineif file_name_given:    inf = open(file_name_given)else:    inf = sys.stdinThis assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do thisimport syssys.stdin  = open(&#34;Input.txt&#34;)sys.stdout = open(&#34;Output.txt&#34;)That&#39;s it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)">
+  <meta name="description" content="Shows how to redirect stdin and stdout in Python to work with files, similar to C&#39;s freopen(). Enables automating interactive programs in competitive programming.">
   
 
   
@@ -60,27 +59,12 @@ All I wanted to do is, to make python treat a file as stdin and another file as 
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/05/04/python-equivalent-of-cs-freopen/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Python equivalent of C&#39;s freopen">
-  <meta property="og:description" content="All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C&#43;&#43; like this
-freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-freopen (&#34;Output.txt&#34;,&#34;w&#34;, stdout);
-Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don&#39;t have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don&#39;t like to type the input each and every time. So I store it once in a file and then write the results to another file.
-Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got this. I saw Greg Hewgill&#39;s answer which is like this
-import sys
-# parse command line
-if file_name_given:
-inf = open(file_name_given)
-else:
-inf = sys.stdin
-This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this
-import sys
-sys.stdin = open(&#34;Input.txt&#34;)
-sys.stdout = open(&#34;Output.txt&#34;)
-That&#39;s it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)">
+  <meta property="og:description" content="Shows how to redirect stdin and stdout in Python to work with files, similar to C&#39;s freopen(). Enables automating interactive programs in competitive programming.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-05-04T07:40:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Python">
     <meta property="article:tag" content="Sport Programming">
 
@@ -92,24 +76,9 @@ That&#39;s it. I just replaced the stdin and stdout with two different files. No
   
   
   <meta itemprop="name" content="Python equivalent of C&#39;s freopen">
-  <meta itemprop="description" content="All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C&#43;&#43; like this
-freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-freopen (&#34;Output.txt&#34;,&#34;w&#34;, stdout);
-Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don&#39;t have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don&#39;t like to type the input each and every time. So I store it once in a file and then write the results to another file.
-Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got this. I saw Greg Hewgill&#39;s answer which is like this
-import sys
-# parse command line
-if file_name_given:
-inf = open(file_name_given)
-else:
-inf = sys.stdin
-This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this
-import sys
-sys.stdin = open(&#34;Input.txt&#34;)
-sys.stdout = open(&#34;Output.txt&#34;)
-That&#39;s it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)">
+  <meta itemprop="description" content="Shows how to redirect stdin and stdout in Python to work with files, similar to C&#39;s freopen(). Enables automating interactive programs in competitive programming.">
   <meta itemprop="datePublished" content="2013-05-04T07:40:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="256">
   <meta itemprop="keywords" content="Python,Sport Programming">
 
@@ -133,22 +102,7 @@ That&#39;s it. I just replaced the stdin and stdout with two different files. No
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Python equivalent of C&#39;s freopen">
-  <meta name="twitter:description" content="All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C&#43;&#43; like this
-freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);
-freopen (&#34;Output.txt&#34;,&#34;w&#34;, stdout);
-Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don&#39;t have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don&#39;t like to type the input each and every time. So I store it once in a file and then write the results to another file.
-Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got this. I saw Greg Hewgill&#39;s answer which is like this
-import sys
-# parse command line
-if file_name_given:
-inf = open(file_name_given)
-else:
-inf = sys.stdin
-This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this
-import sys
-sys.stdin = open(&#34;Input.txt&#34;)
-sys.stdout = open(&#34;Output.txt&#34;)
-That&#39;s it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)">
+  <meta name="twitter:description" content="Shows how to redirect stdin and stdout in Python to work with files, similar to C&#39;s freopen(). Enables automating interactive programs in competitive programming.">
 
 
   
@@ -279,7 +233,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C++ like this<br /><br /><pre class="prettyprint">freopen ("Input.txt", "r", stdin);<br />freopen ("Output.txt","w", stdout);<br /></pre><br />Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don't have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don't like to type the input each and every time. So I store it once in a file and then write the results to another file.<br /><br />Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got <a href="http://stackoverflow.com/questions/1744989/read-from-file-or-stdin/1745035?noredirect=1#comment23449563_1745035">this</a>. I saw Greg Hewgill's answer which is like this<br /><br /><pre class="prettyprint">import sys<br /># parse command line<br />if file_name_given:<br />    inf = open(file_name_given)<br />else:<br />    inf = sys.stdin<br /></pre><br />This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this<br /><br /><pre class="prettyprint">import sys<br /><br />sys.stdin  = open("Input.txt")<br />sys.stdout = open("Output.txt")<br /></pre><br />That's it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)<br /><br /><br /><br /></div></div>
+<div>All I wanted to do is, to make python treat a file as stdin and another file as stdout. This is possible in C and C++ like this<br /><br /><pre class="prettyprint">freopen ("Input.txt", "r", stdin);<br />freopen ("Output.txt","w", stdout);<br /></pre><br />Including these two lines at the beginning of main function, makes sure that all the read calls read from Input.txt and all the write calls write to Output.txt. We don't have to use fprintf and fscanf to read and write to a file anymore. printf and scanf itself are enough. This would be very useful, if we want to automate an interactive program. Almost all of Sport Programming solutions have these two lines. Because, I don't like to type the input each and every time. So I store it once in a file and then write the results to another file.<br /><br />Now, I wanted to do the same thing in Python, for Google Code Jam 2013. So started looking for way and I got <a href="http://stackoverflow.com/questions/1744989/read-from-file-or-stdin/1745035?noredirect=1#comment23449563_1745035">this</a>. I saw Greg Hewgill's answer which is like this<br /><br /><pre class="prettyprint">import sys<br /># parse command line<br />if file_name_given:<br />    inf = open(file_name_given)<br />else:<br />    inf = sys.stdin<br /></pre><br />This assigns stdin or a file to the variable inf. But then, I wanted to use standard library functions of Python like raw_input and input as well. So, I managed to do this<br /><br /><pre class="prettyprint">import sys<br /><br />sys.stdin  = open("Input.txt")<br />sys.stdout = open("Output.txt")<br /></pre><br />That's it. I just replaced the stdin and stdout with two different files. Now I am even able to use raw_input and input functions, without any trouble. Hope this helps... :)<br /><br /><br /><br /></div></div>
 
     
   </article>

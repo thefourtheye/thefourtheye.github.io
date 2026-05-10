@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension&gt;&gt;&gt; myMatrix = [[1, 100], [2, 200], [3, 300]]&gt;&gt;&gt; {key:value for key, value in myMatrix}{1: 100, 2: 200, 3: 300}Here we use unpacking from myMatrix list and we have used {} with key:value notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example">
+  <meta name="description" content="Python dictionary comprehensions from Python 3 backported to 2.7. Shows conversion from list of lists, conditional key/value expressions, and performance comparison to loops.">
   
 
   
@@ -60,16 +59,12 @@ Dictionary comprehensions were backported from Python 3.x to 2.7. I always have 
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/11/17/python-dictionary-comprehension/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Python Dictionary Comprehension">
-  <meta property="og:description" content="Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension
-&gt;&gt;&gt; myMatrix = [[1, 100], [2, 200], [3, 300]]
-&gt;&gt;&gt; {key:value for key, value in myMatrix}
-{1: 100, 2: 200, 3: 300}
-Here we use unpacking from myMatrix list and we have used {} with key:value notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example">
+  <meta property="og:description" content="Python dictionary comprehensions from Python 3 backported to 2.7. Shows conversion from list of lists, conditional key/value expressions, and performance comparison to loops.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-11-17T13:35:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Python">
 
 
@@ -80,13 +75,9 @@ Here we use unpacking from myMatrix list and we have used {} with key:value nota
   
   
   <meta itemprop="name" content="Python Dictionary Comprehension">
-  <meta itemprop="description" content="Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension
-&gt;&gt;&gt; myMatrix = [[1, 100], [2, 200], [3, 300]]
-&gt;&gt;&gt; {key:value for key, value in myMatrix}
-{1: 100, 2: 200, 3: 300}
-Here we use unpacking from myMatrix list and we have used {} with key:value notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example">
+  <meta itemprop="description" content="Python dictionary comprehensions from Python 3 backported to 2.7. Shows conversion from list of lists, conditional key/value expressions, and performance comparison to loops.">
   <meta itemprop="datePublished" content="2013-11-17T13:35:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="271">
   <meta itemprop="keywords" content="Python">
 
@@ -110,11 +101,7 @@ Here we use unpacking from myMatrix list and we have used {} with key:value nota
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Python Dictionary Comprehension">
-  <meta name="twitter:description" content="Dictionary comprehensions were backported from Python 3.x to 2.7. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension
-&gt;&gt;&gt; myMatrix = [[1, 100], [2, 200], [3, 300]]
-&gt;&gt;&gt; {key:value for key, value in myMatrix}
-{1: 100, 2: 200, 3: 300}
-Here we use unpacking from myMatrix list and we have used {} with key:value notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example">
+  <meta name="twitter:description" content="Python dictionary comprehensions from Python 3 backported to 2.7. Shows conversion from list of lists, conditional key/value expressions, and performance comparison to loops.">
 
 
   
@@ -243,7 +230,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on"><p>Dictionary comprehensions were <a href="http://docs.python.org/2.7/whatsnew/2.7.html#other-language-changes" target="_blank">backported from Python 3.x to 2.7</a>. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension</p><pre class="prettyprint">>>> myMatrix = [[1, 100], [2, 200], [3, 300]]<br />>>> {key:value for key, value in myMatrix}<br />{1: 100, 2: 200, 3: 300}<br /></pre><p>Here we use unpacking from <code>myMatrix</code> list and we have used <code>{}</code> with <code>key:value</code> notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example</p><pre class="prettyprint">>>> myMatrix = [[100, 100], [20, 200], [30, 300]]<br />>>> {(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}<br />{120: 20, 130: 30, 100: 20}<br /></pre><p>Here we use <a href="http://docs.python.org/2/reference/expressions.html#conditional-expressions" target="_blank">conditional expressions</a> to dynamically decide what the key and the value are going to be.</p><h2>Performance</h2><pre class="prettyprint">>>> def changeDict():<br />...     newDict = {}<br />...     for key, value in myMatrix:<br />...         newDict[(key + 100 if key < 100 else key)] = value/10 if value >= 200 else value/5<br />...     return newDict<br />...     <br />>>> from timeit import timeit<br />>>> timeit("{(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}", setup="from __main__ import myMatrix")<br />0.7076609134674072<br />>>> timeit("changeDict()", setup="from __main__ import myMatrix, changeDict")<br />0.7484149932861328<br /></pre><p>The use of comprehension is slightly faster than the function which adds keys and values to an existing dictionary. This difference will be significant when the <code>myMatrix</code> has huge amount of data.</p></div></div>
+<div><p>Dictionary comprehensions were <a href="http://docs.python.org/2.7/whatsnew/2.7.html#other-language-changes" target="_blank">backported from Python 3.x to 2.7</a>. I always have believed that they are very pythonic and functional way of programming. Whenever comprehension is used, mutation of mutable elements (set, dict, list etc) becomes unnecessary and that definitely improves the performance as well. Lets start with a simple dictionary comprehension</p><pre class="prettyprint">>>> myMatrix = [[1, 100], [2, 200], [3, 300]]<br />>>> {key:value for key, value in myMatrix}<br />{1: 100, 2: 200, 3: 300}<br /></pre><p>Here we use unpacking from <code>myMatrix</code> list and we have used <code>{}</code> with <code>key:value</code> notation. This way, we can easily convert a list of lists to a dictionary with dictionary comprehension. Lets look at a complicated example</p><pre class="prettyprint">>>> myMatrix = [[100, 100], [20, 200], [30, 300]]<br />>>> {(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}<br />{120: 20, 130: 30, 100: 20}<br /></pre><p>Here we use <a href="http://docs.python.org/2/reference/expressions.html#conditional-expressions" target="_blank">conditional expressions</a> to dynamically decide what the key and the value are going to be.</p><h2>Performance</h2><pre class="prettyprint">>>> def changeDict():<br />...     newDict = {}<br />...     for key, value in myMatrix:<br />...         newDict[(key + 100 if key < 100 else key)] = value/10 if value >= 200 else value/5<br />...     return newDict<br />...     <br />>>> from timeit import timeit<br />>>> timeit("{(key + 100 if key < 100 else key):(value/10 if value >= 200 else value/5) for key, value in myMatrix}", setup="from __main__ import myMatrix")<br />0.7076609134674072<br />>>> timeit("changeDict()", setup="from __main__ import myMatrix, changeDict")<br />0.7484149932861328<br /></pre><p>The use of comprehension is slightly faster than the function which adds keys and values to an existing dictionary. This difference will be significant when the <code>myMatrix</code> has huge amount of data.</p></div></div>
 
     
   </article>

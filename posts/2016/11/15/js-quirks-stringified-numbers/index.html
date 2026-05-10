@@ -7,16 +7,7 @@
 
   
   
-  <meta name="description" content="When I was working on Node.js PR 9492, this comment
-
-This should probably test for a wider range of values. test/parallel/test-net-internal.js has some good examples.
-
-made me look at that file. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.
-const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF &#43; 1, Infinity,
-             -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;,
-             &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;];
-
-I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this">
+  <meta name="description" content="JavaScript quirk: stringified negative binary, octal, and hex numbers like &#39;-0x1&#39; return NaN when converted to numbers because only decimal literals can have signs per ECMAScript spec.">
   
 
   
@@ -68,16 +59,13 @@ I got curious as I have never used them before, I just wanted to see their corre
   <meta property="og:url" content="https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="JS Quirks: stringified numbers">
-  <meta property="og:description" content="When I was working on Node.js PR 9492, this comment
-This should probably test for a wider range of values. test/parallel/test-net-internal.js has some good examples.
-made me look at that file. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.
-const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF &#43; 1, Infinity, -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;, &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;]; I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this">
+  <meta property="og:description" content="JavaScript quirk: stringified negative binary, octal, and hex numbers like &#39;-0x1&#39; return NaN when converted to numbers because only decimal literals can have signs per ECMAScript spec.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2016-11-15T00:38:30+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
-    <meta property="article:tag" content="Javascript">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
+    <meta property="article:tag" content="JavaScript">
     <meta property="article:tag" content="Quirks">
 
 
@@ -88,14 +76,11 @@ const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF &#43; 1, Infinity, -In
   
   
   <meta itemprop="name" content="JS Quirks: stringified numbers">
-  <meta itemprop="description" content="When I was working on Node.js PR 9492, this comment
-This should probably test for a wider range of values. test/parallel/test-net-internal.js has some good examples.
-made me look at that file. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.
-const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF &#43; 1, Infinity, -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;, &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;]; I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this">
+  <meta itemprop="description" content="JavaScript quirk: stringified negative binary, octal, and hex numbers like &#39;-0x1&#39; return NaN when converted to numbers because only decimal literals can have signs per ECMAScript spec.">
   <meta itemprop="datePublished" content="2016-11-15T00:38:30+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="354">
-  <meta itemprop="keywords" content="Javascript,Quirks">
+  <meta itemprop="keywords" content="JavaScript,Quirks">
 
   
   
@@ -117,10 +102,7 @@ const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF &#43; 1, Infinity, -In
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS Quirks: stringified numbers">
-  <meta name="twitter:description" content="When I was working on Node.js PR 9492, this comment
-This should probably test for a wider range of values. test/parallel/test-net-internal.js has some good examples.
-made me look at that file. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.
-const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF &#43; 1, Infinity, -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;, &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;]; I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this">
+  <meta name="twitter:description" content="JavaScript quirk: stringified negative binary, octal, and hex numbers like &#39;-0x1&#39; return NaN when converted to numbers because only decimal literals can have signs per ECMAScript spec.">
 
 
   

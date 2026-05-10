@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.As stated here,http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;)web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)To get just the version, you can do&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;).version&#39;0.37&#39;">
+  <meta name="description" content="Shows how to check Python package versions at runtime using pkg_resources. Demonstrates getting both the full distribution object and just the version string.">
   
 
   
@@ -60,19 +59,12 @@ I have always wanted to check the version of the python packages which I am usin
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/03/30/check-python-package-version-in-program/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Check python package version in program">
-  <meta property="og:description" content="I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.
-As stated here,
-http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime
-&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;)
-web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)
-To get just the version, you can do
-&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;).version
-&#39;0.37&#39;">
+  <meta property="og:description" content="Shows how to check Python package versions at runtime using pkg_resources. Demonstrates getting both the full distribution object and just the version string.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-03-30T09:31:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Python">
 
 
@@ -83,16 +75,9 @@ To get just the version, you can do
   
   
   <meta itemprop="name" content="Check python package version in program">
-  <meta itemprop="description" content="I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.
-As stated here,
-http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime
-&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;)
-web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)
-To get just the version, you can do
-&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;).version
-&#39;0.37&#39;">
+  <meta itemprop="description" content="Shows how to check Python package versions at runtime using pkg_resources. Demonstrates getting both the full distribution object and just the version string.">
   <meta itemprop="datePublished" content="2013-03-30T09:31:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="44">
   <meta itemprop="keywords" content="Python">
 
@@ -116,14 +101,7 @@ To get just the version, you can do
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Check python package version in program">
-  <meta name="twitter:description" content="I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.
-As stated here,
-http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime
-&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;)
-web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)
-To get just the version, you can do
-&gt;&gt;&gt; pkg_resources.get_distribution(&#39;web.py&#39;).version
-&#39;0.37&#39;">
+  <meta name="twitter:description" content="Shows how to check Python package versions at runtime using pkg_resources. Demonstrates getting both the full distribution object and just the version string.">
 
 
   
@@ -252,7 +230,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.<br /><br />As stated here,<br /><br /><a href="http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime">http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime</a><br /><pre class="prettyprint"><br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; pkg_resources.get_distribution('web.py')<br />web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)</span></pre><div><br /></div><div>To get just the version, you can do</div><div><br /></div><div><pre class="prettyprint"><br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; pkg_resources.get_distribution('web.py').version<br />'0.37'</span></pre></div></div></div>
+<div>I have always wanted to check the version of the python packages which I am using. Today I found a way to find that.<br /><br />As stated here,<br /><br /><a href="http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime">http://stackoverflow.com/questions/710609/checking-python-module-version-at-runtime</a><br /><pre class="prettyprint"><br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; pkg_resources.get_distribution('web.py')<br />web.py 0.37 (/usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg)</span></pre><div><br /></div><div>To get just the version, you can do</div><div><br /></div><div><pre class="prettyprint"><br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; pkg_resources.get_distribution('web.py').version<br />'0.37'</span></pre></div></div></div>
 
 
 

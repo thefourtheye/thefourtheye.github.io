@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-Today, again I wanted to change my screen&#39;s display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post Ubuntu scaling the display (Zooming).➜  ~  xrandrScreen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm    1280x1024      60.0*&#43;   75.0      1152x864       75.0      1024x768       75.0     60.0      800x600        75.0     60.3      640x480        75.0     59.9  LVDS-0 connected (normal left inverted right x axis y axis)    1600x900       60.0 &#43;   40.0  DP-0 connected primary 1280x1024&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm    1280x1024      60.0*&#43;   75.0      1152x864       75.0      1024x768       75.0     60.0      800x600        75.0     60.3      640x480        75.0     59.9  DP-1 disconnected (normal left inverted right x axis y axis)HDMI-0 disconnected (normal left inverted right x axis y axis)DP-2 disconnected (normal left inverted right x axis y axis)DP-3 disconnected (normal left inverted right x axis y axis)➜  ~  xrandr --output DP-0 --scale 1.25x1.25➜  ~  xrandr --output VGA-0 --scale 1.25x1.25➜  ~  xrandrScreen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm    1280x1024      60.0*&#43;   75.0      1152x864       75.0      1024x768       75.0     60.0      800x600        75.0     60.3      640x480        75.0     59.9  LVDS-0 connected (normal left inverted right x axis y axis)    1600x900       60.0 &#43;   40.0  DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm    1280x1024      60.0*&#43;   75.0      1152x864       75.0      1024x768       75.0     60.0      800x600        75.0     60.3      640x480        75.0     59.9  DP-1 disconnected (normal left inverted right x axis y axis)HDMI-0 disconnected (normal left inverted right x axis y axis)DP-2 disconnected (normal left inverted right x axis y axis)DP-3 disconnected (normal left inverted right x axis y axis)Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm...Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mmIndividual screen&#39;s resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen&#39;s position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked➜  ~  xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0➜  ~  xrandrScreen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm    1280x1024      60.0*&#43;   75.0      1152x864       75.0      1024x768       75.0     60.0      800x600        75.0     60.3      640x480        75.0     59.9  LVDS-0 connected (normal left inverted right x axis y axis)    1600x900       60.0 &#43;   40.0  DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm    1280x1024      60.0*&#43;   75.0      1152x864       75.0      1024x768       75.0     60.0      800x600        75.0     60.3      640x480        75.0     59.9  DP-1 disconnected (normal left inverted right x axis y axis)HDMI-0 disconnected (normal left inverted right x axis y axis)DP-2 disconnected (normal left inverted right x axis y axis)DP-3 disconnected (normal left inverted right x axis y axis)Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm...">
+  <meta name="description" content="Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.">
   
 
   
@@ -60,53 +59,12 @@ Today, again I wanted to change my screen&#39;s display size, in my Ubuntu 14.04
   <meta property="og:url" content="https://thefourtheye.in/posts/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Ubuntu overlapping displays while scaling dual monitor setup">
-  <meta property="og:description" content="Today, again I wanted to change my screen&#39;s display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post Ubuntu scaling the display (Zooming).
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384
-VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1280x1024&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-➜ ~ xrandr --output DP-0 --scale 1.25x1.25
-➜ ~ xrandr --output VGA-0 --scale 1.25x1.25
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.
-Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384
-VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-...
-Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-Individual screen&#39;s resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen&#39;s position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked
-➜ ~ xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.
-Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-...">
+  <meta property="og:description" content="Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2015-02-01T12:58:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Ubuntu">
 
 
@@ -117,50 +75,9 @@ VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y ax
   
   
   <meta itemprop="name" content="Ubuntu overlapping displays while scaling dual monitor setup">
-  <meta itemprop="description" content="Today, again I wanted to change my screen&#39;s display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post Ubuntu scaling the display (Zooming).
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384
-VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1280x1024&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-➜ ~ xrandr --output DP-0 --scale 1.25x1.25
-➜ ~ xrandr --output VGA-0 --scale 1.25x1.25
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.
-Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384
-VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-...
-Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-Individual screen&#39;s resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen&#39;s position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked
-➜ ~ xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.
-Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-...">
+  <meta itemprop="description" content="Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.">
   <meta itemprop="datePublished" content="2015-02-01T12:58:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="638">
   <meta itemprop="keywords" content="Ubuntu">
 
@@ -184,48 +101,7 @@ VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y ax
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Ubuntu overlapping displays while scaling dual monitor setup">
-  <meta name="twitter:description" content="Today, again I wanted to change my screen&#39;s display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post Ubuntu scaling the display (Zooming).
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384
-VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1280x1024&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-➜ ~ xrandr --output DP-0 --scale 1.25x1.25
-➜ ~ xrandr --output VGA-0 --scale 1.25x1.25
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.
-Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384
-VGA-0 connected 1280x1024&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-...
-Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1280&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-Individual screen&#39;s resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen&#39;s position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked
-➜ ~ xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0
-➜ ~ xrandr
-Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 LVDS-0 connected (normal left inverted right x axis y axis)
-1600x900 60.0 &#43; 40.0 DP-0 connected primary 1600x1280&#43;0&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-1280x1024 60.0*&#43; 75.0 1152x864 75.0 1024x768 75.0 60.0 800x600 75.0 60.3 640x480 75.0 59.9 DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-0 disconnected (normal left inverted right x axis y axis)
-DP-2 disconnected (normal left inverted right x axis y axis)
-DP-3 disconnected (normal left inverted right x axis y axis)
-Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.
-Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384
-VGA-0 connected 1600x1280&#43;1600&#43;0 (normal left inverted right x axis y axis) 376mm x 301mm
-...">
+  <meta name="twitter:description" content="Fix for overlapping displays when using xrandr --scale on dual monitor setup in Ubuntu. Shows how scaling affects virtual screen size and how to properly configure multiple monitors.">
 
 
   
@@ -354,7 +230,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">Today, again I wanted to change my screen's display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post <a href="http://www.thefourtheye.in/2013/05/ubuntu-scaling-display-zooming.html">Ubuntu scaling the display (Zooming)</a>.<br /><pre class="prettyprint">➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />➜  ~  xrandr --output DP-0 --scale 1.25x1.25<br />➜  ~  xrandr --output VGA-0 --scale 1.25x1.25<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br /></pre>Individual screen's resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen's position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked<br /><pre class="prettyprint">➜  ~  xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br /></pre></div></div>
+<div>Today, again I wanted to change my screen's display size, in my Ubuntu 14.04. This time I have a dual monitor setup and I tried all the commands I mentioned in my blog post <a href="http://www.thefourtheye.in/2013/05/ubuntu-scaling-display-zooming.html">Ubuntu scaling the display (Zooming)</a>.<br /><pre class="prettyprint">➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />➜  ~  xrandr --output DP-0 --scale 1.25x1.25<br />➜  ~  xrandr --output VGA-0 --scale 1.25x1.25<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Though it changes the display size, both the screens had overlapping images. After so much analysis, I found one inconsistency in the output of xrandr, before and after scaling. Note the first two lines.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 2560 x 1024, maximum 16384 x 16384<br />VGA-0 connected 1280x1024+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br />Screen 0: minimum 8 x 8, current 2880 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1280+0 (normal left inverted right x axis y axis) 376mm x 301mm<br /></pre>Individual screen's resolution has scaled to 1600x1280 from 1280x1024, but the total screen size is 2880 x 1280, also the screen's position is 1280x0 instead of 1600x0. So, to get over the overlapping problem, I used the following command, after reboot, and it worked<br /><pre class="prettyprint">➜  ~  xrandr --output DP-0 --scale 1.25x1.25 --pos 0x0 --output VGA-0 --scale 1.25x1.25 --pos 1600x0<br />➜  ~  xrandr<br />Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />    1600x900       60.0 +   40.0  <br />DP-0 connected primary 1600x1280+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />    1280x1024      60.0*+   75.0  <br />    1152x864       75.0  <br />    1024x768       75.0     60.0  <br />    800x600        75.0     60.3  <br />    640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br /></pre>Now, you see that both the actual size of the screen and the starting position of the second screen is set properly.<br /><pre class="prettyprint">Screen 0: minimum 8 x 8, current 3200 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1600+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />...<br /></pre></div></div>
 
     
   </article>

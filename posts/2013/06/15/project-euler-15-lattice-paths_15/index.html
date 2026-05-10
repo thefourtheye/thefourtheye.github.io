@@ -7,8 +7,7 @@
 
   
   
-  <meta name="description" content="
-In this post we are dealing with Project Euler - 15 - Lattice paths. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.Total = 21Array = [[0]*Total for i in xrange(Total)]for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1   #Initializing bottom row and right column with 1def Rec(i, j):    global Array    if Array[i][j]: return Array[i][j]    Rec(i&#43;1, j)    Rec(i, j&#43;1)    Array[i][j] = Array[i&#43;1][j] &#43; Array[i][j&#43;1]Rec (0, 0)print Array[0][0]">
+  <meta name="description" content="Project Euler Problem 15 - Lattice paths. Count routes through an NxN grid moving only right and down using dynamic programming. Solution builds from bottom-right corner.">
   
 
   
@@ -60,23 +59,12 @@ In this post we are dealing with Project Euler - 15 - Lattice paths. This is one
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/06/15/project-euler-15-lattice-paths_15/">
   <meta property="og:site_name" content="thefourtheye.in">
   <meta property="og:title" content="Project Euler - 15 - Lattice paths">
-  <meta property="og:description" content="In this post we are dealing with Project Euler - 15 - Lattice paths. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.
-Total = 21
-Array = [[0]*Total for i in xrange(Total)]
-for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1 #Initializing bottom row and right column with 1
-def Rec(i, j):
-global Array
-if Array[i][j]: return Array[i][j]
-Rec(i&#43;1, j)
-Rec(i, j&#43;1)
-Array[i][j] = Array[i&#43;1][j] &#43; Array[i][j&#43;1]
-Rec (0, 0)
-print Array[0][0]">
+  <meta property="og:description" content="Project Euler Problem 15 - Lattice paths. Count routes through an NxN grid moving only right and down using dynamic programming. Solution builds from bottom-right corner.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-06-15T21:22:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
+    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
     <meta property="article:tag" content="Dynamic Programming">
     <meta property="article:tag" content="Project Euler">
     <meta property="article:tag" content="Sport Programming">
@@ -89,20 +77,9 @@ print Array[0][0]">
   
   
   <meta itemprop="name" content="Project Euler - 15 - Lattice paths">
-  <meta itemprop="description" content="In this post we are dealing with Project Euler - 15 - Lattice paths. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.
-Total = 21
-Array = [[0]*Total for i in xrange(Total)]
-for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1 #Initializing bottom row and right column with 1
-def Rec(i, j):
-global Array
-if Array[i][j]: return Array[i][j]
-Rec(i&#43;1, j)
-Rec(i, j&#43;1)
-Array[i][j] = Array[i&#43;1][j] &#43; Array[i][j&#43;1]
-Rec (0, 0)
-print Array[0][0]">
+  <meta itemprop="description" content="Project Euler Problem 15 - Lattice paths. Count routes through an NxN grid moving only right and down using dynamic programming. Solution builds from bottom-right corner.">
   <meta itemprop="datePublished" content="2013-06-15T21:22:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
   <meta itemprop="wordCount" content="280">
   <meta itemprop="keywords" content="Dynamic Programming,Project Euler,Sport Programming">
 
@@ -126,18 +103,7 @@ print Array[0][0]">
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Project Euler - 15 - Lattice paths">
-  <meta name="twitter:description" content="In this post we are dealing with Project Euler - 15 - Lattice paths. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.
-Total = 21
-Array = [[0]*Total for i in xrange(Total)]
-for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1 #Initializing bottom row and right column with 1
-def Rec(i, j):
-global Array
-if Array[i][j]: return Array[i][j]
-Rec(i&#43;1, j)
-Rec(i, j&#43;1)
-Array[i][j] = Array[i&#43;1][j] &#43; Array[i][j&#43;1]
-Rec (0, 0)
-print Array[0][0]">
+  <meta name="twitter:description" content="Project Euler Problem 15 - Lattice paths. Count routes through an NxN grid moving only right and down using dynamic programming. Solution builds from bottom-right corner.">
 
 
   
@@ -270,7 +236,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
 <div class='post'>
-<div dir="ltr" style="text-align: left;" trbidi="on">In this post we are dealing with <a href="http://projecteuler.net/problem=15">Project Euler - 15 - Lattice paths</a>. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.<br /><pre class="prettyprint">Total = 21<br /><br />Array = [[0]*Total for i in xrange(Total)]<br />for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1   #Initializing bottom row and right column with 1<br /><br />def Rec(i, j):<br />    global Array<br />    if Array[i][j]: return Array[i][j]<br />    Rec(i+1, j)<br />    Rec(i, j+1)<br />    Array[i][j] = Array[i+1][j] + Array[i][j+1]<br /><br />Rec (0, 0)<br />print Array[0][0]<br /></pre></div></div>
+<div>In this post we are dealing with <a href="http://projecteuler.net/problem=15">Project Euler - 15 - Lattice paths</a>. This is one of the simple dynamic programming problems. We have to find the number of paths to reach the bottom right from the top left, moving only downwards and right sidewards. It was not so easy for me to see the solution even for the sample data given. It would be easy when we look from the bottom-left. For the sample 2x2 grid, lets say the bottom-left (2, 2) point has 0 path and 1,2 and 2,1 have 1 path each. It is evident that number of paths to reach (2, 2) from all the points on the bottom most row (0, 2), (1, 2) and the right most column (2, 0), (2, 1), as we cannot move upwards and left sidewards. Now, (1, 1) has two paths to reach (2, 2), either through (1, 2) or (2, 1). So it has the value 2. Same way, (0, 1) and (1, 0) have 3 ways ( (0, 1) can take (1, 1) (which has 2 paths to (2, 2) ) and (0, 2) (which has 1 path to (2, 2) ). So, (0, 0) has 6 paths to (2, 2) either via (0, 1) or via (1, 0). Applied this idea as a dynamic programming program and it solved this problem.<br /><pre class="prettyprint">Total = 21<br /><br />Array = [[0]*Total for i in xrange(Total)]<br />for i in xrange(Total): Array[i][Total - 1], Array[Total - 1][i] = 1, 1   #Initializing bottom row and right column with 1<br /><br />def Rec(i, j):<br />    global Array<br />    if Array[i][j]: return Array[i][j]<br />    Rec(i+1, j)<br />    Rec(i, j+1)<br />    Array[i][j] = Array[i+1][j] + Array[i][j+1]<br /><br />Rec (0, 0)<br />print Array[0][0]<br /></pre></div></div>
 
     
   </article>
