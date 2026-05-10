@@ -2,12 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Google Code Jam on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/google-code-jam/</link>
+    <link>https://thefourtheye.in/tags/google-code-jam/</link>
     <description>Recent content in Google Code Jam on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Wed, 08 May 2013 08:21:00 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/google-code-jam/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2013 08:21:00 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/google-code-jam/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Code Jam 2013 - Round 1B - Osmos</title>
+      <link>https://thefourtheye.in/posts/2013/05/08/google-code-jam-2013-round-1b-osmos/</link>
+      <pubDate>Wed, 08 May 2013 08:21:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2013/05/08/google-code-jam-2013-round-1b-osmos/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;Today, I would like to share my solution to the Google Code Jam 2013&#39;s Round 1B&#39;s Osmos problem. These are the statistics for that problem&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;Small Input : 4668/7250 users correct (64%)&lt;br /&gt;Large Input : 3537/4578 users correct (77%)&lt;br /&gt;&lt;/pre&gt;I believe it was tricky enough for an easy problem. Many people have got atleast one wrong try. Here is how I solved it (I couldn&#39;t solve it during the contest).&lt;br /&gt;&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;# include &amp;lt;iostream&amp;gt;&lt;br /&gt;# include &amp;lt;cstdio&amp;gt;&lt;br /&gt;# include &amp;lt;algorithm&amp;gt;&lt;br /&gt; &lt;br /&gt;using namespace std;&lt;br /&gt;int Sizes[101];&lt;br /&gt;int Total, A, N, Temp, Counter;&lt;br /&gt;int getDiff (int A, int B, int &amp; C)&lt;br /&gt;{&lt;br /&gt;    while (A &lt;= B)&lt;br /&gt;    {&lt;br /&gt;        C++;&lt;br /&gt;        A += (A-1);&lt;br /&gt;    }&lt;br /&gt;    return A;&lt;br /&gt;}&lt;br /&gt;int Solve (int idx, int CurrentScore, int Changes)&lt;br /&gt;{&lt;br /&gt;    if (idx == N) return Changes;&lt;br /&gt;    if (CurrentScore == 1)&lt;br /&gt;        return Solve (idx + 1, CurrentScore, Changes + 1);&lt;br /&gt;    else if (Sizes[idx] &lt; CurrentScore)&lt;br /&gt;        return Solve (idx + 1, CurrentScore + Sizes[idx], Changes);&lt;br /&gt;    else&lt;br /&gt;    {&lt;br /&gt;        int tChanges = 0;&lt;br /&gt;        int Diff = getDiff (CurrentScore, Sizes[idx], tChanges) + Sizes[idx];&lt;br /&gt;        int Min1 = Solve (idx + 1, Diff, Changes + tChanges);&lt;br /&gt;        if (Sizes[idx] &gt; CurrentScore)&lt;br /&gt;           return min (Solve (idx + 1, CurrentScore, Changes+1), Min1);&lt;br /&gt;        else return Min1;&lt;br /&gt;    }&lt;br /&gt;}&lt;br /&gt;int main()&lt;br /&gt;{&lt;br /&gt;    //freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);&lt;br /&gt;    //freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);&lt;br /&gt;    scanf (&#34;%d&#34;, &amp;Total);&lt;br /&gt;    for (int i = 1; i &lt;= Total; i++)&lt;br /&gt;    {&lt;br /&gt;        scanf (&#34;%d%d&#34;, &amp;A, &amp;N);&lt;br /&gt;        Temp = A;&lt;br /&gt;        Counter = 0;&lt;br /&gt;        for (int j = 0; j &lt; N; j++) scanf (&#34;%d&#34;, &amp;Sizes[j]);&lt;br /&gt;        sort (Sizes, Sizes + N);&lt;br /&gt;        printf (&#34;Case #%d: %d\n&#34;, i, Solve (0, A, 0));&lt;br /&gt;    }&lt;br /&gt;}&lt;br /&gt;&lt;/pre&gt;Here is the ideone URL &lt;a href=&#34;http://ideone.com/g5qxYd&#34;&gt;http://ideone.com/g5qxYd&lt;/a&gt; where I tested the program with Google&#39;s inputs.   &lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

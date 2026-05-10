@@ -2,12 +2,95 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quirks on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/quirks/</link>
+    <link>https://thefourtheye.in/tags/quirks/</link>
     <description>Recent content in Quirks on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Tue, 15 Nov 2016 00:38:30 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/quirks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Nov 2016 00:38:30 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/quirks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JS Quirks: stringified numbers</title>
+      <link>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</link>
+      <pubDate>Tue, 15 Nov 2016 00:38:30 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</guid>
+      <description>&lt;p&gt;When I was working on &lt;a href=&#34;https://github.com/nodejs/node/pull/9492&#34;&gt;Node.js PR 9492&lt;/a&gt;, &lt;a href=&#34;https://github.com/nodejs/node/pull/9492#discussion_r86987446&#34;&gt;this comment&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This should probably test for a wider range of values. &lt;code&gt;test/parallel/test-net-internal.js&lt;/code&gt; has some good examples.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;made me look at &lt;a href=&#34;https://github.com/nodejs/node/blob/fc44bd4d0b984f7b926b8c92b8e9a88da1c08921/test/parallel/test-net-internal.js&#34;&gt;that file&lt;/a&gt;. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF + 1, Infinity,
+             -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;,
+             &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[-0x1, &#39;-0x1&#39;, -0o1, &#39;-0o1&#39;, -0b1, &#39;-0b1&#39;].forEach(item =&amp;gt; console.log(item, +item));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and I was expecting to see the result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-1 -1
+-0x1 -1
+-1 -1
+-0o1 -1
+-1 -1
+-0b1 -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;but all I got was&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-1 -1
+-0x1 NaN
+-1 -1
+-0o1 NaN
+-1 -1
+-0b1 NaN
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The unary - operator simply negates the magnitude of the numbers. The stringified numbers were not processed in the same way as their number counterparts. So I looked at the ECMAScript specification&amp;rsquo;s &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-tonumber-applied-to-the-string-type&#34;&gt;ToNumber Applied to the String Type&lt;/a&gt; section (which is actually responsible for converting strings to numbers).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;StrNumericLiteral :::
+    StrDecimalLiteral
+    BinaryIntegerLiteral
+    OctalIntegerLiteral
+    HexIntegerLiteral
+...
+...
+StrDecimalLiteral :::
+    StrUnsignedDecimalLiteral
+    + StrUnsignedDecimalLiteral
+    - StrUnsignedDecimalLiteral
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Only the &lt;code&gt;StrDecimalLiteral&lt;/code&gt; production allows signed numbers. If we look at the definition of others in the &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals&#34;&gt;Numeric Literals&lt;/a&gt; section,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;BinaryIntegerLiteral ::
+    0b BinaryDigits
+    0B BinaryDigits
+
+BinaryDigits ::
+    BinaryDigit
+    BinaryDigits BinaryDigit
+
+BinaryDigit :: one of
+    0 1
+
+OctalIntegerLiteral ::
+    0o OctalDigits
+    0O OctalDigits
+
+OctalDigits ::
+    OctalDigit
+    OctalDigits OctalDigit
+
+OctalDigit :: one of
+    0 1 2 3 4 5 6 7
+
+HexIntegerLiteral ::
+    0x HexDigits
+    0X HexDigits
+
+HexDigits ::
+    HexDigit
+    HexDigits HexDigit
+
+HexDigit :: one of
+    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, as per the specification, only the decimal numbers can have signs in the stringified number form. That is why the others are not considered as numbers.&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://thefourtheye.in/sitemap.xml
+Sitemap: https://thefourtheye.in/sitemap.xml

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2017 on thefourtheye.in</title>
+    <link>https://thefourtheye.in/posts/2017/</link>
+    <description>Recent content in 2017 on thefourtheye.in</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://thefourtheye.in/posts/2017/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>emacs - Cheat Sheet</title>
+      <link>https://thefourtheye.in/posts/2017/05/21/emacs-cheat-sheet/</link>
+      <pubDate>Sun, 21 May 2017 21:37:45 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2017/05/21/emacs-cheat-sheet/</guid>
+      <description>&lt;p&gt;After having been in the vim camp in the &lt;a href=&#34;https://en.wikipedia.org/wiki/Editor_war&#34;&gt;vim vs Emacs editor war&lt;/a&gt; for eight years, I decided to peek into the enemy&amp;rsquo;s camp. The IDE users might look down upon the editor users, but I still enjoy using my keyboard to do all the coding work. That is the reason why I chose to learn Emacs over an IDE.&lt;/p&gt;
+&lt;p&gt;When I started with Emacs, it was kind of scary. Editing text is straight forward, as in, it didn&amp;rsquo;t require me to change the mode like in Vim. But the control key sequences are way too much to remember compared to Vim. So I decided to understand the keys which are commonly used to move around the text in the screen, with the help of Emacs Tutorial (&lt;code&gt;Ctrl+h t&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;This cheat sheet has a few more key combinations which are used to do common operations on Emacs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; From now on, the &lt;code&gt;Ctrl&lt;/code&gt; key will be represented as &lt;code&gt;C&lt;/code&gt; and the &lt;code&gt;Alt&lt;/code&gt; key (also called as &lt;code&gt;Meta&lt;/code&gt; key) will be represented as &lt;code&gt;M&lt;/code&gt;. For example, if the actual command is to press both &lt;code&gt;Ctrl&lt;/code&gt; and &lt;code&gt;h&lt;/code&gt; keys to invoke the help, then it would be written as &lt;code&gt;C-h&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;common-operations&#34;&gt;Common Operations&lt;/h2&gt;
+&lt;p&gt;{:.gridtable}
+| Key Combinations | Functionality |
+|&amp;mdash;&amp;mdash;&amp;mdash;|
+| &lt;code&gt;C-x C-c&lt;/code&gt; | Quit Emacs |
+| &lt;code&gt;C-h t&lt;/code&gt; | Open built-in Emacs Tutorial file |
+| &lt;code&gt;C-x C-f&lt;/code&gt; | Open a File |
+| &lt;code&gt;C-x k&lt;/code&gt; | Close the currently opened file on screen |
+| &lt;code&gt;C-x C-s&lt;/code&gt; | Save the currently opened file |
+| &lt;code&gt;C-x s&lt;/code&gt; | Save all the open files |
+| &lt;code&gt;C-g&lt;/code&gt; | Discard the current command |&lt;/p&gt;
+&lt;h2 id=&#34;split-window-operations&#34;&gt;Split Window Operations&lt;/h2&gt;
+&lt;p&gt;{:.gridtable}
+| Key Combinations | Functionality |
+|&amp;mdash;&amp;ndash;|
+| &lt;code&gt;C-x 2&lt;/code&gt; | Split the view horizontally |
+| &lt;code&gt;C-x 3&lt;/code&gt; | Split the view vertically |
+| &lt;code&gt;C-x o&lt;/code&gt; (English letter &amp;ldquo;o&amp;rdquo;) | Switch to next split window |
+| &lt;code&gt;C-x 0&lt;/code&gt; (Number Zero) | Kill the current window |
+| &lt;code&gt;C-x 1&lt;/code&gt; | Kill all other split windows except current window |
+| &lt;code&gt;C-x C-b&lt;/code&gt; | List all open files in a new split window |
+| &lt;code&gt;C-x b&lt;/code&gt; | Bring any of the open files to the front, by name |&lt;/p&gt;
+&lt;h2 id=&#34;cursor-movement&#34;&gt;Cursor Movement&lt;/h2&gt;
+&lt;p&gt;{:.gridtable}
+| Key Combinations | Functionality |
+|&amp;mdash;&amp;ndash;|
+| &lt;code&gt;C-b&lt;/code&gt; | Move one character backward |
+| &lt;code&gt;M-b&lt;/code&gt; | Move one word backward |
+| &lt;code&gt;C-f&lt;/code&gt; | Move one character forward |
+| &lt;code&gt;M-f&lt;/code&gt; | Move one word forward |
+| &lt;code&gt;C-v&lt;/code&gt; | Scroll one page full of information forward |
+| &lt;code&gt;M-v&lt;/code&gt; | Scroll one page full of information backward |
+| &lt;code&gt;C-a&lt;/code&gt; | Beginning of current line |
+| &lt;code&gt;M-a&lt;/code&gt; | Beginning of current sentence |
+| &lt;code&gt;C-e&lt;/code&gt; | Ending of current line |
+| &lt;code&gt;M-e&lt;/code&gt; | Ending of current sentence |
+| &lt;code&gt;M-&amp;gt;&lt;/code&gt; | End of file |
+| &lt;code&gt;M-&amp;lt;&lt;/code&gt; | Beginning of file |
+| &lt;code&gt;C-n&lt;/code&gt; | Next line |
+| &lt;code&gt;C-p&lt;/code&gt; | Previous line |
+| &lt;code&gt;C-l&lt;/code&gt; | Move the current line to bottom, middle, and start of screen |&lt;/p&gt;
+&lt;h2 id=&#34;edit-operations&#34;&gt;Edit Operations&lt;/h2&gt;
+&lt;p&gt;{:.gridtable}
+| Key Combinations | Functionality |
+|&amp;mdash;&amp;ndash;|
+| &lt;code&gt;C-x u&lt;/code&gt; &lt;code&gt;C-/&lt;/code&gt; | Undo last operation
+| &lt;code&gt;C-k&lt;/code&gt; | Delete till the end of the current line from current position |
+| &lt;code&gt;M-k&lt;/code&gt; | Delete till the end of the current sentence from current position |
+| &lt;code&gt;C-d&lt;/code&gt; | Delete the next character |
+| &lt;code&gt;M-d&lt;/code&gt; | Delete the next word |
+| &lt;code&gt;C-&amp;lt;Del&amp;gt;&lt;/code&gt; | Delete the previous character |
+| &lt;code&gt;M-&amp;lt;Del&amp;gt;&lt;/code&gt; | Delete the previous word |&lt;/p&gt;
+&lt;h2 id=&#34;copy-and-paste&#34;&gt;Copy and Paste&lt;/h2&gt;
+&lt;p&gt;{:.gridtable}
+| Key Combinations | Functionality |
+|&amp;mdash;&amp;ndash;|
+| &lt;code&gt;C-&amp;lt;Space&amp;gt;&lt;/code&gt; | Set mark to select text. Now with movement keys select the text |
+| &lt;code&gt;C-x h&lt;/code&gt; | Select the whole buffer |
+| &lt;code&gt;C-w&lt;/code&gt; | Cut the selected text |
+| &lt;code&gt;M-w&lt;/code&gt; | Copy the selected text |
+| &lt;code&gt;C-y&lt;/code&gt; | Yank (paste) the selected text |&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JavaScript lookbehind RegEx alternative</title>
+      <link>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</link>
+      <pubDate>Tue, 21 Feb 2017 21:33:13 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
+      <description>&lt;p&gt;Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[{\&amp;quot;name\&amp;quot;:\&amp;quot;Kilua\&amp;quot;\\,\&amp;quot;age\&amp;quot;:35}],{\&amp;quot;city\&amp;quot;:\&amp;quot;SJC\&amp;quot;},\&amp;quot;US\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[ &#39;[{&amp;quot;name&amp;quot;:&amp;quot;Kilua&amp;quot;\\,&amp;quot;age&amp;quot;:35}]&#39;, &#39;{&amp;quot;city&amp;quot;:&amp;quot;SJC&amp;quot;},&amp;quot;US&amp;quot;&#39; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is &lt;code&gt;a,1,b,2,c,3&lt;/code&gt; and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;console.log(&#39;a,1,b,2,c,3&#39;.split(/,(?!\d)/));
+// [ &#39;a,1&#39;, &#39;b,2&#39;, &#39;c,3&#39; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since JavaScript doesn&amp;rsquo;t have lookbehinds, we don&amp;rsquo;t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;.replace(/([^\\]),/g, &#39;$1\u000B&#39;).split(&#39;\u000B&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Replace all the commas matching the condition with a marker string which does not appear anywhere in the string. (&lt;code&gt;\u000B&lt;/code&gt; in this case)&lt;/li&gt;
+&lt;li&gt;Then split the original string with the marker string.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

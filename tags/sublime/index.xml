@@ -2,12 +2,70 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sublime on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/sublime/</link>
+    <link>https://thefourtheye.in/tags/sublime/</link>
     <description>Recent content in Sublime on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Sun, 10 Jan 2016 20:44:00 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jan 2016 20:44:00 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sublime Text 3 unhiding menu in Ubuntu - simpler solution</title>
+      <link>https://thefourtheye.in/posts/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</link>
+      <pubDate>Sun, 10 Jan 2016 20:44:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;The method which I mentioned in this &lt;a href=&#34;http://www.thefourtheye.in/2014/01/un-hiding-menu-bar-in-sublime-text-3.html&#34;&gt;blog post of mine&lt;/a&gt;, solves the problem, but then you have to&lt;br /&gt;&lt;ol&gt;&lt;li&gt; Close the Sublime Text&lt;br /&gt;&lt;li&gt; Fire up a terminal&lt;br /&gt;&lt;li&gt; Execute a command or two&lt;br /&gt;&lt;li&gt; Open Sublime Text again&lt;br /&gt;&lt;/ol&gt;Quite a lot of steps to do. But then I found a simpler solution today and it works like a charm for me. The solution is to use &#34;Keyboard Shortcuts&#34; :-) Let me explain in detail.  &lt;ol&gt;&lt;li&gt; Click &lt;code&gt;Preferences&lt;/code&gt; -&gt; &lt;code&gt;Key Bindings - User&lt;/code&gt;&lt;br /&gt;&lt;li&gt; In the window that opens, you need to add a new keyboard shortcut for the command &#34;toggle_menu&#34;. For example, this is how my shortcuts looks like&lt;br /&gt;&lt;pre&gt;[{&#34;keys&#34;: [&#34;ctrl+\\&#34;], &#34;command&#34;: &#34;toggle_side_bar&#34;},&lt;br /&gt; {&#34;keys&#34;: [&#34;ctrl+shift+m&#34;], &#34;command&#34;: &#34;toggle_menu&#34;}]&lt;/pre&gt;&lt;li&gt; Save the file and start doing your happy dance.&lt;br /&gt;&lt;/ol&gt;Now, you can simply press the keyboard shortcut whatever you choose to assign to toggle menu :-)  &lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Un-hiding Menu Bar in Sublime Text 3 - Ubuntu</title>
+      <link>https://thefourtheye.in/posts/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/</link>
+      <pubDate>Sun, 05 Jan 2014 12:13:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2014/01/05/un-hiding-menu-bar-in-sublime-text-3/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;&lt;p&gt;&lt;b&gt;Edit on 13-Jan-2016&lt;/b&gt;&lt;br /&gt;I found another easy way to fix this problem. You can toggle the menu with a keyboard shortcut. You can read more about that in &lt;a href=&#34;http://www.thefourtheye.in/2016/01/sublime-text-3-unhiding-menu-in-ubuntu.html&#34;&gt;this blog post of mine&lt;/a&gt;.&lt;br /&gt;&lt;/p&gt;&lt;hr /&gt;&lt;p&gt;It has been a very long wait to get the &#34;Hide Menu&#34; feature in Linux versions of Sublime Text 3. Finally it was released.  But the problem is, if it hidden once, there is no straight forward way to get the Menu back. I tried &lt;kbd&gt;F10&lt;/kbd&gt;, &lt;kbd&gt;Alt&lt;/kbd&gt; etc etc and nothing worked. So, I am sharing the trick which worked for me in this post.&lt;/p&gt;&lt;p&gt;It is simple. Close the Sublime Text 3, if it is open. Open&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;~/.config/sublime-text-3/Local/Session.sublime_session&lt;/pre&gt;in any of your favorite editors and then make sure that, &#34;menu_visible&#34; is &#34;true&#34; in all places in that file.&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&#34;menu_visible&#34;: true,&lt;/pre&gt;Thats it :) Open Sublime Text 3 now and ta-da... Menu is back :)&lt;br /&gt;&lt;/p&gt;&lt;hr/&gt;&lt;p&gt;&lt;b&gt;Edit On Jan 10 - 2016&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;As I was doing the same task more often, I decided that put that in a script, like this&lt;br /&gt;&lt;pre&gt;export FILE=/home/thefourtheye/.config/sublime-text-3/Local/Session.sublime_session&lt;br /&gt;export TEMP_FILE=/home/thefourtheye/.config/sublime-text-3/Local/Session.sublime_session.bkp&lt;br /&gt;sed -e &#39;s/&#34;menu_visible&#34;: false/&#34;menu_visible&#34;: true/g&#39; $FILE &gt; $TEMP_FILE&lt;br /&gt;mv $TEMP_FILE FILE&lt;br /&gt;&lt;/pre&gt;and then I added that to my shell script&#39;s rc file as an alias like this&lt;br /&gt;&lt;pre&gt;alias sublime_fix_menu=~/.sublime_fix_menu.zsh&lt;/pre&gt;That&#39;s it :-) Now, I just have to close Sublime Text 3, type sublime_fix_menu in the shell, open Sublime again :-)&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Compiling Node.js scripts in Windows 7 with Sublime Text 3</title>
+      <link>https://thefourtheye.in/posts/2013/07/29/compiling-node.js-scripts-in-windows-7-with-sublime-text-3/</link>
+      <pubDate>Mon, 29 Jul 2013 19:56:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2013/07/29/compiling-node.js-scripts-in-windows-7-with-sublime-text-3/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;&lt;p&gt;This is a continuation of &lt;a href=&#34;http://www.thefourtheye.in/2013/07/Compiling-Cpp-11-Programs-with-Sublime-Text-3.html&#34;&gt;Compiling CPP 11 Programs with Sublime Text 3 in Ubuntu&lt;/a&gt; where we saw how to configure Sublime Text 3 in Ubuntu 13.04 to compile C++ 11 programs. In this post, we ll see how to execute Node.js programs in Windows 7 machine&#39;s Sublime Text 3. I am going to assume that Node.js is installed properly and PATH variable is also set properly. If you are using Windows Installer, we dont have to worry about this. &lt;br /&gt;&lt;ol&gt;&lt;li&gt;We need to create the following directory structure in the User&#39;s home directory &lt;code&gt;AppData\Roaming\Sublime Text 3\Packages\JS\&lt;/code&gt;. In my machine, home directory is &lt;code&gt;C:\Users\[username]&lt;/code&gt;. To know the current user&#39;s home directory, open &lt;code&gt;Cmd.exe&lt;/code&gt; and type &lt;code&gt;echo %userprofile%&lt;/code&gt;. &lt;br /&gt;&lt;li&gt;In that directory, create a file called &#34;JS.sublime-build&#34;. So, the location of the file from the home directory is &lt;code&gt;AppData\Roaming\Sublime Text 3\Packages\JS\JS.sublime-build&lt;/code&gt; You can name the sublime-build file as anything you want. I have simply named it here as JS.&lt;br /&gt;&lt;li&gt;Copy and paste the following text in to it.&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;{&lt;br /&gt; &#34;cmd&#34;: [&#34;node.exe&#34;, &#34;${file}&#34;],&lt;br /&gt; &#34;file_regex&#34;: &#34;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&#34;,&lt;br /&gt; &#34;working_dir&#34;: &#34;${file_path}&#34;,&lt;br /&gt; &#34;selector&#34;: &#34;source.js&#34;,&lt;br /&gt; &#34;variants&#34;:&lt;br /&gt; [&lt;br /&gt;  {&lt;br /&gt;   &#34;name&#34;: &#34;Run&#34;,&lt;br /&gt;   &#34;cmd&#34;:[&#34;node.exe&#34;, &#34;${file}&#34;]&lt;br /&gt;  }&lt;br /&gt; ]&lt;br /&gt;}&lt;br /&gt;&lt;/pre&gt;&lt;li&gt;Thats it. Open Sublime Text 3. Click on Tools-&gt;Build System. You should see JS as one of the options. From now on, you can execute node.js scripts simply by pressing Ctrl-B.&lt;br /&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Compiling C&#43;&#43;11 Programs with Sublime Text 3</title>
+      <link>https://thefourtheye.in/posts/2013/07/21/compiling-cpp-11-programs-with-sublime-text-3/</link>
+      <pubDate>Sun, 21 Jul 2013 16:41:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2013/07/21/compiling-cpp-11-programs-with-sublime-text-3/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;&lt;p&gt;For &lt;b&gt;Windows 7&lt;/b&gt;, you may want to read this post &lt;a href=&#34;http://www.thefourtheye.in/2013/07/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3.html&#34;&gt;http://www.thefourtheye.in/2013/07/Compiling-Node.js-scripts-in-Windows-7-with-Sublime-Text-3.html&lt;/a&gt;&lt;br /&gt;&lt;p&gt;Today I installed Sublime Text 3&#39;s public beta on my Ubuntu 13 and the first thing I noticed is, the inability to compile C++ 11 programs. The obvious problem is, it was missing &lt;code&gt;-std=c++0x&lt;/code&gt; parameter to g++. I tried to figure out how to edit the build parameters of Sublime. After an hour&#39;s struggle managed to figure out.&lt;br /&gt;&lt;ol&gt;&lt;li&gt;You need to create the following file &lt;code&gt;~/.config/sublime-text-3/Packages/C++/C++.sublime-build&lt;/code&gt;. The &lt;code&gt;~&lt;/code&gt; refers to the home directory of the current user.&lt;br /&gt;&lt;li&gt;Now insert the below seen text to that file&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;{&lt;br /&gt; &#34;cmd&#34;: [&#34;g++&#34;, &#34;-std=c++0x&#34;, &#34;${file}&#34;, &#34;-o&#34;, &#34;${file_path}/${file_base_name}&#34;],&lt;br /&gt; &#34;file_regex&#34;: &#34;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&#34;,&lt;br /&gt; &#34;working_dir&#34;: &#34;${file_path}&#34;,&lt;br /&gt; &#34;selector&#34;: &#34;source.c, source.c++&#34;,&lt;br /&gt; &#34;variants&#34;:&lt;br /&gt; [&lt;br /&gt;   {&lt;br /&gt;     &#34;name&#34;: &#34;Run&#34;,&lt;br /&gt;     &#34;cmd&#34;:[&#34;bash&#34;, &#34;-c&#34;, &#34;g++ -std=c++0x &#39;${file}&#39; -o &#39;${file_path}/${file_base_name}&#39; &amp;&amp; &#39;${file_path}/${file_base_name}&#39;&#34;]&lt;br /&gt;   }&lt;br /&gt; ]&lt;br /&gt;}&lt;br /&gt;&lt;/pre&gt;&lt;li&gt;Save this file and close it. Sublime will pick up the changes immediately.&lt;br /&gt;&lt;/ol&gt;This will take care of compiling C++ 11 programs. &lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sublime Configuring CodeIntel Auto Completion</title>
+      <link>https://thefourtheye.in/posts/2013/05/25/sublime-configuring-codeintel/</link>
+      <pubDate>Sat, 25 May 2013 12:54:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2013/05/25/sublime-configuring-codeintel/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;Unarguably Sublime is one of the best text editors and with its ability to extend with python scripts, gifts itself a lot of power. Here lets see one of those extensions which allow code completion. Normally, sublime provides code completion for the words in the current file being edited. Codeintel allows the user to get code completion feature of the respective languages.&lt;br /&gt;&lt;br /&gt;&lt;h2&gt;Installation&lt;/h2&gt;Lets install CodeIntel, through Package Control plugin. To install Package Control plugin, do the following steps. Here is the author&#39;s &lt;a href=&#34;http://wbond.net/sublime_packages/package_control/installation&#34;&gt;page&lt;/a&gt;. Quoting from the source website&lt;br /&gt;&lt;br /&gt;&lt;blockquote&gt;Installation is through the Sublime Text 2 console. This is accessed via the ctrl+` shortcut. Once open, paste the following command into the console.&lt;br /&gt;&lt;br /&gt;&lt;div style=&#34;background-color:black; color: white; padding: 25px&#34;&gt;import urllib2,os; pf=&#39;Package Control.sublime-package&#39;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&#39;wb&#39;).write(urllib2.urlopen(&#39;http://sublime.wbond.net/&#39;+pf.replace(&#39; &#39;,&#39;%20&#39;)).read()); print(&#39;Please restart Sublime Text to finish installation&#39;)&lt;/div&gt;&lt;/blockquote&gt;&lt;br /&gt;After installing it, Press Shift+Ctrl+P or click on Tools-&gt;Command Palette. In the window that opens up, type Install Package. In the text box which you see after that, type SublimeCodeIntel and click on it to install it. You are done with the installation of CodeIntel.&lt;br /&gt;&lt;br /&gt;&lt;h2&gt;Configuration&lt;/h2&gt;The following information is taken from the README.rst file. Open ~/.codeintel/config file in your favourite text editor, most likely Sublime. Pick your language from the list below and copy paste only the blocks for the languages of your choice.&lt;br /&gt;&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;    {&lt;br /&gt;        &#34;PHP&#34;: {&lt;br /&gt;            &#34;php&#34;: &#39;/usr/bin/php&#39;,&lt;br /&gt;            &#34;phpExtraPaths&#34;: [],&lt;br /&gt;            &#34;phpConfigFile&#34;: &#39;php.ini&#39;&lt;br /&gt;        },&lt;br /&gt;        &#34;JavaScript&#34;: {&lt;br /&gt;            &#34;javascriptExtraPaths&#34;: []&lt;br /&gt;        },&lt;br /&gt;        &#34;Perl&#34;: {&lt;br /&gt;            &#34;perl&#34;: &#34;/usr/bin/perl&#34;,&lt;br /&gt;            &#34;perlExtraPaths&#34;: []&lt;br /&gt;        },&lt;br /&gt;        &#34;Ruby&#34;: {&lt;br /&gt;            &#34;ruby&#34;: &#34;/usr/bin/ruby&#34;,&lt;br /&gt;            &#34;rubyExtraPaths&#34;: []&lt;br /&gt;        },&lt;br /&gt;        &#34;Python&#34;: {&lt;br /&gt;            &#34;python&#34;: &#39;/usr/bin/python&#39;,&lt;br /&gt;            &#34;pythonExtraPaths&#34;: []&lt;br /&gt;        },&lt;br /&gt;        &#34;Python3&#34;: {&lt;br /&gt;            &#34;python&#34;: &#39;/usr/bin/python3&#39;,&lt;br /&gt;            &#34;pythonExtraPaths&#34;: []&lt;br /&gt;        }&lt;br /&gt;    }&lt;br /&gt;&lt;/pre&gt;&lt;br /&gt;For example, I like to use python and my config file looks like this&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;{&lt;br /&gt; &#34;Python&#34;: {&lt;br /&gt;     &#34;python&#34;: &#39;/usr/bin/python&#39;,&lt;br /&gt;     &#34;pythonExtraPaths&#34;: []&lt;br /&gt; },&lt;br /&gt;}&lt;br /&gt;&lt;/pre&gt;&lt;br /&gt;Thats it. Restart your sublime, type code and press Alt + / to see the Auto completion at work.&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

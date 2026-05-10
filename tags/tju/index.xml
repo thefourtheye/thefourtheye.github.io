@@ -2,12 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TJU on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/tju/</link>
+    <link>https://thefourtheye.in/tags/tju/</link>
     <description>Recent content in TJU on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Sat, 20 Apr 2013 17:39:00 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/tju/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Apr 2013 17:39:00 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/tju/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Change Making (Dynamic Programming) Problem</title>
+      <link>https://thefourtheye.in/posts/2013/04/20/change-making-dynamic-programming/</link>
+      <pubDate>Sat, 20 Apr 2013 17:39:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2013/04/20/change-making-dynamic-programming/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;This is a classic &lt;a href=&#34;http://en.wikipedia.org/wiki/Change-making_problem&#34; target=&#34;_blank&#34;&gt;change making problem&lt;/a&gt;.&lt;br /&gt;A variant of the same problem, counting the number of ways to make the change is &lt;a href=&#34;http://dfourtheye.blogspot.in/2013/04/number-of-ways-to-change-making-dynamic.html&#34;&gt;here&lt;/a&gt; &lt;pre&gt;Problem Name : Making Change&lt;br /&gt;Problem ID&amp;nbsp;&amp;nbsp; : 2768&lt;br /&gt;Problem URL&amp;nbsp; : &lt;a href=&#34;http://acm.tju.edu.cn/toj/showp2768.html&#34;&gt;http://acm.tju.edu.cn/toj/showp2768.html&lt;/a&gt;&lt;br /&gt;Solution&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; :&lt;br /&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre class=&#34;prettyprint&#34;&gt;# include &amp;lt;iostream&amp;gt;&lt;br /&gt;# include &amp;lt;cstdio&amp;gt;&lt;br /&gt;# include &amp;lt;cstring&amp;gt;&lt;br /&gt;# include &amp;lt;algorithm&amp;gt;&lt;br /&gt;int denoms [10];&lt;br /&gt;int change [1001];&lt;br /&gt;using namespace std;&lt;br /&gt;int main()&lt;br /&gt;{&lt;br /&gt; //freopen (&#34;Input.txt&#34;, &#34;r&#34;, stdin);&lt;br /&gt; //freopen (&#34;Scratch.txt&#34;, &#34;w&#34;, stdout);&lt;br /&gt; int C, N;&lt;br /&gt; scanf (&#34;%d%d&#34;, &amp;C, &amp;N);&lt;br /&gt; fill (change, change + C + 1, 10000);&lt;br /&gt; for (int i = 0; i &lt; N; i++) scanf (&#34;%d&#34;, &amp;denoms[i]);&lt;br /&gt; sort (denoms, denoms + N);&lt;br /&gt; change[0] = 0;&lt;br /&gt; for (int j = 0; j &lt; N; j++)&lt;br /&gt;  for (int i = denoms[j]; i &lt;= C; i++)&lt;br /&gt;   change[i] = min (change[i], change[i - denoms[j]] + 1);&lt;br /&gt; printf (&#34;%d\n&#34;, change[C]);&lt;br /&gt;}&lt;br /&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

@@ -2,12 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mono on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/mono/</link>
+    <link>https://thefourtheye.in/tags/mono/</link>
     <description>Recent content in Mono on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Sun, 07 Oct 2012 07:49:00 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/mono/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Oct 2012 07:49:00 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/mono/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Compiling .NET code in Console mode and Form mode with Mono C# Compiler</title>
+      <link>https://thefourtheye.in/posts/2012/10/07/compiling-net-code-in-console-mode-and/</link>
+      <pubDate>Sun, 07 Oct 2012 07:49:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2012/10/07/compiling-net-code-in-console-mode-and/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;Compiling .NET code with &lt;a href=&#34;http://en.wikipedia.org/wiki/Mono_(software)&#34; target=&#34;_blank&#34;&gt;Mono&lt;/a&gt;&amp;nbsp;compiler is almost&amp;nbsp;similar&amp;nbsp;to compile with g++/gcc. The basic steps are as follows.&lt;br /&gt;&lt;br /&gt;1) Download and install the Mono for your platform from &lt;a href=&#34;http://www.go-mono.com/mono-downloads/download.html&#34;&gt;http://www.go-mono.com/mono-downloads/download.html&lt;/a&gt;&lt;br /&gt;2) Then write the code (we are going to see how to use c# compiler) with your favorite editor or IDE.&lt;br /&gt;3) Now to compile the code, we simply need to execute a file called mcs under the &amp;lt;installed location of mono&amp;gt;/bin, like this&lt;br /&gt;&lt;br /&gt;&lt;div style=&#34;text-align: center;&#34;&gt;&lt;span style=&#34;font-family: Courier New, Courier, monospace;&#34;&gt;mcs &amp;lt;filename&amp;gt;.cs -out:&amp;lt;filename&amp;gt;.exe&lt;/span&gt;&lt;/div&gt;&lt;br /&gt;4) This will compile .cs file specified and produces the executable &amp;lt;filename&amp;gt;.exe&lt;br /&gt;&lt;br /&gt;But this compilation would produce only console application. That is whenever you execute the application, a terminal or a command window will be opened automatically. We may need to specify one or two options to ask the compiler to compile in forms mode.&lt;br /&gt;&lt;br /&gt;&lt;div style=&#34;text-align: center;&#34;&gt;&lt;span style=&#34;font-family: Courier New, Courier, monospace;&#34;&gt;mcs &amp;lt;filename&amp;gt;.cs -out:&amp;lt;filename&amp;gt;.exe -target:winexe -r:System.Windows.Forms.dll -r:System.Drawing.dll&lt;/span&gt;&lt;/div&gt;&lt;div style=&#34;text-align: center;&#34;&gt;&lt;br /&gt;&lt;/div&gt;The additional options used in this case are, -target and -r. -target specifies compiler that it has to generate a winexe type of application rather than console. -r option refers to the references.&amp;nbsp;&lt;span style=&#34;font-family: &#39;Courier New&#39;, Courier, monospace;&#34;&gt;System.Windows.Forms.dll &lt;/span&gt;&lt;span style=&#34;font-family: inherit;&#34;&gt;and&amp;nbsp;&lt;/span&gt;&lt;span style=&#34;font-family: &#39;Courier New&#39;, Courier, monospace;&#34;&gt;System.Drawing.dll &lt;/span&gt;&lt;span style=&#34;font-family: inherit;&#34;&gt;are the most common references needed when we start building applications with GUI support.&lt;/span&gt;&lt;br /&gt;&lt;span style=&#34;font-family: inherit;&#34;&gt;&lt;br /&gt;&lt;/span&gt;&lt;span style=&#34;font-family: inherit;&#34;&gt;&lt;b&gt;NOTE&lt;/b&gt;: We can even build GUI applications in console mode, but the console/terminal window will show up and will not be closed until the application is running.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+
+
+</description>
+    </item>
+    
   </channel>
 </rss>

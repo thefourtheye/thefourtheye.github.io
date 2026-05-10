@@ -2,102 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>thefourtheye.in</title>
-    <link>http://thefourtheye.in/</link>
+    <link>https://thefourtheye.in/</link>
     <description>Recent content on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
     <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
     <lastBuildDate>Fri, 02 Feb 2024 04:14:54 -0800</lastBuildDate>
-    <atom:link href="http://thefourtheye.in/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://thefourtheye.in/index.xml" rel="self" type="application/rss+xml" />
 
     <item>
       <title>Deadlock with Java ThreadPoolExecutor</title>
-      <link>http://thefourtheye.in/2025/03/31/deadlock-with-java-executor/</link>
+      <link>https://thefourtheye.in/posts/2025/03/31/deadlock-with-java-executor/</link>
       <pubDate>Mon, 31 Mar 2025 09:16:15 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2025/03/31/deadlock-with-java-executor/</guid>
+      <guid>https://thefourtheye.in/posts/2025/03/31/deadlock-with-java-executor/</guid>
       <description>In this post I share how I ended up with a Deadlock in a Java ThreadPoolExecutor program.</description>
     </item>
     
     <item>
       <title>emacs - Cheat Sheet</title>
-      <link>http://thefourtheye.in/2017/05/21/emacs-cheat-sheet/</link>
+      <link>https://thefourtheye.in/posts/2017/05/21/emacs-cheat-sheet/</link>
       <pubDate>Sun, 21 May 2017 21:37:45 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2017/05/21/emacs-cheat-sheet/</guid>
+      <guid>https://thefourtheye.in/posts/2017/05/21/emacs-cheat-sheet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JavaScript lookbehind RegEx alternative</title>
-      <link>http://thefourtheye.in/2017/02/21/javascript-lookbehind-regex-alternative/</link>
+      <link>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</link>
       <pubDate>Tue, 21 Feb 2017 21:33:13 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
+      <guid>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JS Quirks: stringified numbers</title>
-      <link>http://thefourtheye.in/2016/11/15/js-quirks-stringified-numbers/</link>
+      <link>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</link>
       <pubDate>Tue, 15 Nov 2016 00:38:30 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2016/11/15/js-quirks-stringified-numbers/</guid>
+      <guid>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DSL-2730U router&#39;s ipv6 problem in Ubuntu</title>
-      <link>http://thefourtheye.in/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/</link>
+      <link>https://thefourtheye.in/posts/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/</link>
       <pubDate>Sun, 06 Mar 2016 20:32:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/</guid>
+      <guid>https://thefourtheye.in/posts/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sane ECMAScript 6 Generators</title>
-      <link>http://thefourtheye.in/2016/02/03/sane-ecmascript-6-generators/</link>
+      <link>https://thefourtheye.in/posts/2016/02/03/sane-ecmascript-6-generators/</link>
       <pubDate>Wed, 03 Feb 2016 20:47:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2016/02/03/sane-ecmascript-6-generators/</guid>
+      <guid>https://thefourtheye.in/posts/2016/02/03/sane-ecmascript-6-generators/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sublime Text 3 unhiding menu in Ubuntu - simpler solution</title>
-      <link>http://thefourtheye.in/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</link>
+      <link>https://thefourtheye.in/posts/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</link>
       <pubDate>Sun, 10 Jan 2016 20:44:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</guid>
+      <guid>https://thefourtheye.in/posts/2016/01/10/sublime-text-3-unhiding-menu-in-ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python 3.5 and Django 1.7&#39;s HTMLParseError</title>
-      <link>http://thefourtheye.in/2015/02/15/python-35-and-django-17s-htmlparseerror/</link>
+      <link>https://thefourtheye.in/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/</link>
       <pubDate>Sun, 15 Feb 2015 13:20:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2015/02/15/python-35-and-django-17s-htmlparseerror/</guid>
+      <guid>https://thefourtheye.in/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu overlapping displays while scaling dual monitor setup</title>
-      <link>http://thefourtheye.in/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/</link>
+      <link>https://thefourtheye.in/posts/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/</link>
       <pubDate>Sun, 01 Feb 2015 12:58:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/</guid>
+      <guid>https://thefourtheye.in/posts/2015/02/01/ubuntu-overlapping-displays-while-scaling-dual-monitor-setup/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python&#39;s venv problem with ensurepip in Ubuntu</title>
-      <link>http://thefourtheye.in/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/</link>
+      <link>https://thefourtheye.in/posts/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/</link>
       <pubDate>Tue, 30 Dec 2014 14:52:00 +0530</pubDate>
       <author>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</author>
-      <guid>http://thefourtheye.in/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/</guid>
+      <guid>https://thefourtheye.in/posts/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/</guid>
       <description></description>
     </item>
     

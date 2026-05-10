@@ -2,12 +2,146 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javascript on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/javascript/</link>
+    <link>https://thefourtheye.in/tags/javascript/</link>
     <description>Recent content in Javascript on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Tue, 21 Feb 2017 21:33:13 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Feb 2017 21:33:13 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript lookbehind RegEx alternative</title>
+      <link>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</link>
+      <pubDate>Tue, 21 Feb 2017 21:33:13 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
+      <description>&lt;p&gt;Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[{\&amp;quot;name\&amp;quot;:\&amp;quot;Kilua\&amp;quot;\\,\&amp;quot;age\&amp;quot;:35}],{\&amp;quot;city\&amp;quot;:\&amp;quot;SJC\&amp;quot;},\&amp;quot;US\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[ &#39;[{&amp;quot;name&amp;quot;:&amp;quot;Kilua&amp;quot;\\,&amp;quot;age&amp;quot;:35}]&#39;, &#39;{&amp;quot;city&amp;quot;:&amp;quot;SJC&amp;quot;},&amp;quot;US&amp;quot;&#39; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is &lt;code&gt;a,1,b,2,c,3&lt;/code&gt; and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;console.log(&#39;a,1,b,2,c,3&#39;.split(/,(?!\d)/));
+// [ &#39;a,1&#39;, &#39;b,2&#39;, &#39;c,3&#39; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since JavaScript doesn&amp;rsquo;t have lookbehinds, we don&amp;rsquo;t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;.replace(/([^\\]),/g, &#39;$1\u000B&#39;).split(&#39;\u000B&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Replace all the commas matching the condition with a marker string which does not appear anywhere in the string. (&lt;code&gt;\u000B&lt;/code&gt; in this case)&lt;/li&gt;
+&lt;li&gt;Then split the original string with the marker string.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JS Quirks: stringified numbers</title>
+      <link>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</link>
+      <pubDate>Tue, 15 Nov 2016 00:38:30 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</guid>
+      <description>&lt;p&gt;When I was working on &lt;a href=&#34;https://github.com/nodejs/node/pull/9492&#34;&gt;Node.js PR 9492&lt;/a&gt;, &lt;a href=&#34;https://github.com/nodejs/node/pull/9492#discussion_r86987446&#34;&gt;this comment&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This should probably test for a wider range of values. &lt;code&gt;test/parallel/test-net-internal.js&lt;/code&gt; has some good examples.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;made me look at &lt;a href=&#34;https://github.com/nodejs/node/blob/fc44bd4d0b984f7b926b8c92b8e9a88da1c08921/test/parallel/test-net-internal.js&#34;&gt;that file&lt;/a&gt;. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF + 1, Infinity,
+             -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;,
+             &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[-0x1, &#39;-0x1&#39;, -0o1, &#39;-0o1&#39;, -0b1, &#39;-0b1&#39;].forEach(item =&amp;gt; console.log(item, +item));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and I was expecting to see the result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-1 -1
+-0x1 -1
+-1 -1
+-0o1 -1
+-1 -1
+-0b1 -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;but all I got was&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-1 -1
+-0x1 NaN
+-1 -1
+-0o1 NaN
+-1 -1
+-0b1 NaN
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The unary - operator simply negates the magnitude of the numbers. The stringified numbers were not processed in the same way as their number counterparts. So I looked at the ECMAScript specification&amp;rsquo;s &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-tonumber-applied-to-the-string-type&#34;&gt;ToNumber Applied to the String Type&lt;/a&gt; section (which is actually responsible for converting strings to numbers).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;StrNumericLiteral :::
+    StrDecimalLiteral
+    BinaryIntegerLiteral
+    OctalIntegerLiteral
+    HexIntegerLiteral
+...
+...
+StrDecimalLiteral :::
+    StrUnsignedDecimalLiteral
+    + StrUnsignedDecimalLiteral
+    - StrUnsignedDecimalLiteral
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Only the &lt;code&gt;StrDecimalLiteral&lt;/code&gt; production allows signed numbers. If we look at the definition of others in the &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals&#34;&gt;Numeric Literals&lt;/a&gt; section,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;BinaryIntegerLiteral ::
+    0b BinaryDigits
+    0B BinaryDigits
+
+BinaryDigits ::
+    BinaryDigit
+    BinaryDigits BinaryDigit
+
+BinaryDigit :: one of
+    0 1
+
+OctalIntegerLiteral ::
+    0o OctalDigits
+    0O OctalDigits
+
+OctalDigits ::
+    OctalDigit
+    OctalDigits OctalDigit
+
+OctalDigit :: one of
+    0 1 2 3 4 5 6 7
+
+HexIntegerLiteral ::
+    0x HexDigits
+    0X HexDigits
+
+HexDigits ::
+    HexDigit
+    HexDigits HexDigit
+
+HexDigit :: one of
+    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, as per the specification, only the decimal numbers can have signs in the stringified number form. That is why the others are not considered as numbers.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sane ECMAScript 6 Generators</title>
+      <link>https://thefourtheye.in/posts/2016/02/03/sane-ecmascript-6-generators/</link>
+      <pubDate>Wed, 03 Feb 2016 20:47:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2016/02/03/sane-ecmascript-6-generators/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;This post is cross posted in Medium, &lt;a href=&#34;https://medium.com/@thefourtheye/sane-ecmascript-6-generators-7d1adcd85536#.cpvn9y4n8&#34;&gt;here&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;I recently found one interesting thing about ES6 Generators. I come from Python background and I understood generators as in Python. So, I expected the following Python code&#39;s equivalent ECMAScript 6 code also to work as well. &lt;!--?prettify lang=python linenums=true?--&gt;&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&gt;&gt;&gt; numbers = (num for num in range(10))&lt;br /&gt;&gt;&gt;&gt; for num in numbers:&lt;br /&gt;...   if num == 3:&lt;br /&gt;...     break&lt;br /&gt;... &lt;br /&gt;&gt;&gt;&gt; next(numbers)&lt;br /&gt;4&lt;br /&gt;&lt;/pre&gt;You can find the online demo for this Python program, &lt;a href=&#34;http://ideone.com/9lYJOz&#34;&gt;here&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;But then, when I used Babel to transpile the following code and executed it&lt;!--?prettify lang=javascript linenums=true?--&gt;&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;function* NumberGenerator() {&lt;br /&gt;  for (var i = 0; i &lt; 10; i += 1) {&lt;br /&gt;    yield i;&lt;br /&gt;  }&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;var numbers = NumberGenerator();&lt;br /&gt;&lt;br /&gt;for (var num of numbers) {&lt;br /&gt;  if (num === 3) {&lt;br /&gt;    break;&lt;br /&gt;  }&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;console.log(numbers.next());&lt;br /&gt;// {&#34;done&#34;:true}&lt;br /&gt;&lt;/pre&gt;You can find the online demo for this JavaScript program, made with Babel&#39;s REPL, &lt;a href=&#34;https://babeljs.io/repl/#?experimental=true&amp;evaluate=true&amp;loose=false&amp;spec=true&amp;code=function*%20NumberGenerator()%20%7B%0A%20%20for%20(var%20i%20%3D%200%3B%20i%20%3C%2010%3B%20i%20%2B%3D%201)%20%7B%0A%20%20%20%20yield%20i%3B%0A%20%20%7D%0A%7D%0A%0Avar%20numbers%20%3D%20NumberGenerator()%3B%0A%0Afor%20(var%20num%20of%20numbers)%20%7B%0A%20%20if%20(num%20%3D%3D%3D%203)%20%7B%0A%20%20%20%20break%3B%0A%20%20%7D%0A%7D%0A%0Aconsole.log(numbers.next())%3B%0A&#34;&gt;here&lt;/a&gt;.  As you see here, when I broke out of the loop, the Generator Object got closed. This was pointed out to me by &lt;a href=&#34;http://stackoverflow.com/users/785065/loganfsmyth&#34;&gt;Logan Smyth&lt;/a&gt; in Babel&#39;s Slack discussion. I was really surprised by this behavior and found the &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-runtime-semantics-forin-div-ofbodyevaluation-lhs-stmt-iterator-lhskind-labelset&#34;&gt;13.7.5.13 Runtime Semantics: ForIn/OfBodyEvaluation ( lhs, stmt, iterator, lhsKind, labelSet )&lt;/a&gt; section in the ECMAScript 6 Specification, which says  &lt;blockquote&gt;If LoopContinues(result, labelSet) is false, return IteratorClose(iterator, UpdateEmpty(result, V)).&lt;/blockquote&gt;I am not sure about the rationale behind that decision, but I am convinced that it would effectively limit the potential of the Generators. So I decided to fix this.  &lt;h2&gt;Sane Generators&lt;/h2&gt;To close the iterator, &lt;code&gt;Iterator.prototype.return&lt;/code&gt; is called. (At the time of this writing, not many JavaScript Engines support this function. You can find the support for this feature by popular engines, &lt;a href=&#34;https://kangax.github.io/compat-table/es6/#test-generators_yield_*,_iterator_closing&#34;&gt;here&lt;/a&gt;.) So I decided to override that and allow the actual &lt;code&gt;return&lt;/code&gt; function to be invoked only when explicitly called with an argument.&lt;!--?prettify lang=javascript?--&gt;&lt;pre class=&#34;prettyprint&#34;&gt;function returnFunction(originalReturn, genObject) {&lt;br /&gt;  return function(arg) {&lt;br /&gt;    return arguments.length ? originalReturn.call(genObject, arg) : {&lt;br /&gt;      done: false&lt;br /&gt;    };&lt;br /&gt;  };&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;function SaneGenerator(genObject) {&lt;br /&gt;  var originalReturn = genObject[&#39;return&#39;];&lt;br /&gt;&lt;br /&gt;  if (typeof originalReturn === &#39;function&#39;) {&lt;br /&gt;    Object.defineProperty(genObject, &#39;return&#39;, {&lt;br /&gt;      value: returnFunction(originalReturn, genObject)&lt;br /&gt;    });&lt;br /&gt;  }&lt;br /&gt;&lt;br /&gt;  return genObject;&lt;br /&gt;}&lt;/pre&gt;You can see the actual and complete implementation in my GitHub repository, &lt;a href=&#34;https://github.com/thefourtheye/sane-generator/blob/master/index.js&#34;&gt;https://github.com/thefourtheye/sane-generator&lt;/a&gt;.  Now, you can use the &lt;code&gt;SaneGenerator&lt;/code&gt; like this &lt;!--?prettify lang=javascript?--&gt;&lt;pre class=&#34;prettyprint&#34;&gt;function* NumberGenerator() {&lt;br /&gt;  for (var i = 0; i &lt; 10; i += 1) {&lt;br /&gt;    yield i;&lt;br /&gt;  }&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;var numbers = SaneGenerator(NumberGenerator());&lt;br /&gt;&lt;br /&gt;for (var num of numbers) {&lt;br /&gt;  if (num === 3) {&lt;br /&gt;    break;&lt;br /&gt;  }&lt;br /&gt;}&lt;br /&gt;&lt;br /&gt;console.log(numbers.next());&lt;br /&gt;// {&#34;value&#34;:4,&#34;done&#34;:false}&lt;br /&gt;&lt;/pre&gt;You can find the online demo for this JavaScript program, made with Babel&#39;s REPL, &lt;a href=&#34;https://babeljs.io/repl/#?experimental=true&amp;evaluate=true&amp;loose=false&amp;spec=true&amp;code=function%20returnFunction(originalReturn%2C%20genObject)%20%7B%0A%20%20return%20function(arg)%20%7B%0A%20%20%20%20return%20arguments.length%20%3F%20originalReturn.call(genObject%2C%20arg)%20%3A%20%7B%0A%20%20%20%20%20%20done%3A%20false%0A%20%20%20%20%7D%3B%0A%20%20%7D%3B%0A%7D%0A%0Afunction%20SaneGenerator(genObject)%20%7B%0A%20%20var%20originalReturn%20%3D%20genObject%5B&#39;return&#39;%5D%3B%0A%0A%20%20if%20(typeof%20originalReturn%20%3D%3D%3D%20&#39;function&#39;)%20%7B%0A%20%20%20%20Object.defineProperty(genObject%2C%20&#39;return&#39;%2C%20%7B%0A%20%20%20%20%20%20value%3A%20returnFunction(originalReturn%2C%20genObject)%0A%20%20%20%20%7D)%3B%0A%20%20%7D%0A%0A%20%20return%20genObject%3B%0A%7D%0A%0Afunction*%20NumberGenerator()%20%7B%0A%20%20for%20(var%20i%20%3D%200%3B%20i%20%3C%2010%3B%20i%20%2B%3D%201)%20%7B%0A%20%20%20%20yield%20i%3B%0A%20%20%7D%0A%7D%0A%0Avar%20numbers%20%3D%20SaneGenerator(NumberGenerator())%3B%0A%0Afor%20(var%20num%20of%20numbers)%20%7B%0A%20%20if%20(num%20%3D%3D%3D%203)%20%7B%0A%20%20%20%20break%3B%0A%20%20%7D%0A%7D%0A%0Aconsole.log(numbers.next())%3B%0A&#34;&gt;here&lt;/a&gt;.  &lt;h2&gt;NPM Module&lt;/h2&gt;This is available as an NPM module now. &lt;a href=&#34;https://www.npmjs.com/package/sane-generator&#34;&gt;https://www.npmjs.com/package/sane-generator&lt;/a&gt; &lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Node.js - modules and exports</title>
+      <link>https://thefourtheye.in/posts/2014/03/01/nodejs-modules-and-exports/</link>
+      <pubDate>Sat, 01 Mar 2014 09:26:00 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2014/03/01/nodejs-modules-and-exports/</guid>
+      <description>
+&lt;div class=&#39;post&#39;&gt;
+&lt;div dir=&#34;ltr&#34; style=&#34;text-align: left;&#34; trbidi=&#34;on&#34;&gt;&lt;p&gt;I think most of us haven&#39;t understood the concept of modules in Node.js properly. Let us discuss the basics of that in this post.&lt;/p&gt;&lt;h2&gt;Module System&lt;/h2&gt;&lt;p&gt;In Node.js, when you create a new JavaScript file, that will be considered as a separate module. Inside that module, you can access the module itself with &lt;code&gt;module&lt;/code&gt; object. You can check that, like this&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;console.log(module);&lt;/pre&gt;which produces something like this&lt;br /&gt;&lt;pre class=&#34;prettyprint&#34;&gt;{ id: &#39;.&#39;,&lt;br /&gt;  exports: {},&lt;br /&gt;  parent: null,&lt;br /&gt;  filename: &#39;/home/thefourtheye/Desktop/Test.js&#39;,&lt;br /&gt;  loaded: false,&lt;br /&gt;  children: [],&lt;br /&gt;  paths:&lt;br /&gt;   [ &#39;/home/thefourtheye/Desktop/node_modules&#39;,&lt;br /&gt;     &#39;/home/thefourtheye/node_modules&#39;,&lt;br /&gt;     &#39;/home/node_modules&#39;,&lt;br /&gt;     &#39;/node_modules&#39; ] }&lt;br /&gt;&lt;/pre&gt;&lt;h2&gt;exports and module.exports&lt;/h2&gt;&lt;p&gt;As you can see, it is just a plain JavaScript object. The important thing to be noted here is, &lt;a href=&#34;http://nodejs.org/api/modules.html#modules_module_exports&#34;&gt;the exports object in module&lt;/a&gt;. In every module, JavaScript, by default, offers another variable called &lt;a href=&#34;http://nodejs.org/api/modules.html#modules_exports_alias&#34;&gt;exports&lt;/a&gt;. That is nothing but the same object in module object of the same name. You can check that like this&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;exports.jabberwocky = &#34;blah blah blah&#34;;&lt;br /&gt;console.log(module.exports);            // { jabberwocky: &#39;blah blah blah&#39; }&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;So, they are one and the same. But, when some other module requires this module, the object returned will be module.exports only. As long as you are augmenting module.exports and exports, there will be no problem. But when you assign something to either exports or module.exports, they no longer refer to the same object.&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;exports = {&#34;king&#34;: &#34;Sourav Ganguly&#34;};&lt;br /&gt;console.log(module.exports);           // {}&lt;br /&gt;console.log(exports);                  // { king: &#39;Sourav Ganguly&#39; }&lt;br /&gt;&lt;/pre&gt;&lt;p&gt;You are making both exports and module.exports refer to different objects. So, when this module is exported, an empty object will be exported (remember, &lt;b&gt;only module.exports will be exported when required from other files&lt;/b&gt;), even though we assigned a valid object to exports. So, care should be taken when you replace either of those objects. That is the reason why we often see something like this&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;exports = module.exports = ...&lt;br /&gt;&lt;/pre&gt;&lt;h2&gt;Scope&lt;/h2&gt;&lt;p&gt;All the variables and functions declared within the module will be accessible only inside the module (as long as they are created with var keyword). Quoting from the &lt;a href=&#34;http://nodejs.org/api/modules.html#modules_modules&#34;&gt;modules documentation&lt;/a&gt;&lt;/p&gt;&lt;blockquote&gt;Variables local to the module will be private, as though the module was wrapped in a function.&lt;/blockquote&gt;Happy modularizing the code :)&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

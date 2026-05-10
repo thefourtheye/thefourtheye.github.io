@@ -2,12 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Regex on thefourtheye.in</title>
-    <link>http://thefourtheye.in/tags/regex/</link>
+    <link>https://thefourtheye.in/tags/regex/</link>
     <description>Recent content in Regex on thefourtheye.in</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</managingEditor>
-    <webMaster>sakthi@thefourtheye.in (Sakthipriyan Vairamani (thefourtheye))</webMaster>
-    <lastBuildDate>Tue, 21 Feb 2017 21:33:13 +0530</lastBuildDate><atom:link href="http://thefourtheye.in/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Feb 2017 21:33:13 +0530</lastBuildDate><atom:link href="https://thefourtheye.in/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript lookbehind RegEx alternative</title>
+      <link>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</link>
+      <pubDate>Tue, 21 Feb 2017 21:33:13 +0530</pubDate>
+      
+      <guid>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
+      <description>&lt;p&gt;Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[{\&amp;quot;name\&amp;quot;:\&amp;quot;Kilua\&amp;quot;\\,\&amp;quot;age\&amp;quot;:35}],{\&amp;quot;city\&amp;quot;:\&amp;quot;SJC\&amp;quot;},\&amp;quot;US\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[ &#39;[{&amp;quot;name&amp;quot;:&amp;quot;Kilua&amp;quot;\\,&amp;quot;age&amp;quot;:35}]&#39;, &#39;{&amp;quot;city&amp;quot;:&amp;quot;SJC&amp;quot;},&amp;quot;US&amp;quot;&#39; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is &lt;code&gt;a,1,b,2,c,3&lt;/code&gt; and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;console.log(&#39;a,1,b,2,c,3&#39;.split(/,(?!\d)/));
+// [ &#39;a,1&#39;, &#39;b,2&#39;, &#39;c,3&#39; ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since JavaScript doesn&amp;rsquo;t have lookbehinds, we don&amp;rsquo;t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;.replace(/([^\\]),/g, &#39;$1\u000B&#39;).split(&#39;\u000B&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Replace all the commas matching the condition with a marker string which does not appear anywhere in the string. (&lt;code&gt;\u000B&lt;/code&gt; in this case)&lt;/li&gt;
+&lt;li&gt;Then split the original string with the marker string.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
