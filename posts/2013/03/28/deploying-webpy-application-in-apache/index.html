@@ -93,7 +93,7 @@ app.run() but when I deployed with wsgi enabled, it became thisimport web, os, s
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2013-03-28T21:48:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:41:23+05:30">
+    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
     <meta property="article:tag" content="Apache">
     <meta property="article:tag" content="Python">
     <meta property="article:tag" content="Web.py">
@@ -136,7 +136,7 @@ The code in app.py file, with which I tested my application was like thisimport 
 app = web.application(urls.urls, globals())
 app.run() but when I deployed with wsgi enabled, it became thisimport web, os, sys root = os.path.join(os.path.dirname(__file__)&#43;&#34;/&#34;)sys.path.insert(0, root)templates = os.path.join(os.path.dirname(__file__)&#43;&#34;/templates/&#34;)sys.path.insert(1, templates)os.chdir(root) import urls app = web.application(urls.urls, globals())application = app.wsgifunc() Basically the application is unable to understand no directory even the current directory. So everything has to be added to the sys.path manually. Notice that, without these path changes to sys, it was not even able to recognize the urls module which was in the same directory as the app.py. And whenever templates are used, we cannot use relative locations like thisrender = web.template.render(&#39;templates/&#39;)We need to get the physical location of the templates directory like thistemplates = os.path.join(os.path.dirname(__file__)&#43;&#34;/templates/&#34;)and use it in the render like thisrender = web.template.render(templates) That&#39;s all, I have to say. Good luck :)">
   <meta itemprop="datePublished" content="2013-03-28T21:48:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:41:23+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
   <meta itemprop="wordCount" content="804">
   <meta itemprop="keywords" content="Apache,Python,Web.py">
 

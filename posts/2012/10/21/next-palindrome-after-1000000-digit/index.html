@@ -80,7 +80,7 @@ My solution:">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2012-10-21T18:38:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:41:23+05:30">
+    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
     <meta property="article:tag" content="SPOJ">
     <meta property="article:tag" content="Sport Programming">
 
@@ -109,7 +109,7 @@ This approach is quite simple and easy to implement. But, this may not work alwa
 My approach:Read the number as a string and store it in STR and the number of digits as NSplit STR into two halves STR1 and STR3, if the number of digits in STR is odd, the middle digit will be in STR2 otherwise it is emptyIf the Reverse of STR1 is greater than STR3, Print STR1 &#43; STR2 &#43; Reverse (STR1) and exitmake all digits of STR3 as &#39;0&#39;If N is even, increment STR1Goto step 1 with input (Incremented STR1 &#43; STR3)If N is odd, increment STR2If Incremented STR2 is 10, set STR2 as &#34;0&#34;increment STR1Goto step 1 with input (Incremented STR1 &#43; STR2 &#43; STR3)If Incremented STR2 is lesser than 10Goto step 1 with input (STR1 &#43; STR2 &#43; STR3)The observation which I made after analyzing few examples is, if the second half of the number is smaller than the reverse of the first half of the number, just replacing the second half with the reverse of the first half produces the required output. If it is not smaller than the reverse of the first half, increment the first half and then replace the second half with the incremented first half. This is the basic idea but the above algorithm includes all the corner cases.
 My solution:">
   <meta itemprop="datePublished" content="2012-10-21T18:38:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:41:23+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
   <meta itemprop="wordCount" content="562">
   <meta itemprop="keywords" content="SPOJ,Sport Programming">
 

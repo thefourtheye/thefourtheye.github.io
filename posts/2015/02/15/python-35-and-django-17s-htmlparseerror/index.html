@@ -90,7 +90,7 @@ Now, all we can do is, wait for the version of django which officially supports 
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2015-02-15T13:20:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T10:41:23+05:30">
+    <meta property="article:modified_time" content="2026-05-10T10:49:56+05:30">
     <meta property="article:tag" content="Python">
     <meta property="article:tag" content="Django">
 
@@ -129,7 +129,7 @@ File &#34;/py3.5venv/lib/python3.5/site-packages/django/utils/html_parser.py&#34
 AttributeError: module &#39;html.parser&#39; has no attribute &#39;HTMLParseError&#39;Then Antti Haapala (a friend from Stakoverflow&#39;s Python Chat room) found out that it is because HTMLParseError is deprecated from Python 3.3 onwards and removed in Python 3.5, as per the official documentation. He continued the investigation and found out that django guys are already aware of this, as they have a bug raised, and the fix has been already delivered to the code repository.
 Now, all we can do is, wait for the version of django which officially supports Python 3.5 or manually patch html_parser.py file as per the above shown fix. Even if we patch it manually, there is no guarantee that everything else will work fine.">
   <meta itemprop="datePublished" content="2015-02-15T13:20:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T10:41:23+05:30">
+  <meta itemprop="dateModified" content="2026-05-10T10:49:56+05:30">
   <meta itemprop="wordCount" content="349">
   <meta itemprop="keywords" content="Python,Django">
 
