@@ -13,82 +13,96 @@
       <pubDate>Tue, 15 Nov 2016 00:38:30 +0530</pubDate>
       
       <guid>https://thefourtheye.in/posts/2016/11/15/js-quirks-stringified-numbers/</guid>
-      <description>&lt;p&gt;When I was working on &lt;a href=&#34;https://github.com/nodejs/node/pull/9492&#34;&gt;Node.js PR 9492&lt;/a&gt;, &lt;a href=&#34;https://github.com/nodejs/node/pull/9492#discussion_r86987446&#34;&gt;this comment&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;
+When I was working on &lt;a href=&#34;https://github.com/nodejs/node/pull/9492&#34;&gt;Node.js PR 9492&lt;/a&gt;, &lt;a href=&#34;https://github.com/nodejs/node/pull/9492#discussion_r86987446&#34;&gt;this comment&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;This should probably test for a wider range of values. &lt;code&gt;test/parallel/test-net-internal.js&lt;/code&gt; has some good examples.&lt;/p&gt;
+&lt;p&gt;This should probably test for a wider range of values. &lt;code class=&#34;verbatim&#34;&gt;test/parallel/test-net-internal.js&lt;/code&gt; has some good examples.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;made me look at &lt;a href=&#34;https://github.com/nodejs/node/blob/fc44bd4d0b984f7b926b8c92b8e9a88da1c08921/test/parallel/test-net-internal.js&#34;&gt;that file&lt;/a&gt;. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;const bad = [-1, &#39;a&#39;, {}, [], false, true, 0xFFFF + 1, Infinity,
-             -Infinity, NaN, undefined, null, &#39;&#39;, &#39; &#39;, 1.1, &#39;0x&#39;,
-             &#39;-0x1&#39;, &#39;-0o1&#39;, &#39;-0b1&#39;, &#39;0o&#39;, &#39;0b&#39;];
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[-0x1, &#39;-0x1&#39;, -0o1, &#39;-0o1&#39;, -0b1, &#39;-0b1&#39;].forEach(item =&amp;gt; console.log(item, +item));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;and I was expecting to see the result&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-1 -1
--0x1 -1
--1 -1
--0o1 -1
--1 -1
--0b1 -1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;but all I got was&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;-1 -1
--0x1 NaN
--1 -1
--0o1 NaN
--1 -1
--0b1 NaN
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The unary - operator simply negates the magnitude of the numbers. The stringified numbers were not processed in the same way as their number counterparts. So I looked at the ECMAScript specification&amp;rsquo;s &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-tonumber-applied-to-the-string-type&#34;&gt;ToNumber Applied to the String Type&lt;/a&gt; section (which is actually responsible for converting strings to numbers).&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;StrNumericLiteral :::
-    StrDecimalLiteral
-    BinaryIntegerLiteral
-    OctalIntegerLiteral
-    HexIntegerLiteral
-...
-...
-StrDecimalLiteral :::
-    StrUnsignedDecimalLiteral
-    + StrUnsignedDecimalLiteral
-    - StrUnsignedDecimalLiteral
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Only the &lt;code&gt;StrDecimalLiteral&lt;/code&gt; production allows signed numbers. If we look at the definition of others in the &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals&#34;&gt;Numeric Literals&lt;/a&gt; section,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;BinaryIntegerLiteral ::
-    0b BinaryDigits
-    0B BinaryDigits
-
-BinaryDigits ::
-    BinaryDigit
-    BinaryDigits BinaryDigit
-
-BinaryDigit :: one of
-    0 1
-
-OctalIntegerLiteral ::
-    0o OctalDigits
-    0O OctalDigits
-
-OctalDigits ::
-    OctalDigit
-    OctalDigits OctalDigit
-
-OctalDigit :: one of
-    0 1 2 3 4 5 6 7
-
-HexIntegerLiteral ::
-    0x HexDigits
-    0X HexDigits
-
-HexDigits ::
-    HexDigit
-    HexDigits HexDigit
-
-HexDigit :: one of
-    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So, as per the specification, only the decimal numbers can have signs in the stringified number form. That is why the others are not considered as numbers.&lt;/p&gt;
+&lt;p&gt;
+made me look at &lt;a href=&#34;https://github.com/nodejs/node/blob/fc44bd4d0b984f7b926b8c92b8e9a88da1c08921/test/parallel/test-net-internal.js&#34;&gt;that file&lt;/a&gt;. As I was going through the test, few of the bad values were interesting. I normally test with stringified positive decimal numbers and negative decimal numbers. But I saw stringified negative octal, binary, and hexa decimal numbers.&lt;/p&gt;
+&lt;div class=&#34;src src-js&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;const&lt;/span&gt; bad &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;, {}, [], &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;false&lt;/span&gt;, &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;true&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;0xFFFF&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;Infinity&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;2&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#2&#34;&gt;2&lt;/a&gt;&lt;/span&gt;&lt;span&gt;             &lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;Infinity&lt;/span&gt;, &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;NaN&lt;/span&gt;, &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;undefined&lt;/span&gt;, &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;null&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39; &amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;1.1&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;0x&amp;#39;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;3&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#3&#34;&gt;3&lt;/a&gt;&lt;/span&gt;&lt;span&gt;             &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;-0x1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;-0o1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;-0b1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;0o&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;0b&amp;#39;&lt;/span&gt;];&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+I got curious as I have never used them before, I just wanted to see their corresponding negative values. So I wrote a program like this&lt;/p&gt;
+&lt;div class=&#34;src src-js&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;[&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;-0x1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0o1&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;-0o1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0b1&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;-0b1&amp;#39;&lt;/span&gt;].forEach(item =&amp;gt; console.log(item, &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;item));&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+and I was expecting to see the result&lt;/p&gt;
+&lt;div class=&#34;src src-text&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;2&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#2&#34;&gt;2&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-0x1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;3&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#3&#34;&gt;3&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;4&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#4&#34;&gt;4&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-0o1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;5&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#5&#34;&gt;5&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;6&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#6&#34;&gt;6&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-0b1 -1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+but all I got was&lt;/p&gt;
+&lt;div class=&#34;src src-text&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;2&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#2&#34;&gt;2&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-0x1 NaN
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;3&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#3&#34;&gt;3&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;4&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#4&#34;&gt;4&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-0o1 NaN
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;5&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#5&#34;&gt;5&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-1 -1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;6&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#6&#34;&gt;6&lt;/a&gt;&lt;/span&gt;&lt;span&gt;-0b1 NaN&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+The unary - operator simply negates the magnitude of the numbers. The stringified numbers were not processed in the same way as their number counterparts. So I looked at the ECMAScript specification&amp;#39;s &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-tonumber-applied-to-the-string-type&#34;&gt;ToNumber Applied to the String Type&lt;/a&gt; section (which is actually responsible for converting strings to numbers).&lt;/p&gt;
+&lt;div class=&#34;src src-text&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt; 1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;StrNumericLiteral :::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;2&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#2&#34;&gt; 2&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    StrDecimalLiteral
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;3&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#3&#34;&gt; 3&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    BinaryIntegerLiteral
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;4&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#4&#34;&gt; 4&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    OctalIntegerLiteral
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;5&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#5&#34;&gt; 5&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    HexIntegerLiteral
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;6&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#6&#34;&gt; 6&lt;/a&gt;&lt;/span&gt;&lt;span&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;7&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#7&#34;&gt; 7&lt;/a&gt;&lt;/span&gt;&lt;span&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;8&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#8&#34;&gt; 8&lt;/a&gt;&lt;/span&gt;&lt;span&gt;StrDecimalLiteral :::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;9&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#9&#34;&gt; 9&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    StrUnsignedDecimalLiteral
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;10&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#10&#34;&gt;10&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    + StrUnsignedDecimalLiteral
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;11&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#11&#34;&gt;11&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    - StrUnsignedDecimalLiteral&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+Only the StrDecimalLiteral production allows signed numbers. If we look at the definition of others in the &lt;a href=&#34;http://www.ecma-international.org/ecma-262/6.0/#sec-literals-numeric-literals&#34;&gt;Numeric Literals&lt;/a&gt; section,&lt;/p&gt;
+&lt;div class=&#34;src src-text&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt; 1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;BinaryIntegerLiteral ::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;2&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#2&#34;&gt; 2&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0b BinaryDigits
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;3&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#3&#34;&gt; 3&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0B BinaryDigits
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;4&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#4&#34;&gt; 4&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;5&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#5&#34;&gt; 5&lt;/a&gt;&lt;/span&gt;&lt;span&gt;BinaryDigits ::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;6&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#6&#34;&gt; 6&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    BinaryDigit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;7&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#7&#34;&gt; 7&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    BinaryDigits BinaryDigit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;8&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#8&#34;&gt; 8&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;9&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#9&#34;&gt; 9&lt;/a&gt;&lt;/span&gt;&lt;span&gt;BinaryDigit :: one of
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;10&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#10&#34;&gt;10&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0 1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;11&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#11&#34;&gt;11&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;12&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#12&#34;&gt;12&lt;/a&gt;&lt;/span&gt;&lt;span&gt;OctalIntegerLiteral ::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;13&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#13&#34;&gt;13&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0o OctalDigits
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;14&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#14&#34;&gt;14&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0O OctalDigits
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;15&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#15&#34;&gt;15&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;16&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#16&#34;&gt;16&lt;/a&gt;&lt;/span&gt;&lt;span&gt;OctalDigits ::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;17&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#17&#34;&gt;17&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    OctalDigit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;18&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#18&#34;&gt;18&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    OctalDigits OctalDigit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;19&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#19&#34;&gt;19&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;20&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#20&#34;&gt;20&lt;/a&gt;&lt;/span&gt;&lt;span&gt;OctalDigit :: one of
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;21&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#21&#34;&gt;21&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0 1 2 3 4 5 6 7
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;22&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#22&#34;&gt;22&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;23&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#23&#34;&gt;23&lt;/a&gt;&lt;/span&gt;&lt;span&gt;HexIntegerLiteral ::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;24&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#24&#34;&gt;24&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0x HexDigits
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;25&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#25&#34;&gt;25&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0X HexDigits
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;26&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#26&#34;&gt;26&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;27&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#27&#34;&gt;27&lt;/a&gt;&lt;/span&gt;&lt;span&gt;HexDigits ::
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;28&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#28&#34;&gt;28&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    HexDigit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;29&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#29&#34;&gt;29&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    HexDigits HexDigit
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;30&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#30&#34;&gt;30&lt;/a&gt;&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;31&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#31&#34;&gt;31&lt;/a&gt;&lt;/span&gt;&lt;span&gt;HexDigit :: one of
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;32&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#32&#34;&gt;32&lt;/a&gt;&lt;/span&gt;&lt;span&gt;    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+So, as per the specification, only the decimal numbers can have signs in the stringified number form. That is why the others are not considered as numbers.&lt;/p&gt;
 </description>
     </item>
     

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,16 +57,16 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2014/12/30/python-venv-problem-with-ensurepip-in-ubuntu/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Python&#39;s venv problem with ensurepip in Ubuntu">
-  <meta property="og:description" content="Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2014-12-30T14:52:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Ubuntu">
-    <meta property="article:tag" content="Python">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Python&#39;s venv problem with ensurepip in Ubuntu">
+	<meta property="og:description" content="Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2014-12-30T14:52:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Ubuntu">
+		<meta property="article:tag" content="Python">
 
 
   
@@ -75,12 +75,12 @@
   
   
   
-  <meta itemprop="name" content="Python&#39;s venv problem with ensurepip in Ubuntu">
-  <meta itemprop="description" content="Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.">
-  <meta itemprop="datePublished" content="2014-12-30T14:52:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="265">
-  <meta itemprop="keywords" content="Ubuntu,Python">
+	<meta itemprop="name" content="Python&#39;s venv problem with ensurepip in Ubuntu">
+	<meta itemprop="description" content="Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.">
+	<meta itemprop="datePublished" content="2014-12-30T14:52:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="279">
+	<meta itemprop="keywords" content="Ubuntu,Python">
 
   
   
@@ -100,9 +100,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Python&#39;s venv problem with ensurepip in Ubuntu">
-  <meta name="twitter:description" content="Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Python&#39;s venv problem with ensurepip in Ubuntu">
+	<meta name="twitter:description" content="Fix for Python 3.4 venv issues on Ubuntu 14.04. Workaround involves creating venv without pip first, then manually installing pip using get-pip.py bootstrap script.">
 
 
   
@@ -201,7 +201,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          265 words
+          279 words
         </span>
       
       
@@ -242,9 +242,69 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div>Ubuntu 14.04's Python 3.4 installation has a problem with <code>ensurepip</code> module, as described in <a href="https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847">this bug</a>. So if you follow the steps mentioned in the <a href="https://docs.python.org/3/library/venv.html#creating-virtual-environments">official documentation</a>, you would see an error message like this<pre class="prettyprint">➜  Python  python3 -m venv py3.4venv<br />Error: Command '['/home/thefourtheye//py34venv/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1<br /></pre>To resolve this problem, first install the <code>venv</code>, without <code>pip</code>, like this<br /><pre class="prettyprint">python3 -m venv py3.4venv --without-pip</pre>And then if you install <code>pip</code>, like this, it will still fail<pre class="prettyprint">(py3.4venv) ➜  py3.4venv  python -m ensurepip --upgrade<br />/home/thefourtheye/Python/py3.4venv/bin/python: No module named ensurepip<br />(py3.4venv) ➜  py3.4venv  python<br />Python 3.4.0 (default, Apr 11 2014, 13:05:11)<br />[GCC 4.8.2] on linux<br />Type "help", "copyright", "credits" or "license" for more information.<br />...<br /></pre>So, you need to install, <code>pip</code> separately, like mentioned in the <a href="http://pip.readthedocs.org/en/latest/installing.html#install-pip">pip's official documentation</a>. So, the actual list of steps go like this<br /><pre class="prettyprint">➜  Python  python3 -m venv py3.4venv --without-pip <br />➜  Python  cd py3.4venv <br />➜  py3.4venv  source bin/activate<br />(py3.4venv) ➜  py3.4venv  wget https://bootstrap.pypa.io/get-pip.py<br />--2014-12-30 14:35:34--  https://bootstrap.pypa.io/get-pip.py<br />Resolving bootstrap.pypa.io (bootstrap.pypa.io)... 103.245.222.175<br />Connecting to bootstrap.pypa.io (bootstrap.pypa.io)|103.245.222.175|:443... connected.<br />HTTP request sent, awaiting response... 200 OK<br />Length: 1581355 (1.5M) [text/x-python]<br />Saving to: ‘get-pip.py’<br /><br />100%[=====================================================================================================================>] 15,81,355    129KB/s   in 8.9s   <br /><br />2014-12-30 14:35:43 (173 KB/s) - ‘get-pip.py’ saved [1581355/1581355]<br /><br />(py3.4venv) ➜  py3.4venv  python get-pip.py <br />Collecting pip<br />  Downloading pip-6.0.3-py2.py3-none-any.whl (1.3MB)<br />    100% |################################| 1.3MB 139kB/s <br />Collecting setuptools<br />  Downloading setuptools-9.1-py2.py3-none-any.whl (552kB)<br />    100% |################################| 552kB 180kB/s <br />Installing collected packages: setuptools, pip<br /><br /><br />Successfully installed pip-6.0.3 setuptools-9.1<br />(py3.4venv) ➜  py3.4venv  deactivate <br />➜  py3.4venv  source bin/activate                      <br />(py3.4venv) ➜  py3.4venv  pip install django<br />Collecting django<br />  Using cached Django-1.7.1-py2.py3-none-any.whl<br />Installing collected packages: django<br /><br />Successfully installed django-1.7.1<br />(py3.4venv) ➜  py3.4venv  which pip<br />/home/thefourtheye/Python/py3.4venv/bin/pip<br />(py3.4venv) ➜  py3.4venv  <br /></pre></div></div>
+    <p>
+Ubuntu 14.04&#39;s Python 3.4 installation has a problem with <code class="verbatim">ensurepip</code> module, as described in <a href="https://bugs.launchpad.net/ubuntu/+source/python3.4/+bug/1290847">this bug</a>. So if you follow the steps mentioned in the <a href="https://docs.python.org/3/library/venv.html#creating-virtual-environments">official documentation</a>, you would see an error message like this</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>➜  Python  python3 -m venv py3.4venv
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>Error: Command <span style="color:#b44">&#39;[&#39;</span>/home/thefourtheye//py34venv/bin/python3<span style="color:#b44">&#39;, &#39;</span>-Im<span style="color:#b44">&#39;, &#39;</span>ensurepip<span style="color:#b44">&#39;, &#39;</span>--upgrade<span style="color:#b44">&#39;, &#39;</span>--default-pip<span style="color:#b44">&#39;]&#39;</span> returned non-zero <span style="color:#a2f">exit</span> status <span style="color:#666">1</span></span></span></code></pre></div>
+</div>
+<p>
+To resolve this problem, first install the <code class="verbatim">venv</code>, without <code class="verbatim">pip</code>, like this\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>python3 -m venv py3.4venv --without-pip</span></span></code></pre></div>
+</div>
+<p>
+And then if you install <code class="verbatim">pip</code>, like this, it will still fail</p>
+<div class="src src-python">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>(py3<span style="color:#666">.4</span>venv) <span style="">➜</span>  py3<span style="color:#666">.4</span>venv  python <span style="color:#666">-</span>m ensurepip <span style="color:#666">--</span>upgrade
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span><span style="color:#666">/</span>home<span style="color:#666">/</span>thefourtheye<span style="color:#666">/</span>Python<span style="color:#666">/</span>py3<span style="color:#666">.4</span>venv<span style="color:#666">/</span><span style="color:#a2f">bin</span><span style="color:#666">/</span>python: No module named ensurepip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>(py3<span style="color:#666">.4</span>venv) <span style="">➜</span>  py3<span style="color:#666">.4</span>venv  python
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4">4</a></span><span>Python <span style="color:#666">3.4.0</span> (default, Apr <span style="color:#666">11</span> <span style="color:#666">2014</span>, <span style="color:#666">13</span>:<span style="color:#666">05</span>:<span style="color:#666">11</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5">5</a></span><span>[GCC <span style="color:#666">4.8.2</span>] on linux
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6">6</a></span><span>Type <span style="color:#b44">&#34;help&#34;</span>, <span style="color:#b44">&#34;copyright&#34;</span>, <span style="color:#b44">&#34;credits&#34;</span> <span style="color:#a2f;font-weight:bold">or</span> <span style="color:#b44">&#34;license&#34;</span> <span style="color:#a2f;font-weight:bold">for</span> more information<span style="color:#666">.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7">7</a></span><span><span style="color:#666">...</span></span></span></code></pre></div>
+</div>
+<p>
+So, you need to install, <code class="verbatim">pip</code> separately, like mentioned in the <a href="http://pip.readthedocs.org/en/latest/installing.html#install-pip">pip&#39;s official documentation</a>. So, the actual list of steps go like this\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>➜  Python  python3 -m venv py3.4venv --without-pip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>➜  Python  <span style="color:#a2f">cd</span> py3.4venv
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>➜  py3.4venv  <span style="color:#a2f">source</span> bin/activate
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span><span style="color:#666">(</span>py3.4venv<span style="color:#666">)</span> ➜  py3.4venv  wget https://bootstrap.pypa.io/get-pip.py
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>--2014-12-30 14:35:34--  https://bootstrap.pypa.io/get-pip.py
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>Resolving bootstrap.pypa.io <span style="color:#666">(</span>bootstrap.pypa.io<span style="color:#666">)</span>... 103.245.222.175
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>Connecting to bootstrap.pypa.io <span style="color:#666">(</span>bootstrap.pypa.io<span style="color:#666">)</span>|103.245.222.175|:443... connected.
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>HTTP request sent, awaiting response... <span style="color:#666">200</span> OK
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>Length: <span style="color:#666">1581355</span> <span style="color:#666">(</span>1.5M<span style="color:#666">)</span> <span style="color:#666">[</span>text/x-python<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>Saving to: ‘get-pip.py’
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>100%<span style="color:#666">[=====================================================================================================================</span>&gt;<span style="color:#666">]</span> 15,81,355    129KB/s   in 8.9s
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>2014-12-30 14:35:43 <span style="color:#666">(</span><span style="color:#666">173</span> KB/s<span style="color:#666">)</span> - ‘get-pip.py’ saved <span style="color:#666">[</span>1581355/1581355<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a></span><span><span style="color:#666">(</span>py3.4venv<span style="color:#666">)</span> ➜  py3.4venv  python get-pip.py
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="17"><a style="outline:none;text-decoration:none;color:inherit" href="#17">17</a></span><span>Collecting pip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="18"><a style="outline:none;text-decoration:none;color:inherit" href="#18">18</a></span><span>  Downloading pip-6.0.3-py2.py3-none-any.whl <span style="color:#666">(</span>1.3MB<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="19"><a style="outline:none;text-decoration:none;color:inherit" href="#19">19</a></span><span>    100% |<span style="color:#080;font-style:italic">################################| 1.3MB 139kB/s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="20"><a style="outline:none;text-decoration:none;color:inherit" href="#20">20</a></span><span>Collecting setuptools
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="21"><a style="outline:none;text-decoration:none;color:inherit" href="#21">21</a></span><span>  Downloading setuptools-9.1-py2.py3-none-any.whl <span style="color:#666">(</span>552kB<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="22"><a style="outline:none;text-decoration:none;color:inherit" href="#22">22</a></span><span>    100% |<span style="color:#080;font-style:italic">################################| 552kB 180kB/s</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="23"><a style="outline:none;text-decoration:none;color:inherit" href="#23">23</a></span><span>Installing collected packages: setuptools, pip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="24"><a style="outline:none;text-decoration:none;color:inherit" href="#24">24</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="25"><a style="outline:none;text-decoration:none;color:inherit" href="#25">25</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="26"><a style="outline:none;text-decoration:none;color:inherit" href="#26">26</a></span><span>Successfully installed pip-6.0.3 setuptools-9.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="27"><a style="outline:none;text-decoration:none;color:inherit" href="#27">27</a></span><span><span style="color:#666">(</span>py3.4venv<span style="color:#666">)</span> ➜  py3.4venv  deactivate
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="28"><a style="outline:none;text-decoration:none;color:inherit" href="#28">28</a></span><span>➜  py3.4venv  <span style="color:#a2f">source</span> bin/activate
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="29"><a style="outline:none;text-decoration:none;color:inherit" href="#29">29</a></span><span><span style="color:#666">(</span>py3.4venv<span style="color:#666">)</span> ➜  py3.4venv  pip install django
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="30"><a style="outline:none;text-decoration:none;color:inherit" href="#30">30</a></span><span>Collecting django
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="31"><a style="outline:none;text-decoration:none;color:inherit" href="#31">31</a></span><span>  Using cached Django-1.7.1-py2.py3-none-any.whl
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="32"><a style="outline:none;text-decoration:none;color:inherit" href="#32">32</a></span><span>Installing collected packages: django
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="33"><a style="outline:none;text-decoration:none;color:inherit" href="#33">33</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="34"><a style="outline:none;text-decoration:none;color:inherit" href="#34">34</a></span><span>Successfully installed django-1.7.1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="35"><a style="outline:none;text-decoration:none;color:inherit" href="#35">35</a></span><span><span style="color:#666">(</span>py3.4venv<span style="color:#666">)</span> ➜  py3.4venv  which pip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="36"><a style="outline:none;text-decoration:none;color:inherit" href="#36">36</a></span><span>/home/thefourtheye/Python/py3.4venv/bin/pip
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="37"><a style="outline:none;text-decoration:none;color:inherit" href="#37">37</a></span><span><span style="color:#666">(</span>py3.4venv<span style="color:#666">)</span> ➜  py3.4venv</span></span></code></pre></div>
+</div>
 
     
   </article>
@@ -258,7 +318,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -273,7 +333,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -292,7 +352,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -314,7 +374,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -331,7 +391,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f&amp;resubmit=true&amp;title=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -359,7 +419,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -383,7 +443,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f&amp;t=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f&amp;t=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -403,7 +463,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Python%27s%20venv%20problem%20with%20ensurepip%20in%20Ubuntu&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2014%2f12%2f30%2fpython-venv-problem-with-ensurepip-in-ubuntu%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -428,26 +488,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

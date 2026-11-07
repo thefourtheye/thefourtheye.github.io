@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,15 +57,15 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/05/04/fixing-ubuntu-apt-get-sources/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Fixing Ubuntu apt-get sources">
-  <meta property="og:description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-05-04T20:41:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Ubuntu">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Fixing Ubuntu apt-get sources">
+	<meta property="og:description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-05-04T20:41:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Ubuntu">
 
 
   
@@ -74,12 +74,12 @@
   
   
   
-  <meta itemprop="name" content="Fixing Ubuntu apt-get sources">
-  <meta itemprop="description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
-  <meta itemprop="datePublished" content="2013-05-04T20:41:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="131">
-  <meta itemprop="keywords" content="Ubuntu">
+	<meta itemprop="name" content="Fixing Ubuntu apt-get sources">
+	<meta itemprop="description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
+	<meta itemprop="datePublished" content="2013-05-04T20:41:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="141">
+	<meta itemprop="keywords" content="Ubuntu">
 
   
   
@@ -99,9 +99,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Fixing Ubuntu apt-get sources">
-  <meta name="twitter:description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Fixing Ubuntu apt-get sources">
+	<meta name="twitter:description" content="Bash script to fix Ubuntu apt-get sources.list by replacing it with mirror protocol URLs for faster and more reliable downloads. Works with any Ubuntu release.">
 
 
   
@@ -200,7 +200,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          131 words
+          141 words
         </span>
       
       
@@ -239,9 +239,44 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div>This script makes use of the mirror protocol.<br /><pre class="prettyprint">#!/bin/bash<br /><br />UbuntuCodeName=`lsb_release -c | cut -f 2`<br />if [ ! -f /etc/apt/sources.list.Original ];<br />then<br />    mv /etc/apt/sources.list /etc/apt/sources.list.Original<br /> echo "deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-updates main restricted universe multiverse<br /><br />deb     mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br />deb-src mirror://mirrors.ubuntu.com/mirrors.txt $UbuntuCodeName-backports main restricted universe multiverse<br /><br />deb     http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br />deb-src http://security.ubuntu.com/ubuntu $UbuntuCodeName-security main restricted universe multiverse<br /><br />deb     http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br />deb-src http://archive.canonical.com/ubuntu $UbuntuCodeName partner<br /><br />deb     http://extras.ubuntu.com/ubuntu $UbuntuCodeName main<br />deb-src http://extras.ubuntu.com/ubuntu $UbuntuCodeName main" >> /etc/apt/sources.list<br />else<br /> echo "This script has been run already. Exiting"<br />fi<br /></pre><br />Alternatively, you can run the following commands to update the sources automatically<br /><pre class="prettyprint">wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel<br />chmod 555 UpdateAptSources.sh<br />sudo ./UpdateAptSources.sh<br /></pre></div></div>
+    <p>
+This script makes use of the mirror protocol.\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span><span style="color:#080">#!/bin/bash
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span><span style="color:#b8860b">UbuntuCodeName</span><span style="color:#666">=</span><span style="color:#b44">`</span>lsb_release -c | cut -f 2<span style="color:#b44">`</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span><span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">[</span> ! -f /etc/apt/sources.list.Original <span style="color:#666">]</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span><span style="color:#a2f;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>    mv /etc/apt/sources.list /etc/apt/sources.list.Original
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span> <span style="color:#a2f">echo</span> <span style="color:#b44">&#34;deb     mirror://mirrors.ubuntu.com/mirrors.txt </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44"> main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span><span style="color:#b44">deb-src mirror://mirrors.ubuntu.com/mirrors.txt </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44"> main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span><span style="color:#b44">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span><span style="color:#b44">deb     mirror://mirrors.ubuntu.com/mirrors.txt </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44">-updates main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span><span style="color:#b44">deb-src mirror://mirrors.ubuntu.com/mirrors.txt </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44">-updates main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span><span style="color:#b44">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span><span style="color:#b44">deb     mirror://mirrors.ubuntu.com/mirrors.txt </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44">-backports main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span><span style="color:#b44">deb-src mirror://mirrors.ubuntu.com/mirrors.txt </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44">-backports main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span><span style="color:#b44">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a></span><span><span style="color:#b44">deb     http://security.ubuntu.com/ubuntu </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44">-security main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="17"><a style="outline:none;text-decoration:none;color:inherit" href="#17">17</a></span><span><span style="color:#b44">deb-src http://security.ubuntu.com/ubuntu </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44">-security main restricted universe multiverse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="18"><a style="outline:none;text-decoration:none;color:inherit" href="#18">18</a></span><span><span style="color:#b44">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="19"><a style="outline:none;text-decoration:none;color:inherit" href="#19">19</a></span><span><span style="color:#b44">deb     http://archive.canonical.com/ubuntu </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44"> partner
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="20"><a style="outline:none;text-decoration:none;color:inherit" href="#20">20</a></span><span><span style="color:#b44">deb-src http://archive.canonical.com/ubuntu </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44"> partner
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="21"><a style="outline:none;text-decoration:none;color:inherit" href="#21">21</a></span><span><span style="color:#b44">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="22"><a style="outline:none;text-decoration:none;color:inherit" href="#22">22</a></span><span><span style="color:#b44">deb     http://extras.ubuntu.com/ubuntu </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44"> main
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="23"><a style="outline:none;text-decoration:none;color:inherit" href="#23">23</a></span><span><span style="color:#b44">deb-src http://extras.ubuntu.com/ubuntu </span><span style="color:#b8860b">$UbuntuCodeName</span><span style="color:#b44"> main&#34;</span> &gt;&gt; /etc/apt/sources.list
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="24"><a style="outline:none;text-decoration:none;color:inherit" href="#24">24</a></span><span><span style="color:#a2f;font-weight:bold">else</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="25"><a style="outline:none;text-decoration:none;color:inherit" href="#25">25</a></span><span> <span style="color:#a2f">echo</span> <span style="color:#b44">&#34;This script has been run already. Exiting&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="26"><a style="outline:none;text-decoration:none;color:inherit" href="#26">26</a></span><span><span style="color:#a2f;font-weight:bold">fi</span></span></span></code></pre></div>
+</div>
+<p>
+\\
+Alternatively, you can run the following commands to update the sources automatically\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>wget -O UpdateAptSources.sh http://ideone.com/plain/UgsBel
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>chmod <span style="color:#666">555</span> UpdateAptSources.sh
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>sudo ./UpdateAptSources.sh</span></span></code></pre></div>
+</div>
 
     
   </article>
@@ -255,7 +290,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -270,7 +305,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Fixing%20Ubuntu%20apt-get%20sources&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Fixing%20Ubuntu%20apt-get%20sources&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -289,7 +324,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Fixing%20Ubuntu%20apt-get%20sources&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Fixing%20Ubuntu%20apt-get%20sources&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -311,7 +346,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -328,7 +363,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f&amp;resubmit=true&amp;title=Fixing%20Ubuntu%20apt-get%20sources" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -356,7 +391,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -380,7 +415,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f&amp;t=Fixing%20Ubuntu%20apt-get%20sources" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f&amp;t=Fixing%20Ubuntu%20apt-get%20sources" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -400,7 +435,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Fixing%20Ubuntu%20apt-get%20sources&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f04%2ffixing-ubuntu-apt-get-sources%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -425,26 +460,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

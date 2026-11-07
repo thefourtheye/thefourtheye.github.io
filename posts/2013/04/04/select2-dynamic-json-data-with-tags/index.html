@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,17 +57,17 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/04/04/select2-dynamic-json-data-with-tags/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="select2 JQuery dynamic JSON data with tags">
-  <meta property="og:description" content="Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-04-04T09:34:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Select2">
-    <meta property="article:tag" content="JSON">
-    <meta property="article:tag" content="JQuery">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="select2 JQuery dynamic JSON data with tags">
+	<meta property="og:description" content="Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-04-04T09:34:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Select2">
+		<meta property="article:tag" content="JSON">
+		<meta property="article:tag" content="JQuery">
 
 
   
@@ -76,12 +76,12 @@
   
   
   
-  <meta itemprop="name" content="select2 JQuery dynamic JSON data with tags">
-  <meta itemprop="description" content="Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.">
-  <meta itemprop="datePublished" content="2013-04-04T09:34:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="235">
-  <meta itemprop="keywords" content="Select2,JSON,JQuery">
+	<meta itemprop="name" content="select2 JQuery dynamic JSON data with tags">
+	<meta itemprop="description" content="Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.">
+	<meta itemprop="datePublished" content="2013-04-04T09:34:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="241">
+	<meta itemprop="keywords" content="Select2,JSON,JQuery">
 
   
   
@@ -101,9 +101,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="select2 JQuery dynamic JSON data with tags">
-  <meta name="twitter:description" content="Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="select2 JQuery dynamic JSON data with tags">
+	<meta name="twitter:description" content="Implements Select2 jQuery plugin with dynamic JSON data loading via AJAX and tag support. Shows configuration options for multiple selection, minimum input length, and custom formatting.">
 
 
   
@@ -202,7 +202,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          235 words
+          241 words
         </span>
       
       
@@ -245,11 +245,61 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&amp"></script><pre class="prettyprint"><br /><br /><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery.noConflict();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function formatListOptionSelection (Option, Container)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Option;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function formatListOption (Option, Container, Query)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&lt;div id='" + Option + "'&gt;" + Option + "&lt;/div&gt;";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery(document).ready(function() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery("#Data").select2 ({<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multiple: true,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minimumInputLength: 5,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; maximumSelectionSize: 3,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id: function (e) {return e;},<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ajax: {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; url: 'fetch.json',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // json will be used if there is no Same Origin Policy violation, otherwise JSONP shall be used<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dataType: 'json',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data: function (term, page) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; searchkey: term,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; field: 'Data'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when the data is returned from the server<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; results: function (data, page) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return {results: data.Datas};<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you fetch result from server and add it to the element<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formatResult: formatListOption,<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you select one of the options<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formatSelection: formatListOptionSelection,<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // This method will be used when you set the value attribute of the element<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initSelection: function(element, callback) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var Datas = jQuery(element).val();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Data = []<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jQuery(Datas.split(",")).each(function () {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (this != "") Data.push (this);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callback (Data);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input class="span12" id="Data" name="Data" type="hidden" value="&lt;Value from POST back&gt;" /&gt;</span></div><br /></pre></div>
-
-
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&amp"></script>
+<div class="src src-js">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>          jQuery.noConflict();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>          <span style="color:#a2f;font-weight:bold">function</span> formatListOptionSelection (Option, Container)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>          {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>             <span style="color:#a2f;font-weight:bold">return</span> Option;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>          }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>          <span style="color:#a2f;font-weight:bold">function</span> formatListOption (Option, Container, Query)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>          {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>             <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#b44">&#34;&lt;div id=&#39;&#34;</span> <span style="color:#666">+</span> Option <span style="color:#666">+</span> <span style="color:#b44">&#34;&#39;&gt;&#34;</span> <span style="color:#666">+</span> Option <span style="color:#666">+</span> <span style="color:#b44">&#34;&lt;/div&gt;&#34;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>          }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>          jQuery(<span style="color:#a2f">document</span>).ready(<span style="color:#a2f;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>             jQuery(<span style="color:#b44">&#34;#Data&#34;</span>).select2 ({
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>                multiple<span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>                minimumInputLength<span style="color:#666">:</span> <span style="color:#666">5</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>                maximumSelectionSize<span style="color:#666">:</span> <span style="color:#666">3</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span>                id<span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">function</span> (e) {<span style="color:#a2f;font-weight:bold">return</span> e;},
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a></span><span>                ajax<span style="color:#666">:</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="17"><a style="outline:none;text-decoration:none;color:inherit" href="#17">17</a></span><span>                   url<span style="color:#666">:</span> <span style="color:#b44">&#39;fetch.json&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="18"><a style="outline:none;text-decoration:none;color:inherit" href="#18">18</a></span><span>                   <span style="color:#080;font-style:italic">// json will be used if there is no Same Origin Policy violation, otherwise JSONP shall be used
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="19"><a style="outline:none;text-decoration:none;color:inherit" href="#19">19</a></span><span>                   dataType<span style="color:#666">:</span> <span style="color:#b44">&#39;json&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="20"><a style="outline:none;text-decoration:none;color:inherit" href="#20">20</a></span><span>                   data<span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">function</span> (term, page) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="21"><a style="outline:none;text-decoration:none;color:inherit" href="#21">21</a></span><span>                      <span style="color:#a2f;font-weight:bold">return</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="22"><a style="outline:none;text-decoration:none;color:inherit" href="#22">22</a></span><span>                         searchkey<span style="color:#666">:</span> term,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="23"><a style="outline:none;text-decoration:none;color:inherit" href="#23">23</a></span><span>                         field<span style="color:#666">:</span> <span style="color:#b44">&#39;Data&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="24"><a style="outline:none;text-decoration:none;color:inherit" href="#24">24</a></span><span>                      };
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="25"><a style="outline:none;text-decoration:none;color:inherit" href="#25">25</a></span><span>                   },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="26"><a style="outline:none;text-decoration:none;color:inherit" href="#26">26</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="27"><a style="outline:none;text-decoration:none;color:inherit" href="#27">27</a></span><span>                   <span style="color:#080;font-style:italic">// This method will be used when the data is returned from the server
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="28"><a style="outline:none;text-decoration:none;color:inherit" href="#28">28</a></span><span>                   results<span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">function</span> (data, page) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="29"><a style="outline:none;text-decoration:none;color:inherit" href="#29">29</a></span><span>                      <span style="color:#a2f;font-weight:bold">return</span> {results<span style="color:#666">:</span> data.Datas};
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="30"><a style="outline:none;text-decoration:none;color:inherit" href="#30">30</a></span><span>                   },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="31"><a style="outline:none;text-decoration:none;color:inherit" href="#31">31</a></span><span>                },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="32"><a style="outline:none;text-decoration:none;color:inherit" href="#32">32</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="33"><a style="outline:none;text-decoration:none;color:inherit" href="#33">33</a></span><span>                <span style="color:#080;font-style:italic">// This method will be used when you fetch result from server and add it to the element
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="34"><a style="outline:none;text-decoration:none;color:inherit" href="#34">34</a></span><span>                formatResult<span style="color:#666">:</span> formatListOption,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="35"><a style="outline:none;text-decoration:none;color:inherit" href="#35">35</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="36"><a style="outline:none;text-decoration:none;color:inherit" href="#36">36</a></span><span>                <span style="color:#080;font-style:italic">// This method will be used when you select one of the options
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="37"><a style="outline:none;text-decoration:none;color:inherit" href="#37">37</a></span><span>                formatSelection<span style="color:#666">:</span> formatListOptionSelection,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="38"><a style="outline:none;text-decoration:none;color:inherit" href="#38">38</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="39"><a style="outline:none;text-decoration:none;color:inherit" href="#39">39</a></span><span>                <span style="color:#080;font-style:italic">// This method will be used when you set the value attribute of the element
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="40"><a style="outline:none;text-decoration:none;color:inherit" href="#40">40</a></span><span>                initSelection<span style="color:#666">:</span> <span style="color:#a2f;font-weight:bold">function</span>(element, callback) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="41"><a style="outline:none;text-decoration:none;color:inherit" href="#41">41</a></span><span>                   <span style="color:#a2f;font-weight:bold">var</span> Datas <span style="color:#666">=</span> jQuery(element).val();
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="42"><a style="outline:none;text-decoration:none;color:inherit" href="#42">42</a></span><span>                   Data <span style="color:#666">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="43"><a style="outline:none;text-decoration:none;color:inherit" href="#43">43</a></span><span>                   jQuery(Datas.split(<span style="color:#b44">&#34;,&#34;</span>)).each(<span style="color:#a2f;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="44"><a style="outline:none;text-decoration:none;color:inherit" href="#44">44</a></span><span>                      <span style="color:#a2f;font-weight:bold">if</span> (<span style="color:#a2f;font-weight:bold">this</span> <span style="color:#666">!=</span> <span style="color:#b44">&#34;&#34;</span>) Data.push (<span style="color:#a2f;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="45"><a style="outline:none;text-decoration:none;color:inherit" href="#45">45</a></span><span>                   });
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="46"><a style="outline:none;text-decoration:none;color:inherit" href="#46">46</a></span><span>                   callback (Data);
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="47"><a style="outline:none;text-decoration:none;color:inherit" href="#47">47</a></span><span>                },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="48"><a style="outline:none;text-decoration:none;color:inherit" href="#48">48</a></span><span>             });
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="49"><a style="outline:none;text-decoration:none;color:inherit" href="#49">49</a></span><span>          });
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="50"><a style="outline:none;text-decoration:none;color:inherit" href="#50">50</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="51"><a style="outline:none;text-decoration:none;color:inherit" href="#51">51</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="52"><a style="outline:none;text-decoration:none;color:inherit" href="#52">52</a></span><span>         <span style="color:#666">&lt;</span>input <span style="color:#a2f;font-weight:bold">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;span12&#34;</span> id<span style="color:#666">=</span><span style="color:#b44">&#34;Data&#34;</span> name<span style="color:#666">=</span><span style="color:#b44">&#34;Data&#34;</span> type<span style="color:#666">=</span><span style="color:#b44">&#34;hidden&#34;</span> value<span style="color:#666">=</span><span style="color:#b44">&#34;&lt;Value from POST back&gt;&#34;</span> <span style="color:#666">/&gt;</span></span></span></code></pre></div>
+</div>
 
     
   </article>
@@ -263,7 +313,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -278,7 +328,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -297,7 +347,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -319,7 +369,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -336,7 +386,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f&amp;resubmit=true&amp;title=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -364,7 +414,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -388,7 +438,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f&amp;t=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f&amp;t=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -408,7 +458,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=select2%20JQuery%20dynamic%20JSON%20data%20with%20tags&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f04%2fselect2-dynamic-json-data-with-tags%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -433,26 +483,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

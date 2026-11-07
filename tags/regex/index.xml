@@ -13,22 +13,31 @@
       <pubDate>Tue, 21 Feb 2017 21:33:13 +0530</pubDate>
       
       <guid>https://thefourtheye.in/posts/2017/02/21/javascript-lookbehind-regex-alternative/</guid>
-      <description>&lt;p&gt;Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[{\&amp;quot;name\&amp;quot;:\&amp;quot;Kilua\&amp;quot;\\,\&amp;quot;age\&amp;quot;:35}],{\&amp;quot;city\&amp;quot;:\&amp;quot;SJC\&amp;quot;},\&amp;quot;US\&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[ &#39;[{&amp;quot;name&amp;quot;:&amp;quot;Kilua&amp;quot;\\,&amp;quot;age&amp;quot;:35}]&#39;, &#39;{&amp;quot;city&amp;quot;:&amp;quot;SJC&amp;quot;},&amp;quot;US&amp;quot;&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is &lt;code&gt;a,1,b,2,c,3&lt;/code&gt; and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;console.log(&#39;a,1,b,2,c,3&#39;.split(/,(?!\d)/));
-// [ &#39;a,1&#39;, &#39;b,2&#39;, &#39;c,3&#39; ]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Since JavaScript doesn&amp;rsquo;t have lookbehinds, we don&amp;rsquo;t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&#39;.replace(/([^\\]),/g, &#39;$1\u000B&#39;).split(&#39;\u000B&#39;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.&lt;/p&gt;
+      <description>&lt;p&gt;
+Recently one of my colleagues came to me with a problem. He had a string which looked like JSON but not a valid JSON string. For example,&lt;/p&gt;
+&lt;div class=&#34;src src-js&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;[{&lt;span style=&#34;&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;name\&amp;#34;:\&amp;#34;Kilua\&amp;#34;\\,\&amp;#34;age\&amp;#34;:35}],{\&amp;#34;city\&amp;#34;:\&amp;#34;SJC\&amp;#34;},\&amp;#34;US\&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+and they wanted to split the string at all the commas, except when they are preceded by a backslash. That means, they wanted&lt;/p&gt;
+&lt;div class=&#34;src src-js&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;[ &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;[{&amp;#34;name&amp;#34;:&amp;#34;Kilua&amp;#34;\\,&amp;#34;age&amp;#34;:35}]&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;{&amp;#34;city&amp;#34;:&amp;#34;SJC&amp;#34;},&amp;#34;US&amp;#34;&amp;#39;&lt;/span&gt; ]&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+as output. If the requirement was to split the string at commas followed by a certain string, then it would have been pretty straight forward. For example, if the string is &lt;code class=&#34;verbatim&#34;&gt;a,1,b,2,c,3&lt;/code&gt; and if they wanted to split the string at all commas except when they are not followed by numbers, then the solution would have been very simple, with negative lookahead, like this&lt;/p&gt;
+&lt;div class=&#34;src src-js&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#1&#34;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span&gt;console.log(&lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;a,1,b,2,c,3&amp;#39;&lt;/span&gt;.split(&lt;span style=&#34;color:#b68&#34;&gt;/,(?!\d)/&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;2&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#2&#34;&gt;2&lt;/a&gt;&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;// [ &amp;#39;a,1&amp;#39;, &amp;#39;b,2&amp;#39;, &amp;#39;c,3&amp;#39; ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;
+Since JavaScript doesn&amp;#39;t have lookbehinds, we don&amp;#39;t have a straight forward solution to this problem. When I searched Stackoverflow, I found this solution&lt;/p&gt;
+&lt;p&gt;
+&lt;code class=&#34;verbatim&#34;&gt;js WTK&amp;#39;s answer in Stackoverflow http://stackoverflow.com/a/7330150/1903116 &amp;#39;a\\,bcde,fgh,ijk\\,lmno,pqrst\\,uv&amp;#39;.replace(/([^\\]),/g, &amp;#39;$1\u000B&amp;#39;).split(&amp;#39;\u000B&amp;#39;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;
+This solves the exact same problem which my colleague was facing. It compensates the absence of lookbehinds by breaking down the problem in two steps.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Replace all the commas matching the condition with a marker string which does not appear anywhere in the string. (&lt;code&gt;\u000B&lt;/code&gt; in this case)&lt;/li&gt;
+&lt;li&gt;Replace all the commas matching the condition with a marker string which does not appear anywhere in the string. (&lt;code class=&#34;verbatim&#34;&gt;\u000B&lt;/code&gt; in this case)&lt;/li&gt;
 &lt;li&gt;Then split the original string with the marker string.&lt;/li&gt;
 &lt;/ol&gt;
 </description>

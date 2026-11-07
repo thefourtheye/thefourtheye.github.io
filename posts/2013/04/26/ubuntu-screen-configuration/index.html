@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,15 +57,15 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/04/26/ubuntu-screen-configuration/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Ubuntu Screen Configuration">
-  <meta property="og:description" content="Custom GNU Screen configuration for Ubuntu with status bar showing terminal numbers, hostname, date, and time. Includes .screenrc settings for keybindings and window management.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-04-26T18:21:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Ubuntu">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Ubuntu Screen Configuration">
+	<meta property="og:description" content="Custom GNU Screen configuration for Ubuntu with status bar showing terminal numbers, hostname, date, and time. Includes .screenrc settings for keybindings and window management.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-04-26T18:21:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Ubuntu">
 
 
   
@@ -74,12 +74,12 @@
   
   
   
-  <meta itemprop="name" content="Ubuntu Screen Configuration">
-  <meta itemprop="description" content="Custom GNU Screen configuration for Ubuntu with status bar showing terminal numbers, hostname, date, and time. Includes .screenrc settings for keybindings and window management.">
-  <meta itemprop="datePublished" content="2013-04-26T18:21:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="114">
-  <meta itemprop="keywords" content="Ubuntu">
+	<meta itemprop="name" content="Ubuntu Screen Configuration">
+	<meta itemprop="description" content="Custom GNU Screen configuration for Ubuntu with status bar showing terminal numbers, hostname, date, and time. Includes .screenrc settings for keybindings and window management.">
+	<meta itemprop="datePublished" content="2013-04-26T18:21:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="139">
+	<meta itemprop="keywords" content="Ubuntu">
 
   
   
@@ -99,9 +99,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ubuntu Screen Configuration">
-  <meta name="twitter:description" content="Custom GNU Screen configuration for Ubuntu with status bar showing terminal numbers, hostname, date, and time. Includes .screenrc settings for keybindings and window management.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Ubuntu Screen Configuration">
+	<meta name="twitter:description" content="Custom GNU Screen configuration for Ubuntu with status bar showing terminal numbers, hostname, date, and time. Includes .screenrc settings for keybindings and window management.">
 
 
   
@@ -200,7 +200,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          114 words
+          139 words
         </span>
       
       
@@ -239,9 +239,40 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div>As we all know Screen is an excellent program. Here is how my ~/.screenrc looks like<br /><br /><pre class="prettyprint">   vbell off<br />   defscrollback 10000<br />   hardstatus on<br />   hardstatus alwayslastline "%{wk}%-w%{kw}%n %t%{-}%+w %=%{Gk} %H %{Wk} %d-%M-%Y %C:%s %a %D "<br />   termcapinfo xterm ti@:te@<br />   startup_message off<br />   msgwait 1<br />   altscreen on<br />   escape ``<br />   bind c screen 1<br />   bind ^c screen 1<br />   bind 0 select 10<br />   screen 1<br /></pre><br />And this is how it looks in action <br /><br /><a href="http://2.bp.blogspot.com/-BL4V5Noauwk/UXp4GEPsT1I/AAAAAAAAADg/Mty9ljLzf-k/s1600/Screen+-+Terminal+2013-04-25+17:02:11.png" imageanchor="1"><img border="0" src="http://2.bp.blogspot.com/-BL4V5Noauwk/UXp4GEPsT1I/AAAAAAAAADg/Mty9ljLzf-k/s320/Screen+-+Terminal+2013-04-25+17:02:11.png" /></a><br /><br /><ol><li>blockquote (the key right above Tab key) will be the command character</li><li>As you see in the image, the screen numbers will begin with 1</li><li>The bottom bar shows list of open terminals, machine name, date, time, weekday</li><li>`+c will create a new terminal</li><li>`+1,`+2,`+3,... will switch to the respective terminals</li></ol><br /><br /><br /></div></div>
+    <p>
+As we all know Screen is an excellent program. Here is how my ~/.screenrc looks like<br>
+\\</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>   vbell off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>   defscrollback 10000
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>   hardstatus on
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>   hardstatus alwayslastline &#34;%{wk}%-w%{kw}%n %t%{-}%+w %=%{Gk} %H %{Wk} %d-%M-%Y %C:%s %a %D &#34;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>   termcapinfo xterm ti@:te@
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>   startup_message off
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>   msgwait 1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>   altscreen on
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>   escape ``
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>   bind c screen 1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>   bind ^c screen 1
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>   bind 0 select 10
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>   screen 1</span></span></code></pre></div>
+</div>
+<p>
+\\
+And this is how it looks in action<br>
+\\
+<a href="http://2.bp.blogspot.com/-BL4V5Noauwk/UXp4GEPsT1I/AAAAAAAAADg/Mty9ljLzf-k/s1600/Screen+-+Terminal+2013-04-25+17:02:11.png">[[<a href="http://2.bp.blogspot.com/-BL4V5Noauwk/UXp4GEPsT1I/AAAAAAAAADg/Mty9ljLzf-k/s320/Screen+-+Terminal+2013-04-25+17:02:11.png]">http://2.bp.blogspot.com/-BL4V5Noauwk/UXp4GEPsT1I/AAAAAAAAADg/Mty9ljLzf-k/s320/Screen+-+Terminal+2013-04-25+17:02:11.png]</a>​​</a>]<br>
+\\</p>
+<ol>
+<li>blockquote (the key right above Tab key) will be the command character</li>
+<li>As you see in the image, the screen numbers will begin with 1</li>
+<li>The bottom bar shows list of open terminals, machine name, date, time, weekday</li>
+<li>`+c will create a new terminal</li>
+<li>`+1,`+2,`+3,… will switch to the respective terminals</li>
+</ol>
+<p>\\
+\\
+\\</p>
 
     
   </article>
@@ -255,7 +286,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -270,7 +301,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Ubuntu%20Screen%20Configuration&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Ubuntu%20Screen%20Configuration&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -289,7 +320,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Ubuntu%20Screen%20Configuration&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Ubuntu%20Screen%20Configuration&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -311,7 +342,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -328,7 +359,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f&amp;resubmit=true&amp;title=Ubuntu%20Screen%20Configuration" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -356,7 +387,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -380,7 +411,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f&amp;t=Ubuntu%20Screen%20Configuration" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f&amp;t=Ubuntu%20Screen%20Configuration" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -400,7 +431,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Ubuntu%20Screen%20Configuration&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f26%2fubuntu-screen-configuration%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -425,26 +456,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

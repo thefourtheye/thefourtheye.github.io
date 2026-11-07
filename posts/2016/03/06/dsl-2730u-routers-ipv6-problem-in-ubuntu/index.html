@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,15 +57,15 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2016/03/06/dsl-2730u-routers-ipv6-problem-in-ubuntu/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="DSL-2730U router&#39;s ipv6 problem in Ubuntu">
-  <meta property="og:description" content="Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2016-03-06T20:32:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Ubuntu">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="DSL-2730U router&#39;s ipv6 problem in Ubuntu">
+	<meta property="og:description" content="Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-03-06T20:32:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Ubuntu">
 
 
   
@@ -74,12 +74,12 @@
   
   
   
-  <meta itemprop="name" content="DSL-2730U router&#39;s ipv6 problem in Ubuntu">
-  <meta itemprop="description" content="Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.">
-  <meta itemprop="datePublished" content="2016-03-06T20:32:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="291">
-  <meta itemprop="keywords" content="Ubuntu">
+	<meta itemprop="name" content="DSL-2730U router&#39;s ipv6 problem in Ubuntu">
+	<meta itemprop="description" content="Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.">
+	<meta itemprop="datePublished" content="2016-03-06T20:32:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="297">
+	<meta itemprop="keywords" content="Ubuntu">
 
   
   
@@ -99,9 +99,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="DSL-2730U router&#39;s ipv6 problem in Ubuntu">
-  <meta name="twitter:description" content="Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="DSL-2730U router&#39;s ipv6 problem in Ubuntu">
+	<meta name="twitter:description" content="Fix for DSL-2730U router not supporting IPv6 causing GitHub connection failures in Ubuntu. Solution disables IPv6 via sysctl.conf settings.">
 
 
   
@@ -200,7 +200,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          291 words
+          297 words
         </span>
       
       
@@ -239,9 +239,42 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div>Today I faced a very strange problem. I got a new Tata DOCOMO connection and I wanted to fetch upstream changes from a GitHub repository, with <code>git fetch --all</code>. But all I got was<pre>fatal: unable to access 'https://github.com/&lt;repo&gt;': Failed to connect to github.com port 443: Network is unreachable<br /></pre>I thought that the internet connection has a problem. But then I was able to <code>ping github.com</code> and access that site in my browser, although curl still failed.<br /><pre>➜  io.js git:(master) ✗ curl https://github.com<br />curl: (7) Failed to connect to github.com port 443: Network is unreachable</pre>At this point I became curious and tried out the verbose curl,<br /><pre>➜  io.js git:(master) ✗ curl -v https://github.com<br />* Rebuilt URL to: https://github.com/<br />* Hostname was NOT found in DNS cache<br />*   Trying 192.30.252.128...<br />*   Trying 64:ff9b::c01e:fc81...<br />* connect to 64:ff9b::c01e:fc81 port 443 failed: Network is unreachable<br />* Failed to connect to github.com port 443: Network is unreachable<br />* Closing connection 0<br />curl: (7) Failed to connect to github.com port 443: Network is unreachable</pre>Now, it figures out both the IPv4 address and the IPv6 address but favors IPv6 over IPv4. And it looks like, either the modem or the ISP don't support IPv6 based communication. I don't know how to confirm what the actual problem is. I tried to upgrade the firmware of my DSL-2730U router, by logging into 192.168.1.1. But it kept failing, saying the the firmware image file is too big.<br /><br />So, I decided to disable IPv6 in my Ubuntu machine and I followed the instructions given <a href="http://askubuntu.com/a/484487/147253">here</a> and it worked perfectly. Basically, I edited <code>/etc/sysctl.conf</code> file to include the following lines<pre># disable IPv6 on this machine<br />net.ipv6.conf.all.disable_ipv6 = 1<br />net.ipv6.conf.default.disable_ipv6 = 1<br />net.ipv6.conf.lo.disable_ipv6 = 1</pre>and then executed <code>sudo sysctl --system</code> and <code>sudo sysctl -p</code>.<br /></div></div>
+    <p>
+Today I faced a very strange problem. I got a new Tata DOCOMO connection and I wanted to fetch upstream changes from a GitHub repository, with <code class="verbatim">git fetch --all</code>. But all I got was</p>
+<pre class="example">
+fatal: unable to access &#39;https://github.com/&lt;repo&gt;&#39;: Failed to connect to github.com port 443: Network is unreachable
+</pre>
+<p>
+I thought that the internet connection has a problem. But then I was able to <code class="verbatim">ping github.com</code> and access that site in my browser, although curl still failed.\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>➜  io.js git:<span style="color:#666">(</span>master<span style="color:#666">)</span> ✗ curl https://github.com
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>curl: <span style="color:#666">(</span>7<span style="color:#666">)</span> Failed to connect to github.com port 443: Network is unreachable</span></span></code></pre></div>
+</div>
+<p>
+At this point I became curious and tried out the verbose curl,\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>➜  io.js git:<span style="color:#666">(</span>master<span style="color:#666">)</span> ✗ curl -v https://github.com
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>* Rebuilt URL to: https://github.com/
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>* Hostname was NOT found in DNS cache
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4">4</a></span><span>*   Trying 192.30.252.128...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5">5</a></span><span>*   Trying 64:ff9b::c01e:fc81...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6">6</a></span><span>* connect to 64:ff9b::c01e:fc81 port <span style="color:#666">443</span> failed: Network is unreachable
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7">7</a></span><span>* Failed to connect to github.com port 443: Network is unreachable
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8">8</a></span><span>* Closing connection <span style="color:#666">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9">9</a></span><span>curl: <span style="color:#666">(</span>7<span style="color:#666">)</span> Failed to connect to github.com port 443: Network is unreachable</span></span></code></pre></div>
+</div>
+<p>
+Now, it figures out both the IPv4 address and the IPv6 address but favors IPv6 over IPv4. And it looks like, either the modem or the ISP don&#39;t support IPv6 based communication. I don&#39;t know how to confirm what the actual problem is. I tried to upgrade the firmware of my DSL-2730U router, by logging into 192.168.1.1. But it kept failing, saying the the firmware image file is too big.<br>
+\\
+So, I decided to disable IPv6 in my Ubuntu machine and I followed the instructions given <a href="http://askubuntu.com/a/484487/147253">here</a> and it worked perfectly. Basically, I edited <code class="verbatim">/etc/sysctl.conf</code> file to include the following lines</p>
+<pre class="example">
+# disable IPv6 on this machine
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+</pre>
+<p>
+and then executed <code class="verbatim">sudo sysctl --system</code> and <code class="verbatim">sudo sysctl -p</code>.\\</p>
 
     
   </article>
@@ -255,7 +288,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -270,7 +303,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -289,7 +322,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -311,7 +344,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -328,7 +361,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f&amp;resubmit=true&amp;title=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -356,7 +389,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -380,7 +413,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f&amp;t=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f&amp;t=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -400,7 +433,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=DSL-2730U%20router%27s%20ipv6%20problem%20in%20Ubuntu&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2016%2f03%2f06%2fdsl-2730u-routers-ipv6-problem-in-ubuntu%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -425,26 +458,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

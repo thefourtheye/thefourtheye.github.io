@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,15 +57,15 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/05/25/sublime-configuring-codeintel/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Sublime Configuring CodeIntel Auto Completion">
-  <meta property="og:description" content="Guide to install and configure SublimeCodeIntel for intelligent code completion in Sublime Text. Covers Package Control installation and per-language configuration.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-05-25T12:54:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Sublime">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Sublime Configuring CodeIntel Auto Completion">
+	<meta property="og:description" content="Guide to install and configure SublimeCodeIntel for intelligent code completion in Sublime Text. Covers Package Control installation and per-language configuration.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-05-25T12:54:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Sublime">
 
 
   
@@ -74,12 +74,12 @@
   
   
   
-  <meta itemprop="name" content="Sublime Configuring CodeIntel Auto Completion">
-  <meta itemprop="description" content="Guide to install and configure SublimeCodeIntel for intelligent code completion in Sublime Text. Covers Package Control installation and per-language configuration.">
-  <meta itemprop="datePublished" content="2013-05-25T12:54:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="303">
-  <meta itemprop="keywords" content="Sublime">
+	<meta itemprop="name" content="Sublime Configuring CodeIntel Auto Completion">
+	<meta itemprop="description" content="Guide to install and configure SublimeCodeIntel for intelligent code completion in Sublime Text. Covers Package Control installation and per-language configuration.">
+	<meta itemprop="datePublished" content="2013-05-25T12:54:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="344">
+	<meta itemprop="keywords" content="Sublime">
 
   
   
@@ -99,9 +99,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sublime Configuring CodeIntel Auto Completion">
-  <meta name="twitter:description" content="Guide to install and configure SublimeCodeIntel for intelligent code completion in Sublime Text. Covers Package Control installation and per-language configuration.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Sublime Configuring CodeIntel Auto Completion">
+	<meta name="twitter:description" content="Guide to install and configure SublimeCodeIntel for intelligent code completion in Sublime Text. Covers Package Control installation and per-language configuration.">
 
 
   
@@ -200,7 +200,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          303 words
+          344 words
         </span>
       
       
@@ -233,15 +233,94 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     <summary>
       <b>Table of Contents</b>
     </summary>
-    <div class="toc numbered-subtitles"></div>
+    <div class="toc numbered-subtitles"><nav id="TableOfContents">
+<ul>
+<li><a href="#installation">Installation</a>
+</li>
+<li><a href="#configuration">Configuration</a>
+</li>
+</ul>
+</nav></div>
   </details>
   
   
   <article class="content numbered-subtitles">
     
     
-<div class='post'>
-<div>Unarguably Sublime is one of the best text editors and with its ability to extend with python scripts, gifts itself a lot of power. Here lets see one of those extensions which allow code completion. Normally, sublime provides code completion for the words in the current file being edited. Codeintel allows the user to get code completion feature of the respective languages.<br /><br /><h2>Installation</h2>Lets install CodeIntel, through Package Control plugin. To install Package Control plugin, do the following steps. Here is the author's <a href="http://wbond.net/sublime_packages/package_control/installation">page</a>. Quoting from the source website<br /><br /><blockquote>Installation is through the Sublime Text 2 console. This is accessed via the ctrl+` shortcut. Once open, paste the following command into the console.<br /><br /><div style="background-color:black; color: white; padding: 25px">import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print('Please restart Sublime Text to finish installation')</div></blockquote><br />After installing it, Press Shift+Ctrl+P or click on Tools->Command Palette. In the window that opens up, type Install Package. In the text box which you see after that, type SublimeCodeIntel and click on it to install it. You are done with the installation of CodeIntel.<br /><br /><h2>Configuration</h2>The following information is taken from the README.rst file. Open ~/.codeintel/config file in your favourite text editor, most likely Sublime. Pick your language from the list below and copy paste only the blocks for the languages of your choice.<br /><br /><pre class="prettyprint">    {<br />        "PHP": {<br />            "php": '/usr/bin/php',<br />            "phpExtraPaths": [],<br />            "phpConfigFile": 'php.ini'<br />        },<br />        "JavaScript": {<br />            "javascriptExtraPaths": []<br />        },<br />        "Perl": {<br />            "perl": "/usr/bin/perl",<br />            "perlExtraPaths": []<br />        },<br />        "Ruby": {<br />            "ruby": "/usr/bin/ruby",<br />            "rubyExtraPaths": []<br />        },<br />        "Python": {<br />            "python": '/usr/bin/python',<br />            "pythonExtraPaths": []<br />        },<br />        "Python3": {<br />            "python": '/usr/bin/python3',<br />            "pythonExtraPaths": []<br />        }<br />    }<br /></pre><br />For example, I like to use python and my config file looks like this<br /><pre class="prettyprint">{<br /> "Python": {<br />     "python": '/usr/bin/python',<br />     "pythonExtraPaths": []<br /> },<br />}<br /></pre><br />Thats it. Restart your sublime, type code and press Alt + / to see the Auto completion at work.<br /><br /></div></div>
+<p>
+Unarguably Sublime is one of the best text editors and with its ability to extend with python scripts, gifts itself a lot of power. Here lets see one of those extensions which allow code completion. Normally, sublime provides code completion for the words in the current file being edited. Codeintel allows the user to get code completion feature of the respective languages.<br>
+\\</p>
+<div id="outline-container-installation" class="outline-3">
+<h3 id="installation">
+Installation
+</h3>
+<div id="outline-text-installation" class="outline-text-3">
+<p>Lets install CodeIntel, through Package Control plugin. To install Package Control plugin, do the following steps. Here is the author&#39;s <a href="http://wbond.net/sublime_packages/package_control/installation">page</a>. Quoting from the source website<br>
+\\</p>
+<blockquote>
+<p>Installation is through the Sublime Text 2 console. This is accessed via the ctrl+` shortcut. Once open, paste the following command into the console.<br>
+\\</p>
+<p>
+import urllib2,os; pf=&#39;Package Control.sublime-package&#39;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&#39;wb&#39;).write(urllib2.urlopen(&#39;<a href="http://sublime.wbond.net/&#39;+pf.replace(&#39;">http://sublime.wbond.net/&#39;+pf.replace(&#39;</a> &#39;,&#39;%20&#39;)).read()); print(&#39;Please restart Sublime Text to finish installation&#39;)</p>
+</blockquote>
+<p>
+\\
+After installing it, Press Shift+Ctrl+P or click on Tools-&gt;Command Palette. In the window that opens up, type Install Package. In the text box which you see after that, type SublimeCodeIntel and click on it to install it. You are done with the installation of CodeIntel.<br>
+\\</p>
+</div>
+</div>
+<div id="outline-container-configuration" class="outline-3">
+<h3 id="configuration">
+Configuration
+</h3>
+<div id="outline-text-configuration" class="outline-text-3">
+<p>The following information is taken from the README.rst file. Open ~/.codeintel/config file in your favourite text editor, most likely Sublime. Pick your language from the list below and copy paste only the blocks for the languages of your choice.<br>
+\\</p>
+<div class="src src-json">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>    {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>        <span style="color:#008000;font-weight:bold">&#34;PHP&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;php&#34;</span>: <span style="">&#39;/usr/bin/php&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;phpExtraPaths&#34;</span>: [],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;phpConfigFile&#34;</span>: <span style="">&#39;php.ini&#39;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>        },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>        <span style="color:#008000;font-weight:bold">&#34;JavaScript&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;javascriptExtraPaths&#34;</span>: []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>        },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>        <span style="color:#008000;font-weight:bold">&#34;Perl&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;perl&#34;</span>: <span style="color:#b44">&#34;/usr/bin/perl&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;perlExtraPaths&#34;</span>: []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>        },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>        <span style="color:#008000;font-weight:bold">&#34;Ruby&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;ruby&#34;</span>: <span style="color:#b44">&#34;/usr/bin/ruby&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;rubyExtraPaths&#34;</span>: []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="17"><a style="outline:none;text-decoration:none;color:inherit" href="#17">17</a></span><span>        },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="18"><a style="outline:none;text-decoration:none;color:inherit" href="#18">18</a></span><span>        <span style="color:#008000;font-weight:bold">&#34;Python&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="19"><a style="outline:none;text-decoration:none;color:inherit" href="#19">19</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;python&#34;</span>: <span style="">&#39;/usr/bin/python&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="20"><a style="outline:none;text-decoration:none;color:inherit" href="#20">20</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;pythonExtraPaths&#34;</span>: []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="21"><a style="outline:none;text-decoration:none;color:inherit" href="#21">21</a></span><span>        },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="22"><a style="outline:none;text-decoration:none;color:inherit" href="#22">22</a></span><span>        <span style="color:#008000;font-weight:bold">&#34;Python3&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="23"><a style="outline:none;text-decoration:none;color:inherit" href="#23">23</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;python&#34;</span>: <span style="">&#39;/usr/bin/python</span><span style="color:#666">3</span><span style="">&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="24"><a style="outline:none;text-decoration:none;color:inherit" href="#24">24</a></span><span>            <span style="color:#008000;font-weight:bold">&#34;pythonExtraPaths&#34;</span>: []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="25"><a style="outline:none;text-decoration:none;color:inherit" href="#25">25</a></span><span>        }
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="26"><a style="outline:none;text-decoration:none;color:inherit" href="#26">26</a></span><span>    }</span></span></code></pre></div>
+</div>
+<p>
+\\
+For example, I like to use python and my config file looks like this\\</p>
+<div class="src src-json">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>{
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span> <span style="color:#008000;font-weight:bold">&#34;Python&#34;</span>: {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>     <span style="color:#008000;font-weight:bold">&#34;python&#34;</span>: <span style="">&#39;/usr/bin/python&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4">4</a></span><span>     <span style="color:#008000;font-weight:bold">&#34;pythonExtraPaths&#34;</span>: []
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5">5</a></span><span> },
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6">6</a></span><span>}</span></span></code></pre></div>
+</div>
+<p>
+\\
+Thats it. Restart your sublime, type code and press Alt + / to see the Auto completion at work.<br>
+\\</p>
+</div>
+</div>
 
     
   </article>
@@ -255,7 +334,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -270,7 +349,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Sublime%20Configuring%20CodeIntel%20Auto%20Completion&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Sublime%20Configuring%20CodeIntel%20Auto%20Completion&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -289,7 +368,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Sublime%20Configuring%20CodeIntel%20Auto%20Completion&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Sublime%20Configuring%20CodeIntel%20Auto%20Completion&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -311,7 +390,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -328,7 +407,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f&amp;resubmit=true&amp;title=Sublime%20Configuring%20CodeIntel%20Auto%20Completion" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -356,7 +435,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -380,7 +459,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f&amp;t=Sublime%20Configuring%20CodeIntel%20Auto%20Completion" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f&amp;t=Sublime%20Configuring%20CodeIntel%20Auto%20Completion" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -400,7 +479,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Sublime%20Configuring%20CodeIntel%20Auto%20Completion&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f05%2f25%2fsublime-configuring-codeintel%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -425,26 +504,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,16 +57,16 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2015/02/15/python-35-and-django-17s-htmlparseerror/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Python 3.5 and Django 1.7&#39;s HTMLParseError">
-  <meta property="og:description" content="Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2015-02-15T13:20:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="Django">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Python 3.5 and Django 1.7&#39;s HTMLParseError">
+	<meta property="og:description" content="Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2015-02-15T13:20:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Python">
+		<meta property="article:tag" content="Django">
 
 
   
@@ -75,12 +75,12 @@
   
   
   
-  <meta itemprop="name" content="Python 3.5 and Django 1.7&#39;s HTMLParseError">
-  <meta itemprop="description" content="Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.">
-  <meta itemprop="datePublished" content="2015-02-15T13:20:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="349">
-  <meta itemprop="keywords" content="Python,Django">
+	<meta itemprop="name" content="Python 3.5 and Django 1.7&#39;s HTMLParseError">
+	<meta itemprop="description" content="Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.">
+	<meta itemprop="datePublished" content="2015-02-15T13:20:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="386">
+	<meta itemprop="keywords" content="Python,Django">
 
   
   
@@ -100,9 +100,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Python 3.5 and Django 1.7&#39;s HTMLParseError">
-  <meta name="twitter:description" content="Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Python 3.5 and Django 1.7&#39;s HTMLParseError">
+	<meta name="twitter:description" content="Python 3.5 removed html.parser.HTMLParseError which breaks Django 1.7. Workaround involves upgrading Django or applying the django-autoconfig patch to fix the compatibility issue.">
 
 
   
@@ -201,7 +201,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          349 words
+          386 words
         </span>
       
       
@@ -242,11 +242,52 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div>I just updated my Python installation to 3.5 Alpha 1 and started with Django today and I hit a road block already. It all went fine, when I created the virtual environment and installed Django 1.7.4 in it. And then when I did <code>startproject</code>, I got <code>AttributeError: module 'html.parser' has no attribute 'HTMLParseError'</code>.<br /><pre class="prettyprint">(py3.5venv) ➜  myProject git:(master) ✗ django-admin.py startproject myProject<br />Traceback (most recent call last):<br />  File "/py3.5venv/bin/django-admin.py", line 5, in <module><br />    management.execute_from_command_line()<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/management/__init__.py", line 385, in execute_from_command_line<br />    utility.execute()<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/management/__init__.py", line 354, in execute<br />    django.setup()<br />  File "/py3.5venv/lib/python3.5/site-packages/django/__init__.py", line 18, in setup<br />    from django.utils.log import configure_logging<br />  File "/py3.5venv/lib/python3.5/site-packages/django/utils/log.py", line 13, in <module><br />    from django.views.debug import ExceptionReporter, get_exception_reporter_filter<br />  File "/py3.5venv/lib/python3.5/site-packages/django/views/debug.py", line 10, in <module><br />    from django.http import (HttpResponse, HttpResponseServerError,<br />  File "/py3.5venv/lib/python3.5/site-packages/django/http/__init__.py", line 4, in <module><br />    from django.http.response import (<br />  File "/py3.5venv/lib/python3.5/site-packages/django/http/response.py", line 13, in <module><br />    from django.core.serializers.json import DjangoJSONEncoder<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/serializers/__init__.py", line 23, in <module><br />    from django.core.serializers.base import SerializerDoesNotExist<br />  File "/py3.5venv/lib/python3.5/site-packages/django/core/serializers/base.py", line 6, in <module><br />    from django.db import models<br />  File "/py3.5venv/lib/python3.5/site-packages/django/db/models/__init__.py", line 6, in <module><br />    from django.db.models.query import Q, QuerySet, Prefetch  # NOQA<br />  File "/py3.5venv/lib/python3.5/site-packages/django/db/models/query.py", line 13, in <module><br />    from django.db.models.fields import AutoField, Empty<br />  File "/py3.5venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 18, in <module><br />    from django import forms<br />  File "/py3.5venv/lib/python3.5/site-packages/django/forms/__init__.py", line 6, in <module><br />    from django.forms.fields import *  # NOQA<br />  File "/py3.5venv/lib/python3.5/site-packages/django/forms/fields.py", line 18, in <module><br />    from django.forms.utils import from_current_timezone, to_current_timezone<br />  File "/py3.5venv/lib/python3.5/site-packages/django/forms/utils.py", line 15, in <module><br />    from django.utils.html import format_html, format_html_join, escape<br />  File "/py3.5venv/lib/python3.5/site-packages/django/utils/html.py", line 16, in <module><br />    from .html_parser import HTMLParser, HTMLParseError<br />  File "/py3.5venv/lib/python3.5/site-packages/django/utils/html_parser.py", line 12, in <module><br />    HTMLParseError = _html_parser.HTMLParseError<br />AttributeError: module 'html.parser' has no attribute 'HTMLParseError'</pre>Then <a href="http://stackoverflow.com/users/918959/antti-haapala">Antti Haapala</a> (a friend from <a href="http://chat.stackoverflow.com/rooms/6/python">Stakoverflow's Python Chat room</a>) found out that it is because <code class="prettyprint">HTMLParseError</code> is deprecated from Python 3.3 onwards and removed in Python 3.5, as per the <a href="https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParseError">official documentation</a>. He continued the investigation and found out that django guys are already aware of this, as they have <a href="https://code.djangoproject.com/ticket/23763">a bug raised</a>, and <a href="https://github.com/django/django/commit/b07aa52e8a8e4c7fdc7265f75ce2e7992e657ae9">the fix has been already delivered</a> to the code repository.<br />Now, all we can do is, wait for the version of django which officially supports Python 3.5 or manually patch html_parser.py file as per the above shown fix. Even if we patch it manually, there is no guarantee that everything else will work fine.<br /></div></div>
-
-
+    <p>
+I just updated my Python installation to 3.5 Alpha 1 and started with Django today and I hit a road block already. It all went fine, when I created the virtual environment and installed Django 1.7.4 in it. And then when I did <code class="verbatim">startproject</code>, I got <code class="verbatim">AttributeError: module &#39;html.parser&#39; has no attribute &#39;HTMLParseError&#39;</code>.\\</p>
+<div class="src src-python">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>(py3<span style="color:#666">.5</span>venv) <span style="">➜</span>  myProject git:(master) <span style="">✗</span> django<span style="color:#666">-</span>admin<span style="color:#666">.</span>py startproject myProject
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/bin/django-admin.py&#34;</span>, line <span style="color:#666">5</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>    management<span style="color:#666">.</span>execute_from_command_line()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/core/management/__init__.py&#34;</span>, line <span style="color:#666">385</span>, <span style="color:#a2f;font-weight:bold">in</span> execute_from_command_line
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>    utility<span style="color:#666">.</span>execute()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/core/management/__init__.py&#34;</span>, line <span style="color:#666">354</span>, <span style="color:#a2f;font-weight:bold">in</span> execute
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>    django<span style="color:#666">.</span>setup()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/__init__.py&#34;</span>, line <span style="color:#666">18</span>, <span style="color:#a2f;font-weight:bold">in</span> setup
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.utils.log</span> <span style="color:#a2f;font-weight:bold">import</span> configure_logging
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/utils/log.py&#34;</span>, line <span style="color:#666">13</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.views.debug</span> <span style="color:#a2f;font-weight:bold">import</span> ExceptionReporter, get_exception_reporter_filter
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/views/debug.py&#34;</span>, line <span style="color:#666">10</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.http</span> <span style="color:#a2f;font-weight:bold">import</span> (HttpResponse, HttpResponseServerError,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/http/__init__.py&#34;</span>, line <span style="color:#666">4</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.http.response</span> <span style="color:#a2f;font-weight:bold">import</span> (
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="17"><a style="outline:none;text-decoration:none;color:inherit" href="#17">17</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/http/response.py&#34;</span>, line <span style="color:#666">13</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="18"><a style="outline:none;text-decoration:none;color:inherit" href="#18">18</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.core.serializers.json</span> <span style="color:#a2f;font-weight:bold">import</span> DjangoJSONEncoder
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="19"><a style="outline:none;text-decoration:none;color:inherit" href="#19">19</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/core/serializers/__init__.py&#34;</span>, line <span style="color:#666">23</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="20"><a style="outline:none;text-decoration:none;color:inherit" href="#20">20</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.core.serializers.base</span> <span style="color:#a2f;font-weight:bold">import</span> SerializerDoesNotExist
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="21"><a style="outline:none;text-decoration:none;color:inherit" href="#21">21</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/core/serializers/base.py&#34;</span>, line <span style="color:#666">6</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="22"><a style="outline:none;text-decoration:none;color:inherit" href="#22">22</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.db</span> <span style="color:#a2f;font-weight:bold">import</span> models
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="23"><a style="outline:none;text-decoration:none;color:inherit" href="#23">23</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/db/models/__init__.py&#34;</span>, line <span style="color:#666">6</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="24"><a style="outline:none;text-decoration:none;color:inherit" href="#24">24</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.db.models.query</span> <span style="color:#a2f;font-weight:bold">import</span> Q, QuerySet, Prefetch  <span style="color:#080;font-style:italic"># NOQA</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="25"><a style="outline:none;text-decoration:none;color:inherit" href="#25">25</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/db/models/query.py&#34;</span>, line <span style="color:#666">13</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="26"><a style="outline:none;text-decoration:none;color:inherit" href="#26">26</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.db.models.fields</span> <span style="color:#a2f;font-weight:bold">import</span> AutoField, Empty
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="27"><a style="outline:none;text-decoration:none;color:inherit" href="#27">27</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py&#34;</span>, line <span style="color:#666">18</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="28"><a style="outline:none;text-decoration:none;color:inherit" href="#28">28</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django</span> <span style="color:#a2f;font-weight:bold">import</span> forms
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="29"><a style="outline:none;text-decoration:none;color:inherit" href="#29">29</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/forms/__init__.py&#34;</span>, line <span style="color:#666">6</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="30"><a style="outline:none;text-decoration:none;color:inherit" href="#30">30</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.forms.fields</span> <span style="color:#a2f;font-weight:bold">import</span> <span style="color:#666">*</span>  <span style="color:#080;font-style:italic"># NOQA</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="31"><a style="outline:none;text-decoration:none;color:inherit" href="#31">31</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/forms/fields.py&#34;</span>, line <span style="color:#666">18</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="32"><a style="outline:none;text-decoration:none;color:inherit" href="#32">32</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.forms.utils</span> <span style="color:#a2f;font-weight:bold">import</span> from_current_timezone, to_current_timezone
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="33"><a style="outline:none;text-decoration:none;color:inherit" href="#33">33</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/forms/utils.py&#34;</span>, line <span style="color:#666">15</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="34"><a style="outline:none;text-decoration:none;color:inherit" href="#34">34</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">django.utils.html</span> <span style="color:#a2f;font-weight:bold">import</span> format_html, format_html_join, escape
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="35"><a style="outline:none;text-decoration:none;color:inherit" href="#35">35</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/utils/html.py&#34;</span>, line <span style="color:#666">16</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="36"><a style="outline:none;text-decoration:none;color:inherit" href="#36">36</a></span><span>    <span style="color:#a2f;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">.html_parser</span> <span style="color:#a2f;font-weight:bold">import</span> HTMLParser, HTMLParseError
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="37"><a style="outline:none;text-decoration:none;color:inherit" href="#37">37</a></span><span>  File <span style="color:#b44">&#34;/py3.5venv/lib/python3.5/site-packages/django/utils/html_parser.py&#34;</span>, line <span style="color:#666">12</span>, <span style="color:#a2f;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="38"><a style="outline:none;text-decoration:none;color:inherit" href="#38">38</a></span><span>    HTMLParseError <span style="color:#666">=</span> _html_parser<span style="color:#666">.</span>HTMLParseError
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="39"><a style="outline:none;text-decoration:none;color:inherit" href="#39">39</a></span><span><span style="color:#d2413a;font-weight:bold">AttributeError</span>: module <span style="color:#b44">&#39;html.parser&#39;</span> has no attribute <span style="color:#b44">&#39;HTMLParseError&#39;</span></span></span></code></pre></div>
+</div>
+<p>
+Then <a href="http://stackoverflow.com/users/918959/antti-haapala">Antti Haapala</a> (a friend from <a href="http://chat.stackoverflow.com/rooms/6/python">Stakoverflow&#39;s Python Chat room</a>) found out that it is because <code class="verbatim">HTMLParseError</code> is deprecated from Python 3.3 onwards and removed in Python 3.5, as per the <a href="https://docs.python.org/3/library/html.parser.html#html.parser.HTMLParseError">official documentation</a>. He continued the investigation and found out that django guys are already aware of this, as they have <a href="https://code.djangoproject.com/ticket/23763">a bug raised</a>, and <a href="https://github.com/django/django/commit/b07aa52e8a8e4c7fdc7265f75ce2e7992e657ae9">the fix has been already delivered</a> to the code repository.<br>
+Now, all we can do is, wait for the version of django which officially supports Python 3.5 or manually patch html_parser.py file as per the above shown fix. Even if we patch it manually, there is no guarantee that everything else will work fine.\\</p>
 
     
   </article>
@@ -260,7 +301,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -275,7 +316,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -294,7 +335,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -316,7 +357,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -333,7 +374,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f&amp;resubmit=true&amp;title=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -361,7 +402,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -385,7 +426,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f&amp;t=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f&amp;t=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -405,7 +446,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Python%203.5%20and%20Django%201.7%27s%20HTMLParseError&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2015%2f02%2f15%2fpython-35-and-django-17s-htmlparseerror%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -430,26 +471,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

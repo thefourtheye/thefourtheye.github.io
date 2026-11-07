@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,15 +57,15 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/06/08/gitclean-git-clean-wrapper/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="gitclean - a git clean wrapper">
-  <meta property="og:description" content="gitclean is a safety wrapper around git clean that shows what files will be deleted and asks for confirmation before removing untracked files.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-06-08T18:40:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Git">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="gitclean - a git clean wrapper">
+	<meta property="og:description" content="gitclean is a safety wrapper around git clean that shows what files will be deleted and asks for confirmation before removing untracked files.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-06-08T18:40:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Git">
 
 
   
@@ -74,12 +74,12 @@
   
   
   
-  <meta itemprop="name" content="gitclean - a git clean wrapper">
-  <meta itemprop="description" content="gitclean is a safety wrapper around git clean that shows what files will be deleted and asks for confirmation before removing untracked files.">
-  <meta itemprop="datePublished" content="2013-06-08T18:40:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="495">
-  <meta itemprop="keywords" content="Git">
+	<meta itemprop="name" content="gitclean - a git clean wrapper">
+	<meta itemprop="description" content="gitclean is a safety wrapper around git clean that shows what files will be deleted and asks for confirmation before removing untracked files.">
+	<meta itemprop="datePublished" content="2013-06-08T18:40:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="518">
+	<meta itemprop="keywords" content="Git">
 
   
   
@@ -99,9 +99,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="gitclean - a git clean wrapper">
-  <meta name="twitter:description" content="gitclean is a safety wrapper around git clean that shows what files will be deleted and asks for confirmation before removing untracked files.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="gitclean - a git clean wrapper">
+	<meta name="twitter:description" content="gitclean is a safety wrapper around git clean that shows what files will be deleted and asks for confirmation before removing untracked files.">
 
 
   
@@ -200,7 +200,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          495 words
+          518 words
         </span>
       
       
@@ -233,15 +233,151 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     <summary>
       <b>Table of Contents</b>
     </summary>
-    <div class="toc numbered-subtitles"></div>
+    <div class="toc numbered-subtitles"><nav id="TableOfContents">
+<ul>
+<li><a href="#github">Github</a>
+</li>
+<li><a href="#installation">Installation</a>
+</li>
+<li><a href="#configuration">Configuration</a>
+</li>
+<li><a href="#sample-runs">Sample Runs</a>
+</li>
+</ul>
+</nav></div>
   </details>
   
   
   <article class="content numbered-subtitles">
     
     
-<div class='post'>
-<div>Last week, I had to make some changes to the code. I was keep on making changes but forgot to add them to git and to take backup. When I am almost done I wanted to commit and before committing I checked the changed files with this.<br /><br /><code>git status</code><br /><br />it listed all the files which have got changed and few other temporary files and compiled binaries, which I don't want to keep in the repository. So I did<br /><br /><code>git clean -qfxd</code><br /><br />That's it. This cleared everything, including my newly added untracked files and all my hardwork went in vain. Then I read about <code>git clean</code> <a href="https://www.kernel.org/pub/software/scm/git/docs/git-clean.html">here</a> and got to know what I could have done to avoid this problem. And then I was thinking, if there is a script which would remind me that, the following files will also be removed and only when I say `yes` it would go ahead and clean the repository. So I made this <a href="https://github.com/thefourtheye/gitclean">gitclean</a> script. This would collect the status of the files with <code>git status --porcelain</code> and then compare it with the list of extensions specified in the config file. If they match, it would report to the user and ask his consent before beginning to clean.<br /><br /><h2>Github</h2><br />Github Repository : <a href="https://github.com/thefourtheye/gitclean">https://github.com/thefourtheye/gitclean</a>.<br /><br /><h2>Installation</h2><br />To install this script, please follow these steps<br /><br /><pre class="prettyprint">wget https://raw.github.com/thefourtheye/gitclean/master/gitclean<br />chmod 544 gitclean<br />./gitclean install<br /></pre><br /><ol><li>The first step will download the script from github</li><li>The second step changes the permissions of the file to 544</li><li>The third step installs the script. Basically, it copies itself to the user's home directory and creates the gitclean alias in the <code>$HOME/.bashrc</code> file<br /></ol><h2>Configuration</h2>Users can specify the extensions, gitclean has to report in the <code>$HOME/.gitclean_extenstions</code> file. By default, gitclean will report the extension-less files and directories as well. But, it does not report the empty directory. My <code>.gitclean_extenstions</code> file has the following items.  <pre class="prettyprint">cpp<br />js<br /></pre><h2>Sample Runs</h2>1. With no files changed  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />0 interesting files found, in total 0 files. Cleaning was not done. Exiting...<br />~/gitclean$ <br /></pre>2. With one interesting file [Test.js]  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />Test.js<br /><br />1 interesting files found, in total 1 files. Are you sure want to clean? [y/Y - Yes, Any other Key - No] : n<br />Cleaning was not done. Exiting...<br />~/gitclean$ <br /></pre>3. With one interesting file [Test.js] and a non-empty directory  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />Test.js<br />Test/<br /><br />2 interesting files found, in total 2 files. Are you sure want to clean? [y/Y - Yes, Any other Key - No] : y<br />Cleaning...<br /><br />~/gitclean$ <br /></pre>4. With one interesting file [Test.js] and a non-empty directory and a non-interesting file [Test.txt]  <pre class="prettyprint">~/gitclean$ gitclean<br /><br />Interesting Extensions found in [/home/thefourtheye/.gitclean_extensions] are as follows<br />[cpp]<br />[js]<br /><br />Test.js<br />Test/<br /><br />2 interesting files found, in total 3 files. Are you sure want to clean? [y/Y - Yes, Any other Key - No] : y<br />Cleaning...<br /><br />~/gitclean$ <br /></pre></div></div>
+<p>
+Last week, I had to make some changes to the code. I was keep on making changes but forgot to add them to git and to take backup. When I am almost done I wanted to commit and before committing I checked the changed files with this.<br>
+\\
+<code class="verbatim">git status</code><br>
+\\
+it listed all the files which have got changed and few other temporary files and compiled binaries, which I don&#39;t want to keep in the repository. So I did<br>
+\\
+<code class="verbatim">git clean -qfxd</code><br>
+\\
+That&#39;s it. This cleared everything, including my newly added untracked files and all my hardwork went in vain. Then I read about <code class="verbatim">git clean</code> <a href="https://www.kernel.org/pub/software/scm/git/docs/git-clean.html">here</a> and got to know what I could have done to avoid this problem. And then I was thinking, if there is a script which would remind me that, the following files will also be removed and only when I say `yes` it would go ahead and clean the repository. So I made this <a href="https://github.com/thefourtheye/gitclean">gitclean</a> script. This would collect the status of the files with <code class="verbatim">git status --porcelain</code> and then compare it with the list of extensions specified in the config file. If they match, it would report to the user and ask his consent before beginning to clean.<br>
+\\</p>
+<div id="outline-container-github" class="outline-3">
+<h3 id="github">
+Github
+</h3>
+<div id="outline-text-github" class="outline-text-3">
+<p>\\
+Github Repository : <a href="https://github.com/thefourtheye/gitclean">https://github.com/thefourtheye/gitclean</a>.<br>
+\\</p>
+</div>
+</div>
+<div id="outline-container-installation" class="outline-3">
+<h3 id="installation">
+Installation
+</h3>
+<div id="outline-text-installation" class="outline-text-3">
+<p>\\
+To install this script, please follow these steps<br>
+\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>wget https://raw.github.com/thefourtheye/gitclean/master/gitclean
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>chmod <span style="color:#666">544</span> gitclean
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>./gitclean install</span></span></code></pre></div>
+</div>
+<p>
+\\</p>
+<ol>
+<li>The first step will download the script from github</li>
+<li>The second step changes the permissions of the file to 544</li>
+<li>The third step installs the script. Basically, it copies itself to the user&#39;s home directory and creates the gitclean alias in the <code class="verbatim">$HOME/.bashrc</code> file\\</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-configuration" class="outline-3">
+<h3 id="configuration">
+Configuration
+</h3>
+<div id="outline-text-configuration" class="outline-text-3">
+<p>Users can specify the extensions, gitclean has to report in the <code class="verbatim">$HOME/.gitclean_extenstions</code> file. By default, gitclean will report the extension-less files and directories as well. But, it does not report the empty directory. My <code class="verbatim">.gitclean_extenstions</code> file has the following items.</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>cpp
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>js</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-sample-runs" class="outline-3">
+<h3 id="sample-runs">
+Sample Runs
+</h3>
+<div id="outline-text-sample-runs" class="outline-text-3">
+<ol>
+<li>With no files changed</li>
+</ol>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>~/gitclean$ gitclean
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>Interesting Extensions found in <span style="color:#666">[</span>/home/thefourtheye/.gitclean_extensions<span style="color:#666">]</span> are as follows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4">4</a></span><span><span style="color:#666">[</span>cpp<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5">5</a></span><span><span style="color:#666">[</span>js<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6">6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7">7</a></span><span><span style="color:#666">0</span> interesting files found, in total <span style="color:#666">0</span> files. Cleaning was not <span style="color:#a2f;font-weight:bold">done</span>. Exiting...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8">8</a></span><span>~/gitclean$</span></span></code></pre></div>
+</div>
+<ol>
+<li>With one interesting file [Test.js]</li>
+</ol>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>~/gitclean$ gitclean
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>Interesting Extensions found in <span style="color:#666">[</span>/home/thefourtheye/.gitclean_extensions<span style="color:#666">]</span> are as follows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span><span style="color:#666">[</span>cpp<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span><span style="color:#666">[</span>js<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>Test.js
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span><span style="color:#666">1</span> interesting files found, in total <span style="color:#666">1</span> files. Are you sure want to clean? <span style="color:#666">[</span>y/Y - Yes, Any other Key - No<span style="color:#666">]</span> : n
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>Cleaning was not <span style="color:#a2f;font-weight:bold">done</span>. Exiting...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>~/gitclean$</span></span></code></pre></div>
+</div>
+<ol>
+<li>With one interesting file [Test.js] and a non-empty directory</li>
+</ol>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>~/gitclean$ gitclean
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>Interesting Extensions found in <span style="color:#666">[</span>/home/thefourtheye/.gitclean_extensions<span style="color:#666">]</span> are as follows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span><span style="color:#666">[</span>cpp<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span><span style="color:#666">[</span>js<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>Test.js
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>Test/
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span><span style="color:#666">2</span> interesting files found, in total <span style="color:#666">2</span> files. Are you sure want to clean? <span style="color:#666">[</span>y/Y - Yes, Any other Key - No<span style="color:#666">]</span> : y
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>Cleaning...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>~/gitclean$</span></span></code></pre></div>
+</div>
+<ol>
+<li>With one interesting file [Test.js] and a non-empty directory and a non-interesting file [Test.txt]</li>
+</ol>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>~/gitclean$ gitclean
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>Interesting Extensions found in <span style="color:#666">[</span>/home/thefourtheye/.gitclean_extensions<span style="color:#666">]</span> are as follows
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span><span style="color:#666">[</span>cpp<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span><span style="color:#666">[</span>js<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>Test.js
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>Test/
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span><span style="color:#666">2</span> interesting files found, in total <span style="color:#666">3</span> files. Are you sure want to clean? <span style="color:#666">[</span>y/Y - Yes, Any other Key - No<span style="color:#666">]</span> : y
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>Cleaning...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>~/gitclean$</span></span></code></pre></div>
+</div>
+</div>
+</div>
 
     
   </article>
@@ -255,7 +391,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -270,7 +406,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=gitclean%20-%20a%20git%20clean%20wrapper&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=gitclean%20-%20a%20git%20clean%20wrapper&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -289,7 +425,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=gitclean%20-%20a%20git%20clean%20wrapper&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=gitclean%20-%20a%20git%20clean%20wrapper&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -311,7 +447,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -328,7 +464,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f&amp;resubmit=true&amp;title=gitclean%20-%20a%20git%20clean%20wrapper" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -356,7 +492,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -380,7 +516,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f&amp;t=gitclean%20-%20a%20git%20clean%20wrapper" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f&amp;t=gitclean%20-%20a%20git%20clean%20wrapper" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -400,7 +536,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=gitclean%20-%20a%20git%20clean%20wrapper&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f08%2fgitclean-git-clean-wrapper%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -425,26 +561,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,18 +57,18 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/06/15/project-euler-14-longest-collatz-sequence-memoization/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Project Euler - 14 - Longest Collatz sequence - memoization">
-  <meta property="og:description" content="Project Euler Problem 14 - Longest Collatz sequence. Demonstrates memoization to dramatically speed up computing chain lengths for the Collatz conjecture.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-06-15T18:56:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Dynamic Programming">
-    <meta property="article:tag" content="Project Euler">
-    <meta property="article:tag" content="Mathematics">
-    <meta property="article:tag" content="Sport Programming">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Project Euler - 14 - Longest Collatz sequence - memoization">
+	<meta property="og:description" content="Project Euler Problem 14 - Longest Collatz sequence. Demonstrates memoization to dramatically speed up computing chain lengths for the Collatz conjecture.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-06-15T18:56:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Dynamic Programming">
+		<meta property="article:tag" content="Project Euler">
+		<meta property="article:tag" content="Mathematics">
+		<meta property="article:tag" content="Sport Programming">
 
 
   
@@ -77,12 +77,12 @@
   
   
   
-  <meta itemprop="name" content="Project Euler - 14 - Longest Collatz sequence - memoization">
-  <meta itemprop="description" content="Project Euler Problem 14 - Longest Collatz sequence. Demonstrates memoization to dramatically speed up computing chain lengths for the Collatz conjecture.">
-  <meta itemprop="datePublished" content="2013-06-15T18:56:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="512">
-  <meta itemprop="keywords" content="Dynamic Programming,Project Euler,Mathematics,Sport Programming">
+	<meta itemprop="name" content="Project Euler - 14 - Longest Collatz sequence - memoization">
+	<meta itemprop="description" content="Project Euler Problem 14 - Longest Collatz sequence. Demonstrates memoization to dramatically speed up computing chain lengths for the Collatz conjecture.">
+	<meta itemprop="datePublished" content="2013-06-15T18:56:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="549">
+	<meta itemprop="keywords" content="Dynamic Programming,Project Euler,Mathematics,Sport Programming">
 
   
   
@@ -102,9 +102,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Project Euler - 14 - Longest Collatz sequence - memoization">
-  <meta name="twitter:description" content="Project Euler Problem 14 - Longest Collatz sequence. Demonstrates memoization to dramatically speed up computing chain lengths for the Collatz conjecture.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Project Euler - 14 - Longest Collatz sequence - memoization">
+	<meta name="twitter:description" content="Project Euler Problem 14 - Longest Collatz sequence. Demonstrates memoization to dramatically speed up computing chain lengths for the Collatz conjecture.">
 
 
   
@@ -203,7 +203,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          512 words
+          549 words
         </span>
       
       
@@ -242,15 +242,108 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     <summary>
       <b>Table of Contents</b>
     </summary>
-    <div class="toc numbered-subtitles"></div>
+    <div class="toc numbered-subtitles"><nav id="TableOfContents">
+<ul>
+<li><a href="#simple-solution">Simple Solution</a>
+</li>
+<li><a href="#optimized-memoized-solution">Optimized (Memoized) Solution</a>
+</li>
+</ul>
+</nav></div>
   </details>
   
   
   <article class="content numbered-subtitles">
     
     
-<div class='post'>
-<div>This post is about the <a href="http://projecteuler.net/problem=14">Project Euler - 14 - Longest Collatz sequence</a> problem. This is one of the perfect examples of memoization technique. This is the actual problem.<br /><br /><pre>The following iterative sequence is defined for the set of positive integers:<br /><br />n → n/2 (n is even)<br />n → 3n + 1 (n is odd)<br /><br />Using the rule above and starting with 13, we generate the following sequence:<br />13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1<br /><br />It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.<br /><br />Which starting number, under one million, produces the longest chain?<br /><br />NOTE: Once the chain starts the terms are allowed to go above one million.<br /></pre><br /><h2>Simple Solution</h2><br />The problem statement looks pretty simple and a brute force will work just fine. This code runs in 20 seconds.<br /><br /><pre class="prettyprint"><br />def Series(N):<br />    Counter = 1<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        Counter += 1<br />    return Counter<br /><br />Max, Element = 0, 0<br />for x in xrange (1, 1000000):<br />    series = Series(x)<br />    if (Max &lt; series):<br />        Max = series<br />        Element = x<br /><br />print Max, Element<br /><br /></pre><br /><br />As I had to wait for 20 seconds to get the solution, I was thinking about improving the performance. Then I found this. From the problem statement, <code>13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>, starting with any number, if it becomes 13 at any point of time, it has to take the same route and if it becomes 13 it will take 10 steps to become 1. So I wanted to store this information first time itself, so that I don't have to recalculate. This is called <code>Memoization</code>. Quoting from wikipedia<br /><br /><blockquote>In computing, memoization is an optimization technique used primarily to speed up computer programs by having function calls avoid repeating the calculation of results for previously processed inputs</blockquote><br /><h2>Optimized (Memoized) Solution</h2><br />To optimize it, I just had to change the Series function alone. I stored the computed values in a dictionary and if the current number in the sequence happens to be in the dictionary, I ll just return the value corresponding to it. This program responded with the result in 2 seconds. That is <b>10 times faster</b> than the first version.<br/><br /><pre class="prettyprint"><br />Dict = {}<br /><br />def Series(N):<br />    Counter = 1   #It is 1, because we are counting the initial N<br />    Original = N<br />    while N != 1:<br />        N = N/2 if N % 2 == 0 else 3*N+1<br />        if N in Dict:                    # Check if the length has been computed for this number already<br />            Counter += Dict[N]           # Add it to the current length counter<br />            Dict [Original] = Counter    # Store the computed value for future look back<br />            return Counter<br />        Counter += 1<br />    Dict [Original] = Counter            # Store the computed value for future look back<br />    return Counter<br /><br /></pre><br/><br/><br/><br /></div></div>
+<p>
+This post is about the <a href="http://projecteuler.net/problem=14">Project Euler - 14 - Longest Collatz sequence</a> problem. This is one of the perfect examples of memoization technique. This is the actual problem.<br>
+\\</p>
+<pre class="example">
+The following iterative sequence is defined for the set of positive integers:
+
+n → n/2 (n is even)
+n → 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+
+NOTE: Once the chain starts the terms are allowed to go above one million.
+</pre>
+<p>
+\\</p>
+<div id="outline-container-simple-solution" class="outline-3">
+<h3 id="simple-solution">
+Simple Solution
+</h3>
+<div id="outline-text-simple-solution" class="outline-text-3">
+<p>\\
+The problem statement looks pretty simple and a brute force will work just fine. This code runs in 20 seconds.<br>
+\\</p>
+<div class="src src-python">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span><span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">Series</span>(N):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>    Counter <span style="color:#666">=</span> <span style="color:#666">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>    <span style="color:#a2f;font-weight:bold">while</span> N <span style="color:#666">!=</span> <span style="color:#666">1</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>        N <span style="color:#666">=</span> N<span style="color:#666">/</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">if</span> N <span style="color:#666">%</span> <span style="color:#666">2</span> <span style="color:#666">==</span> <span style="color:#666">0</span> <span style="color:#a2f;font-weight:bold">else</span> <span style="color:#666">3</span><span style="color:#666">*</span>N<span style="color:#666">+</span><span style="color:#666">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>        Counter <span style="color:#666">+=</span> <span style="color:#666">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>    <span style="color:#a2f;font-weight:bold">return</span> Counter
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>Max, Element <span style="color:#666">=</span> <span style="color:#666">0</span>, <span style="color:#666">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span><span style="color:#a2f;font-weight:bold">for</span> x <span style="color:#a2f;font-weight:bold">in</span> xrange (<span style="color:#666">1</span>, <span style="color:#666">1000000</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>    series <span style="color:#666">=</span> Series(x)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>    <span style="color:#a2f;font-weight:bold">if</span> (Max <span style="color:#666">&lt;</span> series):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>        Max <span style="color:#666">=</span> series
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>        Element <span style="color:#666">=</span> x
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span><span style="color:#a2f">print</span> Max, Element</span></span></code></pre></div>
+</div>
+<p>
+\\
+\\
+As I had to wait for 20 seconds to get the solution, I was thinking about improving the performance. Then I found this. From the problem statement, <code class="verbatim">13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1</code>, starting with any number, if it becomes 13 at any point of time, it has to take the same route and if it becomes 13 it will take 10 steps to become 1. So I wanted to store this information first time itself, so that I don&#39;t have to recalculate. This is called <code class="verbatim">Memoization</code>. Quoting from wikipedia<br>
+\\</p>
+<blockquote>
+<p>In computing, memoization is an optimization technique used primarily to speed up computer programs by having function calls avoid repeating the calculation of results for previously processed inputs</p>
+</blockquote>
+<p>
+\\</p>
+</div>
+</div>
+<div id="outline-container-optimized-memoized-solution" class="outline-3">
+<h3 id="optimized-memoized-solution">
+Optimized (Memoized) Solution
+</h3>
+<div id="outline-text-optimized-memoized-solution" class="outline-text-3">
+<p>\\
+To optimize it, I just had to change the Series function alone. I stored the computed values in a dictionary and if the current number in the sequence happens to be in the dictionary, I ll just return the value corresponding to it. This program responded with the result in 2 seconds. That is <strong>10 times faster</strong> than the first version.<br>
+\\</p>
+<div class="src src-python">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>Dict <span style="color:#666">=</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span><span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">Series</span>(N):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>    Counter <span style="color:#666">=</span> <span style="color:#666">1</span>   <span style="color:#080;font-style:italic">#It is 1, because we are counting the initial N</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>    Original <span style="color:#666">=</span> N
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>    <span style="color:#a2f;font-weight:bold">while</span> N <span style="color:#666">!=</span> <span style="color:#666">1</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>        N <span style="color:#666">=</span> N<span style="color:#666">/</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">if</span> N <span style="color:#666">%</span> <span style="color:#666">2</span> <span style="color:#666">==</span> <span style="color:#666">0</span> <span style="color:#a2f;font-weight:bold">else</span> <span style="color:#666">3</span><span style="color:#666">*</span>N<span style="color:#666">+</span><span style="color:#666">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>        <span style="color:#a2f;font-weight:bold">if</span> N <span style="color:#a2f;font-weight:bold">in</span> Dict:                    <span style="color:#080;font-style:italic"># Check if the length has been computed for this number already</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>            Counter <span style="color:#666">+=</span> Dict[N]           <span style="color:#080;font-style:italic"># Add it to the current length counter</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>            Dict [Original] <span style="color:#666">=</span> Counter    <span style="color:#080;font-style:italic"># Store the computed value for future look back</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>            <span style="color:#a2f;font-weight:bold">return</span> Counter
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>        Counter <span style="color:#666">+=</span> <span style="color:#666">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>    Dict [Original] <span style="color:#666">=</span> Counter            <span style="color:#080;font-style:italic"># Store the computed value for future look back</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>    <span style="color:#a2f;font-weight:bold">return</span> Counter</span></span></code></pre></div>
+</div>
+<p>
+\\
+\\
+\\
+\\</p>
+</div>
+</div>
 
     
   </article>
@@ -264,7 +357,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -279,7 +372,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -298,7 +391,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -320,7 +413,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -337,7 +430,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f&amp;resubmit=true&amp;title=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -365,7 +458,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -389,7 +482,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f&amp;t=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f&amp;t=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -409,7 +502,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Project%20Euler%20-%2014%20-%20Longest%20Collatz%20sequence%20-%20memoization&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f06%2f15%2fproject-euler-14-longest-collatz-sequence-memoization%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -434,26 +527,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"

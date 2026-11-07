@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="font-size: 125%">
+<html lang="en" style="font-size: 125%">
 
 <head>
   <meta charset="UTF-8">
@@ -57,15 +57,15 @@
 
   
   <meta property="og:url" content="https://thefourtheye.in/posts/2013/04/25/ubuntu-screen-custom-resolution/">
-  <meta property="og:site_name" content="thefourtheye.in">
-  <meta property="og:title" content="Ubuntu Screen Custom Resolution">
-  <meta property="og:description" content="Explains how to add custom screen resolutions in Ubuntu using xrandr. Shows the --newmode, --addmode, and --output commands to set non-standard resolutions like 1600x900.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2013-04-25T09:12:00+05:30">
-    <meta property="article:modified_time" content="2026-05-10T13:27:26+05:30">
-    <meta property="article:tag" content="Ubuntu">
+	<meta property="og:site_name" content="thefourtheye.in">
+	<meta property="og:title" content="Ubuntu Screen Custom Resolution">
+	<meta property="og:description" content="Explains how to add custom screen resolutions in Ubuntu using xrandr. Shows the --newmode, --addmode, and --output commands to set non-standard resolutions like 1600x900.">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-04-25T09:12:00+05:30">
+		<meta property="article:modified_time" content="2026-11-06T20:19:05+05:30">
+		<meta property="article:tag" content="Ubuntu">
 
 
   
@@ -74,12 +74,12 @@
   
   
   
-  <meta itemprop="name" content="Ubuntu Screen Custom Resolution">
-  <meta itemprop="description" content="Explains how to add custom screen resolutions in Ubuntu using xrandr. Shows the --newmode, --addmode, and --output commands to set non-standard resolutions like 1600x900.">
-  <meta itemprop="datePublished" content="2013-04-25T09:12:00+05:30">
-  <meta itemprop="dateModified" content="2026-05-10T13:27:26+05:30">
-  <meta itemprop="wordCount" content="363">
-  <meta itemprop="keywords" content="Ubuntu">
+	<meta itemprop="name" content="Ubuntu Screen Custom Resolution">
+	<meta itemprop="description" content="Explains how to add custom screen resolutions in Ubuntu using xrandr. Shows the --newmode, --addmode, and --output commands to set non-standard resolutions like 1600x900.">
+	<meta itemprop="datePublished" content="2013-04-25T09:12:00+05:30">
+	<meta itemprop="dateModified" content="2026-11-06T20:19:05+05:30">
+	<meta itemprop="wordCount" content="385">
+	<meta itemprop="keywords" content="Ubuntu">
 
   
   
@@ -99,9 +99,9 @@
 
   
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ubuntu Screen Custom Resolution">
-  <meta name="twitter:description" content="Explains how to add custom screen resolutions in Ubuntu using xrandr. Shows the --newmode, --addmode, and --output commands to set non-standard resolutions like 1600x900.">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Ubuntu Screen Custom Resolution">
+	<meta name="twitter:description" content="Explains how to add custom screen resolutions in Ubuntu using xrandr. Shows the --newmode, --addmode, and --output commands to set non-standard resolutions like 1600x900.">
 
 
   
@@ -200,7 +200,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
           <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          363 words
+          385 words
         </span>
       
       
@@ -239,9 +239,75 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   
   <article class="content numbered-subtitles">
     
-    
-<div class='post'>
-<div>Configuring the screen resolution to custom value in Ubuntu was a big headache to me. With most of the monitors I was not able to change the resolution to something of my choice, apart from what is listed in the Display settings. Then I found the following way.<br /><br />First, lets see how to get to know the list of displays attached to Ubuntu<br /><br /><pre class="prettyprint">~$ xrandr<br />Screen 0: minimum 8 x 8, current 2881 x 1280, maximum 16384 x 16384<br />VGA-0 connected 1600x1280+1281+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />LVDS-0 connected (normal left inverted right x axis y axis)<br />   1600x900       60.0 +   40.0  <br />DP-0 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 376mm x 301mm<br />   1280x1024      60.0*+   75.0  <br />   1152x864       75.0  <br />   1024x768       75.0     60.0  <br />   800x600        75.0     60.3  <br />   640x480        75.0     59.9  <br />DP-1 disconnected (normal left inverted right x axis y axis)<br />HDMI-0 disconnected (normal left inverted right x axis y axis)<br />DP-2 disconnected (normal left inverted right x axis y axis)<br />DP-3 disconnected (normal left inverted right x axis y axis)<br />~$ <br /></pre>This is what I got on my machine. And following are the display names as per Ubuntu.<br /><pre class="prettyprint">VGA-0<br />LVDS-0<br />DP-0<br /></pre>Now to set the resolution 1600x900 on VGA-0, I would execute the following<br /><br /><pre class="prettyprint">xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync<br />xrandr --addmode VGA-0 "1600x900_60.00"<br />xrandr --output VGA-0 --mode "1600x900_60.00"<br /></pre><br /><blockquote>First command creates a new mode with resolution 1600x900</blockquote><blockquote>Second command makes it available for use, with display (in this case VGA-0)</blockquote><blockquote>Third command selects the newly added mode as the display resolution for the specified display</blockquote><br />We see that, the first line has lot of numbers. To come up with those numbers, there is a helper tool called <b>cvt</b>. It takes width and height as inputs.<br /><br /><pre class="prettyprint">~$ cvt 1600 1280<br /># 1600x1280 59.92 Hz (CVT 2.05M4) hsync: 79.51 kHz; pclk: 171.75 MHz<br />Modeline "1600x1280_60.00"  171.75  1600 1712 1880 2160  1280 1283 1290 1327 -hsync +vsync<br />~$ <br /></pre><br /><b>To change this to any custom resolution</b>, just replace <b>Modeline</b> in the output of cvt with <b>xrandr --newmode</b>. Thats it. Enjoy :)<br /><br /><br /></div></div>
+    <p>
+Configuring the screen resolution to custom value in Ubuntu was a big headache to me. With most of the monitors I was not able to change the resolution to something of my choice, apart from what is listed in the Display settings. Then I found the following way.<br>
+\\
+First, lets see how to get to know the list of displays attached to Ubuntu<br>
+\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1"> 1</a></span><span>~$ xrandr
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2"> 2</a></span><span>Screen 0: minimum <span style="color:#666">8</span> x 8, current <span style="color:#666">2881</span> x 1280, maximum <span style="color:#666">16384</span> x <span style="color:#666">16384</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3"> 3</a></span><span>VGA-0 connected 1600x1280+1281+0 <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span> 376mm x 301mm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4"> 4</a></span><span>   1280x1024      60.0*+   75.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="5"><a style="outline:none;text-decoration:none;color:inherit" href="#5"> 5</a></span><span>   1152x864       75.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="6"><a style="outline:none;text-decoration:none;color:inherit" href="#6"> 6</a></span><span>   1024x768       75.0     60.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="7"><a style="outline:none;text-decoration:none;color:inherit" href="#7"> 7</a></span><span>   800x600        75.0     60.3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="8"><a style="outline:none;text-decoration:none;color:inherit" href="#8"> 8</a></span><span>   640x480        75.0     59.9
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="9"><a style="outline:none;text-decoration:none;color:inherit" href="#9"> 9</a></span><span>LVDS-0 connected <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="10"><a style="outline:none;text-decoration:none;color:inherit" href="#10">10</a></span><span>   1600x900       60.0 +   40.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="11"><a style="outline:none;text-decoration:none;color:inherit" href="#11">11</a></span><span>DP-0 connected 1280x1024+0+0 <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span> 376mm x 301mm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="12"><a style="outline:none;text-decoration:none;color:inherit" href="#12">12</a></span><span>   1280x1024      60.0*+   75.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="13"><a style="outline:none;text-decoration:none;color:inherit" href="#13">13</a></span><span>   1152x864       75.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="14"><a style="outline:none;text-decoration:none;color:inherit" href="#14">14</a></span><span>   1024x768       75.0     60.0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="15"><a style="outline:none;text-decoration:none;color:inherit" href="#15">15</a></span><span>   800x600        75.0     60.3
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="16"><a style="outline:none;text-decoration:none;color:inherit" href="#16">16</a></span><span>   640x480        75.0     59.9
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="17"><a style="outline:none;text-decoration:none;color:inherit" href="#17">17</a></span><span>DP-1 disconnected <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="18"><a style="outline:none;text-decoration:none;color:inherit" href="#18">18</a></span><span>HDMI-0 disconnected <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="19"><a style="outline:none;text-decoration:none;color:inherit" href="#19">19</a></span><span>DP-2 disconnected <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="20"><a style="outline:none;text-decoration:none;color:inherit" href="#20">20</a></span><span>DP-3 disconnected <span style="color:#666">(</span>normal left inverted right x axis y axis<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="21"><a style="outline:none;text-decoration:none;color:inherit" href="#21">21</a></span><span>~$</span></span></code></pre></div>
+</div>
+<p>
+This is what I got on my machine. And following are the display names as per Ubuntu.\\</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>VGA-0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>LVDS-0
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>DP-0</span></span></code></pre></div>
+</div>
+<p>
+Now to set the resolution 1600x900 on VGA-0, I would execute the following<br>
+\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>xrandr --newmode <span style="color:#b44">&#34;1600x900_60.00&#34;</span>  118.25  <span style="color:#666">1600</span> <span style="color:#666">1696</span> <span style="color:#666">1856</span> <span style="color:#666">2112</span>  <span style="color:#666">900</span> <span style="color:#666">903</span> <span style="color:#666">908</span> <span style="color:#666">934</span> -hsync +vsync
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span>xrandr --addmode VGA-0 <span style="color:#b44">&#34;1600x900_60.00&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>xrandr --output VGA-0 --mode <span style="color:#b44">&#34;1600x900_60.00&#34;</span></span></span></code></pre></div>
+</div>
+<p>
+\\</p>
+<blockquote>
+<p>First command creates a new mode with resolution 1600x900</p>
+</blockquote>
+<blockquote>
+<p>Second command makes it available for use, with display (in this case VGA-0)</p>
+</blockquote>
+<blockquote>
+<p>Third command selects the newly added mode as the display resolution for the specified display</p>
+</blockquote>
+<p>
+\\
+We see that, the first line has lot of numbers. To come up with those numbers, there is a helper tool called <strong>cvt</strong>. It takes width and height as inputs.<br>
+\\</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="1"><a style="outline:none;text-decoration:none;color:inherit" href="#1">1</a></span><span>~$ cvt <span style="color:#666">1600</span> <span style="color:#666">1280</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="2"><a style="outline:none;text-decoration:none;color:inherit" href="#2">2</a></span><span><span style="color:#080;font-style:italic"># 1600x1280 59.92 Hz (CVT 2.05M4) hsync: 79.51 kHz; pclk: 171.75 MHz</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="3"><a style="outline:none;text-decoration:none;color:inherit" href="#3">3</a></span><span>Modeline <span style="color:#b44">&#34;1600x1280_60.00&#34;</span>  171.75  <span style="color:#666">1600</span> <span style="color:#666">1712</span> <span style="color:#666">1880</span> <span style="color:#666">2160</span>  <span style="color:#666">1280</span> <span style="color:#666">1283</span> <span style="color:#666">1290</span> <span style="color:#666">1327</span> -hsync +vsync
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="4"><a style="outline:none;text-decoration:none;color:inherit" href="#4">4</a></span><span>~$</span></span></code></pre></div>
+</div>
+<p>
+\\
+<strong>To change this to any custom resolution</strong>, just replace <strong>Modeline</strong> in the output of cvt with <strong>xrandr –newmode</strong>. Thats it. Enjoy :)<br>
+\\
+\\</p>
 
     
   </article>
@@ -255,7 +321,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Facebook">
       <div class="resp-sharing-button resp-sharing-button--facebook
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -270,7 +336,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://twitter.com/intent/tweet/?text=Ubuntu%20Screen%20Custom%20Resolution&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f" target="_blank" rel="noopener" aria-label="">
+    href="https://twitter.com/intent/tweet/?text=Ubuntu%20Screen%20Custom%20Resolution&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f" target="_blank" rel="noopener" aria-label="Share on Twitter">
       <div class="resp-sharing-button resp-sharing-button--twitter
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -289,7 +355,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
 
     
     
-    <a class="resp-sharing-button__link" href="mailto:?subject=Ubuntu%20Screen%20Custom%20Resolution&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f" target="_self" rel="noopener" aria-label="">
+    <a class="resp-sharing-button__link" href="mailto:?subject=Ubuntu%20Screen%20Custom%20Resolution&amp;body=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f" target="_self" rel="noopener" aria-label="Share on Email">
       <div class="resp-sharing-button resp-sharing-button--email
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -311,7 +377,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on LinkedIn">
       <div class="resp-sharing-button resp-sharing-button--linkedin
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -328,7 +394,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f&amp;resubmit=true&amp;title=Ubuntu%20Screen%20Custom%20Resolution" target="_blank"
-    rel="noopener" aria-label="">
+    rel="noopener" aria-label="Share on Reddit">
       <div class="resp-sharing-button resp-sharing-button--reddit
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -356,7 +422,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link" href="whatsapp://send?text=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on WhatsApp">
       <div class="resp-sharing-button resp-sharing-button--whatsapp
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -380,7 +446,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     
     <a class="resp-sharing-button__link"
-    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f&amp;t=Ubuntu%20Screen%20Custom%20Resolution" target="_blank" rel="noopener" aria-label="">
+    href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f&amp;t=Ubuntu%20Screen%20Custom%20Resolution" target="_blank" rel="noopener" aria-label="Share on Hacker News">
       <div class="resp-sharing-button resp-sharing-button--hackernews
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -400,7 +466,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
     
     <a class="resp-sharing-button__link"
     href="https://telegram.me/share/url?text=Ubuntu%20Screen%20Custom%20Resolution&amp;url=https%3a%2f%2fthefourtheye.in%2fposts%2f2013%2f04%2f25%2fubuntu-screen-custom-resolution%2f"
-    target="_blank" rel="noopener" aria-label="">
+    target="_blank" rel="noopener" aria-label="Share on Telegram">
       <div class="resp-sharing-button resp-sharing-button--telegram
       resp-sharing-button--small"><div aria-hidden="true"
       class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -425,26 +491,7 @@ d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a
   </div>
   <div class="comment">
     
-    <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
     
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thefourtheye" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
       <script src="https://giscus.app/client.js"
         data-repo="thefourtheye/thefourtheye.github.io"
